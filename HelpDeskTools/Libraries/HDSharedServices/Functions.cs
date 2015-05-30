@@ -789,7 +789,7 @@ namespace HDSharedServices
 		/// <param name="worksheetName"></param>
 		/// <param name="saveAsLocation"></param>
 		/// <returns></returns>
-		public static bool Excel_WriteDataTableToFile(System.Data.DataTable dataTable, string worksheetName, string saveAsLocation, string ReporType)
+		public static bool Excel_WriteDataTableToFile(System.Data.DataTable dataTable, string worksheetName, string saveAsLocation, string ReportType)
 		{
 			Microsoft.Office.Interop.Excel.Application excel;
 			Microsoft.Office.Interop.Excel.Workbook excelworkBook;
