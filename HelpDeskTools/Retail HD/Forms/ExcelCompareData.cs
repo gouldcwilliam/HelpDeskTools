@@ -10,8 +10,16 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+	
+	/// <summary> Display form for choosing what information to compare 
+	/// and update in the store information table
+	/// </summary>
 	public partial class ExcelCompareData : Form
 	{
+		// TODO  - Gather the information to be compared
+
+
+
 		/// <summary> Form showing data from an excel file query
 		/// </summary>
 		/// <param name="file">File name to query</param>
@@ -57,7 +65,7 @@ namespace Retail_HD.Forms
 			if (i.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
 				_Query = i._UserInput;
-				dg_main.DataSource = HDSharedServices.Functions.Excel_QuerySheet(_File, _Query);
+				dg_main.DataSource = Shared.Functions.Excel_QuerySheet(_File, _Query);
 			}
 		}
 	}

@@ -31,7 +31,7 @@ namespace Retail_HD.Forms
 			{
 				_store = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
 				int temp = 0;
-				HDSharedServices.Functions.isNumeric(_store, out temp);
+				Shared.Functions.isNumeric(_store, out temp);
 				if (temp != 0)
 				{
 					Info.store = temp;
@@ -42,7 +42,7 @@ namespace Retail_HD.Forms
 		private void StoreSearch_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			int temp = 0;
-			HDSharedServices.Functions.isNumeric(_store, out temp);
+			Shared.Functions.isNumeric(_store, out temp);
 			if (temp != 0) { 
 				Info.store = temp; 
 			}

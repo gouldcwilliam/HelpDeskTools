@@ -101,7 +101,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\ADwww.cs" />
     <Compile Include="Classes\AgentStatus.cs" />
     <Compile Include="Classes\Computer.cs" />
     <Compile Include="Classes\GlobalFunctions.cs" />

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HDSharedServices {
+namespace Shared {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

@@ -38,7 +38,7 @@ namespace Retail_HD.Forms.BGWorkers
 		string _cashierNumber { get; set; }
 		string _file
 		{
-			get { return HDSharedServices.Settings.Default._TempFile; }
+			get { return Shared.Settings.Default._TempFile; }
 		}
 
 		private void bw_DoWork(object sender, DoWorkEventArgs e)

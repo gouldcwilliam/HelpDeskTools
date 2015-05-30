@@ -13,7 +13,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 
-namespace HDSharedServices
+namespace Shared
 {
 	/// <summary> Globaly Shared Functions
 	/// </summary>

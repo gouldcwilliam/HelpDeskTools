@@ -1,4 +1,4 @@
-﻿namespace HDSharedServices.Forms
+﻿namespace Shared.Forms
 {
     partial class frmCiscoLogin
     {

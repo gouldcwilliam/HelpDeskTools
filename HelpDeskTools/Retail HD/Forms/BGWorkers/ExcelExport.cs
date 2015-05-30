@@ -47,7 +47,7 @@ namespace Retail_HD.Forms.BGWorkers
 
 			if (worker.CancellationPending) { e.Cancel = true; return; };
 
-			if (HDSharedServices.Functions.Excel_WriteDataTableToFile(_dt, "Call History Export", _saveLocation, "Call History"))
+			if (Shared.Functions.Excel_WriteDataTableToFile(_dt, "Call History Export", _saveLocation, "Call History"))
 			{
 				worker.ReportProgress(100, "Data Exported to: ");
 				e.Result = _saveLocation;

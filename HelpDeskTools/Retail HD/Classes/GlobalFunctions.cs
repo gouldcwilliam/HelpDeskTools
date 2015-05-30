@@ -121,7 +121,7 @@ namespace Retail_HD
 				if (!File.Exists(Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe"))
 				{
 					Console.WriteLine(@"PsExec not found, copying to: {0}\System32\", Environment.ExpandEnvironmentVariables("%WINDIR%"));
-					File.Copy(HDSharedServices.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
+					File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
 						Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe",
 						true);
 				}
@@ -134,7 +134,7 @@ namespace Retail_HD
 		{
 			try
 			{
-				File.Copy(HDSharedServices.Settings.Default._NetworkShare + @"\Software\DelayedStartServices\DelayedStartServices.exe",
+				File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\DelayedStartServices\DelayedStartServices.exe",
 						Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\DelayedStartServices.exe",
 						true);
 			}
@@ -211,7 +211,7 @@ namespace Retail_HD
 
 		public static bool b_WriteBatFile(string Contents)
 		{
-			return b_WriteFile(Contents, HDSharedServices.Settings.Default._TempFile);
+			return b_WriteFile(Contents, Shared.Settings.Default._TempFile);
 		}
 
 
@@ -227,7 +227,7 @@ namespace Retail_HD
 
 		public static bool b_CopyBatFile(string ComputerName)
 		{
-			return b_CopyFile(ComputerName, HDSharedServices.Settings.Default._TempFile);
+			return b_CopyFile(ComputerName, Shared.Settings.Default._TempFile);
 		}
 
 	
@@ -252,9 +252,9 @@ namespace Retail_HD
 
 		public static void v_UpdateComputersFromAD()
 		{
-			if (System.IO.File.Exists(HDSharedServices.Settings.Default._UpdateComputerList))
+			if (System.IO.File.Exists(Shared.Settings.Default._UpdateComputerList))
 			{
-				Process.Start(HDSharedServices.Settings.Default._UpdateComputerList);
+				Process.Start(Shared.Settings.Default._UpdateComputerList);
 			}
 		}
 
@@ -332,7 +332,7 @@ namespace Retail_HD
 		{
 			ProcessStartInfo startInfo = new ProcessStartInfo();
 			startInfo.FileName = "PSEXEC";
-			startInfo.Arguments = string.Format(@"\\{0} -s -d -i {1}", computer, HDSharedServices.Settings.Default._TempFile);
+			startInfo.Arguments = string.Format(@"\\{0} -s -d -i {1}", computer, Shared.Settings.Default._TempFile);
 			Process process = Process.Start(startInfo);
 		}
 

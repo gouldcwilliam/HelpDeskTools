@@ -100,7 +100,7 @@ namespace Retail_HD.Forms
 		private void Search(object sender, EventArgs e)
 		{
 			int limit = 1000;
-			if(txtResultLimit.Text != string.Empty &&  HDSharedServices.Functions.isTxtBoxNumeric(txtResultLimit, out limit))
+			if(txtResultLimit.Text != string.Empty &&  Shared.Functions.isTxtBoxNumeric(txtResultLimit, out limit))
 			{
 				_resultLimit = limit;
 			}
