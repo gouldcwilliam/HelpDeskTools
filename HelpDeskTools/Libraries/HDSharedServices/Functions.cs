@@ -85,6 +85,11 @@ namespace HDSharedServices
             }
         }
 
+        /// <summary>
+        /// Search Peoplesoft for user info by employee number
+        /// </summary>
+        /// <param name="empNumber"></param>
+        /// <returns></returns>
         public static string LookupUser(string empNumber)
         {
             HttpWebRequest request = null;
