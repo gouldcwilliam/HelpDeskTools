@@ -81,7 +81,7 @@ namespace BananaHammock
 							if (!Functions.CopyFile(listOfStores[i])) { body += string.Format(Settings.Default.body, listOfStores[i], "1: Error copying file", " "); }
 							else
 							{
-								string a = string.Format(@"\\{0} {1}", listOfStores[i], HDSharedServices.Settings.Default._TempFile);
+								string a = string.Format(@"\\{0} {1}", listOfStores[i], Shared.Settings.Default._TempFile);
 								Functions.i_ExecuteCommand("PSEXEC", true, a, true);
 							}
 						}
@@ -114,7 +114,7 @@ namespace BananaHammock
 						if (!Functions.CopyFile(listOfStores[i])) { body += string.Format(Settings.Default.body, listOfStores[i], "2: Error copying file", " "); }
 						else
 						{
-							string a = string.Format(@"\\{0} {1}", listOfStores[i], HDSharedServices.Settings.Default._TempFile);
+							string a = string.Format(@"\\{0} {1}", listOfStores[i], Shared.Settings.Default._TempFile);
 							Functions.i_ExecuteCommand("PSEXEC", true, a, true);
 						}
 					}

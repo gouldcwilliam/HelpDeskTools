@@ -35,7 +35,7 @@ namespace Retail_HD.Forms
 		/// <param name="e"></param>
 		private void ExcelSchemaInfo_Load(object sender, EventArgs e)
 		{
-			foreach (DataRow r in HDSharedServices.Functions.Excel_GetTables(_filename).Rows)
+			foreach (DataRow r in Shared.Functions.Excel_GetTables(_filename).Rows)
 			{
 				ckbTablesE.Items.Add(r["TABLE_NAME"].ToString());
 			}
@@ -49,7 +49,7 @@ namespace Retail_HD.Forms
 		{
 			ckbColumnsE.Items.Clear();
 			if (ckbTablesE.CheckedItems.Count == 0) { return; }
-			foreach (DataRow r in HDSharedServices.Functions.Excel_GetColumns(_filename, ckbTablesE.CheckedItems[0].ToString()).Rows)
+			foreach (DataRow r in Shared.Functions.Excel_GetColumns(_filename, ckbTablesE.CheckedItems[0].ToString()).Rows)
 			{
 				ckbColumnsE.Items.Add(r["COLUMN_NAME"].ToString());
 			}

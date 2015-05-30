@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HDSharedServices.Resources {
+namespace Shared.Resources {
     using System;
     
     

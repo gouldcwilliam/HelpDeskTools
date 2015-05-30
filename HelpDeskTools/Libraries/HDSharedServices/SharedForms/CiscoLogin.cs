@@ -11,7 +11,7 @@ using CiscoFinesseNET;
 using System.IO;
 
 
-namespace HDSharedServices.Forms
+namespace Shared.Forms
 {
     public partial class frmCiscoLogin : Form
     {
@@ -39,8 +39,8 @@ namespace HDSharedServices.Forms
             txtPort.Text = CiscoFinesseNET.Init.mainSettings.port.ToString();
             txtDataStore.Text = CiscoFinesseNET.Init.mainSettings.GetSaveLocation(false);
             txtACD.Text = CiscoFinesseNET.Init.mainSettings.ACD;
-            txtShoeboxUSR.Text = HDSharedServices.Settings.Default._PeoplesoftUsername;
-            txtShoeboxPWD.Text = HDSharedServices.Settings.Default._PeoplesoftPassword;
+            txtShoeboxUSR.Text = Shared.Settings.Default._PeoplesoftUsername;
+            txtShoeboxPWD.Text = Shared.Settings.Default._PeoplesoftPassword;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -66,13 +66,13 @@ namespace HDSharedServices.Forms
                     if (txtShoeboxPWD.Text != string.Empty)
                     {
                         //try to log in, if successful save peoplesoft settings
-                        if (HDSharedServices.Functions.LoginToPeoplesoft(txtShoeboxUSR.Text.ToUpper(), txtShoeboxPWD.Text.ToUpper()).ToLower().Contains("your user id and/or password are invalid."))
+                        if (Shared.Functions.LoginToPeoplesoft(txtShoeboxUSR.Text.ToUpper(), txtShoeboxPWD.Text.ToUpper()).ToLower().Contains("your user id and/or password are invalid."))
                         {
                             MessageBox.Show("Cannot login to Peoplesoft: Username or Password incorrect.", "Authentication Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
-                        HDSharedServices.Functions.LogoutPeoplesoft();
+                        Shared.Functions.LogoutPeoplesoft();
 
                         Settings.Default._PeoplesoftPassword = txtShoeboxPWD.Text.ToUpper();
                         Settings.Default._PeoplesoftUsername = txtShoeboxUSR.Text.ToUpper();
@@ -157,8 +157,8 @@ namespace HDSharedServices.Forms
         private void frmCiscoLogin_Load(object sender, EventArgs e)
         {
             //disable peoplesoft stuff for now
-            txtShoeboxPWD.Enabled = HDSharedServices.Settings.Default._PeoplesoftUpgrade;
-            txtShoeboxUSR.Enabled = HDSharedServices.Settings.Default._PeoplesoftUpgrade;
+            txtShoeboxPWD.Enabled = Shared.Settings.Default._PeoplesoftUpgrade;
+            txtShoeboxUSR.Enabled = Shared.Settings.Default._PeoplesoftUpgrade;
 
             if (txtUsername.Text == string.Empty)
             {

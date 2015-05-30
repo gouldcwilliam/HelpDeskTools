@@ -107,7 +107,7 @@ namespace Retail_HD.Forms
 							{
                                 if (!GlobalFunctions.b_CopyBatFile(computer)) { MessageBox.Show("An error occurred copying batch files.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); break; }
 
-								string args = string.Format("-r:{0} {1} {2}", computer, HDSharedServices.Settings.Default._TempFile, action + " " + service);
+								string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempFile, action + " " + service);
 								GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
 							}
 						}

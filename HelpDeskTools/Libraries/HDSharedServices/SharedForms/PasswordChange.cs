@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HDSharedServices.Forms
+namespace Shared.Forms
 {
     public partial class frmPasswordChange : Form
     {

@@ -79,9 +79,9 @@ namespace BananaHammock
 			
 			try
 			{
-				string Destination = string.Format(@"\\{0}\C$\{1}", ComputerName, HDSharedServices.Settings.Default._TempFile.Substring(3));
+				string Destination = string.Format(@"\\{0}\C$\{1}", ComputerName, Shared.Settings.Default._TempFile.Substring(3));
 				//Console.WriteLine(Destination);
-				File.Copy(HDSharedServices.Settings.Default._TempFile, Destination, true);
+				File.Copy(Shared.Settings.Default._TempFile, Destination, true);
 			}
 			catch (Exception ex)
 			{
@@ -93,7 +93,7 @@ namespace BananaHammock
 	
 		public static bool WriteFile(string Contents)
 		{
-			try { File.WriteAllText(HDSharedServices.Settings.Default._TempFile, Contents); }
+			try { File.WriteAllText(Shared.Settings.Default._TempFile, Contents); }
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 			return true;
 		}

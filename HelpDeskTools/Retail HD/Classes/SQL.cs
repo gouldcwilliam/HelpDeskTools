@@ -572,7 +572,7 @@ namespace Retail_HD
 		}
 
 
-		//TODO Combine b_UsefulInfo_Update and b_EditInfoTabTitle into one SQL
+		// TODO - Combine b_UsefulInfo_Update and b_EditInfoTabTitle into one SQL
 		/// <summary> Inserts Text area of info form into sql
 		/// </summary>
 		/// <param name="tabName">name of the table</param>

@@ -15,11 +15,19 @@ namespace Shared.Config
 	{
 		/// <summary> Relative path to config
 		/// </summary>
-		public const string configPath = @"per_user.config";
+		public const string configPath = @"user.config";
 
+
+		// MIGRATE - Replace the settings.default versions of these configs
 		
 
 
+		public System.Drawing.Point FormStart { get; set; }
+		public System.Drawing.Size FormSize { get; set; }
+		public bool ShownInAgentStatus { get; set; }
+		public bool ShowLoggedOutUsers { get; set; }
+		public bool AutoReady { get; set; }
+		public bool AutoLogin { get; set; }
 
 
 		/// <summary> Read config file into class

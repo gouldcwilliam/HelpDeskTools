@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 
 using CiscoFinesseNET;
-using HDSharedServices;
+using Shared;
 namespace Retail_HD
 {
 	/// <summary> class definition - main form
@@ -106,7 +106,7 @@ namespace Retail_HD
 			}
 		}
 
-		HDSharedServices.Forms.frmAgentStatus agentStatus = new HDSharedServices.Forms.frmAgentStatus();
+		Shared.Forms.frmAgentStatus agentStatus = new Shared.Forms.frmAgentStatus();
 
 		Forms.ReportIssue ReportIssue = new Forms.ReportIssue();
 		Forms.WrapUp wrapUp = new Forms.WrapUp();
@@ -125,6 +125,7 @@ namespace Retail_HD
 		/// </summary>
 		public RetailHD()
 		{
+
 			InitializeComponent();
 			Initialize_Buttons_ToolTips();
 
@@ -244,7 +245,7 @@ namespace Retail_HD
 			{
 				//instantiate modal login dialog box here
 				//frmCiscoLogin loginForm = new frmCiscoLogin();
-				HDSharedServices.Forms.frmCiscoLogin loginForm = new HDSharedServices.Forms.frmCiscoLogin();
+				Shared.Forms.frmCiscoLogin loginForm = new Shared.Forms.frmCiscoLogin();
 				if (loginForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				{
 					//login user
@@ -338,11 +339,11 @@ namespace Retail_HD
                 {
                     ts_Top.Invoke(new MethodInvoker(delegate
                         {
-                            if (!HDSharedServices.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+                            if (!Shared.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
                             {
                                 ts_Top_tsl_Override.Visible = true;
                             }
-                            else if (HDSharedServices.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+                            else if (Shared.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
                             {
                                 ts_Top_tsl_Override.Visible = false;
                             }
@@ -362,11 +363,11 @@ namespace Retail_HD
                 }
                 else
                 {
-                    if (!HDSharedServices.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+                    if (!Shared.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
                     {
                         ts_Top_tsl_Override.Visible = true;
                     }
-                    else if (HDSharedServices.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+                    else if (Shared.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
                     {
                         ts_Top_tsl_Override.Visible = false;
                     }
@@ -708,7 +709,7 @@ namespace Retail_HD
 			// makes you ready if this is called once wrap up is done
             if (e is WrapUpInvokeEventArgs && hasCallWrappedUp)
             {
-                if (HDSharedServices.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+                if (Shared.Settings.Default._EnableAutoReady && curState == UserState.WORK)
                 {
                     hasCallWrappedUp = false;
                     Helper.ChangeUserState(UserState.READY); 
@@ -722,7 +723,7 @@ namespace Retail_HD
                 if (txtStore.Text == string.Empty
 					|| txtStore.Text.Length > 4
 					|| txtStore.Text.Length < 3) { txtStore.Text = "9999"; }
-                if (!HDSharedServices.Functions.isTxtBoxNumeric(txtStore)) { return; }
+                if (!Shared.Functions.isTxtBoxNumeric(txtStore)) { return; }
 
                 wrapUp = new Forms.WrapUp();
                 Point startLocation = new Point(this.Location.X + (this.Width / 3), this.Location.Y + (this.Height / 2));
@@ -732,7 +733,7 @@ namespace Retail_HD
                 {
 					// only change to ready, if the user was in work (meaning normal call flow). 
 					// A dialed number will make you not ready, and then auto ready on the server-side if you were ready before
-                    if (HDSharedServices.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+                    if (Shared.Settings.Default._EnableAutoReady && curState == UserState.WORK)
                     {
                         hasCallWrappedUp = false;
                         Helper.ChangeUserState(UserState.READY);
@@ -848,7 +849,7 @@ namespace Retail_HD
 			{
 				if (!GlobalFunctions.b_CopyBatFile(computer.name)) { return; }
 
-				string args = string.Format("-r:{0} {1} {2}", computer.name, HDSharedServices.Settings.Default._TempFile, action + " " + service);
+				string args = string.Format("-r:{0} {1} {2}", computer.name, Shared.Settings.Default._TempFile, action + " " + service);
 				//Console.WriteLine(args);
 				GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
 			}
@@ -1034,7 +1035,7 @@ namespace Retail_HD
 			int store;
 			
 			if (txtStore.Text.Length > 2 && txtStore.Text.Length < 5
-				&& HDSharedServices.Functions.isTxtBoxNumeric(txtStore, out store))
+				&& Shared.Functions.isTxtBoxNumeric(txtStore, out store))
 			{
 				if (store != Info.store) { Info.store = store; }
 				UpdateInfo();
@@ -1092,7 +1093,7 @@ namespace Retail_HD
 		{
 			//GlobalFunctions.i_ExecuteCommand(Settings.Default._OldMenuPath, true);
 			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-			startInfo.FileName = HDSharedServices.Settings.Default._OldMenuPath;
+			startInfo.FileName = Shared.Settings.Default._OldMenuPath;
 			startInfo.CreateNoWindow = true;
 			startInfo.UseShellExecute = true;
 			System.Diagnostics.Process process = System.Diagnostics.Process.Start(startInfo);
@@ -1225,7 +1226,7 @@ namespace Retail_HD
 		{
 			if (!agentStatus.Visible && _AgentLoginEnabled)
 			{
-				agentStatus = new HDSharedServices.Forms.frmAgentStatus();
+				agentStatus = new Shared.Forms.frmAgentStatus();
 				agentStatus.Show();
 			}
 			else
@@ -1245,7 +1246,7 @@ namespace Retail_HD
 
 				foreach (char _c in _tmp) //get rid of dashes, slashes, and periods and other junk
 				{
-					if (HDSharedServices.Functions.isNumeric(_c)) number2call += _c.ToString();
+					if (Shared.Functions.isNumeric(_c)) number2call += _c.ToString();
 				}
 
 				number2call = "81" + number2call;
@@ -1515,16 +1516,16 @@ namespace Retail_HD
 			//call up the log sender app and close this
 
 			// Save Settings
-			HDSharedServices.Settings.Default._DrawingLocation = Location;
+			Shared.Settings.Default._DrawingLocation = Location;
 			if (WindowState == FormWindowState.Normal)
 			{
-				HDSharedServices.Settings.Default._DrawingSize = Size;
+				Shared.Settings.Default._DrawingSize = Size;
 			}
 			else
 			{
-				HDSharedServices.Settings.Default._DrawingSize = RestoreBounds.Size;
+				Shared.Settings.Default._DrawingSize = RestoreBounds.Size;
 			}
-			HDSharedServices.Settings.Default.Save();
+			Shared.Settings.Default.Save();
 		}
 
 		/// <summary> Methods when the main form is shown
@@ -1534,9 +1535,9 @@ namespace Retail_HD
 		private void Main_FormShown(object sender, EventArgs e)
 		{
 			UpdateWrapUpTotal();
-			if (HDSharedServices.Settings.Default._DrawingSize != null)
+			if (Shared.Settings.Default._DrawingSize != null)
 			{
-				Size = HDSharedServices.Settings.Default._DrawingSize;
+				Size = Shared.Settings.Default._DrawingSize;
 			}
 
 		}
@@ -1550,7 +1551,7 @@ namespace Retail_HD
 			//restore the position of the form
 			if (!hasRun)
 			{
-				Location = HDSharedServices.Settings.Default._DrawingLocation;
+				Location = Shared.Settings.Default._DrawingLocation;
 				if (!isOnScreen(this))
 				{
 					//set the location to a default
