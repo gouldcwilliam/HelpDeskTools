@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UpdateComputerList.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="_serverName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rochdclogp01</Value>
+    </Setting>
+    <Setting Name="_dataBase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RetailHD</Value>
+    </Setting>
+    <Setting Name="_tableName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">[RetailHD].[dbo].[Computers]</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

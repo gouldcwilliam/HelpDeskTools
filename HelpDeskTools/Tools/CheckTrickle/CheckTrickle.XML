@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CheckTrickle</name>
+    </assembly>
+    <members>
+        <member name="T:CheckTrickle.Functions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CheckTrickle.Functions.GetIgnoreList(System.String[])">
+            <summary>
+            Adds store to
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CheckTrickle.Functions.ListToFile(System.Collections.Generic.List{LDAP.Result},System.String,System.String)">
+            <summary>
+            Writes LDAP Result Llst to file where each Result value is on a new line
+            </summary>
+            <param name="ResultList">LDAP Result List</param>
+            <param name="FilePath">Path to write file</param>
+            <param name="FileName">Name of file to write to</param>
+        </member>
+        <member name="M:CheckTrickle.Functions.ListToFile(System.Collections.Generic.List{LDAP.Result})">
+            <summary>
+            Writes LDAP Result Llst to file where each Result value is on a new line
+            Uses %TEMP\[ProcessID]\List.csv filepath/name
+            </summary>
+            <param name="ResultList">LDAP Result List</param>
+        </member>
+        <member name="M:CheckTrickle.Functions.CountTRX(System.String,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="computer"></param>
+            <param name="TRXs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CheckTrickle.Functions.CheckNetwork(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="computer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CheckTrickle.Functions.SendMail(System.String,System.String,System.String,System.String,System.String[],System.Boolean)">
+            <summary>
+            Send mail using WWINC Domain settings
+            </summary>
+            <param name="From">Sender</param>
+            <param name="To">Receiver</param>
+            <param name="Subject">Subject of message</param>
+            <param name="Body">Body of message</param>
+            <param name="Attachments">List of files to attach</param>
+            <param name="HTML">Boolean to enable HTML in body</param>
+            <returns>on success</returns>
+        </member>
+        <member name="M:CheckTrickle.Functions.SendMail(System.String,System.String,System.String,System.String,System.String[])">
+            <summary>
+            Send mail using WWINC Domain settings
+            </summary>
+            <param name="From">Sender</param>
+            <param name="To">Receiver</param>
+            <param name="Subject">Subject of message</param>
+            <param name="Body">Body of message</param>
+            <param name="Attachments">List of files to attach</param>
+            <returns></returns>
+        </member>
+        <member name="M:CheckTrickle.Functions.SendMail(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Send mail using WWINC Domain settings
+            </summary>
+            <param name="From">Sender</param>
+            <param name="To">Receiver</param>
+            <param name="Subject">Subject of message</param>
+            <param name="Body">Body of message</param>
+            <param name="HTML">Boolean to enable HTML in body</param>
+            <returns>on success</returns>
+        </member>
+        <member name="M:CheckTrickle.Functions.SendMail(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Send mail using WWINC Domain settings
+            </summary>
+            <param name="From">Sender</param>
+            <param name="To">Receiver</param>
+            <param name="Subject">Subject of message</param>
+            <param name="Body">Body of message</param>
+            <param name="Attachment">file to attach</param>
+            <returns>on success</returns>
+        </member>
+        <member name="M:CheckTrickle.Functions.SendMail(System.String,System.String,System.String,System.String)">
+            <summary>
+            Send mail using WWINC Domain settings
+            </summary>
+            <param name="From">Sender</param>
+            <param name="To">Receiver</param>
+            <param name="Subject">Subject of message</param>
+            <param name="Body">Body of message</param>
+            <returns>on success</returns>
+        </member>
+        <member name="T:CheckTrickle.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CheckTrickle.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CheckTrickle.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CheckTrickle.Properties.Resources.Icon">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+    </members>
+</doc>

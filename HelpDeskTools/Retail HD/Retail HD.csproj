@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{24FACCD1-CBA6-44FD-BB4F-35BF7DD17712}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Retail_HD</RootNamespace>
+    <AssemblyName>Retail HD</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Retail HD Menu\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>340</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\Retail HD\Latest\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Artua-Mac-Intranet.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1CB69570E6B19142D4C094E7C1D4A5B33DCF8E57</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Retail HD_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Retail_HD.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\AgentStatus.cs" />
+    <Compile Include="Classes\Computer.cs" />
+    <Compile Include="Classes\People.cs" />
+    <Compile Include="Forms\AddNewStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddNewStore.Designer.cs">
+      <DependentUpon>AddNewStore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\bwExporting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\bwRestart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\bwUnlock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CodeEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CodeEntry.Designer.cs">
+      <DependentUpon>CodeEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditCalls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditCalls.Designer.cs">
+      <DependentUpon>EditCalls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditStoreInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditStoreInfo.Designer.cs">
+      <DependentUpon>EditStoreInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddQuickWrap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddQuickWrap.Designer.cs">
+      <DependentUpon>AddQuickWrap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Confirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Confirm.Designer.cs">
+      <DependentUpon>Confirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExcelLoadTables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExcelLoadTables.Designer.cs">
+      <DependentUpon>ExcelLoadTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserInput.Designer.cs">
+      <DependentUpon>UserInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\bwKillPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListActions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListActions.Designer.cs">
+      <DependentUpon>ListActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SendEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SendEmail.Designer.cs">
+      <DependentUpon>SendEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StoreSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StoreSearch.Designer.cs">
+      <DependentUpon>StoreSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsefulInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UsefulInfo.Designer.cs">
+      <DependentUpon>UsefulInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExcelCompareData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExcelCompareData.Designer.cs">
+      <DependentUpon>ExcelCompareData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetailHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetailHD.Designer.cs">
+      <DependentUpon>RetailHD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\bwProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\bwProcess.Designer.cs">
+      <DependentUpon>bwProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReportIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportIssue.Designer.cs">
+      <DependentUpon>ReportIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditSettings.Designer.cs">
+      <DependentUpon>EditSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HistorySearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HistorySearch.Designer.cs">
+      <DependentUpon>HistorySearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WrapUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WrapUp.Designer.cs">
+      <DependentUpon>WrapUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\GlobalFunctions.cs" />
+    <Compile Include="Classes\Info.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GlobalResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\SQL.cs" />
+    <Compile Include="Setting\SQL.Designer.cs">
+      <DependentUpon>SQL.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UserControls\PingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PingControl.Designer.cs">
+      <DependentUpon>PingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ServicesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ServicesControl.Designer.cs">
+      <DependentUpon>ServicesControl.cs</DependentUpon>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Setting\SQL.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SQL.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\batTest.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\AddNewStore.resx">
+      <DependentUpon>AddNewStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CodeEntry.resx">
+      <DependentUpon>CodeEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditCalls.resx">
+      <DependentUpon>EditCalls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditStoreInfo.resx">
+      <DependentUpon>EditStoreInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddQuickWrap.resx">
+      <DependentUpon>AddQuickWrap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Confirm.resx">
+      <DependentUpon>Confirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExcelLoadTables.resx">
+      <DependentUpon>ExcelLoadTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInput.resx">
+      <DependentUpon>UserInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListActions.resx">
+      <DependentUpon>ListActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SendEmail.resx">
+      <DependentUpon>SendEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StoreSearch.resx">
+      <DependentUpon>StoreSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsefulInfo.resx">
+      <DependentUpon>UsefulInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExcelCompareData.resx">
+      <DependentUpon>ExcelCompareData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetailHD.resx">
+      <DependentUpon>RetailHD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\bwProcess.resx">
+      <DependentUpon>bwProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportIssue.resx">
+      <DependentUpon>ReportIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditSettings.resx">
+      <DependentUpon>EditSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HistorySearch.resx">
+      <DependentUpon>HistorySearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WrapUp.resx">
+      <DependentUpon>WrapUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PingControl.resx">
+      <DependentUpon>PingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ServicesControl.resx">
+      <DependentUpon>ServicesControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\batUnlock.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\browser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\speech-bubble-center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spinner-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\subtract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\swap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\swap-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\terminal-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\terminal-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\terminal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unlocked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\support.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\support-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\support-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timeline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toggle-on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\watch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\watch-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\split-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\split.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sleep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spam-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings-4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shuffle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rulers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repeat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repeat-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\power.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paper-ripped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paper-roll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paper-roll-ripped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paragraph-center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paragraph-center-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paragraph-justify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paragraph-justify-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paragraph-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paragraph-left-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paragraph-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paragraph-right-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marquee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marquee-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marquee-minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marquee-plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marquee-upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximise.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-pull-down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-pull-up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mixer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\keys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\batServices.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icoMain.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Artua-Mac-Intranet.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sundial.png" />
+    <None Include="Resources\magnifying.png" />
+    <None Include="Resources\agents.png" />
+    <None Include="Resources\batInstallEndpoint12.txt" />
+    <None Include="Resources\batCerts.txt" />
+    <Content Include="Resources\Contra_33.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\settings-icon.png" />
+    <None Include="Resources\phonesettings.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\login.png" />
+    <None Include="Resources\mobile_phone.png" />
+    <None Include="Resources\phone1.png" />
+    <None Include="Resources\icon_phone1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries\AD\AD.csproj">
+      <Project>{f9643ea4-49cf-4fa2-b2fb-771abb20cbf6}</Project>
+      <Name>AD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\HDSharedServices\HDSharedServices.csproj">
+      <Project>{84b74dd0-3b52-456f-a742-3b57fa31e664}</Project>
+      <Name>HDSharedServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\CiscoFinesseNET\CiscoFinesseNET.csproj">
+      <Project>{3e9001a4-fd82-4b28-81c4-9720c607c62a}</Project>
+      <Name>CiscoFinesseNET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\LDAP\LDAP.csproj">
+      <Project>{5a5601e8-c1b8-43ab-961b-3deb1bc5b06e}</Project>
+      <Name>LDAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\ProgressBar\ProgressBar.csproj">
+      <Project>{d47c1210-4bfe-4b10-956f-7b0b40f3c718}</Project>
+      <Name>ProgressBar</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

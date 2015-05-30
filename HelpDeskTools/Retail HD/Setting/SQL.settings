@@ -1,0 +1,430 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Retail_HD.Setting" GeneratedClassName="SQL">
+  <Profiles />
+  <Settings>
+    <Setting Name="_ServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rochdclogp01</Value>
+    </Setting>
+    <Setting Name="_Database" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RetailHD</Value>
+    </Setting>
+    <Setting Name="_RecentCallsByStore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select
+	[Calls].[id] as [ID],
+	[Calls].[store] as [Store],
+	[Calls].[date] [Date],
+	[Technicians].[initials] as [Tech],
+	[Categories].[category] as [Category],
+	[Topics].[topic] as [Topic],
+	[Calls].[details] as [Details],
+	[Calls].[type] as [In/Out],
+	[Calls].[trax] as [Trax],
+	[Calls].[url] as [URL]
+from
+	[Calls]
+	left join
+		[Topics] on [Calls].[topID] = [Topics].id
+	left join
+		[Categories] on [Topics].[catID] = [Categories].[id]
+	left join
+		[Technicians] on [Calls].[techID] = [Technicians].[id]
+where
+	[Calls].[store] = @store
+order by
+	[Calls].[date] desc
+
+</Value>
+    </Setting>
+    <Setting Name="_ComputersByStore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT 
+	[computer] 
+FROM 
+	[Computers] 
+WHERE 
+	[store] = @store</Value>
+    </Setting>
+    <Setting Name="_CategoriesWithTopics" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select 
+	[category], 
+	[topic], 
+	[mandatory] 
+from 
+	[Topics] 
+	left join 
+		[Categories] 
+	on 
+		[Topics].[catID] = [Categories].[id]
+where
+	[active] = 'TRUE'</Value>
+    </Setting>
+    <Setting Name="_InsertCall" Type="System.String" Scope="User">
+      <Value Profile="(Default)">insert into 
+	[Calls] (
+		[store], 
+		[details], 
+		[catID], 
+		[topID], 
+		[type], 
+		[techID],
+		[trax],
+		[url]) 
+values (
+	@store, 
+	@details, 
+	(Select [id] from [Categories] where [category] = @category), 
+	(select [id] from [Topics] where [topic] = @topic ), 
+	@type, 
+	(select [id] from [Technicians] where [technician] = @technician),
+	@trax,
+	@url
+	)
+</Value>
+    </Setting>
+    <Setting Name="_CallCount_User" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select
+	count([techID]) [Total]
+from
+	[Calls]
+	left join 
+		[Technicians]
+	on
+		[Calls].[techID] = [Technicians].[id]
+where
+	[date] &gt; dbo.StartOfDay() and
+	lower([Technicians].[technician]) = lower(@TECH) and
+	lower([type]) = 'in'
+</Value>
+    </Setting>
+    <Setting Name="_UpdateCall" Type="System.String" Scope="User">
+      <Value Profile="(Default)">update
+	[Calls] 
+set 
+	[store] = @store, 
+	[catID] = (select [catID] from [Topics] where topic = @topic), 
+	[topID] = (select [id] from [Topics] where [topic] = @topic), 
+	[details] = @details, 
+	[type] = @type, 
+	[trax] = @trax,
+	[url] = @url
+where 
+	[Calls].[id] = @id
+</Value>
+    </Setting>
+    <Setting Name="_InsertTopic" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Insert into [Topics] ([topic], [catID], [active], [mandatory])
+values
+	(@topic,
+	(select [Categories].[id] from [Categories] where [category] = @category),
+	'true',
+	@mandatory)
+</Value>
+    </Setting>
+    <Setting Name="_StoreByPhone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT 
+	[store]
+FROM 
+	[Phones]
+WHERE 
+	[phone] LIKE '%' + @phone + '%'
+</Value>
+    </Setting>
+    <Setting Name="_CallCount_Team" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select
+	count([techID]) [Total]
+from
+	[Calls]
+	left join 
+		[Technicians]
+	on
+		[Calls].[techID] = [Technicians].[id]
+where
+	[date] &gt; dbo.StartOfDay() and
+	lower([type]) = 'in'</Value>
+    </Setting>
+    <Setting Name="_HistoryDeclare" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DECLARE @STORE INT
+DECLARE @TYPE VARCHAR(50)
+DECLARE @DATE1 DATE
+DECLARE @DATE2 DATE
+DECLARE @CATEGORY VARCHAR(50)
+DECLARE @TOPIC VARCHAR(50)
+DECLARE @TECH VARCHAR(50)
+DECLARE @DETAILS VARCHAR(2000)
+DECLARE @TRAX BIT
+DECLARE @URL VARCHAR(2000)
+</Value>
+    </Setting>
+    <Setting Name="_HistorySearch" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT
+	TOP {0}
+	[Calls].[id] as [ID],
+	[Calls].[date] as [Date],
+	[Calls].[store] as [Store],
+	[Technicians].[initials] as [Tech],
+	[Categories].[category] as [Category],
+	[Topics].[topic] as [Topic],
+	[Calls].[details] as [Details],
+	[Calls].[type] as [In/Out],
+	[Calls].[trax] as [Trax],
+	[Calls].[url] as [URL]
+FROM
+	[Calls]
+	INNER JOIN
+		[Technicians]
+	ON
+		[Calls].[techID] = [Technicians].[id]
+	INNER JOIN
+		[Topics]
+	ON
+		[Calls].[topID] = [Topics].[id]
+	INNER JOIN
+		[Categories]
+	ON
+		[Topics].[catID] = [Categories].[id]
+WHERE
+	(@STORE IS NULL OR ([store] = @STORE)) AND
+	(@TYPE IS NULL OR ([type] = @TYPE)) AND
+	(@DATE1 IS NULL OR (CONVERT(DATE,[date]) LIKE @DATE1)) AND
+	(@CATEGORY IS NULL OR ([category] = @CATEGORY)) AND
+	(@TOPIC IS NULL OR ([topic] = @TOPIC)) AND
+	(@TECH IS NULL OR ([initials] = @TECH)) AND
+	(@DETAILS IS NULL OR (LOWER([details]) LIKE '%'+LOWER(@DETAILS)+'%')) AND
+	(@TRAX IS NULL OR ([trax] = @TRAX)) AND
+	(@URL IS NULL OR ([url] = @URL))
+ORDER BY
+	[date]
+DESC 
+</Value>
+    </Setting>
+    <Setting Name="_HistorySearchRange" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT
+	[Calls].[id] as [ID],
+	[Calls].[date] as [Date],
+	[Calls].[store] as [Store],
+	[Technicians].[initials] as [Tech],
+	[Categories].[category] as [Category],
+	[Topics].[topic] as [Topic],
+	[Calls].[details] as [Details],
+	[Calls].[type] as [In/Out],
+	[Calls].[trax] as [Trax],
+	[Calls].[url] as [URL]
+FROM
+	[Calls]
+	INNER JOIN
+		[Technicians]
+	ON
+		[Calls].[techID] = [Technicians].[id]
+	INNER JOIN
+		[Topics]
+	ON
+		[Calls].[topID] = [Topics].[id]
+	INNER JOIN
+		[Categories]
+	ON
+		[Topics].[catID] = [Categories].[id]
+WHERE
+	(@STORE IS NULL OR ([store] = @STORE)) AND
+	(@TYPE IS NULL OR ([type] = @TYPE)) AND
+	(@DATE1 IS NULL OR (CONVERT(DATE,[date]) BETWEEN @DATE1 AND @DATE2)) AND
+	(@CATEGORY IS NULL OR ([category] = @CATEGORY)) AND
+	(@TOPIC IS NULL OR ([topic] = @TOPIC)) AND
+	(@TECH IS NULL OR ([initials] = @TECH)) AND
+	(@DETAILS IS NULL OR (LOWER([details]) LIKE '%'+LOWER(@DETAILS)+'%')) AND
+	(@TRAX IS NULL OR ([trax] = @TRAX)) AND
+	(@URL IS NULL OR ([url] = @URL))
+ORDER BY
+	[date]
+DESC 
+</Value>
+    </Setting>
+    <Setting Name="_StoreInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT TOP 1
+	[address],
+	[city],
+	[dm],
+	[email],
+	[manager],
+	[MP],
+	[name],
+	[P].phone,
+	[state],
+	[type],
+	[TZ],
+	[zip],
+	[pos],
+	[pos_gate],
+	[sensor],
+	[sensor_gate],
+	[mim],
+	[mim_gate],
+	[income],
+	[rank],
+	[BAMS],
+	[SVS],
+	[TID1],
+	[TID2],
+	[TID3],
+	[TID4]
+
+FROM
+	[Stores] as S
+	inner join 
+		[Phones] as P
+	on [S].[store] = [P].[store]
+WHERE
+	[S].[store] = @store
+ORDER BY
+	[P].[line]
+</Value>
+    </Setting>
+    <Setting Name="_LastCategory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT
+	TOP 1
+	[Categories].[category]
+FROM
+	[Calls]
+	INNER JOIN
+		[Categories]
+	ON
+		[Calls].[catID] = [Categories].[id]
+	INNER JOIN
+		[Technicians]
+	ON
+		[Calls].[techID] = [Technicians].[id]
+WHERE
+	[Technicians].[technician] = @TECH
+ORDER BY
+	[Calls].[id]
+DESC
+</Value>
+    </Setting>
+    <Setting Name="_StoreSearchDeclare" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DECLARE @TZ VARCHAR(50)
+DECLARE @MP VARCHAR(50)
+DECLARE @DM VARCHAR(50)
+DECLARE @NAME VARCHAR(50)
+DECLARE @TYPE VARCHAR(50)
+DECLARE @ADDRESS VARCHAR(50)
+DECLARE @CITY VARCHAR(50)
+DECLARE @STATE VARCHAR(50)
+DECLARE @ZIP VARCHAR(50)
+DECLARE @PHONE VARCHAR(50)
+</Value>
+    </Setting>
+    <Setting Name="_StoreSearch" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT
+	[store],
+	[TZ],
+	[dm],
+	[name],
+	[type],
+	[address],
+	[city],
+	[state],
+	[zip],
+	[phone],
+	[rank],
+	[income]
+FROM
+	[Stores]
+WHERE
+	(@TZ IS NULL OR (LOWER([TZ]) = LOWER(@TZ))) AND
+	(@MP IS NULL OR ([MP] = @MP)) AND
+	(@DM IS NULL OR (LOWER([dm]) LIKE '%'+LOWER(@DM)+'%')) AND
+	(@NAME IS NULL OR (LOWER([name]) LIKE '%'+LOWER(@NAME)+'%')) AND
+	(@TYPE IS NULL OR (LOWER([type]) LIKE '%'+LOWER(@TYPE)+'%')) AND
+	(@ADDRESS IS NULL OR (LOWER([address]) LIKE '%'+LOWER(@ADDRESS)+'%')) AND
+	(@CITY IS NULL OR (LOWER([city]) LIKE '%'+LOWER(@CITY)+'%')) AND
+	(@STATE IS NULL OR (LOWER([state]) = LOWER(@STATE))) AND
+	(@ZIP IS NULL OR (LOWER([zip]) = LOWER(@ZIP))) AND
+	(@PHONE IS NULL OR ([phone] = dbo.RemoveNonNumericCharacters
+(@PHONE)))
+</Value>
+    </Setting>
+    <Setting Name="_InsertStore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">INSERT INTO 
+	[STORES] (
+		[store],
+		[TZ],
+		[MP],
+		[manager],
+		[dm],
+		[mall],
+		[name],
+		[type],
+		[address],
+		[city],
+		[state],
+		[zip],
+		[email],
+		[pos_gate],
+		[pos],
+		[mim_gate],
+		[mim],
+		[sensor_gate],
+		[sensor]
+) 
+VALUES (
+	dbo.InitCap(@store),
+	UPPER(@TZ),
+	dbo.InitCap(@MP),
+	dbo.InitCap(@manager),
+	dbo.InitCap(@dm),
+	dbo.InitCap(@mall),
+	dbo.InitCap(@name),
+	dbo.InitCap(@type),
+	dbo.InitCap(@address),
+	dbo.InitCap(@city),
+	UPPER(@state),
+	@zip,
+	@email,
+	@pos_gate,
+	@pos,
+	@mim_gate,
+	@mim,
+	@sensor_gate,
+	@sensor
+)
+
+INSERT INTO
+	[Phones] (
+		[phone],
+		[store]
+)
+VALUES (
+	dbo.RemoveNonNumericCharacters(@phone),
+	@store
+)
+
+</Value>
+    </Setting>
+    <Setting Name="_UpdateStore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UPDATE 
+	[Stores]
+SET 
+	[manager] = @manager,
+	[MP] = @mpid,
+	[address] = @address,
+	[email] = @email,
+	[pos] = @pos,
+	[city] = @city,
+	[dm] = @dm,
+	[name] = @name,
+	[type] = @type,
+	[state] = @state,
+	[zip] = @zip,
+	[TZ] = @tz
+WHERE 
+	[store] = @store
+
+UPDATE
+	[Phones]
+SET
+	[phone] = dbo.RemoveNonNumericCharacters(@phone)
+</Value>
+    </Setting>
+    <Setting Name="_InsertInfoTab" Type="System.String" Scope="User">
+      <Value Profile="(Default)">INSERT INTO [Info] ([tab], [order]) VALUES (@tab, @order)</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

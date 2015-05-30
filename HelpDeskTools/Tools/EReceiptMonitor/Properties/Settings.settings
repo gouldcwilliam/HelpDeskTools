@@ -1,0 +1,71 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EReceiptMonitor.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="from" Type="System.String" Scope="User">
+      <Value Profile="(Default)">retailhelpdesk@wwwinc.com</Value>
+    </Setting>
+    <Setting Name="to" Type="System.String" Scope="User">
+      <Value Profile="(Default)">retailhelpdesk@wwwinc.com</Value>
+    </Setting>
+    <Setting Name="subject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">E-Receipt Check</Value>
+    </Setting>
+    <Setting Name="ignore" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="header" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;
+&lt;style&gt;
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+padding: 5px;
+}
+&lt;/style&gt;&lt;/head&gt;
+&lt;p&gt;</Value>
+    </Setting>
+    <Setting Name="footer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;
+</Value>
+    </Setting>
+    <Setting Name="body" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;/tr&gt;
+</Value>
+    </Setting>
+    <Setting Name="tableHead" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/p&gt;
+&lt;body&gt;&lt;table style="width:100%"&gt;
+&lt;tr&gt;&lt;th&gt;Computer Name&lt;/th&gt;&lt;th&gt;Message&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/tr&gt;
+</Value>
+    </Setting>
+    <Setting Name="path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files\RedIron Technologies\RedIron Broker\</Value>
+    </Setting>
+    <Setting Name="files" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;DataRetrievalElectronicReceipt.saf&lt;/string&gt;
+  &lt;string&gt;ElectronicReceipt.saf&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="sizeBytes" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">3072</Value>
+    </Setting>
+    <Setting Name="relplyToList" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;itretailhelpdesk@wwwint.com&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="includeBoston" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="includeMichigan" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

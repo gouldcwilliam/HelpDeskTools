@@ -1,0 +1,5 @@
+@ECHO OFF
+
+cd C:\Program Files\Bit9\Parity Agent
+dascli password 2H8-EVrv_,HXSTnV+UAyfg(B
+dascli healthcheck
