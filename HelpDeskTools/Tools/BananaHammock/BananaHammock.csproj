@@ -123,9 +123,9 @@
       <Project>{f9643ea4-49cf-4fa2-b2fb-771abb20cbf6}</Project>
       <Name>AD</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\HDSharedServices\HDSharedServices.csproj">
+    <ProjectReference Include="..\..\Libraries\HDSharedServices\Shared.csproj">
       <Project>{84b74dd0-3b52-456f-a742-3b57fa31e664}</Project>
-      <Name>HDSharedServices</Name>
+      <Name>Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\LDAP\LDAP.csproj">
       <Project>{5a5601e8-c1b8-43ab-961b-3deb1bc5b06e}</Project>

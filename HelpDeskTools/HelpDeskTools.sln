@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AD", "Libraries\AD\AD.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiscoFinesseNET", "Libraries\CiscoFinesseNET\CiscoFinesseNET.csproj", "{3E9001A4-FD82-4B28-81C4-9720C607C62A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDSharedServices", "Libraries\HDSharedServices\HDSharedServices.csproj", "{84B74DD0-3B52-456F-A742-3B57FA31E664}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Libraries\HDSharedServices\Shared.csproj", "{84B74DD0-3B52-456F-A742-3B57FA31E664}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDAP", "Libraries\LDAP\LDAP.csproj", "{5A5601E8-C1B8-43AB-961B-3DEB1BC5B06E}"
 EndProject
@@ -59,7 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigFileTest", "ConfigFileTest\ConfigFileTest.csproj", "{D0397BA9-B169-42B6-9D36-FF97EB5A5DF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigFileTest", "Tools\ConfigFileTest\ConfigFileTest.csproj", "{D0397BA9-B169-42B6-9D36-FF97EB5A5DF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

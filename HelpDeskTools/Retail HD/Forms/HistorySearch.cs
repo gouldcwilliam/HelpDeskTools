@@ -21,7 +21,7 @@ namespace Retail_HD.Forms
 
 		int _resultLimit = 10000;
 		string _defaultText = "History";
-
+		BGWorkers.Exporting exp = new BGWorkers.Exporting();
 
 		// Double click data view
 		private void dgvResults_DoubleClick(object sender, EventArgs e)
@@ -152,25 +152,19 @@ namespace Retail_HD.Forms
 		// exports datatable to excel workbook
 		private void Export(object sender, EventArgs e)
 		{
+			if (exp.Visible) { return; }
 			if (dgvResults.Rows.Count == 0) { MessageBox.Show("No data to Export!"); return; }
-
-			Cursor tmp = Cursor.Current;
-			Cursor.Current = Cursors.WaitCursor;
 
 			System.Windows.Forms.SaveFileDialog sfd = new SaveFileDialog();
 			sfd.DefaultExt = ".xls";
 			sfd.Title = "Export data to location";
 			sfd.FileName = "Export.xls";
 
-			if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				string saveLocation = sfd.FileName.ToString();
-				
-				DataTable dt = (DataTable)dgvResults.DataSource;
+			if (sfd.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
+			if (sfd.FileName == string.Empty) { MessageBox.Show("No output file selected"); return; }
 
-				Exporting exp = new Exporting(dt, saveLocation);
-				exp.ShowDialog();
-			}
+			exp = new BGWorkers.Exporting((DataTable)dgvResults.DataSource, sfd.FileName);
+			exp.Show();
 		}
 
 

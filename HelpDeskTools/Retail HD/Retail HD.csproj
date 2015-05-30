@@ -101,22 +101,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ADwww.cs" />
     <Compile Include="Classes\AgentStatus.cs" />
     <Compile Include="Classes\Computer.cs" />
+    <Compile Include="Classes\GlobalFunctions.cs" />
+    <Compile Include="Classes\Info.cs" />
+    <Compile Include="Classes\LDAPinfo.cs" />
     <Compile Include="Classes\People.cs" />
+    <Compile Include="Classes\SQL.cs" />
     <Compile Include="Forms\AddNewStore.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AddNewStore.Designer.cs">
       <DependentUpon>AddNewStore.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\bwExporting.cs">
+    <Compile Include="Forms\BGWorkers\ExcelExport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\bwRestart.cs">
+    <Compile Include="Forms\BGWorkers\POSRestart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\bwUnlock.cs">
+    <Compile Include="Forms\BGWorkers\CashierUnlock.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CodeEntry.cs">
@@ -161,7 +166,7 @@
     <Compile Include="Forms\UserInput.Designer.cs">
       <DependentUpon>UserInput.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\bwKillPOS.cs">
+    <Compile Include="Forms\BGWorkers\KillPOS.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ListActions.cs">
@@ -200,11 +205,11 @@
     <Compile Include="RetailHD.Designer.cs">
       <DependentUpon>RetailHD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\bwProcess.cs">
+    <Compile Include="Forms\BGWorkers\Process.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\bwProcess.Designer.cs">
-      <DependentUpon>bwProcess.cs</DependentUpon>
+    <Compile Include="Forms\BGWorkers\Process.Designer.cs">
+      <DependentUpon>Process.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ReportIssue.cs">
       <SubType>Form</SubType>
@@ -230,8 +235,6 @@
     <Compile Include="Forms\WrapUp.Designer.cs">
       <DependentUpon>WrapUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\GlobalFunctions.cs" />
-    <Compile Include="Classes\Info.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalResources.Designer.cs">
@@ -239,7 +242,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Classes\SQL.cs" />
     <Compile Include="Setting\SQL.Designer.cs">
       <DependentUpon>SQL.settings</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -273,6 +275,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\AddNewStore.resx">
       <DependentUpon>AddNewStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BGWorkers\ExcelExport.resx">
+      <DependentUpon>ExcelExport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CodeEntry.resx">
       <DependentUpon>CodeEntry.cs</DependentUpon>
@@ -313,8 +318,8 @@
     <EmbeddedResource Include="RetailHD.resx">
       <DependentUpon>RetailHD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\bwProcess.resx">
-      <DependentUpon>bwProcess.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\BGWorkers\Process.resx">
+      <DependentUpon>Process.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReportIssue.resx">
       <DependentUpon>ReportIssue.cs</DependentUpon>
@@ -614,9 +619,9 @@
       <Project>{f9643ea4-49cf-4fa2-b2fb-771abb20cbf6}</Project>
       <Name>AD</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\HDSharedServices\HDSharedServices.csproj">
+    <ProjectReference Include="..\Libraries\HDSharedServices\Shared.csproj">
       <Project>{84b74dd0-3b52-456f-a742-3b57fa31e664}</Project>
-      <Name>HDSharedServices</Name>
+      <Name>Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Libraries\CiscoFinesseNET\CiscoFinesseNET.csproj">
       <Project>{3e9001a4-fd82-4b28-81c4-9720c607c62a}</Project>
@@ -631,6 +636,7 @@
       <Name>ProgressBar</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

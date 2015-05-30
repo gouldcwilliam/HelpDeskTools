@@ -620,7 +620,7 @@ namespace Retail_HD
 			{
 				if (InputCashier._UserInput == string.Empty) { return; };
 				Info.cashier = InputCashier._UserInput;
-				Forms.Unlock UnlockCashier = new Forms.Unlock(Info.reg1, Info.cashier);
+				Forms.BGWorkers.Unlock UnlockCashier = new Forms.BGWorkers.Unlock(Info.reg1, Info.cashier);
 				UnlockCashier.Show();
 			}
 		}
@@ -663,7 +663,7 @@ namespace Retail_HD
 			Forms.Confirm killConfirm = new Forms.Confirm("Confirming will kill the POS software");
 			if (killConfirm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
-				Forms.bwKillPOS kill = new Forms.bwKillPOS(_computers);
+				Forms.BGWorkers.KillPOS kill = new Forms.BGWorkers.KillPOS(_computers);
 				kill.Show();
 			}
 		}
@@ -803,7 +803,7 @@ namespace Retail_HD
 			Forms.Confirm restartConfirm = new Forms.Confirm("Confirming will restart the Computer(s) selected");
 			if (restartConfirm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
-				Forms.Restart restart = new Forms.Restart(_computers);
+				Forms.BGWorkers.Restart restart = new Forms.BGWorkers.Restart(_computers);
 				restart.Show();
 			}
 		}
