@@ -17,6 +17,7 @@ namespace FindUnusedComputers
 #if DEBUG
 			//Console.WriteLine("Found {0}: {1}", "rock0711sap1", Functions.CheckRemoteFile("rock0711sap1")); Console.ReadKey();
 #endif	
+			
 			Console.WriteLine(" * Loading computers from AD...");
 
 			// Load exclusions from cmd line
