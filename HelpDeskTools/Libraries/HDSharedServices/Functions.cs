@@ -777,7 +777,7 @@ namespace HDSharedServices
 			return int.TryParse(input, out result);
 		}
 
-
+        
 		/// <summary> FUNCTION FOR EXPORT TO EXCEL
 		/// </summary>
 		/// <param name="dataTable"></param>
@@ -896,7 +896,7 @@ namespace HDSharedServices
 				range.Font.Bold = IsFontbool;
 			}
 		}
-
+        
 
 		/// <summary> QUERIES THE EXCEL FILE
 		/// </summary>

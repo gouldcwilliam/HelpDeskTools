@@ -59,6 +59,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigFileTest", "ConfigFileTest\ConfigFileTest.csproj", "{D0397BA9-B169-42B6-9D36-FF97EB5A5DF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{24FACCD1-CBA6-44FD-BB4F-35BF7DD17712}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24FACCD1-CBA6-44FD-BB4F-35BF7DD17712}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24FACCD1-CBA6-44FD-BB4F-35BF7DD17712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0397BA9-B169-42B6-9D36-FF97EB5A5DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0397BA9-B169-42B6-9D36-FF97EB5A5DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0397BA9-B169-42B6-9D36-FF97EB5A5DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0397BA9-B169-42B6-9D36-FF97EB5A5DF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,5 +155,6 @@ Global
 		{FF09E0C8-1C44-4B44-88CE-BF2EBB7F520C} = {6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}
 		{5F8EDF63-6596-44AF-A947-2D85878CB12F} = {6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}
 		{E30E8D52-AFC5-4DBD-A78F-2E9B704008A7} = {6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}
+		{D0397BA9-B169-42B6-9D36-FF97EB5A5DF0} = {6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}
 	EndGlobalSection
 EndGlobal
