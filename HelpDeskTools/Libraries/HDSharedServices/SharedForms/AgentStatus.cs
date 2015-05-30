@@ -80,7 +80,8 @@ namespace Shared.Forms
         private void UpdateInfo()
         {
             agents.Clear();
-            string query = MakeQuery(Settings.Default._ShowMeInAgentStatus, Settings.Default._ShowLoggedOutUsers);
+			string query = MakeQuery(Settings.Default._ShowMeInAgentStatus, Settings.Default._ShowLoggedOutUsers);
+			query = MakeQuery(Config.PerUser.Load().ShownInAgentStatus, Config.PerUser.Load().ShowLoggedOutUsers);
 
             //if (Settings.Default._ShowLoggedOutUsers) query = "SELECT Technicians.full_name AS Name, Technicians.technician AS login, Technicians.id as ID, CurrentStatus, TimeStatusChanged, Information1, Information2 FROM AgentStatus INNER JOIN Technicians ON AgentStatus.TechnicianID = Technicians.id;";
             //else query = "SELECT Technicians.full_name AS Name, Technicians.technician AS login, Technicians.id as ID, CurrentStatus, TimeStatusChanged, Information1, Information2 FROM AgentStatus INNER JOIN Technicians ON AgentStatus.TechnicianID = Technicians.id WHERE CurrentStatus <> 'LOGOUT';";

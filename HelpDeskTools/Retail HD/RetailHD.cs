@@ -86,11 +86,17 @@ namespace Retail_HD
 
 		//
 		#region Variables
+		
+		/// <summary>
+		/// User preferences
+		/// </summary>
+		public Shared.Config.PerUser userPrefs = Shared.Config.PerUser.Load();
 
 		bool _AgentLoginEnabled = false;
 		bool hasRun = false;
 
-		private List<Computer> _computers
+
+		List<Computer> _computers
 		{
 			get
 			{
@@ -144,17 +150,13 @@ namespace Retail_HD
 
 
 			// Prompts for Finesse login
-			string msg="Would you like to log into the Cisco Finesse Server?";
+
+			string msg = "Would you like to log into the Cisco Finesse Server?";
 			Forms.Confirm ConfirmAgentLogin = new Forms.Confirm(msg);
 			ConfirmAgentLogin.TopMost = true;
-			ConfirmAgentLogin.btnOK.Text = "Yes"; 
+			ConfirmAgentLogin.btnOK.Text = "Yes";
 			ConfirmAgentLogin.btnCancel.Text = "No";
-			if( DialogResult.OK == ConfirmAgentLogin.ShowDialog())
-			{
-				_AgentLoginEnabled = true;
-				v_CheckLoginConfig();
-			}
-			else
+			if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
 			{
 				_AgentLoginEnabled = false;
 				ts_Top_tsb_Logout.Enabled = false;
@@ -162,6 +164,12 @@ namespace Retail_HD
 				ts_Top_tsb_CallStore.Enabled = false;
 				ts_Top_tsb_TeamStatus.Enabled = false;
 			}
+			else
+			{
+				_AgentLoginEnabled = true;
+				v_CheckLoginConfig();
+			}
+
 			DataTable dt = SQL.Select("SELECT [version] from [Versions]");
 		}
 
@@ -339,11 +347,13 @@ namespace Retail_HD
                 {
                     ts_Top.Invoke(new MethodInvoker(delegate
                         {
-                            if (!Shared.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+							//if (!Shared.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+							if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
                             {
                                 ts_Top_tsl_Override.Visible = true;
                             }
-                            else if (Shared.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+                            //else if (Shared.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+                            else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
                             {
                                 ts_Top_tsl_Override.Visible = false;
                             }
@@ -363,11 +373,13 @@ namespace Retail_HD
                 }
                 else
                 {
-                    if (!Shared.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+					//if (!Shared.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+					if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
                     {
                         ts_Top_tsl_Override.Visible = true;
                     }
-                    else if (Shared.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+                    //else if (Shared.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+                    else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
                     {
                         ts_Top_tsl_Override.Visible = false;
                     }
@@ -709,7 +721,8 @@ namespace Retail_HD
 			// makes you ready if this is called once wrap up is done
             if (e is WrapUpInvokeEventArgs && hasCallWrappedUp)
             {
-                if (Shared.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+				//if (Shared.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+				if (userPrefs.AutoReady && curState == UserState.WORK)
                 {
                     hasCallWrappedUp = false;
                     Helper.ChangeUserState(UserState.READY); 
@@ -733,7 +746,8 @@ namespace Retail_HD
                 {
 					// only change to ready, if the user was in work (meaning normal call flow). 
 					// A dialed number will make you not ready, and then auto ready on the server-side if you were ready before
-                    if (Shared.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+					//if (Shared.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+					if (userPrefs.AutoReady && curState == UserState.WORK)
                     {
                         hasCallWrappedUp = false;
                         Helper.ChangeUserState(UserState.READY);
@@ -1516,14 +1530,17 @@ namespace Retail_HD
 			//call up the log sender app and close this
 
 			// Save Settings
+			userPrefs.FormStart = Location;
 			Shared.Settings.Default._DrawingLocation = Location;
 			if (WindowState == FormWindowState.Normal)
 			{
 				Shared.Settings.Default._DrawingSize = Size;
+				userPrefs.FormSize = Size;
 			}
 			else
 			{
 				Shared.Settings.Default._DrawingSize = RestoreBounds.Size;
+				userPrefs.FormSize = RestoreBounds.Size;
 			}
 			Shared.Settings.Default.Save();
 		}
@@ -1560,6 +1577,7 @@ namespace Retail_HD
 
 				hasRun = true;
 			}
+
 		}
 
 		#endregion
@@ -1763,6 +1781,17 @@ namespace Retail_HD
 
 		// Test methods
 		private void Test()
+		{
+			Shared.Config.PerUser perUser = Shared.Config.PerUser.Load();
+			Console.WriteLine(string.Format("X:{0} Y:{1}",perUser.FormStart.X, perUser.FormStart.Y));
+			Console.WriteLine(string.Format("H:{0}, W:{1}", perUser.FormSize.Height, perUser.FormSize.Width));
+			Console.WriteLine(string.Format("Status:{0}", perUser.ShownInAgentStatus));
+			Console.WriteLine(string.Format("LogOut:{0}", perUser.ShowLoggedOutUsers));
+			Console.WriteLine(string.Format("Ready:{0}", perUser.AutoReady));
+			Console.WriteLine(string.Format("Login:{0}", perUser.AutoLogin));
+		}
+
+		private void ImportExcellData()
 		{
 			using (OpenFileDialog ofd = new OpenFileDialog())
 			{
