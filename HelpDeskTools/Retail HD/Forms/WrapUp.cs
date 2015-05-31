@@ -110,7 +110,7 @@ namespace Retail_HD.Forms
 			bool mandatory = false;
 			wrapUp newWrapUp;
 
-			foreach (DataRow dr in SQL.Select(Setting.SQL.Default._CategoriesWithTopics).Rows)
+			foreach (DataRow dr in Shared.SQL.Select(Shared.SQLSettings.Default._CategoriesWithTopics).Rows)
 			{
 				category = dr["Category"].ToString();
 				wrapup = dr["topic"].ToString();
@@ -158,7 +158,7 @@ namespace Retail_HD.Forms
 
 			_fill_ckbTopics();
 
-			DataTable dt = SQL.dt_LastCategory();
+			DataTable dt = Shared.SQL.dt_LastCategory();
 			if (dt.Rows.Count > 0)
 			{
 				if (dt.Rows[0][0] != null)
@@ -253,7 +253,7 @@ namespace Retail_HD.Forms
 			string url = txtTRAX.Text;
 			if (!ckbTrax.Checked) { url = string.Empty; }
 
-			if (!SQL.b_InsertCall(txtStore.Text, details, cmbCategory.Text, ckbTopics.CheckedItems[0].ToString(),  cmbType.Text, Environment.UserName.ToUpper(), ckbTrax.Checked, url))
+			if (!Shared.SQL.WrapUp_InsertCall(txtStore.Text, details, cmbCategory.Text, ckbTopics.CheckedItems[0].ToString(),  cmbType.Text, Environment.UserName.ToUpper(), ckbTrax.Checked, url))
 			{
                 this.DialogResult = System.Windows.Forms.DialogResult.None;
 				return;

@@ -1,4 +1,4 @@
-﻿namespace Shared.Forms
+﻿namespace Retail_HD.Forms
 {
     partial class frmCiscoLogin
     {

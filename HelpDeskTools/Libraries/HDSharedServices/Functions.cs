@@ -900,7 +900,61 @@ namespace Shared
 				range.Font.Bold = IsFontbool;
 			}
 		}
-        
+
+
+		public static void v_InstallPsTools()
+		{
+			try
+			{
+
+				if (!File.Exists(Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe"))
+				{
+					Console.WriteLine(@"PsExec not found, copying to: {0}\System32\", Environment.ExpandEnvironmentVariables("%WINDIR%"));
+					File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
+						Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe",
+						true);
+				}
+			}
+			catch (Exception) { }
+		}
+		public static void v_Install_DelayedStartServices()
+		{
+			try
+			{
+				File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\DelayedStartServices\DelayedStartServices.exe",
+						Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\DelayedStartServices.exe",
+						true);
+			}
+			catch (Exception) { Console.WriteLine("Failed copying DelayedStartServices"); }
+		}
+
+		public static void v_CreateTempFolder()
+		{
+			if (!Directory.Exists(@"C:\Temp"))
+			{
+				Directory.CreateDirectory(@"C:\Temp");
+			}
+		}
+
+		public static bool PlaceCerts(string Computer)
+		{
+			try
+			{
+				string Cert1 = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\global.cer";
+				string Cert2 = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\verisign-root.cer";
+				string Destination1 = string.Format(@"\\{0}\C$\Temp\global.cer", Computer);
+				string Destination2 = string.Format(@"\\{0}\C$\Temp\verisign-root.cer", Computer);
+				File.Copy(Cert1, Destination1, true);
+				File.Copy(Cert2, Destination2, true);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				return false;
+			}
+			return true;
+		}
+
 
 		/// <summary> QUERIES THE EXCEL FILE
 		/// </summary>

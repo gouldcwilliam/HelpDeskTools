@@ -39,7 +39,7 @@ namespace Shared.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HDSharedServices.Resources.Batch", typeof(Batch).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.Resources.Batch", typeof(Batch).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -82,7 +82,7 @@ namespace Shared.Resources {
         ///	IF &quot;%RAWTIME:~0,1%&quot;==&quot; &quot; SET HH=%HSPACE%%RAWTIME:~1,1%
         ///	SET MN=%RAWTIME:~3%
         ///	SET MSPACE=0
-        /// [rest of string was truncated]&quot;;.
+        ///	IF &quot;%RAWTIME:~3,1%&quot;= [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Cashier {
             get {
@@ -146,7 +146,8 @@ namespace Shared.Resources {
         ///GOTO:EOF
         ///	
         ///:cSTART
-        ///	 [rest of string was truncated]&quot;;.
+        ///	NET START &quot;RIBROKER&quot;
+        ///	NET START &quot;CDCA [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Services {
             get {

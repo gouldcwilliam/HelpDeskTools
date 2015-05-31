@@ -21,7 +21,7 @@ namespace Retail_HD.Forms
 
 		private void btnSearch_Click(object sender, EventArgs e)
 		{
-			dataGridView1.DataSource = SQL.dt_StoreSearch(txtTZ.Text, txtMP.Text, txtDM.Text, txtName.Text, 
+			dataGridView1.DataSource = Shared.SQL.dt_StoreSearch(txtTZ.Text, txtMP.Text, txtDM.Text, txtName.Text, 
 				txtType.Text, txtAddress.Text, txtCity.Text, txtState.Text, txtZip.Text, txtPhone.Text);
 		}
 

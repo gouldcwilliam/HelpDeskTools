@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Sql;
 using System.Data.SqlClient;
 
-namespace Shared
+namespace CiscoFinesseNET
 {
     public class AgentStatus
     {

@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 
 using CiscoFinesseNET;
-using Shared;
+
+
 namespace Retail_HD
 {
 	/// <summary> class definition - main form
@@ -27,39 +28,51 @@ namespace Retail_HD
         string previousStore = string.Empty;
         bool isWrapUpOpen = false;
         string _curNum = string.Empty;
-        string currentStoreNumber
-        {
-            get
-            {
-                return _curNum;
-            }
-            set
-            {
-                if (value.Length > 4) //it's not a store number
-                {
-                    if (Functions.isNumeric(value) && value.Length == 10)
-                    {
-                        //if a phone number was passed as the value
-                        string name = GlobalFunctions.s_LookupPhoneNumber(value);
-                        if (name == string.Empty)
-                        {
-                            _curNum = string.Format("{0:(###)###-####}", Convert.ToInt64(value));
-                        }
-                        else
-                        {
-                            _curNum = name;
-                        }
-                        
-                    }
-                    else
-                    {
-                        //if name was looked up and passed as the value or is non looked up extension
-                        _curNum = string.Format("{0}", value);
-                    }
-                }
-                else _curNum = string.Format("Store {0}", value);
-            }
-        }
+		string currentStoreNumber
+		{
+			get
+			{
+				return _curNum;
+			}
+			set
+			{
+				if (value.Length == 4) { _curNum = string.Format("Store {0}", value); }
+				else { _curNum = string.Format("{0}", value); }
+			}
+		}
+		//string currentStoreNumber
+		//{
+		//	get
+		//	{
+		//		return _curNum;
+		//	}
+		//	set
+		//	{
+		//		if (value.Length > 4) //it's not a store number
+		//		{
+		//			if (Functions.isNumeric(value) && value.Length == 10)
+		//			{
+		//				//if a phone number was passed as the value
+		//				string name = GlobalFunctions.s_LookupPhoneNumber(value);
+		//				if (name == string.Empty)
+		//				{
+		//					_curNum = string.Format("{0:(###)###-####}", Convert.ToInt64(value));
+		//				}
+		//				else
+		//				{
+		//					_curNum = name;
+		//				}
+		//			}
+		//			else
+		//			{
+		//				//if name was looked up and passed as the value or is non looked up extension
+		//				_curNum = string.Format("{0}", value);
+		//			}
+		//		}
+		//		else _curNum = string.Format("Store {0}", value);
+		//	}
+		//}
+		
         bool hasCallWrappedUp = false;
         UserState _cState;
         UserState curState
@@ -79,7 +92,7 @@ namespace Retail_HD
         TimeSpan _timeSinceStateChange = new TimeSpan(0, 0, 0);
         CiscoFinesseNET.UserState availableState = UserState.READY;
         int fUpCount = 0;
-
+		
 		//
 		#endregion
 
@@ -90,7 +103,7 @@ namespace Retail_HD
 		/// <summary>
 		/// User preferences
 		/// </summary>
-		public Shared.Config.PerUser userPrefs = Shared.Config.PerUser.Load();
+		//public Shared.Config.PerUser userPrefs = Shared.Config.PerUser.Load();
 
 		bool _AgentLoginEnabled = false;
 		bool hasRun = false;
@@ -112,7 +125,7 @@ namespace Retail_HD
 			}
 		}
 
-		Shared.Forms.frmAgentStatus agentStatus = new Shared.Forms.frmAgentStatus();
+		Forms.frmAgentStatus agentStatus = new Forms.frmAgentStatus();
 
 		Forms.ReportIssue ReportIssue = new Forms.ReportIssue();
 		Forms.WrapUp wrapUp = new Forms.WrapUp();
@@ -138,9 +151,9 @@ namespace Retail_HD
 			PingUC.btnOK.Click += Ping_OK_Click;
 			ServicesUC.btnOK.Click += Services_OK_Click;
 
-			GlobalFunctions.v_InstallPsTools();
-			GlobalFunctions.v_Install_DelayedStartServices();
-			GlobalFunctions.v_CreateTempFolder();
+			Shared.Functions.v_InstallPsTools();
+			Shared.Functions.v_Install_DelayedStartServices();
+			Shared.Functions.v_CreateTempFolder();
 
 			//phone stuff
 			Helper.OnUpdatedInformation += Helper_OnUpdatedInformation;
@@ -156,7 +169,8 @@ namespace Retail_HD
 			ConfirmAgentLogin.TopMost = true;
 			ConfirmAgentLogin.btnOK.Text = "Yes";
 			ConfirmAgentLogin.btnCancel.Text = "No";
-			if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
+			//if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
+			if (DialogResult.OK != ConfirmAgentLogin.ShowDialog())
 			{
 				_AgentLoginEnabled = false;
 				ts_Top_tsb_Logout.Enabled = false;
@@ -169,8 +183,6 @@ namespace Retail_HD
 				_AgentLoginEnabled = true;
 				v_CheckLoginConfig();
 			}
-
-			DataTable dt = SQL.Select("SELECT [version] from [Versions]");
 		}
 
 
@@ -253,7 +265,7 @@ namespace Retail_HD
 			{
 				//instantiate modal login dialog box here
 				//frmCiscoLogin loginForm = new frmCiscoLogin();
-				Shared.Forms.frmCiscoLogin loginForm = new Shared.Forms.frmCiscoLogin();
+				Forms.frmCiscoLogin loginForm = new Forms.frmCiscoLogin();
 				if (loginForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				{
 					//login user
@@ -310,7 +322,7 @@ namespace Retail_HD
 			Init.mainSettings.AppID = "RetailHD";
 			_t.Start();
 			Helper.ConnectXMPP();
-			SQL.b_UpdateAgentInformation(System.Environment.UserName, curState.ToString(), "");
+			Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, curState.ToString(), "");
 		}
 
 
@@ -347,13 +359,13 @@ namespace Retail_HD
                 {
                     ts_Top.Invoke(new MethodInvoker(delegate
                         {
-							//if (!Shared.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
-							if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
+							if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+							//if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
                             {
                                 ts_Top_tsl_Override.Visible = true;
                             }
-                            //else if (Shared.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
-                            else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
+                            else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+							//else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
                             {
                                 ts_Top_tsl_Override.Visible = false;
                             }
@@ -373,13 +385,13 @@ namespace Retail_HD
                 }
                 else
                 {
-					//if (!Shared.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
-					if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
+					if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+					//if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
                     {
                         ts_Top_tsl_Override.Visible = true;
                     }
-                    //else if (Shared.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
-                    else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
+                    else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+					//else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
                     {
                         ts_Top_tsl_Override.Visible = false;
                     }
@@ -510,7 +522,7 @@ namespace Retail_HD
                         if (!wrapUp.Visible)
                         {
                             isWrapUpOpen = true;
-                            SQL.b_UpdateAgentInformation(System.Environment.UserName, curState.ToString(), (useStoreInformation) ? currentStoreNumber : "");
+							Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, curState.ToString(), (useStoreInformation) ? currentStoreNumber : "");
                             if (this.InvokeRequired) this.Invoke(new MethodInvoker(delegate { Buttons_WrapUp_Click(this, new WrapUpInvokeEventArgs(true)); }));
                             else Buttons_WrapUp_Click(this, new WrapUpInvokeEventArgs(true));
 
@@ -527,7 +539,7 @@ namespace Retail_HD
 
                 if (curState != prevState) //no sense in updating this every few seconds...
                 {
-                    SQL.b_UpdateAgentInformation(System.Environment.UserName, curState.ToString(), (useStoreInformation) ? string.Format("Store {0}", txtStore.Text) : "", CiscoFinesseNET.Helper.loggedInUser.extension);
+					Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, curState.ToString(), (useStoreInformation) ? string.Format("Store {0}", txtStore.Text) : "", CiscoFinesseNET.Helper.loggedInUser.extension);
                 }
             }
         }
@@ -579,7 +591,7 @@ namespace Retail_HD
                     //match the store to the phone number
 					Console.WriteLine(number2Search);
 
-                    System.Data.DataTable _dt = SQL.dt_SelectStoreByPhone(number2Search);
+                    System.Data.DataTable _dt = Shared.SQL.dt_SelectStoreByPhone(number2Search);
 
                     foreach (System.Data.DataRow _r in _dt.Rows)
                     {
@@ -721,8 +733,8 @@ namespace Retail_HD
 			// makes you ready if this is called once wrap up is done
             if (e is WrapUpInvokeEventArgs && hasCallWrappedUp)
             {
-				//if (Shared.Settings.Default._EnableAutoReady && curState == UserState.WORK)
-				if (userPrefs.AutoReady && curState == UserState.WORK)
+				if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+				//if (userPrefs.AutoReady && curState == UserState.WORK)
                 {
                     hasCallWrappedUp = false;
                     Helper.ChangeUserState(UserState.READY); 
@@ -746,16 +758,16 @@ namespace Retail_HD
                 {
 					// only change to ready, if the user was in work (meaning normal call flow). 
 					// A dialed number will make you not ready, and then auto ready on the server-side if you were ready before
-					//if (Shared.Settings.Default._EnableAutoReady && curState == UserState.WORK)
-					if (userPrefs.AutoReady && curState == UserState.WORK)
+					if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+					//if (userPrefs.AutoReady && curState == UserState.WORK)
                     {
                         hasCallWrappedUp = false;
                         Helper.ChangeUserState(UserState.READY);
                         StupidOverrideForChad();
                     }
                 }
-                //else if ((curState != UserState.READY) && (curState != UserState.NOT_READY))
-                else if ((curState != UserState.READY && curState != UserState.NOT_READY))
+                else if ((curState != UserState.READY) && (curState != UserState.NOT_READY))
+				//else if ((curState != UserState.READY && curState != UserState.NOT_READY))
                 {
 					if (MessageBox.Show("Call not wrapped up! Bypass wrapup?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
 					{
@@ -830,7 +842,7 @@ namespace Retail_HD
 		{
 			if (Info.computers.Count() > 0)
 			{
-				GlobalFunctions.i_ExecuteCommand("DelayedStartServices.exe", true, Info.reg1, "Delayed Services on " + Info.reg1, false);
+				GlobalFunctions.i_ExecuteCommand(@".\DelayedStartServices.exe", true, Info.reg1, "Delayed Services on " + Info.reg1, false);
 			}
 		}
 		/// <summary> ping menu actions
@@ -1107,7 +1119,7 @@ namespace Retail_HD
 		{
 			//GlobalFunctions.i_ExecuteCommand(Settings.Default._OldMenuPath, true);
 			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-			startInfo.FileName = Shared.Settings.Default._OldMenuPath;
+			startInfo.FileName = Properties.Settings.Default._OldMenuPath;
 			startInfo.CreateNoWindow = true;
 			startInfo.UseShellExecute = true;
 			System.Diagnostics.Process process = System.Diagnostics.Process.Start(startInfo);
@@ -1153,7 +1165,7 @@ namespace Retail_HD
 		// Runs the tool updater program
 		private void UpdateThisTool_Click(object sender, EventArgs e)
 		{
-			GlobalFunctions.i_ExecuteCommand(@"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\UpdateRHDMenu\UpdateRHDMenu.exe", false, "restart", false);
+			GlobalFunctions.i_ExecuteCommand(@".\UpdateRHDMenu.exe", false, "restart", false);
 		}
 
 
@@ -1240,7 +1252,7 @@ namespace Retail_HD
 		{
 			if (!agentStatus.Visible && _AgentLoginEnabled)
 			{
-				agentStatus = new Shared.Forms.frmAgentStatus();
+				agentStatus = new Forms.frmAgentStatus();
 				agentStatus.Show();
 			}
 			else
@@ -1388,7 +1400,7 @@ namespace Retail_HD
                         keyVal = ((char)e.KeyValue).ToString();
                         break;
                 }
-                if (!Functions.isNumeric(keyVal) && !breakIf)
+                if (!Shared.Functions.isNumeric(keyVal) && !breakIf)
                 {
                     e.Handled = true;
                     e.SuppressKeyPress = true;
@@ -1520,29 +1532,30 @@ namespace Retail_HD
 				if (curState != UserState.NOT_READY)
 				{
 					Helper.ChangeUserState(UserState.NOT_READY);
-					SQL.b_UpdateAgentInformation(System.Environment.UserName, UserState.NOT_READY.ToString(), "");
+					Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, UserState.NOT_READY.ToString(), "");
 					System.Threading.Thread.Sleep(new TimeSpan(0, 0, 1));
 				}
 				Helper.ChangeUserState(UserState.LOGOUT);
-				SQL.b_UpdateAgentInformation(System.Environment.UserName, UserState.LOGOUT.ToString(), "");
+				Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, UserState.LOGOUT.ToString(), "");
 			}
 			//if log file is larger than 500kb, email it in
 			//call up the log sender app and close this
 
 			// Save Settings
-			userPrefs.FormStart = Location;
-			Shared.Settings.Default._DrawingLocation = Location;
+			//userPrefs.FormStart = Location;
+			Properties.Settings.Default._DrawingLocation = Location;
+			
 			if (WindowState == FormWindowState.Normal)
 			{
-				Shared.Settings.Default._DrawingSize = Size;
-				userPrefs.FormSize = Size;
+				Properties.Settings.Default._DrawingSize = Size;
+				//userPrefs.FormSize = Size;
 			}
 			else
 			{
-				Shared.Settings.Default._DrawingSize = RestoreBounds.Size;
-				userPrefs.FormSize = RestoreBounds.Size;
+				Properties.Settings.Default._DrawingSize = RestoreBounds.Size;
+				//userPrefs.FormSize = RestoreBounds.Size;
 			}
-			Shared.Settings.Default.Save();
+			Properties.Settings.Default.Save();
 		}
 
 		/// <summary> Methods when the main form is shown
@@ -1552,9 +1565,9 @@ namespace Retail_HD
 		private void Main_FormShown(object sender, EventArgs e)
 		{
 			UpdateWrapUpTotal();
-			if (Shared.Settings.Default._DrawingSize != null)
+			if (Properties.Settings.Default._DrawingSize != null)
 			{
-				Size = Shared.Settings.Default._DrawingSize;
+				Size = Properties.Settings.Default._DrawingSize;
 			}
 
 		}
@@ -1568,7 +1581,7 @@ namespace Retail_HD
 			//restore the position of the form
 			if (!hasRun)
 			{
-				Location = Shared.Settings.Default._DrawingLocation;
+				Location = Properties.Settings.Default._DrawingLocation;
 				if (!isOnScreen(this))
 				{
 					//set the location to a default
@@ -1611,11 +1624,8 @@ namespace Retail_HD
 			txtTID2.Text = string.Empty;
 			txtTID3.Text = string.Empty;
 			txtTID4.Text = string.Empty;
-			// Clear the computer list
 			clbComputers.Items.Clear();
-			// Clear the recent calls
 			RecentCalls_dgv.DataBindings.Clear();
-			// Clear the info container
 			Info.computers.Clear();
 		}
 
@@ -1699,8 +1709,8 @@ namespace Retail_HD
 		{
 			try
 			{
-				DataRow dr = SQL.dt_CallCount_User().Rows[0];
-				DataRow dr1 = SQL.dt_CallCount_Team().Rows[0];
+				DataRow dr = Shared.SQL.dt_SelectWrapupsTotal().Rows[0];
+				DataRow dr1 = Shared.SQL.dt_teamCalls().Rows[0];
 				if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_UserCalls.Text = "Total Calls: " + dr["Total"].ToString(); ss_Bottom_ssl_TeamCalls.Text = "Team Calls: " + dr1["Total"].ToString(); }));
 				else { ss_Bottom_ssl_UserCalls.Text = "Total Calls: " + dr["Total"].ToString(); ss_Bottom_ssl_TeamCalls.Text = "Team Calls: " + dr1["Total"].ToString(); }
 			}

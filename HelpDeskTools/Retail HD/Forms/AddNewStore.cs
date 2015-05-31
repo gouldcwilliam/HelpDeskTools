@@ -29,7 +29,7 @@ namespace Retail_HD.Forms
 		{
 			if (!checkInput()) { return; }
 
-			if (!SQL.b_InsertStore(
+			if (!Shared.SQL.b_InsertNewStore(
 				txtStore.Text.Trim(),
 				txtTZ.Text.Trim(),
 				txtMPID.Text.Trim(),

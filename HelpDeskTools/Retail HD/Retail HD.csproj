@@ -17,7 +17,7 @@
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Retail HD Menu\</PublishUrl>
+    <PublishUrl>\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\HelpDeskTools\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,13 +26,15 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
+    <MapFileExtensions>false</MapFileExtensions>
+    <ProductName>Retail HD</ProductName>
+    <PublisherName>Chad</PublisherName>
+    <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
-    <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>340</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -67,7 +69,7 @@
     <ManifestKeyFile>Retail HD_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -101,18 +103,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\AgentStatus.cs" />
     <Compile Include="Classes\Computer.cs" />
     <Compile Include="Classes\GlobalFunctions.cs" />
     <Compile Include="Classes\Info.cs" />
-    <Compile Include="Classes\LDAPinfo.cs" />
-    <Compile Include="Classes\People.cs" />
-    <Compile Include="Classes\SQL.cs" />
     <Compile Include="Forms\AddNewStore.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AddNewStore.Designer.cs">
       <DependentUpon>AddNewStore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AgentStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AgentStatus.Designer.cs">
+      <DependentUpon>AgentStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BGWorkers\ExcelExport.cs">
       <SubType>Form</SubType>
@@ -122,6 +126,12 @@
     </Compile>
     <Compile Include="Forms\BGWorkers\CashierUnlock.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CiscoLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CiscoLogin.Designer.cs">
+      <DependentUpon>CiscoLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CodeEntry.cs">
       <SubType>Form</SubType>
@@ -174,12 +184,6 @@
     <Compile Include="Forms\ListActions.Designer.cs">
       <DependentUpon>ListActions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SendEmail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SendEmail.Designer.cs">
-      <DependentUpon>SendEmail.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\StoreSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +201,11 @@
     </Compile>
     <Compile Include="Forms\ExcelCompareData.Designer.cs">
       <DependentUpon>ExcelCompareData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RetailHD.cs">
       <SubType>Form</SubType>
@@ -241,11 +250,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Setting\SQL.Designer.cs">
-      <DependentUpon>SQL.settings</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="UserControls\PingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,12 +265,12 @@
     </Compile>
     <None Include="App.config" />
     <None Include="Properties\app.manifest" />
-    <None Include="Setting\SQL.settings">
-      <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>SQL.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\main.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -275,8 +280,14 @@
     <EmbeddedResource Include="Forms\AddNewStore.resx">
       <DependentUpon>AddNewStore.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AgentStatus.resx">
+      <DependentUpon>AgentStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BGWorkers\ExcelExport.resx">
       <DependentUpon>ExcelExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CiscoLogin.resx">
+      <DependentUpon>CiscoLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CodeEntry.resx">
       <DependentUpon>CodeEntry.cs</DependentUpon>
@@ -301,9 +312,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListActions.resx">
       <DependentUpon>ListActions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SendEmail.resx">
-      <DependentUpon>SendEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StoreSearch.resx">
       <DependentUpon>StoreSearch.cs</DependentUpon>
@@ -635,7 +643,9 @@
       <Name>ProgressBar</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Setting\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

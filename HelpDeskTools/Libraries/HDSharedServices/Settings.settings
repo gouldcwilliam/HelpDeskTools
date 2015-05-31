@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HDSharedServices" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Shared" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="_TempFile" Type="System.String" Scope="User">
@@ -8,35 +8,8 @@
     <Setting Name="_NetworkShare" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk</Value>
     </Setting>
-    <Setting Name="_DrawingLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="_DrawingSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">764, 477</Value>
-    </Setting>
     <Setting Name="_OldMenuPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\wwwint\roc\techtmp\bergman\Toolsmenu.bat</Value>
-    </Setting>
-    <Setting Name="_UpdateComputerList" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\Update Computer List\UpdateComputerList.exe</Value>
-    </Setting>
-    <Setting Name="_ShowMeInAgentStatus" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="_ShowLoggedOutUsers" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="_EnableAutoReady" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="_LoginEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="_ServerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">rochdclogp01</Value>
-    </Setting>
-    <Setting Name="_Database" Type="System.String" Scope="User">
-      <Value Profile="(Default)">RetailHD</Value>
     </Setting>
     <Setting Name="_SettingsUpgradeCompleted" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

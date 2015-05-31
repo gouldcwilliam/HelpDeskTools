@@ -84,7 +84,7 @@ namespace Retail_HD.Forms
 
 				List<string> computers = new List<string>();
 
-				foreach(DataRow dr in SQL.dt_SelectComputers(store).Rows) { computers.Add(dr[0].ToString()); }
+				foreach(DataRow dr in Shared.SQL.dt_SelectComputers(store).Rows) { computers.Add(dr[0].ToString()); }
 
 				if (ckbRegister.Checked) { computers = SpecificRegister(computers); }
 

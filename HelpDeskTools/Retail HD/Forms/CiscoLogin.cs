@@ -11,12 +11,12 @@ using CiscoFinesseNET;
 using System.IO;
 
 
-namespace Shared.Forms
+namespace Retail_HD.Forms
 {
     public partial class frmCiscoLogin : Form
     {
         //this is the output object
-        public CiscoSettings ciscoSettings { get; private set; }
+		public CiscoFinesseNET.CiscoSettings ciscoSettings { get; private set; }
         bool isPeoplesoftValid = false;
         bool isChangeSettings = false;
 
@@ -59,7 +59,7 @@ namespace Shared.Forms
         {
             //validate the settings
             //validate peopesoft first
-            if (!isPeoplesoftValid && Settings.Default._PeoplesoftUpgrade) //ensure this doesn't fuck the world up until these changes go for real live.
+            if (!isPeoplesoftValid && Shared.Settings.Default._PeoplesoftUpgrade) //ensure this doesn't fuck the world up until these changes go for real live.
             {
                 if (txtShoeboxUSR.Text != string.Empty)
                 {
@@ -74,9 +74,9 @@ namespace Shared.Forms
 
                         Shared.Functions.LogoutPeoplesoft();
 
-                        Settings.Default._PeoplesoftPassword = txtShoeboxPWD.Text.ToUpper();
-                        Settings.Default._PeoplesoftUsername = txtShoeboxUSR.Text.ToUpper();
-                        Settings.Default.Save();
+                        Shared.Settings.Default._PeoplesoftPassword = txtShoeboxPWD.Text.ToUpper();
+						Shared.Settings.Default._PeoplesoftUsername = txtShoeboxUSR.Text.ToUpper();
+						Shared.Settings.Default.Save();
 
                         isPeoplesoftValid = true;
                     }
@@ -96,7 +96,7 @@ namespace Shared.Forms
             if (ciscoSettings != null) { }
             else
             {
-                ciscoSettings = new CiscoSettings();
+				ciscoSettings = new CiscoFinesseNET.CiscoSettings();
             }
 
             if (ValidateSettings())

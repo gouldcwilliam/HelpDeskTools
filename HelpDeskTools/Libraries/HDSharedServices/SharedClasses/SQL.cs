@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Shared
 {
-
+	
 	public static class SQL
 	{
         private static string connString = string.Format("server={0};database={1};Integrated Security={2}", SQLSettings.Default._ServerName, (Settings.Default._ApplicationRetail) ? SQLSettings.Default._Database : SQLSettings.Default._DatabaseGlobal, true);
@@ -17,7 +17,7 @@ namespace Shared
 		/// </summary>
 		public static SqlConnection conn =  new SqlConnection(connString);
 		
-
+		
 
 		/// <summary>
 		/// check for database connection
@@ -192,14 +192,6 @@ namespace Shared
 			return Insert(sql, paramList);
 		}
 
-		static public bool b_UsefulInfo_EditTabTitle(string oldName, string newName)
-		{
-			List<SqlParameter> paramList = new List<SqlParameter>();
-			paramList.Add(new SqlParameter("@old", oldName));
-			paramList.Add(new SqlParameter("@new", newName));
-			string sql = "UPDATE [Info] SET [tab] = @new WHERE [tab] = @old";
-			return Insert(sql, paramList);
-		}
 
 		static public bool VersionEntry_InsertChangeLog(string version, string changelog)
 		{
@@ -528,12 +520,54 @@ namespace Shared
 			return Select(query);
 		}
 
+		/// <summary> Search for store with the given parameters (Optional parameters are string.empty or "")
+		/// </summary>
+		/// <param name="tz"></param>
+		/// <param name="mp"></param>
+		/// <param name="dm"></param>
+		/// <param name="name"></param>
+		/// <param name="type"></param>
+		/// <param name="address"></param>
+		/// <param name="city"></param>
+		/// <param name="state"></param>
+		/// <param name="zip"></param>
+		/// <param name="phone"></param>
+		/// <returns></returns>
+		static public DataTable dt_StoreSearch(string tz, string mp, string dm, string name, string type, string address, string city, string state, string zip, string phone)
+		{
+			string setStatement = string.Empty;
+
+			if (tz != string.Empty) { setStatement += string.Format("SET @TZ = '{0}'\n", tz); }
+			if (mp != string.Empty) { setStatement += string.Format("SET @MP = '{0}'\n", mp); }
+			if (dm != string.Empty) { setStatement += string.Format("SET @DM = '{0}'\n", dm); }
+			if (name != string.Empty) { setStatement += string.Format("SET @NAME = '{0}\n", name); }
+			if (type != string.Empty) { setStatement += string.Format("SET @TYPE = '{0}'\n", type); }
+			if (address != string.Empty) { setStatement += string.Format("SET @ADDRESS = '{0}'\n", address); }
+			if (city != string.Empty) { setStatement += string.Format("SET @CITY = '{0}'\n", city); }
+			if (state != string.Empty) { setStatement += string.Format("SET @STATE='{0}'\n", state); }
+			if (zip != string.Empty) { setStatement += string.Format("SET @ZIP='{0}'\n", zip); }
+			if (phone != string.Empty) { setStatement += string.Format("SET @PHONE='{0}'\n", phone); }
+
+			string query = string.Format("{0} \n {1} \n {2}",
+				SQLSettings.Default._StoreSearchDeclare,
+				setStatement,
+				SQLSettings.Default._StoreSearch);
+			Console.WriteLine(query);
+			return Select(query);
+		}
 
 		static public DataTable dt_LastCategory()
 		{
 			SqlParameter p = new SqlParameter("@TECH", Environment.UserName.ToUpper());
             return Select(SQLSettings.Default._LastCategory, p);
 		}
+
+		static public DataTable ListTables()
+		{
+			return Select("SELECT Distinct TABLE_NAME FROM information_schema.TABLES");
+		}
+
+
 
 		/// <summary>
 		/// executes select statement
@@ -734,6 +768,15 @@ namespace Shared
 			paramList.Add(new SqlParameter("@tabName", tabName));
 
 			string sql = "UPDATE [Info] SET [Text] = @textDisplayed WHERE [tab] = @tabName";
+			return Insert(sql, paramList);
+		}
+
+		static public bool b_UsefulInfo_EditTabTitle(string oldName, string newName)
+		{
+			List<SqlParameter> paramList = new List<SqlParameter>();
+			paramList.Add(new SqlParameter("@old", oldName));
+			paramList.Add(new SqlParameter("@new", newName));
+			string sql = "UPDATE [Info] SET [tab] = @new WHERE [tab] = @old";
 			return Insert(sql, paramList);
 		}
 
