@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -641,6 +641,26 @@
     <ProjectReference Include="..\Libraries\ProgressBar\ProgressBar.csproj">
       <Project>{d47c1210-4bfe-4b10-956f-7b0b40f3c718}</Project>
       <Name>ProgressBar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\CheckTrickle\CheckTrickle.csproj">
+      <Project>{44bd59f1-a129-4206-839d-bcff1c39cd63}</Project>
+      <Name>CheckTrickle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\DelayedStartServices\DelayedStartServices.csproj">
+      <Project>{0361df41-99d6-4336-a6e7-ce0bd1c057ba}</Project>
+      <Name>DelayedStartServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\FindUnusedComputers\FindUnusedComputers.csproj">
+      <Project>{3c4daabd-5a76-40ff-b56d-aea9b783441b}</Project>
+      <Name>FindUnusedComputers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\MissingDLLs\MissingDLLs.csproj">
+      <Project>{ff09e0c8-1c44-4b44-88ce-bf2ebb7f520c}</Project>
+      <Name>MissingDLLs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\UpdateComputerList\UpdateComputerList.csproj">
+      <Project>{5f8edf63-6596-44af-a947-2d85878cb12f}</Project>
+      <Name>UpdateComputerList</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
