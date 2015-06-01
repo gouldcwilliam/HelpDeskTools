@@ -37,7 +37,6 @@ namespace Retail_HD
 		public static string zip{ get; set; }
 		public static string income{ get; set; }
 		public static string rank { get; set; }
-		public static string totalStores = Shared.SQL.Select("select count([Stores].[store]) from [Stores] where not [rank] is null").Rows[0][0].ToString();
 		public static string BAMS { get; set; }
 		public static string SVS { get; set; }
 		public static string TID1 { get; set; }

@@ -74,7 +74,7 @@ namespace Retail_HD.Forms
         private void EditSettings_Load(object sender, EventArgs e)
         {
             //this does the same as above, but on one line
-            ckbShowLoggedOut.Visible = ((CiscoFinesseNET.Helper.loggedInUser.role & CiscoFinesseNET.Role.Supervisor) == CiscoFinesseNET.Role.Supervisor) ? true : false;
+//            ckbShowLoggedOut.Visible = ((CiscoFinesseNET.Helper.loggedInUser.role & CiscoFinesseNET.Role.Supervisor) == CiscoFinesseNET.Role.Supervisor) ? true : false;
         }
 
         private void SettingChanged(object sender, EventArgs e)

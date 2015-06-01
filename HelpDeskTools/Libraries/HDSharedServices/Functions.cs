@@ -927,7 +927,15 @@ namespace Shared
 			}
 			catch (Exception) { Console.WriteLine("Failed copying DelayedStartServices"); }
 		}
-
+        public static void v_RemoveDelayedStartServices()
+        {
+            string f = Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\DelayedStartServices.exe";
+            try
+            {
+                   if(File.Exists(f)) { File.Delete(f);}
+            }
+            catch (Exception) { Console.WriteLine("Failed while removeing DelayedStartServices");;}
+        }
 		public static void v_CreateTempFolder()
 		{
 			if (!Directory.Exists(@"C:\Temp"))
@@ -959,6 +967,7 @@ namespace Shared
 		/// <summary> QUERIES THE EXCEL FILE
 		/// </summary>
 		/// <param name="fileName"></param>
+        /// <param name="xQuery"></param>
 		/// <returns></returns>
 		public static DataTable Excel_QuerySheet(string fileName, string xQuery)
 		{
@@ -967,8 +976,16 @@ namespace Shared
 			OleDbDataAdapter xadapter = null;
 			try
 			{
-				xconn = new OleDbConnection(string.Format(@"provider=microsoft.jet.oledb.4.0;data source={0};extended properties=" + "\"excel 8.0;hdr=yes;\"", fileName));
-				xadapter = new OleDbDataAdapter(xQuery, xconn);
+                if (fileName.Trim().EndsWith(".xlsx"))
+                {
+                    xconn = new OleDbConnection(string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", fileName));
+                }
+                else if (fileName.Trim().EndsWith(".xls"))
+                {
+                    xconn = new OleDbConnection(string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\";", fileName));
+                }
+                else { return new DataTable(); }
+                xadapter = new OleDbDataAdapter(xQuery, xconn);
 				xadapter.Fill(t);
 				return t;
 			}
@@ -996,8 +1013,15 @@ namespace Shared
 			OleDbConnection xconn = null;
 			try
 			{
-				xconn = new OleDbConnection(string.Format(@"provider=microsoft.jet.oledb.4.0;data source={0};extended properties=" + "\"excel 8.0;hdr=yes;\"", fileName));
-				xconn.Open();
+                if (fileName.Trim().EndsWith(".xlsx"))
+                {
+                    xconn = new OleDbConnection(string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", fileName));
+                }
+                else if (fileName.Trim().EndsWith(".xls"))
+                {
+                    xconn = new OleDbConnection(string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\";", fileName));
+                } 
+                xconn.Open();
 				t = xconn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
 				return t;
 			}
@@ -1016,6 +1040,7 @@ namespace Shared
 		/// <summary> IMPORTS THE COLUMNS OF THE GIVEN FILE
 		/// </summary>
 		/// <param name="fileName"></param>
+        /// <param name="tablename"></param>
 		/// <returns></returns>
 		public static DataTable Excel_GetColumns(string fileName, string tablename)
 		{
@@ -1023,8 +1048,15 @@ namespace Shared
 			OleDbConnection xconn = null;
 			try
 			{
-				xconn = new OleDbConnection(string.Format(@"provider=microsoft.jet.oledb.4.0;data source={0};extended properties=" + "\"excel 8.0;hdr=yes;\"", fileName));
-				xconn.Open();
+                if (fileName.Trim().EndsWith(".xlsx"))
+                {
+                    xconn = new OleDbConnection(string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", fileName));
+                }
+                else if (fileName.Trim().EndsWith(".xls"))
+                {
+                    xconn = new OleDbConnection(string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\";", fileName));
+                } 
+                xconn.Open();
 				t = xconn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns, new object[] { null, null, tablename, null });
 				return t;
 			}

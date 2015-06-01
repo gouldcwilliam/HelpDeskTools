@@ -100,12 +100,8 @@ namespace Retail_HD
 		//
 		#region Variables
 		
-		/// <summary>
-		/// User preferences
-		/// </summary>
-		//public Shared.Config.PerUser userPrefs = Shared.Config.PerUser.Load();
-
 		bool _AgentLoginEnabled = false;
+        public bool _NetworkEnabled { get; private set; }
 		bool hasRun = false;
 
 
@@ -126,7 +122,6 @@ namespace Retail_HD
 		}
 
 		Forms.frmAgentStatus agentStatus = new Forms.frmAgentStatus();
-
 		Forms.ReportIssue ReportIssue = new Forms.ReportIssue();
 		Forms.WrapUp wrapUp = new Forms.WrapUp();
 		Forms.Confirm nagger = new Forms.Confirm("You are in work, change to READY?", "Change Status?");
@@ -152,8 +147,11 @@ namespace Retail_HD
 			ServicesUC.btnOK.Click += Services_OK_Click;
 
 			Shared.Functions.v_InstallPsTools();
-			Shared.Functions.v_Install_DelayedStartServices();
+            //Shared.Functions.v_Install_DelayedStartServices();
+            Shared.Functions.v_RemoveDelayedStartServices();
 			Shared.Functions.v_CreateTempFolder();
+
+            _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
 
 			//phone stuff
 			Helper.OnUpdatedInformation += Helper_OnUpdatedInformation;
@@ -1057,6 +1055,7 @@ namespace Retail_HD
 		// handles when store number Text box Text has changed
 		private void txtStore_TextChanged(object sender, EventArgs e)
 		{
+            if (!_NetworkEnabled) { return; }
 			Info.Clear();
 			int store;
 			
@@ -1162,12 +1161,16 @@ namespace Retail_HD
 			UpdateInfo();
 		}
 
-		// Runs the tool updater program
-		private void UpdateThisTool_Click(object sender, EventArgs e)
-		{
-			GlobalFunctions.i_ExecuteCommand(@".\UpdateRHDMenu.exe", false, "restart", false);
-		}
 
+        private void ImportExcel_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+			{
+				if (ofd.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
+				Forms.ExcelLoadTables eSchemaInfo = new Forms.ExcelLoadTables(ofd.FileName);
+				eSchemaInfo.Show();
+			}
+        }
 
 		#endregion
 
@@ -1564,7 +1567,7 @@ namespace Retail_HD
 		/// <param name="e"></param>
 		private void Main_FormShown(object sender, EventArgs e)
 		{
-			UpdateWrapUpTotal();
+            if (_NetworkEnabled) { UpdateWrapUpTotal(); }
 			if (Properties.Settings.Default._DrawingSize != null)
 			{
 				Size = Properties.Settings.Default._DrawingSize;
@@ -1633,6 +1636,7 @@ namespace Retail_HD
 		// Update all the form information from the store information gathered from SQL
 		private void UpdateInfo()
 		{
+            if (!_NetworkEnabled) { return; }
 			ClearInfo();
 			// Fill the store information area
 			if (GlobalFunctions.b_FillStoreInfo())
@@ -1658,7 +1662,7 @@ namespace Retail_HD
 				if (Info.income == string.Empty) { txtIncome.Text = string.Empty; }
 				else { txtIncome.Text = "$" + Info.income; }
 				if (Info.rank == string.Empty) { txtRank.Text = string.Empty; }
-				else { txtRank.Text = Info.rank + "/" + Info.totalStores; }
+				else { txtRank.Text = Info.rank; }
 				if (Info.phone != string.Empty)
 				{
 					if (Info.phone.Length == 10)
@@ -1697,7 +1701,7 @@ namespace Retail_HD
 					RecentCalls_dgv.Columns["Trax"].Visible = false;
 					RecentCalls_dgv.Columns["URL"].Visible = false;
 				}
-				catch (Exception ex) { MessageBox.Show(ex.Message); }
+                catch (Exception ex) { Console.WriteLine("Update Info: {0}\n => {1}",RecentCalls_dgv.Name, ex.Message); }
 			}
 			// Call the method to update call totals
 			UpdateWrapUpTotal();
@@ -1791,25 +1795,11 @@ namespace Retail_HD
 
 		// Test methods
 		private void Test()
-		{
-			Shared.Config.PerUser perUser = Shared.Config.PerUser.Load();
-			Console.WriteLine(string.Format("X:{0} Y:{1}",perUser.FormStart.X, perUser.FormStart.Y));
-			Console.WriteLine(string.Format("H:{0}, W:{1}", perUser.FormSize.Height, perUser.FormSize.Width));
-			Console.WriteLine(string.Format("Status:{0}", perUser.ShownInAgentStatus));
-			Console.WriteLine(string.Format("LogOut:{0}", perUser.ShowLoggedOutUsers));
-			Console.WriteLine(string.Format("Ready:{0}", perUser.AutoReady));
-			Console.WriteLine(string.Format("Login:{0}", perUser.AutoLogin));
+        {
 		}
 
-		private void ImportExcellData()
-		{
-			using (OpenFileDialog ofd = new OpenFileDialog())
-			{
-				if (ofd.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
-				Forms.ExcelLoadTables eSchemaInfo = new Forms.ExcelLoadTables(ofd.FileName);
-				eSchemaInfo.Show();
-			}
-		}
+
+
 
 		
 	}

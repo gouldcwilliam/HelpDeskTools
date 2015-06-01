@@ -28,37 +28,80 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.dg_main = new System.Windows.Forms.DataGridView();
-			((System.ComponentModel.ISupportInitialize)(this.dg_main)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// dg_main
-			// 
-			this.dg_main.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dg_main.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dg_main.Location = new System.Drawing.Point(0, 0);
-			this.dg_main.Name = "dg_main";
-			this.dg_main.Size = new System.Drawing.Size(933, 671);
-			this.dg_main.TabIndex = 0;
-			// 
-			// XcelTest
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(933, 671);
-			this.Controls.Add(this.dg_main);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
-			this.Name = "XcelTest";
-			this.Text = "Excel Test";
-			this.Load += new System.EventHandler(this.XcelTest_Load);
-			((System.ComponentModel.ISupportInitialize)(this.dg_main)).EndInit();
-			this.ResumeLayout(false);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dgvSQL = new System.Windows.Forms.DataGridView();
+            this.dgvExcel = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSQL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvExcel)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvExcel);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgvSQL);
+            this.splitContainer1.Size = new System.Drawing.Size(1393, 729);
+            this.splitContainer1.SplitterDistance = 693;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // dgvSQL
+            // 
+            this.dgvSQL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSQL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSQL.Location = new System.Drawing.Point(0, 0);
+            this.dgvSQL.Name = "dgvSQL";
+            this.dgvSQL.RowTemplate.Height = 24;
+            this.dgvSQL.Size = new System.Drawing.Size(696, 729);
+            this.dgvSQL.TabIndex = 0;
+            // 
+            // dgvExcel
+            // 
+            this.dgvExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvExcel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvExcel.Location = new System.Drawing.Point(0, 0);
+            this.dgvExcel.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvExcel.Name = "dgvExcel";
+            this.dgvExcel.Size = new System.Drawing.Size(693, 729);
+            this.dgvExcel.TabIndex = 1;
+            // 
+            // ExcelCompareData
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1393, 729);
+            this.Controls.Add(this.splitContainer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = global::Retail_HD.GlobalResources.icoMain;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "ExcelCompareData";
+            this.Text = "Excel Test";
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSQL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvExcel)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.DataGridView dg_main;
-	}
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView dgvExcel;
+        private System.Windows.Forms.DataGridView dgvSQL;
+
+    }
 }

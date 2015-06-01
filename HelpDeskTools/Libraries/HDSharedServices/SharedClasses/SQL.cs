@@ -11,7 +11,12 @@ namespace Shared
 	
 	public static class SQL
 	{
-        private static string connString = string.Format("server={0};database={1};Integrated Security={2}", SQLSettings.Default._ServerName, (Settings.Default._ApplicationRetail) ? SQLSettings.Default._Database : SQLSettings.Default._DatabaseGlobal, true);
+        private static string connString = string.Format("server={0};database={1};Integrated Security={2}", 
+            SQLSettings.Default._ServerName, 
+            SQLSettings.Default._Database,
+            true
+        );
+
 		/// <summary>
 		/// read only connection string settings
 		/// </summary>

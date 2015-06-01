@@ -87,16 +87,10 @@ namespace Retail_HD.Forms
 				"select [Store Number], [Store Manager], [District Manager], [Regional Manager] from [{0}]",
 				ckbTablesE.CheckedItems[0]
 				);
-			Forms.ExcelCompareData xtest = new ExcelCompareData(_filename, _Query);
+			Forms.ExcelCompareData xtest = new ExcelCompareData(Shared.Functions.Excel_QuerySheet(_filename, _Query));
 			xtest.Show();
 			DialogResult = System.Windows.Forms.DialogResult.OK;
 			Close();
-		}
-
-
-		private void btnLoadS_Click(object sender, EventArgs e)
-		{
-
 		}
 
 	}
