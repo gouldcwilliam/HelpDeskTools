@@ -92,7 +92,7 @@ namespace Retail_HD.Forms
 			bool mandatory = false;
 			WrapUp.wrapUp newWrapUp;
 
-			foreach (DataRow dr in SQL.Select(Setting.SQL.Default._CategoriesWithTopics).Rows)
+			foreach (DataRow dr in Shared.SQL.Select(Shared.SQLSettings.Default._CategoriesWithTopics).Rows)
 			{
 				category = dr["Category"].ToString();
 				wrapup = dr["topic"].ToString();
@@ -199,7 +199,7 @@ namespace Retail_HD.Forms
 			string url = txtTRAX.Text;
 			if (!ckbTrax.Checked) { url = string.Empty; }
 
-			if (!SQL.b_UpdateCall(ID, txtStore.Text, ckbTopics.CheckedItems[0].ToString(), txtDetails.Text, cmbType.Text, ckbTrax.Checked, url))
+			if (!Shared.SQL.EditCalls_UpdateCall(ID, txtStore.Text, ckbTopics.CheckedItems[0].ToString(), txtDetails.Text, cmbType.Text, ckbTrax.Checked, url))
 			{
 				return;
 			}

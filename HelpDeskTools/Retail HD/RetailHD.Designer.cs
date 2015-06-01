@@ -1223,6 +1223,7 @@
 			// 
 			// ms_Top_msi_UpdateThisTool
 			// 
+			this.ms_Top_msi_UpdateThisTool.Enabled = false;
 			this.ms_Top_msi_UpdateThisTool.Name = "ms_Top_msi_UpdateThisTool";
 			this.ms_Top_msi_UpdateThisTool.Size = new System.Drawing.Size(175, 22);
 			this.ms_Top_msi_UpdateThisTool.Text = "Update This Tool";

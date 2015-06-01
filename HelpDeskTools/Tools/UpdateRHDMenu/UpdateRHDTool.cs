@@ -21,8 +21,8 @@ namespace UpdateRHDTool
 				p.Kill();
 			}
 
-			string sourcePath = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\Retail HD\Latest";
-			string destPath = @"C:\Program Files\Retail HD";
+			string sourcePath = UpdateRHDMenu.Properties.Settings.Default._sourcePath;
+			string destPath = UpdateRHDMenu.Properties.Settings.Default._sourcePath;
 
 			if (!Directory.Exists(destPath)) 
 			{ 
@@ -37,10 +37,20 @@ namespace UpdateRHDTool
 				foreach (string file in files)
 				{
 					string filename = Path.GetFileName(file);
-					Console.WriteLine("===> {0}", filename);
-					if (filename.Contains(".config")) { continue; }
-					File.Copy(file, Path.Combine(destPath, filename), true);
+					if (filename.Contains("Retail HD.exe.config") ||
+						filename.Contains("UpdateComputerList") ||
+						filename.Contains(".pdb")
+					){ continue; }
+					Console.Write("===> {0}", filename);
+					try 
+					{
+						File.Copy(file, Path.Combine(destPath, filename), true);
+						Console.WriteLine(" ===> done");
+					}
+					catch(Exception)
+					{ Console.WriteLine(" ===> failed"); }
 				}
+				//File.Copy(sourcePath + @"\Resources", destPath, true);
 			}
 			else
 			{

@@ -25,7 +25,7 @@ namespace Retail_HD.Forms
 
 		private void frmInfo_Load(object sender, EventArgs e)
 		{
-			foreach (DataRow row in SQL.dt_UsefulInfo().Rows)
+			foreach (DataRow row in Shared.SQL.dt_UsefulInfo().Rows)
 			{
 				TabPage tabPage = new TabPage();
 
@@ -58,9 +58,9 @@ namespace Retail_HD.Forms
 			{
 				foreach (TabPage tabPage in tabControl.Controls)
 				{
-					if (SQL.dt_UsefulInfo_Text(tabPage.Text).Rows[0]["Text"].ToString() != tabPage.Controls[0].Text)
+					if (Shared.SQL.dt_UsefulInfo_Text(tabPage.Text).Rows[0]["Text"].ToString() != tabPage.Controls[0].Text)
 					{
-						SQL.b_UsefulInfo_Update(tabPage.Text, tabPage.Controls[0].Text);
+						Shared.SQL.b_UsefulInfo_Update(tabPage.Text, tabPage.Controls[0].Text);
 					}
 				}
 			}
@@ -87,7 +87,7 @@ namespace Retail_HD.Forms
 
 			page.Text = newName;
 
-			SQL.b_EditInfoTabTitle(oldName, newName);
+			Shared.SQL.b_UsefulInfo_EditTabTitle(oldName, newName);
 		}
 
 		private void btnOK_Click(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace Retail_HD.Forms
 
 			if (titleInput._UserInput.Trim() == string.Empty) { return; }
 
-			SQL.b_InsertInfoTab(titleInput._UserInput, tabControl.Controls.Count);
+			Shared.SQL.b_UsefulInfo_AddTab(titleInput._UserInput, tabControl.Controls.Count);
 
 			tabPage.Text = titleInput._UserInput;
 

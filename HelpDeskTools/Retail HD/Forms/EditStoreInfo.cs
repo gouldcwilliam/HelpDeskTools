@@ -57,7 +57,7 @@ namespace Retail_HD.Forms
 
 		private void btnOK_Click(object sender, EventArgs e)
 		{
-			if (SQL.b_UpdateStore(Info.store.ToString(), txtPhone.Text, txtManager.Text, txtMpId.Text, txtAddress.Text, txtEmail.Text,
+			if (Shared.SQL.b_updateStoreInfo(Info.store.ToString(), txtPhone.Text, txtManager.Text, txtMpId.Text, txtAddress.Text, txtEmail.Text,
 				txtIP.Text, txtCity.Text, txtDM.Text, txtName.Text, txtType.Text, txtState.Text, txtZip.Text, txtTZ.Text))
 			{
 				DialogResult = System.Windows.Forms.DialogResult.OK;

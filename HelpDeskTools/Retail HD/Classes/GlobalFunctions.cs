@@ -15,80 +15,7 @@ namespace Retail_HD
 {
 	public static class GlobalFunctions
     {
-        #region Phone Crap *****IGNORE*****
-        public static string _pusr = string.Empty;
-        public static string _ppas = string.Empty;
-        public static string _pacd = string.Empty;
 
-        public static List<Classes.People> onCallList = new List<Classes.People>();
-        #endregion
-        /// <summary>
-        /// Returns the currently used version number.
-        /// </summary>
-        public static Version currentVersion
-        {
-            get
-            {
-                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
-                {
-                    return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                }
-                else return new Version(0, 0, 0, 1);
-            }
-        }
-
-        /// <summary>
-        /// Checks for the newest version deployed, and returns the version number.
-        /// </summary>
-        public static Version newestVersion
-        {
-            get
-            {
-                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
-                {
-                    System.Deployment.Application.UpdateCheckInfo updateInfo = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CheckForDetailedUpdate();
-                    if (updateInfo.UpdateAvailable)
-                    {
-                        return updateInfo.AvailableVersion;
-                    }
-                    else return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                }
-                else return new Version(0, 0, 0, 1);
-            }
-        }
-
-        public static bool ForceUpdate()
-        {
-            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
-            {
-                System.Deployment.Application.UpdateCheckInfo updateInfo = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CheckForDetailedUpdate();
-                if (updateInfo.UpdateAvailable)
-                {
-                    return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.Update();
-                }
-                else return false;
-            }
-            else return false;
-        }
-
-        //change this to return the value from SQL.
-        public static string newestVersionChangelog
-        {
-            get
-            {
-				SqlParameter sp = new SqlParameter("@version", newestVersion.ToString());
-				DataTable dt = SQL.Select("select [change] from [ChangeSet] where [version] = @version",sp);
-				if (dt.Rows.Count > 0)
-				{
-					return dt.Rows[0][0].ToString();
-				}
-				else
-				{
-					return string.Empty;
-				}
-					//"- Added \"What's New?\" section to Help menu.\n- Updated verbage for wrap up errors.\n- Added update button.\n- Minor tweaks to UX.";
-            }
-        }
 
         public static bool b_CheckValidExtensionPrefix(string extprefix)
         {
@@ -113,42 +40,8 @@ namespace Retail_HD
             }
         }
 
-		public static void v_InstallPsTools()
-		{
-			try
-			{
-
-				if (!File.Exists(Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe"))
-				{
-					Console.WriteLine(@"PsExec not found, copying to: {0}\System32\", Environment.ExpandEnvironmentVariables("%WINDIR%"));
-					File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
-						Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe",
-						true);
-				}
-			}
-			catch (Exception) { }
-		}
 
 
-		public static void v_Install_DelayedStartServices()
-		{
-			try
-			{
-				File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\DelayedStartServices\DelayedStartServices.exe",
-						Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\DelayedStartServices.exe",
-						true);
-			}
-			catch (Exception) { Console.WriteLine("Failed copying DelayedStartServices"); }
-		}
-
-
-        public static void v_CreateTempFolder()
-        {
-            if (!Directory.Exists(@"C:\Temp"))
-            {
-                Directory.CreateDirectory(@"C:\Temp");
-            }
-        }
 
 		
 
@@ -252,10 +145,7 @@ namespace Retail_HD
 
 		public static void v_UpdateComputersFromAD()
 		{
-			if (System.IO.File.Exists(Shared.Settings.Default._UpdateComputerList))
-			{
-				Process.Start(Shared.Settings.Default._UpdateComputerList);
-			}
+			Process.Start(@".\UpdateComputerList.exe");
 		}
 
 
@@ -276,7 +166,7 @@ namespace Retail_HD
 
 		public static void v_ConnectWithAltiris(string computer)
 		{
-			if (!DnsLookup(computer)) { return; }
+			if (!Shared.Functions.DnsLookup(computer)) { return; }
 			Process altiris = Process.Start("AWREM32", @"C:\Users\All Users\Symantec\pcAnywhere\Remotes\Network, Cable, DSL.chf /c" + computer);
 			System.Threading.Thread.Sleep(2500);
 			Console.WriteLine("Launched altiris on: " + computer);
@@ -295,26 +185,7 @@ namespace Retail_HD
 
 
 
-		public static bool DnsLookup(string hostname)
-		{
-			System.Net.IPHostEntry host;
-			try
-			{
-				host = System.Net.Dns.GetHostEntry(hostname);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				System.Windows.Forms.MessageBox.Show("Exception caught during DNS lookup\nThe computer is not online", "DNS Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-				return false;
-			}
-			if (host == null || host.AddressList.GetLength(0) == 0)
-			{
-				System.Windows.Forms.MessageBox.Show("No addresses availible for the hostname", "DNS Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-				return false;
-			}
-			return true;
-		}
+
 		
 
 		public static void v_RemoteCMD(List<Computer> SelectedComputers)
@@ -406,7 +277,7 @@ namespace Retail_HD
 		{
 			try
 			{
-				foreach (System.Data.DataRow dr in SQL.dt_SelectStore(Convert.ToInt32(Info.store)).Rows)
+				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectStore(Convert.ToInt32(Info.store)).Rows)
 				{
 					Info.address = dr["address"].ToString();
 					Console.WriteLine(Info.address);
@@ -440,7 +311,7 @@ namespace Retail_HD
 				}
 				return true;
 			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+			catch (Exception ex) { Console.WriteLine(ex.Message + ex.InnerException); return false; }
 		}
 
 		
@@ -449,7 +320,7 @@ namespace Retail_HD
 		{
 			try
 			{
-				foreach (System.Data.DataRow dr in SQL.dt_SelectComputers(Info.store).Rows)
+				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectComputers(Info.store).Rows)
 				{
 					Info.computers.Add(new Computer(dr["computer"].ToString().ToUpper()));
 				}
@@ -462,212 +333,9 @@ namespace Retail_HD
 		
 		public static bool b_FillRecentCalls()
 		{
-			try { Info.recentCalls = SQL.dt_SelectRecentCalls(Info.store); return true; }
+			try { Info.recentCalls = Shared.SQL.dt_SelectRecentCalls(Info.store); return true; }
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
-
-
-		public static bool PlaceCerts(string Computer)
-		{
-			try
-			{
-				string Cert1 = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\global.cer";
-				string Cert2 = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\verisign-root.cer";
-				string Destination1 = string.Format(@"\\{0}\C$\Temp\global.cer", Computer);
-				string Destination2 = string.Format(@"\\{0}\C$\Temp\verisign-root.cer", Computer);
-				File.Copy(Cert1, Destination1, true);
-				File.Copy(Cert2, Destination2, true);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				return false;
-			}
-			return true;
-		}
-
-
-
-
-        /// <summary>
-        /// Sends an email
-        /// </summary>
-        /// <param name="to">Recipients, seperated by a comma (,)</param>
-        /// <param name="body">Body of message</param>
-        /// <param name="subject">Subject of message</param>
-        /// <returns>Pass/Fail</returns>
-        public static bool b_SendEmail(string to, string body, string subject)
-        {
-            try
-            {
-                string from = Environment.UserName.ToString() + "@wwwinc.com";
-                //System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
-                System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
-                _msg.From = new System.Net.Mail.MailAddress(from);
-                _msg.Subject = subject;
-                _msg.Body = body;
-                _msg.To.Add(to);
-                _msg.IsBodyHtml = true;
-                
-                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
-                client.UseDefaultCredentials = true;
-                client.Send(_msg);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Looks up the passed number in AD and returns the person's information.
-        /// </summary>
-        /// <param name="number">Phone number to lookup</param>
-        /// <returns>(Department) FirstName LastName - Title</returns>
-        public static string s_LookupPhoneNumber(string number)
-        {
-            try
-            {
-                //ldap
-                //LDAP://OU=Retail Stores-BBB, OU=North America,OU=WWW,DC=wwwint,DC=corp"
-                string ldapquery = "LDAP://DC=wwwint,DC=corp";
-                string strFilter = "(&(objectCategory=user)(|(Mobile={0})(ipPhone={0})))";//"(&(objectCategory=user)(|(Mobile={0})(IP phone={1}))";
-                List<LDAP.Result> result;
-                if (number.Length > 7)
-                {
-                    //result = AD.SearchAD(ldapquery, strFilter, new string[] { "Mobile" });
-                    number = string.Format("{0}{1}{0}{2}{0}{3}", "*", number.Substring(0, 3), number.Substring(3, 3), number.Substring(6));
-                    result = AD.SearchAD(ldapquery, string.Format(strFilter, number));
-                }
-                else
-                {
-                    //result = AD.SearchAD(ldapquery, strFilter, new string[] { "IP phone" });
-                    result = AD.SearchAD(ldapquery, string.Format(strFilter, number));
-                }
-
-                //survey says.... find me the info!!!!
-                string firstname = (result.Find(e => e.Attribute.ToLower() == "givenName".ToLower())).Value;
-                string lastname = (result.Find(e => e.Attribute.ToLower() == "sn".ToLower())).Value;
-                string title = (result.Find(e => e.Attribute.ToLower() == "title".ToLower())).Value;
-                string department = (result.Find(e => e.Attribute.ToLower() == "description".ToLower())).Value;
-
-                return string.Format("({3}) {0} {1} - {2}", firstname, lastname, title, department);
-            }
-            catch
-            {
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Used for multiple extensions being involved, this will look them up in order and return the first one.
-        /// </summary>
-        /// <param name="numbers">Numbers to look up</param>
-        /// <returns></returns>
-        public static string s_LookupPhoneNumber(string[] numbers)
-        {
-            foreach (string number in numbers)
-            {
-                try
-                {
-                    //ldap
-                    //LDAP://OU=Retail Stores-BBB, OU=North America,OU=WWW,DC=wwwint,DC=corp"
-                    string ldapquery = "LDAP://DC=wwwint,DC=corp";
-                    string strFilter = "(&(objectCategory=user)(|(Mobile={0})(ipPhone={0})))";//"(&(objectCategory=user)(|(Mobile={0})(IP phone={1}))";
-                    List<LDAP.Result> result;
-                    if (number.Length > 7)
-                    {
-                        string tmp = string.Empty;
-                        //result = AD.SearchAD(ldapquery, strFilter, new string[] { "Mobile" });
-                        tmp = string.Format("{0}{1}{0}{2}{0}{3}", "*", number.Substring(0, 3), number.Substring(3, 3), number.Substring(6));
-                        result = AD.SearchAD(ldapquery, string.Format(strFilter, tmp));
-                    }
-                    else
-                    {
-                        //result = AD.SearchAD(ldapquery, strFilter, new string[] { "IP phone" });
-                        result = AD.SearchAD(ldapquery, string.Format(strFilter, number));
-                    }
-
-                    //survey says.... find me the info!!!!
-                    string firstname = (result.Find(e => e.Attribute.ToLower() == "givenName".ToLower())).Value;
-                    string lastname = (result.Find(e => e.Attribute.ToLower() == "sn".ToLower())).Value;
-                    string title = (result.Find(e => e.Attribute.ToLower() == "title".ToLower())).Value;
-                    string department = (result.Find(e => e.Attribute.ToLower() == "description".ToLower())).Value;
-
-                    return string.Format("({3}) {0} {1} - {2}", firstname, lastname, title, department);
-                }
-                catch
-                {
-                    continue;
-                }
-            }
-            return string.Empty;
-        }
-
-        public static bool b_SendEmail(string to, string body, string subject, FileInfo attachement)
-        {
-            try
-            {
-                string from = Environment.UserName.ToString() + "@wwwinc.com";
-                //System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
-                System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
-                _msg.From = new System.Net.Mail.MailAddress(from);
-                _msg.Subject = subject;
-                _msg.Body = body;
-                _msg.To.Add(to);
-                _msg.Attachments.Add(new System.Net.Mail.Attachment(attachement.Open(FileMode.Open, FileAccess.Read, FileShare.Read), attachement.Name));
-                _msg.IsBodyHtml = true;
-
-                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
-                client.UseDefaultCredentials = true;
-                client.Send(_msg);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public static bool b_SendEmail(List<string> to, string body, string subject, List<FileInfo> attachement)
-        {
-            try
-            {
-                string from = Environment.UserName.ToString() + "@wwwinc.com";
-                //System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
-                System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
-                _msg.From = new System.Net.Mail.MailAddress(from);
-                _msg.Subject = subject;
-                _msg.Body = body;
-                //_msg.To.Add(to);
-
-                foreach (string _to in to)
-                {
-                    _msg.To.Add(_to);
-                }
-
-                //_msg.Attachments.Add(new System.Net.Mail.Attachment(attachement.Open(FileMode.Open, FileAccess.Read, FileShare.Read), attachement.Name));
-                foreach (FileInfo _file in attachement)
-                {
-                    _msg.Attachments.Add(new System.Net.Mail.Attachment(_file.Open(FileMode.Open, FileAccess.Read, FileShare.Read), _file.Name));
-                }
-                _msg.IsBodyHtml = true;
-
-                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
-                client.UseDefaultCredentials = true;
-                client.Send(_msg);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
 
 	}
 

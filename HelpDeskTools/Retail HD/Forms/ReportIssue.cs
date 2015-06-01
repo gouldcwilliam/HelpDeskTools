@@ -25,7 +25,7 @@ namespace Retail_HD.Forms
             //System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
             //client.UseDefaultCredentials = true;
             //client.Send(message);
-            if (GlobalFunctions.b_SendEmail(to, "<pre>" + txtIssueSuggestion.Text + "</pre>", "What the Junk"))
+            if (Shared.Functions.b_SendEmail(to, "<pre>" + txtIssueSuggestion.Text + "</pre>", "What the Junk"))
             {
                 this.Close();
             }

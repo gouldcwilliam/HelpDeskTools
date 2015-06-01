@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Shared.Forms
+using CiscoFinesseNET;
+
+namespace Retail_HD.Forms
 {
     public partial class frmAgentStatus : Form
     {
         Timer _t = new Timer();
-        BindingList<AgentStatus> agents = new BindingList<AgentStatus>();
+		BindingList<AgentStatus> agents = new BindingList<AgentStatus>();
         const string ButtonText = "Change Status: {0}"; //parameter is for Status
         const string NoChangeText = "Unavailable"; //display if status change is not possible
         CiscoFinesseNET.UserState availableState = CiscoFinesseNET.UserState.READY;
@@ -80,17 +82,18 @@ namespace Shared.Forms
         private void UpdateInfo()
         {
             agents.Clear();
-            string query = MakeQuery(Settings.Default._ShowMeInAgentStatus, Settings.Default._ShowLoggedOutUsers);
+			string query = MakeQuery(Properties.Settings.Default._ShowMeInAgentStatus, Properties.Settings.Default._ShowLoggedOutUsers);
+			//query = MakeQuery(Config.PerUser.Load().ShownInAgentStatus, Config.PerUser.Load().ShowLoggedOutUsers);
 
             //if (Settings.Default._ShowLoggedOutUsers) query = "SELECT Technicians.full_name AS Name, Technicians.technician AS login, Technicians.id as ID, CurrentStatus, TimeStatusChanged, Information1, Information2 FROM AgentStatus INNER JOIN Technicians ON AgentStatus.TechnicianID = Technicians.id;";
             //else query = "SELECT Technicians.full_name AS Name, Technicians.technician AS login, Technicians.id as ID, CurrentStatus, TimeStatusChanged, Information1, Information2 FROM AgentStatus INNER JOIN Technicians ON AgentStatus.TechnicianID = Technicians.id WHERE CurrentStatus <> 'LOGOUT';";
 
-            System.Data.DataTable dt = SQL.Select(query);
+            System.Data.DataTable dt = Shared.SQL.Select(query);
             //update the List of Agents here
             agents.Clear();
             foreach (DataRow _r in dt.Rows)
             {
-                AgentStatus _a = new AgentStatus();
+                CiscoFinesseNET.AgentStatus _a = new CiscoFinesseNET.AgentStatus();
                 _a.AgentID = int.Parse(_r["ID"].ToString());
                 _a.AgentName = _r["Name"].ToString();
                 _a.CurrentStatus = (CiscoFinesseNET.UserState)Enum.Parse(typeof(CiscoFinesseNET.UserState), _r["CurrentStatus"].ToString());

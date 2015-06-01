@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
 
 namespace Retail_HD.Forms
 {
@@ -14,33 +15,33 @@ namespace Retail_HD.Forms
 	{
         private bool hasSettingsChanged = false;
         private bool isLoading = false;
-
+		//private Shared.Config.PerUser userPrefs = Shared.Config.PerUser.Load();
 		public EditSettings()
 		{
             isLoading = true;
 			InitializeComponent();
 
-			this.txtServerName.Text = Setting.SQL.Default._ServerName;
-			this.txtDatabase.Text = Setting.SQL.Default._Database;
-			this.txtTempBatFile.Text = Shared.Settings.Default._TempFile;
-            this.ckbShowLoggedOut.Checked = Shared.Settings.Default._ShowLoggedOutUsers;
-            this.ckbEnableShowMe.Checked = Shared.Settings.Default._ShowMeInAgentStatus;
-            this.ckbEnableAutoReady.Checked = Shared.Settings.Default._EnableAutoReady;
-			this.ckbEnableAgentLogin.Checked = Shared.Settings.Default._LoginEnabled;
+			
+			this.ckbShowLoggedOut.Checked = Properties.Settings.Default._ShowLoggedOutUsers;
+			//this.ckbShowLoggedOut.Checked = userPrefs.ShowLoggedOutUsers;
+			this.ckbEnableShowMe.Checked = Properties.Settings.Default._ShowMeInAgentStatus;
+			//this.ckbEnableShowMe.Checked = userPrefs.ShownInAgentStatus;
+			this.ckbEnableAutoReady.Checked = Properties.Settings.Default._EnableAutoReady;
+			//this.ckbEnableAutoReady.Checked = userPrefs.AutoReady;
+			this.ckbEnableAgentLogin.Checked = Properties.Settings.Default._LoginEnabled;
+			//this.ckbEnableAgentLogin.Checked = userPrefs.AutoLogin;
             isLoading = false;
 		}
 
 		private void vSaveChanges()
 		{
-			Setting.SQL.Default._ServerName = this.txtServerName.Text;
-			Setting.SQL.Default._Database = this.txtDatabase.Text;
-			Shared.Settings.Default._TempFile = this.txtTempBatFile.Text;
-            Shared.Settings.Default._ShowLoggedOutUsers = this.ckbShowLoggedOut.Checked;
-            Shared.Settings.Default._ShowMeInAgentStatus = this.ckbEnableShowMe.Checked;
-            Shared.Settings.Default._EnableAutoReady = this.ckbEnableAutoReady.Checked;
-			Shared.Settings.Default._LoginEnabled = this.ckbEnableAgentLogin.Checked;
-			Shared.Settings.Default.Save();
 
+            Properties.Settings.Default._ShowLoggedOutUsers = this.ckbShowLoggedOut.Checked;
+            Properties.Settings.Default._ShowMeInAgentStatus = this.ckbEnableShowMe.Checked;
+            Properties.Settings.Default._EnableAutoReady = this.ckbEnableAutoReady.Checked;
+			Properties.Settings.Default._LoginEnabled = this.ckbEnableAgentLogin.Checked;
+			Properties.Settings.Default.Save();
+			//userPrefs.Save();
             btnApply.Enabled = false;
 		}
 
@@ -65,23 +66,13 @@ namespace Retail_HD.Forms
 
         private void btnPhoneSettings_Click(object sender, EventArgs e)
         {
-            Shared.Forms.frmCiscoLogin loginSettings = new Shared.Forms.frmCiscoLogin("");
+            Forms.frmCiscoLogin loginSettings = new Forms.frmCiscoLogin("");
             //frmCiscoLogin loginSettings = new frmCiscoLogin("");
             loginSettings.ShowDialog();
         }
 
         private void EditSettings_Load(object sender, EventArgs e)
         {
-            //check for supervisor switch
-            //if ((CiscoFinesseNET.Helper.loggedInUser.role & CiscoFinesseNET.Role.Supervisor) == CiscoFinesseNET.Role.Supervisor)
-            //{
-            //    ckbShowLoggedOut.Visible = true;
-            //}
-            //else
-            //{
-            //    ckbShowLoggedOut.Visible = false;
-            //}
-
             //this does the same as above, but on one line
             ckbShowLoggedOut.Visible = ((CiscoFinesseNET.Helper.loggedInUser.role & CiscoFinesseNET.Role.Supervisor) == CiscoFinesseNET.Role.Supervisor) ? true : false;
         }
@@ -94,13 +85,14 @@ namespace Retail_HD.Forms
             //set to false, so if nothing has changed, it is still false
             hasSettingsChanged = false;
             //check if any settings is different
-            if (this.txtServerName.Text == Setting.SQL.Default._ServerName) hasSettingsChanged = true;
-            if (this.txtDatabase.Text == Setting.SQL.Default._Database) hasSettingsChanged = true;
-            if (this.txtTempBatFile.Text == Shared.Settings.Default._TempFile) hasSettingsChanged = true;
-            if (this.ckbShowLoggedOut.Checked == Shared.Settings.Default._ShowLoggedOutUsers) hasSettingsChanged = true;
-            if (this.ckbEnableShowMe.Checked == Shared.Settings.Default._ShowMeInAgentStatus) hasSettingsChanged = true;
-            if (this.ckbEnableAutoReady.Checked == Shared.Settings.Default._EnableAutoReady) hasSettingsChanged = true;
-			if (this.ckbEnableAgentLogin.Checked == Shared.Settings.Default._LoginEnabled) hasSettingsChanged = true;
+ 			if (this.ckbShowLoggedOut.Checked == Properties.Settings.Default._ShowLoggedOutUsers) hasSettingsChanged = true;
+			//if (this.ckbShowLoggedOut.Checked == userPrefs.ShowLoggedOutUsers) hasSettingsChanged = true;
+			if (this.ckbEnableShowMe.Checked == Properties.Settings.Default._ShowMeInAgentStatus) hasSettingsChanged = true;
+			//if (this.ckbEnableShowMe.Checked == userPrefs.ShownInAgentStatus) hasSettingsChanged = true;
+			if (this.ckbEnableAutoReady.Checked == Properties.Settings.Default._EnableAutoReady) hasSettingsChanged = true;
+			//if (this.ckbEnableAutoReady.Checked == userPrefs.AutoReady) hasSettingsChanged = true;
+			if (this.ckbEnableAgentLogin.Checked == Properties.Settings.Default._LoginEnabled) hasSettingsChanged = true;
+			//if (this.ckbEnableAgentLogin.Checked == userPrefs.AutoLogin) hasSettingsChanged = true;
 
             btnApply.Enabled = hasSettingsChanged;
         }

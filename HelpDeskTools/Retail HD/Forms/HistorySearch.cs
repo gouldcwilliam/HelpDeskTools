@@ -63,22 +63,22 @@ namespace Retail_HD.Forms
 		// On form load
 		private void SQLquery_Load(object sender, EventArgs e)
 		{
-			foreach (DataRow dr in SQL.Select("select [category] from [Categories]").Rows)
+			foreach (DataRow dr in Shared.SQL.Select("select [category] from [Categories]").Rows)
 			{
 				cmbCategory.Items.Add(dr[0].ToString());
 			}
 
-			foreach (DataRow dr in SQL.Select("select [topic] from [Topics]").Rows)
+			foreach (DataRow dr in Shared.SQL.Select("select [topic] from [Topics]").Rows)
 			{
 				cmbTopic.Items.Add(dr[0].ToString());
 			}
 
-			foreach (DataRow dr in SQL.Select("select [initials] from [Technicians]").Rows)
+			foreach (DataRow dr in Shared.SQL.Select("select [initials] from [Technicians]").Rows)
 			{
 				cmbTech.Items.Add(dr[0].ToString());
 			}
 
-			dgvResults.DataSource = SQL.dt_HistorySearch();
+			dgvResults.DataSource = Shared.SQL.dt_HistorySearch();
 			if (dgvResults.Rows.Count > 0)
 			{
 				dgvResults.Columns["ID"].Visible = false;
@@ -106,15 +106,15 @@ namespace Retail_HD.Forms
 			}
 			if (dtpDate1.Checked && dtpDate2.Checked)
 			{
-				dgvResults.DataSource = SQL.dt_HistorySearch(txtStore.Text, dtpDate1.Value, dtpDate2.Value, cmbType.Text, cmbCategory.Text, cmbTopic.Text, cmbTech.Text, txtDetails.Text, ckbTrax.Checked, txtURL.Text, _resultLimit);
+				dgvResults.DataSource = Shared.SQL.dt_HistorySearch(txtStore.Text, dtpDate1.Value, dtpDate2.Value, cmbType.Text, cmbCategory.Text, cmbTopic.Text, cmbTech.Text, txtDetails.Text, ckbTrax.Checked, txtURL.Text, _resultLimit);
 			}
 			else if(dtpDate2.Checked)
 			{
-				dgvResults.DataSource = SQL.dt_HistorySearch(txtStore.Text,dtpDate2.Checked, dtpDate1.Value , cmbType.Text, cmbCategory.Text, cmbTopic.Text, cmbTech.Text, txtDetails.Text, ckbTrax.Checked, txtURL.Text, _resultLimit);
+				dgvResults.DataSource = Shared.SQL.dt_HistorySearch(txtStore.Text, dtpDate2.Checked, dtpDate1.Value, cmbType.Text, cmbCategory.Text, cmbTopic.Text, cmbTech.Text, txtDetails.Text, ckbTrax.Checked, txtURL.Text, _resultLimit);
 			}
 			else
 			{
-				dgvResults.DataSource = SQL.dt_HistorySearch(txtStore.Text,dtpDate1.Checked, dtpDate1.Value , cmbType.Text, cmbCategory.Text, cmbTopic.Text, cmbTech.Text, txtDetails.Text, ckbTrax.Checked, txtURL.Text, _resultLimit);
+				dgvResults.DataSource = Shared.SQL.dt_HistorySearch(txtStore.Text, dtpDate1.Checked, dtpDate1.Value, cmbType.Text, cmbCategory.Text, cmbTopic.Text, cmbTech.Text, txtDetails.Text, ckbTrax.Checked, txtURL.Text, _resultLimit);
 			}
 			if (dgvResults.Rows.Count > 0)
 			{

@@ -38,7 +38,7 @@ namespace Retail_HD
                 "<br><br>" +
                 "Please register this as a bug on <a href=\"http://johnkiddjr.visualstudio.com\">http://johnkiddjr.visualstudio.com</a> to track fix progress.";
 
-            GlobalFunctions.b_SendEmail("john.kidd@wwwinc.com,chad.gould@wwwinc.com", message, "Unhandled Thread Exception: Crash Report");
+            Shared.Functions.b_SendEmail("john.kidd@wwwinc.com,chad.gould@wwwinc.com", message, "Unhandled Thread Exception: Crash Report");
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -53,8 +53,8 @@ namespace Retail_HD
                 "<p>Microsoft Help Link: " + ex.HelpLink + "</p>" +
                 "<br><br>" +
                 "Please register this as a bug on <a href=\"http://johnkiddjr.visualstudio.com\">http://johnkiddjr.visualstudio.com</a> to track fix progress.";
-            
-            GlobalFunctions.b_SendEmail("john.kidd@wwwinc.com,chad.gould@wwwinc.com", message, "Unhandled Thread Exception: Crash Report");
+
+			Shared.Functions.b_SendEmail("john.kidd@wwwinc.com,chad.gould@wwwinc.com", message, "Unhandled Thread Exception: Crash Report");
         }
     }
 }

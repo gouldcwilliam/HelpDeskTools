@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HDSharedServices" GeneratedClassName="SQL">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Shared" GeneratedClassName="SQLSettings">
   <Profiles />
   <Settings>
     <Setting Name="_ServerName" Type="System.String" Scope="User">
@@ -238,7 +238,7 @@ DESC
 </Value>
     </Setting>
     <Setting Name="_StoreInfo" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SELECT
+      <Value Profile="(Default)">SELECT TOP 1
 	[address],
 	[city],
 	[dm],
@@ -246,7 +246,7 @@ DESC
 	[manager],
 	[MP],
 	[name],
-	phone,
+	[P].phone,
 	[state],
 	[type],
 	[TZ],
@@ -258,12 +258,23 @@ DESC
 	[mim],
 	[mim_gate],
 	[income],
-	[rank]
+	[rank],
+	[BAMS],
+	[SVS],
+	[TID1],
+	[TID2],
+	[TID3],
+	[TID4]
+
 FROM
-	[Stores]
+	[Stores] as S
+	inner join 
+		[Phones] as P
+	on [S].[store] = [P].[store]
 WHERE
-	[store] = @store
-</Value>
+	[S].[store] = @store
+ORDER BY
+	[P].[line]</Value>
     </Setting>
     <Setting Name="_LastCategory" Type="System.String" Scope="User">
       <Value Profile="(Default)">SELECT
@@ -288,6 +299,48 @@ DESC
     </Setting>
     <Setting Name="_DatabaseGlobal" Type="System.String" Scope="User">
       <Value Profile="(Default)">GlobalHD</Value>
+    </Setting>
+    <Setting Name="_StoreSearchDeclare" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DECLARE @TZ VARCHAR(50)
+DECLARE @MP VARCHAR(50)
+DECLARE @DM VARCHAR(50)
+DECLARE @NAME VARCHAR(50)
+DECLARE @TYPE VARCHAR(50)
+DECLARE @ADDRESS VARCHAR(50)
+DECLARE @CITY VARCHAR(50)
+DECLARE @STATE VARCHAR(50)
+DECLARE @ZIP VARCHAR(50)
+DECLARE @PHONE VARCHAR(50)
+</Value>
+    </Setting>
+    <Setting Name="_StoreSearch" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT
+	[store],
+	[TZ],
+	[dm],
+	[name],
+	[type],
+	[address],
+	[city],
+	[state],
+	[zip],
+	[phone],
+	[rank],
+	[income]
+FROM
+	[Stores]
+WHERE
+	(@TZ IS NULL OR (LOWER([TZ]) = LOWER(@TZ))) AND
+	(@MP IS NULL OR ([MP] = @MP)) AND
+	(@DM IS NULL OR (LOWER([dm]) LIKE '%'+LOWER(@DM)+'%')) AND
+	(@NAME IS NULL OR (LOWER([name]) LIKE '%'+LOWER(@NAME)+'%')) AND
+	(@TYPE IS NULL OR (LOWER([type]) LIKE '%'+LOWER(@TYPE)+'%')) AND
+	(@ADDRESS IS NULL OR (LOWER([address]) LIKE '%'+LOWER(@ADDRESS)+'%')) AND
+	(@CITY IS NULL OR (LOWER([city]) LIKE '%'+LOWER(@CITY)+'%')) AND
+	(@STATE IS NULL OR (LOWER([state]) = LOWER(@STATE))) AND
+	(@ZIP IS NULL OR (LOWER([zip]) = LOWER(@ZIP))) AND
+	(@PHONE IS NULL OR ([phone] = dbo.RemoveNonNumericCharacters
+(@PHONE)))</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -23,7 +23,7 @@ namespace Retail_HD.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (!SQL.b_InsertTopic(cmbCategories.Text, txtWrapUp.Text, ckbMandatory.Checked))
+            if (!Shared.SQL.AddQuickWrap_Insert(cmbCategories.Text, txtWrapUp.Text, ckbMandatory.Checked))
 			{
                 MessageBox.Show("Something happened to the insert");
 				return;
