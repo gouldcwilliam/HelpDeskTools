@@ -26,6 +26,7 @@ namespace Retail_HD.Forms
 		// Double click data view
 		private void dgvResults_DoubleClick(object sender, EventArgs e)
 		{
+            
 			if (dgvResults.Rows.Count > 0)
 			{
 				string id = dgvResults.SelectedRows[0].Cells["ID"].Value.ToString();
@@ -57,6 +58,7 @@ namespace Retail_HD.Forms
 					r.DefaultCellStyle = red;
 				}
 			}
+            txtTotal.Text = dgvResults.Rows.Count.ToString();
 		}
 
 

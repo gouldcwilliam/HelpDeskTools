@@ -27,7 +27,7 @@ namespace Retail_HD.Forms
 		{
 			InitializeComponent();
             _dtExcel = dataTable;
-            _dtSQL = Shared.SQL.Select("select [Stores].[store], [Stores].[manager], [Stores].[dm], [Stores].[rm] from [Stores]");
+            _dtSQL = Shared.SQL.Select("select [store] as [Store Number], [manager] as [Store Manager], [dm] as [District Manager], [rm] as [Regional Manager] from [Stores]");
             dgvExcel.DataSource = _dtExcel;
             dgvSQL.DataSource = _dtSQL;
 		}
