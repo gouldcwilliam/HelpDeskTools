@@ -11,7 +11,7 @@ namespace Shared
 	
 	public static class SQL
 	{
-        private static string connString = string.Format("server={0};database={1};Integrated Security={2}", 
+        public static string connString = string.Format("server={0};database={1};Integrated Security={2}", 
             SQLSettings.Default._ServerName, 
             SQLSettings.Default._Database,
             true
@@ -785,35 +785,6 @@ namespace Shared
 			return Insert(sql, paramList);
 		}
 
-		static public bool b_UpdateAPCsurvey(
-			int store,
-			string technician,
-			string load,
-			string battery,
-			string runtime,
-			string count,
-			string comment,
-			bool complete)
-		{
-			int iComplete;
-			if (complete) { iComplete = 1; }
-			else { iComplete = 0; }
-			List<SqlParameter> paramList = new List<SqlParameter>();
-			paramList.Add(new SqlParameter("@store", store));
-			paramList.Add(new SqlParameter("@technician", technician));
-			paramList.Add(new SqlParameter("@load", load));
-			paramList.Add(new SqlParameter("@battery", battery));
-			paramList.Add(new SqlParameter("@runtime", runtime));
-			paramList.Add(new SqlParameter("@count", count));
-			paramList.Add(new SqlParameter("@comment", comment));
-			paramList.Add(new SqlParameter("@complete", iComplete));
-
-			string sql = string.Format(
-				"UPDATE {0} SET [technician] = @technician, [load] = @load, [battery] = @battery, [runtime] = @runtime, [count] = @count, [comment] = @comment, [complete] = @complete WHERE [store] = @store",
-				"");
-
-			return Update(sql, paramList);
-		}
 
 		/// <summary>
 		/// Update a table's information

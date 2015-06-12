@@ -28,80 +28,82 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dgvSQL = new System.Windows.Forms.DataGridView();
-            this.dgvExcel = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSQL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvExcel)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnAccept = new System.Windows.Forms.Button();
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.btnUncheck = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // dataGridView1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 43);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(927, 539);
+            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
-            // splitContainer1.Panel1
+            // btnAccept
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dgvExcel);
+            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAccept.Location = new System.Drawing.Point(864, 12);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(75, 23);
+            this.btnAccept.TabIndex = 2;
+            this.btnAccept.Text = "Accept";
+            this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
-            // splitContainer1.Panel2
+            // btnCheck
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dgvSQL);
-            this.splitContainer1.Size = new System.Drawing.Size(1393, 729);
-            this.splitContainer1.SplitterDistance = 693;
-            this.splitContainer1.TabIndex = 0;
+            this.btnCheck.Location = new System.Drawing.Point(12, 12);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(75, 23);
+            this.btnCheck.TabIndex = 3;
+            this.btnCheck.Text = "Check All";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
-            // dgvSQL
+            // btnUncheck
             // 
-            this.dgvSQL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSQL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSQL.Location = new System.Drawing.Point(0, 0);
-            this.dgvSQL.Name = "dgvSQL";
-            this.dgvSQL.RowTemplate.Height = 24;
-            this.dgvSQL.Size = new System.Drawing.Size(696, 729);
-            this.dgvSQL.TabIndex = 0;
-            // 
-            // dgvExcel
-            // 
-            this.dgvExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvExcel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvExcel.Location = new System.Drawing.Point(0, 0);
-            this.dgvExcel.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvExcel.Name = "dgvExcel";
-            this.dgvExcel.Size = new System.Drawing.Size(693, 729);
-            this.dgvExcel.TabIndex = 1;
+            this.btnUncheck.Location = new System.Drawing.Point(93, 12);
+            this.btnUncheck.Name = "btnUncheck";
+            this.btnUncheck.Size = new System.Drawing.Size(75, 23);
+            this.btnUncheck.TabIndex = 4;
+            this.btnUncheck.Text = "Unckeck All";
+            this.btnUncheck.UseVisualStyleBackColor = true;
+            this.btnUncheck.Click += new System.EventHandler(this.btnUncheck_Click);
             // 
             // ExcelCompareData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1393, 729);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(951, 594);
+            this.Controls.Add(this.btnUncheck);
+            this.Controls.Add(this.btnCheck);
+            this.Controls.Add(this.btnAccept);
+            this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = global::Retail_HD.GlobalResources.icoMain;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(967, 628);
             this.Name = "ExcelCompareData";
-            this.Text = "Excel Test";
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSQL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvExcel)).EndInit();
+            this.Text = "Excel Import";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridView dgvExcel;
-        private System.Windows.Forms.DataGridView dgvSQL;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Button btnUncheck;
 
     }
 }

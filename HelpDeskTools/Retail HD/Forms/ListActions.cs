@@ -159,8 +159,7 @@ namespace Retail_HD.Forms
 						string args = string.Format("-r:{0} TASKKILL /F /IM POSW.EXE", computer);
 						GlobalFunctions.i_ExecuteCommand("WINRS", false, args, false);
 						args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\EPSON\\BA-T500II Software\\BA500IIUTL\\BA500IIUTL.EXE\"", computer);
-						GlobalFunctions.i_ExecuteCommand("PSEXEC", true, args, false);
-						args = string.Format("\\\\{0} -s -d -i \\Windows\\System32\\devmgmt.msc", computer);
+                        GlobalFunctions.v_LocalCMD(computer);
 						GlobalFunctions.i_ExecuteCommand("PSEXEC", true, args, false);
 						args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\OPOS\\Epson2\\SetupPOS.exe\"", computer);
 						GlobalFunctions.i_ExecuteCommand("PSEXEC", true, args, false);

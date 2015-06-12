@@ -1,0 +1,84 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Bit9Report" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="header" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;
+&lt;style&gt;
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+padding: 5px;
+}
+&lt;/style&gt;&lt;/head&gt;</Value>
+    </Setting>
+    <Setting Name="ahcTable" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;table style="width:50%"&gt;
+&lt;tr&gt;&lt;th&gt;Computer&lt;/th&gt;&lt;th&gt;Time&lt;/th&gt;&lt;th&gt;Subtype&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;IP_Address&lt;/th&gt;&lt;/tr&gt;
+{0}
+&lt;/table&gt;</Value>
+    </Setting>
+    <Setting Name="ahcRow" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;td&gt;{3}&lt;/td&gt;&lt;td&gt;{4}&lt;/td&gt;&lt;/tr&gt;</Value>
+    </Setting>
+    <Setting Name="ahcSelect" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Select
+comp.Computer,
+Timestamp,
+Subtype,
+Description,
+events.IP_Address
+from
+das.bit9_public.ExEvents as [events]
+inner join
+	das.bit9_public.ExComputers as [comp] on
+              [events].Computer_Id = [comp].Computer_Id
+where
+Subtype like '%health%' and
+Description like '%failed%' and
+[Timestamp] &gt; dateadd( day, -1, getutcdate() )</Value>
+    </Setting>
+    <Setting Name="ebTable" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;table style="width:50%"&gt;
+&lt;tr&gt;&lt;th&gt;Computer&lt;/th&gt;&lt;th&gt;File_Name&lt;/th&gt;&lt;th&gt;Path_Name&lt;/th&gt;&lt;th&gt;Time&lt;/th&gt;&lt;th&gt;User_Name&lt;/th&gt;&lt;th&gt;Process&lt;/th&gt;&lt;/tr&gt;
+{0}
+&lt;/table&gt;</Value>
+    </Setting>
+    <Setting Name="ebRow" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;td&gt;{3}&lt;/td&gt;&lt;td&gt;{4}&lt;/td&gt;&lt;td&gt;{5}&lt;/td&gt;&lt;/tr&gt;</Value>
+    </Setting>
+    <Setting Name="ebSelect" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select 
+comp.Computer,
+File_Name,
+Path_Name,
+Timestamp,
+User_Name,
+process
+from
+das.bit9_public.ExEvents as [events]
+inner join
+       das.bit9_public.ExComputers as [comp] on
+              [events].Computer_Id = [comp].Computer_Id
+where
+Subtype like '%block%' and 
+[Timestamp] &gt; dateadd( day, -1, getutcdate() )
+</Value>
+    </Setting>
+    <Setting Name="footer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/body&gt;&lt;/html&gt;
+</Value>
+    </Setting>
+    <Setting Name="to" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;chad.gould@wwwinc.com&lt;/string&gt;
+  &lt;string&gt;jason.bergman@wwwinc.com&lt;/string&gt;
+  &lt;string&gt;scott.chivington@wwwinc.com&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

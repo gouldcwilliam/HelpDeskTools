@@ -125,6 +125,10 @@
             this.ms_Top = new System.Windows.Forms.MenuStrip();
             this.ServicesUC = new Retail_HD.UCs.ServicesControl();
             this.PingUC = new Retail_HD.UCs.PingControl();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.grpStore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
             this.ss_Bottom_.SuspendLayout();
@@ -157,11 +161,9 @@
             // 
             this.grpStore.Controls.Add(this.txtStore);
             this.grpStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpStore.Location = new System.Drawing.Point(16, 64);
-            this.grpStore.Margin = new System.Windows.Forms.Padding(4);
+            this.grpStore.Location = new System.Drawing.Point(12, 52);
             this.grpStore.Name = "grpStore";
-            this.grpStore.Padding = new System.Windows.Forms.Padding(4);
-            this.grpStore.Size = new System.Drawing.Size(104, 48);
+            this.grpStore.Size = new System.Drawing.Size(78, 39);
             this.grpStore.TabIndex = 0;
             this.grpStore.TabStop = false;
             this.grpStore.Text = "Store #";
@@ -169,11 +171,10 @@
             // txtStore
             // 
             this.txtStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStore.Location = new System.Drawing.Point(48, 17);
-            this.txtStore.Margin = new System.Windows.Forms.Padding(4);
+            this.txtStore.Location = new System.Drawing.Point(36, 14);
             this.txtStore.MaxLength = 4;
             this.txtStore.Name = "txtStore";
-            this.txtStore.Size = new System.Drawing.Size(47, 23);
+            this.txtStore.Size = new System.Drawing.Size(36, 20);
             this.txtStore.TabIndex = 0;
             this.txtStore.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtStore_MouseClick);
             this.txtStore.TextChanged += new System.EventHandler(this.txtStore_TextChanged);
@@ -184,10 +185,9 @@
             this.clbComputers.BackColor = System.Drawing.SystemColors.Control;
             this.clbComputers.CheckOnClick = true;
             this.clbComputers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clbComputers.Location = new System.Drawing.Point(128, 62);
-            this.clbComputers.Margin = new System.Windows.Forms.Padding(4);
+            this.clbComputers.Location = new System.Drawing.Point(96, 50);
             this.clbComputers.Name = "clbComputers";
-            this.clbComputers.Size = new System.Drawing.Size(157, 112);
+            this.clbComputers.Size = new System.Drawing.Size(119, 79);
             this.clbComputers.Sorted = true;
             this.clbComputers.TabIndex = 1;
             this.clbComputers.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbComputers_ItemCheck);
@@ -203,14 +203,13 @@
             this.RecentCalls_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.RecentCalls_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RecentCalls_dgv.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.RecentCalls_dgv.Location = new System.Drawing.Point(128, 220);
-            this.RecentCalls_dgv.Margin = new System.Windows.Forms.Padding(4);
+            this.RecentCalls_dgv.Location = new System.Drawing.Point(96, 179);
             this.RecentCalls_dgv.MultiSelect = false;
             this.RecentCalls_dgv.Name = "RecentCalls_dgv";
             this.RecentCalls_dgv.ReadOnly = true;
             this.RecentCalls_dgv.RowHeadersVisible = false;
             this.RecentCalls_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RecentCalls_dgv.Size = new System.Drawing.Size(993, 330);
+            this.RecentCalls_dgv.Size = new System.Drawing.Size(745, 268);
             this.RecentCalls_dgv.TabIndex = 5;
             this.RecentCalls_dgv.TabStop = false;
             this.RecentCalls_dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.RecentCalls_dgv_DataBindingComplete);
@@ -233,10 +232,9 @@
             this.ss_Bottom_ssl_UserCalls,
             this.toolStripStatusLabel6,
             this.ss_Bottom_ssl_TeamCalls});
-            this.ss_Bottom_.Location = new System.Drawing.Point(488, 556);
+            this.ss_Bottom_.Location = new System.Drawing.Point(339, 450);
             this.ss_Bottom_.Name = "ss_Bottom_";
-            this.ss_Bottom_.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.ss_Bottom_.Size = new System.Drawing.Size(633, 25);
+            this.ss_Bottom_.Size = new System.Drawing.Size(502, 22);
             this.ss_Bottom_.SizingGrip = false;
             this.ss_Bottom_.TabIndex = 8;
             this.ss_Bottom_.Text = "statusStrip1";
@@ -244,31 +242,31 @@
             // ss_Bottom_ssl_PreviousCall
             // 
             this.ss_Bottom_ssl_PreviousCall.Name = "ss_Bottom_ssl_PreviousCall";
-            this.ss_Bottom_ssl_PreviousCall.Size = new System.Drawing.Size(142, 20);
+            this.ss_Bottom_ssl_PreviousCall.Size = new System.Drawing.Size(112, 17);
             this.ss_Bottom_ssl_PreviousCall.Text = "Previous: Store 9999";
             // 
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(13, 20);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel4.Text = "|";
             // 
             // ss_Bottom_ssl_Time
             // 
             this.ss_Bottom_ssl_Time.Name = "ss_Bottom_ssl_Time";
-            this.ss_Bottom_ssl_Time.Size = new System.Drawing.Size(63, 20);
+            this.ss_Bottom_ssl_Time.Size = new System.Drawing.Size(49, 17);
             this.ss_Bottom_ssl_Time.Text = "00:00:00";
             // 
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(13, 20);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel5.Text = "|";
             // 
             // ss_Bottom_ssl_StatusLabel
             // 
             this.ss_Bottom_ssl_StatusLabel.Name = "ss_Bottom_ssl_StatusLabel";
-            this.ss_Bottom_ssl_StatusLabel.Size = new System.Drawing.Size(93, 20);
+            this.ss_Bottom_ssl_StatusLabel.Size = new System.Drawing.Size(74, 17);
             this.ss_Bottom_ssl_StatusLabel.Text = "Agent Status";
             // 
             // ss_Bottom_ssl_State
@@ -276,13 +274,13 @@
             this.ss_Bottom_ssl_State.ForeColor = System.Drawing.Color.Black;
             this.ss_Bottom_ssl_State.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ss_Bottom_ssl_State.Name = "ss_Bottom_ssl_State";
-            this.ss_Bottom_ssl_State.Size = new System.Drawing.Size(72, 20);
+            this.ss_Bottom_ssl_State.Size = new System.Drawing.Size(59, 17);
             this.ss_Bottom_ssl_State.Text = "LOG_OUT";
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(13, 20);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel3.Text = "|";
             // 
             // ss_Bottom_ssl_UserCalls
@@ -291,19 +289,19 @@
             this.ss_Bottom_ssl_UserCalls.Image = global::Retail_HD.GlobalResources.icon_list;
             this.ss_Bottom_ssl_UserCalls.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ss_Bottom_ssl_UserCalls.Name = "ss_Bottom_ssl_UserCalls";
-            this.ss_Bottom_ssl_UserCalls.Size = new System.Drawing.Size(93, 20);
+            this.ss_Bottom_ssl_UserCalls.Size = new System.Drawing.Size(74, 17);
             this.ss_Bottom_ssl_UserCalls.Text = "Total Calls: 0";
             // 
             // toolStripStatusLabel6
             // 
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(13, 20);
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel6.Text = "|";
             // 
             // ss_Bottom_ssl_TeamCalls
             // 
             this.ss_Bottom_ssl_TeamCalls.Name = "ss_Bottom_ssl_TeamCalls";
-            this.ss_Bottom_ssl_TeamCalls.Size = new System.Drawing.Size(96, 20);
+            this.ss_Bottom_ssl_TeamCalls.Size = new System.Drawing.Size(77, 17);
             this.ss_Bottom_ssl_TeamCalls.Text = "Team Calls: 0";
             // 
             // tt_Main
@@ -315,10 +313,9 @@
             this.Restart.Image = global::Retail_HD.GlobalResources.icon_power;
             this.Restart.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Restart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Restart.Location = new System.Drawing.Point(16, 471);
-            this.Restart.Margin = new System.Windows.Forms.Padding(4);
+            this.Restart.Location = new System.Drawing.Point(12, 383);
             this.Restart.Name = "Restart";
-            this.Restart.Size = new System.Drawing.Size(104, 30);
+            this.Restart.Size = new System.Drawing.Size(78, 24);
             this.Restart.TabIndex = 50;
             this.Restart.Text = "Restart Computer";
             this.Restart.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -331,10 +328,9 @@
             this.LocalCMD.Image = global::Retail_HD.GlobalResources.icon_terminal_3;
             this.LocalCMD.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.LocalCMD.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.LocalCMD.Location = new System.Drawing.Point(16, 256);
-            this.LocalCMD.Margin = new System.Windows.Forms.Padding(4);
+            this.LocalCMD.Location = new System.Drawing.Point(12, 208);
             this.LocalCMD.Name = "LocalCMD";
-            this.LocalCMD.Size = new System.Drawing.Size(104, 30);
+            this.LocalCMD.Size = new System.Drawing.Size(78, 24);
             this.LocalCMD.TabIndex = 43;
             this.LocalCMD.Text = "Local";
             this.LocalCMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -347,10 +343,9 @@
             this.PCAnywhere.Image = global::Retail_HD.GlobalResources.icon_watch;
             this.PCAnywhere.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.PCAnywhere.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.PCAnywhere.Location = new System.Drawing.Point(16, 113);
-            this.PCAnywhere.Margin = new System.Windows.Forms.Padding(4);
+            this.PCAnywhere.Location = new System.Drawing.Point(12, 92);
             this.PCAnywhere.Name = "PCAnywhere";
-            this.PCAnywhere.Size = new System.Drawing.Size(104, 30);
+            this.PCAnywhere.Size = new System.Drawing.Size(78, 24);
             this.PCAnywhere.TabIndex = 39;
             this.PCAnywhere.Text = "Altiris";
             this.PCAnywhere.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -363,10 +358,9 @@
             this.Unlock.Image = global::Retail_HD.GlobalResources.icon_key_2;
             this.Unlock.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Unlock.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Unlock.Location = new System.Drawing.Point(16, 149);
-            this.Unlock.Margin = new System.Windows.Forms.Padding(4);
+            this.Unlock.Location = new System.Drawing.Point(12, 121);
             this.Unlock.Name = "Unlock";
-            this.Unlock.Size = new System.Drawing.Size(104, 30);
+            this.Unlock.Size = new System.Drawing.Size(78, 24);
             this.Unlock.TabIndex = 40;
             this.Unlock.Text = "Unlock";
             this.Unlock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -379,10 +373,9 @@
             this.Browse.Image = global::Retail_HD.GlobalResources.icon_folder;
             this.Browse.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Browse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Browse.Location = new System.Drawing.Point(16, 185);
-            this.Browse.Margin = new System.Windows.Forms.Padding(4);
+            this.Browse.Location = new System.Drawing.Point(12, 150);
             this.Browse.Name = "Browse";
-            this.Browse.Size = new System.Drawing.Size(104, 30);
+            this.Browse.Size = new System.Drawing.Size(78, 24);
             this.Browse.TabIndex = 41;
             this.Browse.Text = "Browse";
             this.Browse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -395,10 +388,9 @@
             this.RemoteCMD.Image = global::Retail_HD.GlobalResources.icon_terminal;
             this.RemoteCMD.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.RemoteCMD.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RemoteCMD.Location = new System.Drawing.Point(16, 220);
-            this.RemoteCMD.Margin = new System.Windows.Forms.Padding(4);
+            this.RemoteCMD.Location = new System.Drawing.Point(12, 179);
             this.RemoteCMD.Name = "RemoteCMD";
-            this.RemoteCMD.Size = new System.Drawing.Size(104, 30);
+            this.RemoteCMD.Size = new System.Drawing.Size(78, 24);
             this.RemoteCMD.TabIndex = 42;
             this.RemoteCMD.Text = "Remote";
             this.RemoteCMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -411,10 +403,9 @@
             this.CrashingFix.Image = global::Retail_HD.GlobalResources.icon_split;
             this.CrashingFix.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CrashingFix.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.CrashingFix.Location = new System.Drawing.Point(16, 292);
-            this.CrashingFix.Margin = new System.Windows.Forms.Padding(4);
+            this.CrashingFix.Location = new System.Drawing.Point(12, 237);
             this.CrashingFix.Name = "CrashingFix";
-            this.CrashingFix.Size = new System.Drawing.Size(104, 30);
+            this.CrashingFix.Size = new System.Drawing.Size(78, 24);
             this.CrashingFix.TabIndex = 44;
             this.CrashingFix.Text = "List Action";
             this.CrashingFix.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -427,10 +418,9 @@
             this.KillPOS.Image = global::Retail_HD.GlobalResources.icon_spam;
             this.KillPOS.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.KillPOS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.KillPOS.Location = new System.Drawing.Point(16, 327);
-            this.KillPOS.Margin = new System.Windows.Forms.Padding(4);
+            this.KillPOS.Location = new System.Drawing.Point(12, 266);
             this.KillPOS.Name = "KillPOS";
-            this.KillPOS.Size = new System.Drawing.Size(104, 30);
+            this.KillPOS.Size = new System.Drawing.Size(78, 24);
             this.KillPOS.TabIndex = 45;
             this.KillPOS.Text = "Kill POS";
             this.KillPOS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -443,10 +433,9 @@
             this.Services.Image = global::Retail_HD.GlobalResources.icon_in;
             this.Services.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Services.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Services.Location = new System.Drawing.Point(16, 363);
-            this.Services.Margin = new System.Windows.Forms.Padding(4);
+            this.Services.Location = new System.Drawing.Point(12, 295);
             this.Services.Name = "Services";
-            this.Services.Size = new System.Drawing.Size(104, 30);
+            this.Services.Size = new System.Drawing.Size(78, 24);
             this.Services.TabIndex = 46;
             this.Services.Text = "Services";
             this.Services.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -459,10 +448,9 @@
             this.Ping.Image = global::Retail_HD.GlobalResources.icon_transfer;
             this.Ping.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Ping.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Ping.Location = new System.Drawing.Point(16, 399);
-            this.Ping.Margin = new System.Windows.Forms.Padding(4);
+            this.Ping.Location = new System.Drawing.Point(12, 324);
             this.Ping.Name = "Ping";
-            this.Ping.Size = new System.Drawing.Size(104, 30);
+            this.Ping.Size = new System.Drawing.Size(78, 24);
             this.Ping.TabIndex = 47;
             this.Ping.Text = "Ping";
             this.Ping.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -475,10 +463,9 @@
             this.WrapUp.Image = global::Retail_HD.GlobalResources.icon_paragraph_center_2;
             this.WrapUp.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WrapUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.WrapUp.Location = new System.Drawing.Point(16, 434);
-            this.WrapUp.Margin = new System.Windows.Forms.Padding(4);
+            this.WrapUp.Location = new System.Drawing.Point(12, 353);
             this.WrapUp.Name = "WrapUp";
-            this.WrapUp.Size = new System.Drawing.Size(104, 30);
+            this.WrapUp.Size = new System.Drawing.Size(78, 24);
             this.WrapUp.TabIndex = 48;
             this.WrapUp.Text = "Wrap Up";
             this.WrapUp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -491,11 +478,10 @@
             this.txtDM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDM.Location = new System.Drawing.Point(8, 17);
-            this.txtDM.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDM.Location = new System.Drawing.Point(6, 14);
             this.txtDM.Name = "txtDM";
             this.txtDM.ReadOnly = true;
-            this.txtDM.Size = new System.Drawing.Size(193, 16);
+            this.txtDM.Size = new System.Drawing.Size(145, 13);
             this.txtDM.TabIndex = 0;
             this.txtDM.TabStop = false;
             this.txtDM.Text = "DM";
@@ -509,11 +495,10 @@
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtName.Location = new System.Drawing.Point(8, 17);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Location = new System.Drawing.Point(6, 14);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(211, 16);
+            this.txtName.Size = new System.Drawing.Size(158, 13);
             this.txtName.TabIndex = 0;
             this.txtName.TabStop = false;
             this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -525,11 +510,9 @@
             // 
             this.gbName.Controls.Add(this.txtName);
             this.gbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbName.Location = new System.Drawing.Point(504, 143);
-            this.gbName.Margin = new System.Windows.Forms.Padding(4);
+            this.gbName.Location = new System.Drawing.Point(378, 116);
             this.gbName.Name = "gbName";
-            this.gbName.Padding = new System.Windows.Forms.Padding(4);
-            this.gbName.Size = new System.Drawing.Size(227, 37);
+            this.gbName.Size = new System.Drawing.Size(170, 30);
             this.gbName.TabIndex = 60;
             this.gbName.TabStop = false;
             this.gbName.Text = "Name";
@@ -539,11 +522,10 @@
             this.txtIP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIP.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIP.Location = new System.Drawing.Point(8, 17);
-            this.txtIP.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIP.Location = new System.Drawing.Point(6, 14);
             this.txtIP.Name = "txtIP";
             this.txtIP.ReadOnly = true;
-            this.txtIP.Size = new System.Drawing.Size(177, 16);
+            this.txtIP.Size = new System.Drawing.Size(133, 13);
             this.txtIP.TabIndex = 0;
             this.txtIP.TabStop = false;
             this.txtIP.Text = "___.___.___.___";
@@ -556,11 +538,9 @@
             // 
             this.gbIP.Controls.Add(this.txtIP);
             this.gbIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIP.Location = new System.Drawing.Point(527, 102);
-            this.gbIP.Margin = new System.Windows.Forms.Padding(4);
+            this.gbIP.Location = new System.Drawing.Point(395, 83);
             this.gbIP.Name = "gbIP";
-            this.gbIP.Padding = new System.Windows.Forms.Padding(4);
-            this.gbIP.Size = new System.Drawing.Size(193, 37);
+            this.gbIP.Size = new System.Drawing.Size(145, 30);
             this.gbIP.TabIndex = 56;
             this.gbIP.TabStop = false;
             this.gbIP.Text = "IP Reg1";
@@ -570,11 +550,10 @@
             this.txtManager.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtManager.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtManager.Location = new System.Drawing.Point(8, 17);
-            this.txtManager.Margin = new System.Windows.Forms.Padding(4);
+            this.txtManager.Location = new System.Drawing.Point(6, 14);
             this.txtManager.Name = "txtManager";
             this.txtManager.ReadOnly = true;
-            this.txtManager.Size = new System.Drawing.Size(147, 16);
+            this.txtManager.Size = new System.Drawing.Size(110, 13);
             this.txtManager.TabIndex = 0;
             this.txtManager.TabStop = false;
             this.txtManager.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -586,11 +565,9 @@
             // 
             this.gbManager.Controls.Add(this.txtManager);
             this.gbManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbManager.Location = new System.Drawing.Point(413, 62);
-            this.gbManager.Margin = new System.Windows.Forms.Padding(4);
+            this.gbManager.Location = new System.Drawing.Point(310, 50);
             this.gbManager.Name = "gbManager";
-            this.gbManager.Padding = new System.Windows.Forms.Padding(4);
-            this.gbManager.Size = new System.Drawing.Size(163, 37);
+            this.gbManager.Size = new System.Drawing.Size(122, 30);
             this.gbManager.TabIndex = 52;
             this.gbManager.TabStop = false;
             this.gbManager.Text = "Manager";
@@ -600,11 +577,10 @@
             this.txtZip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtZip.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtZip.Location = new System.Drawing.Point(8, 17);
-            this.txtZip.Margin = new System.Windows.Forms.Padding(4);
+            this.txtZip.Location = new System.Drawing.Point(6, 14);
             this.txtZip.Name = "txtZip";
             this.txtZip.ReadOnly = true;
-            this.txtZip.Size = new System.Drawing.Size(75, 16);
+            this.txtZip.Size = new System.Drawing.Size(56, 13);
             this.txtZip.TabIndex = 0;
             this.txtZip.TabStop = false;
             this.txtZip.Text = "_____";
@@ -617,11 +593,9 @@
             // 
             this.gbZip.Controls.Add(this.txtZip);
             this.gbZip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbZip.Location = new System.Drawing.Point(972, 143);
-            this.gbZip.Margin = new System.Windows.Forms.Padding(4);
+            this.gbZip.Location = new System.Drawing.Point(729, 116);
             this.gbZip.Name = "gbZip";
-            this.gbZip.Padding = new System.Windows.Forms.Padding(4);
-            this.gbZip.Size = new System.Drawing.Size(91, 37);
+            this.gbZip.Size = new System.Drawing.Size(68, 30);
             this.gbZip.TabIndex = 62;
             this.gbZip.TabStop = false;
             this.gbZip.Text = "Zip";
@@ -631,11 +605,10 @@
             this.txtState.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtState.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtState.Location = new System.Drawing.Point(8, 17);
-            this.txtState.Margin = new System.Windows.Forms.Padding(4);
+            this.txtState.Location = new System.Drawing.Point(6, 14);
             this.txtState.Name = "txtState";
             this.txtState.ReadOnly = true;
-            this.txtState.Size = new System.Drawing.Size(48, 16);
+            this.txtState.Size = new System.Drawing.Size(36, 13);
             this.txtState.TabIndex = 0;
             this.txtState.TabStop = false;
             this.txtState.Text = "__";
@@ -648,11 +621,9 @@
             // 
             this.gbState.Controls.Add(this.txtState);
             this.gbState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbState.Location = new System.Drawing.Point(907, 143);
-            this.gbState.Margin = new System.Windows.Forms.Padding(4);
+            this.gbState.Location = new System.Drawing.Point(680, 116);
             this.gbState.Name = "gbState";
-            this.gbState.Padding = new System.Windows.Forms.Padding(4);
-            this.gbState.Size = new System.Drawing.Size(64, 37);
+            this.gbState.Size = new System.Drawing.Size(48, 30);
             this.gbState.TabIndex = 61;
             this.gbState.TabStop = false;
             this.gbState.Text = "State";
@@ -662,11 +633,10 @@
             this.txtCity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCity.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCity.Location = new System.Drawing.Point(8, 17);
-            this.txtCity.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCity.Location = new System.Drawing.Point(6, 14);
             this.txtCity.Name = "txtCity";
             this.txtCity.ReadOnly = true;
-            this.txtCity.Size = new System.Drawing.Size(220, 16);
+            this.txtCity.Size = new System.Drawing.Size(165, 13);
             this.txtCity.TabIndex = 0;
             this.txtCity.TabStop = false;
             this.txtCity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -678,11 +648,9 @@
             // 
             this.gbDM.Controls.Add(this.txtDM);
             this.gbDM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDM.Location = new System.Drawing.Point(295, 143);
-            this.gbDM.Margin = new System.Windows.Forms.Padding(4);
+            this.gbDM.Location = new System.Drawing.Point(221, 116);
             this.gbDM.Name = "gbDM";
-            this.gbDM.Padding = new System.Windows.Forms.Padding(4);
-            this.gbDM.Size = new System.Drawing.Size(209, 37);
+            this.gbDM.Size = new System.Drawing.Size(157, 30);
             this.gbDM.TabIndex = 53;
             this.gbDM.TabStop = false;
             this.gbDM.Text = "DM";
@@ -691,11 +659,9 @@
             // 
             this.gbCity.Controls.Add(this.txtCity);
             this.gbCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbCity.Location = new System.Drawing.Point(720, 102);
-            this.gbCity.Margin = new System.Windows.Forms.Padding(4);
+            this.gbCity.Location = new System.Drawing.Point(540, 83);
             this.gbCity.Name = "gbCity";
-            this.gbCity.Padding = new System.Windows.Forms.Padding(4);
-            this.gbCity.Size = new System.Drawing.Size(236, 37);
+            this.gbCity.Size = new System.Drawing.Size(177, 30);
             this.gbCity.TabIndex = 57;
             this.gbCity.TabStop = false;
             this.gbCity.Text = "City";
@@ -704,11 +670,9 @@
             // 
             this.gbAddress.Controls.Add(this.txtAddress);
             this.gbAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAddress.Location = new System.Drawing.Point(653, 62);
-            this.gbAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.gbAddress.Location = new System.Drawing.Point(490, 50);
             this.gbAddress.Name = "gbAddress";
-            this.gbAddress.Padding = new System.Windows.Forms.Padding(4);
-            this.gbAddress.Size = new System.Drawing.Size(303, 37);
+            this.gbAddress.Size = new System.Drawing.Size(227, 30);
             this.gbAddress.TabIndex = 54;
             this.gbAddress.TabStop = false;
             this.gbAddress.Text = "Address";
@@ -718,11 +682,10 @@
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAddress.Location = new System.Drawing.Point(8, 17);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAddress.Location = new System.Drawing.Point(6, 14);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ReadOnly = true;
-            this.txtAddress.Size = new System.Drawing.Size(287, 16);
+            this.txtAddress.Size = new System.Drawing.Size(215, 13);
             this.txtAddress.TabIndex = 0;
             this.txtAddress.TabStop = false;
             this.txtAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -735,11 +698,10 @@
             this.txtType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtType.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtType.Location = new System.Drawing.Point(8, 17);
-            this.txtType.Margin = new System.Windows.Forms.Padding(4);
+            this.txtType.Location = new System.Drawing.Point(6, 14);
             this.txtType.Name = "txtType";
             this.txtType.ReadOnly = true;
-            this.txtType.Size = new System.Drawing.Size(160, 16);
+            this.txtType.Size = new System.Drawing.Size(120, 13);
             this.txtType.TabIndex = 0;
             this.txtType.TabStop = false;
             this.txtType.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -751,11 +713,9 @@
             // 
             this.gbType.Controls.Add(this.txtType);
             this.gbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbType.Location = new System.Drawing.Point(731, 143);
-            this.gbType.Margin = new System.Windows.Forms.Padding(4);
+            this.gbType.Location = new System.Drawing.Point(548, 116);
             this.gbType.Name = "gbType";
-            this.gbType.Padding = new System.Windows.Forms.Padding(4);
-            this.gbType.Size = new System.Drawing.Size(176, 37);
+            this.gbType.Size = new System.Drawing.Size(132, 30);
             this.gbType.TabIndex = 59;
             this.gbType.TabStop = false;
             this.gbType.Text = "Type";
@@ -765,11 +725,10 @@
             this.txtMpId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMpId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMpId.Location = new System.Drawing.Point(8, 17);
-            this.txtMpId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMpId.Location = new System.Drawing.Point(6, 14);
             this.txtMpId.Name = "txtMpId";
             this.txtMpId.ReadOnly = true;
-            this.txtMpId.Size = new System.Drawing.Size(61, 16);
+            this.txtMpId.Size = new System.Drawing.Size(46, 13);
             this.txtMpId.TabIndex = 0;
             this.txtMpId.TabStop = false;
             this.txtMpId.Text = "_______";
@@ -782,11 +741,9 @@
             // 
             this.gbMpId.Controls.Add(this.txtMpId);
             this.gbMpId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbMpId.Location = new System.Drawing.Point(576, 62);
-            this.gbMpId.Margin = new System.Windows.Forms.Padding(4);
+            this.gbMpId.Location = new System.Drawing.Point(432, 50);
             this.gbMpId.Name = "gbMpId";
-            this.gbMpId.Padding = new System.Windows.Forms.Padding(4);
-            this.gbMpId.Size = new System.Drawing.Size(77, 37);
+            this.gbMpId.Size = new System.Drawing.Size(58, 30);
             this.gbMpId.TabIndex = 58;
             this.gbMpId.TabStop = false;
             this.gbMpId.Text = "MP ID";
@@ -796,11 +753,10 @@
             this.txtTZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTZ.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTZ.Location = new System.Drawing.Point(8, 17);
-            this.txtTZ.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTZ.Location = new System.Drawing.Point(6, 14);
             this.txtTZ.Name = "txtTZ";
             this.txtTZ.ReadOnly = true;
-            this.txtTZ.Size = new System.Drawing.Size(40, 16);
+            this.txtTZ.Size = new System.Drawing.Size(30, 13);
             this.txtTZ.TabIndex = 0;
             this.txtTZ.TabStop = false;
             this.txtTZ.Text = "__";
@@ -813,11 +769,9 @@
             // 
             this.gbTZ.Controls.Add(this.txtTZ);
             this.gbTZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTZ.Location = new System.Drawing.Point(1065, 143);
-            this.gbTZ.Margin = new System.Windows.Forms.Padding(4);
+            this.gbTZ.Location = new System.Drawing.Point(799, 116);
             this.gbTZ.Name = "gbTZ";
-            this.gbTZ.Padding = new System.Windows.Forms.Padding(4);
-            this.gbTZ.Size = new System.Drawing.Size(56, 37);
+            this.gbTZ.Size = new System.Drawing.Size(42, 30);
             this.gbTZ.TabIndex = 63;
             this.gbTZ.TabStop = false;
             this.gbTZ.Text = "TZ";
@@ -826,11 +780,9 @@
             // 
             this.gbEmail.Controls.Add(this.txtEmail);
             this.gbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbEmail.Location = new System.Drawing.Point(295, 102);
-            this.gbEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.gbEmail.Location = new System.Drawing.Point(221, 83);
             this.gbEmail.Name = "gbEmail";
-            this.gbEmail.Padding = new System.Windows.Forms.Padding(4);
-            this.gbEmail.Size = new System.Drawing.Size(232, 37);
+            this.gbEmail.Size = new System.Drawing.Size(174, 30);
             this.gbEmail.TabIndex = 55;
             this.gbEmail.TabStop = false;
             this.gbEmail.Text = "Email";
@@ -840,11 +792,10 @@
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEmail.Location = new System.Drawing.Point(8, 17);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEmail.Location = new System.Drawing.Point(6, 14);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
-            this.txtEmail.Size = new System.Drawing.Size(216, 16);
+            this.txtEmail.Size = new System.Drawing.Size(162, 13);
             this.txtEmail.TabIndex = 0;
             this.txtEmail.TabStop = false;
             this.txtEmail.Text = "store@wwwinc.com";
@@ -858,11 +809,10 @@
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPhone.Location = new System.Drawing.Point(8, 17);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPhone.Location = new System.Drawing.Point(6, 14);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
-            this.txtPhone.Size = new System.Drawing.Size(103, 16);
+            this.txtPhone.Size = new System.Drawing.Size(77, 13);
             this.txtPhone.TabIndex = 0;
             this.txtPhone.TabStop = false;
             this.txtPhone.Text = "(555) 555-5555";
@@ -875,11 +825,9 @@
             // 
             this.grpPhone.Controls.Add(this.txtPhone);
             this.grpPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpPhone.Location = new System.Drawing.Point(295, 62);
-            this.grpPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.grpPhone.Location = new System.Drawing.Point(221, 50);
             this.grpPhone.Name = "grpPhone";
-            this.grpPhone.Padding = new System.Windows.Forms.Padding(4);
-            this.grpPhone.Size = new System.Drawing.Size(119, 37);
+            this.grpPhone.Size = new System.Drawing.Size(89, 30);
             this.grpPhone.TabIndex = 51;
             this.grpPhone.TabStop = false;
             this.grpPhone.Text = "Phone #";
@@ -889,10 +837,9 @@
             this.btnDelayed.Image = global::Retail_HD.GlobalResources.icon_spinner_3;
             this.btnDelayed.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDelayed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDelayed.Location = new System.Drawing.Point(16, 508);
-            this.btnDelayed.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelayed.Location = new System.Drawing.Point(12, 413);
             this.btnDelayed.Name = "btnDelayed";
-            this.btnDelayed.Size = new System.Drawing.Size(104, 30);
+            this.btnDelayed.Size = new System.Drawing.Size(78, 24);
             this.btnDelayed.TabIndex = 65;
             this.btnDelayed.Text = "Delayed Start";
             this.btnDelayed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -902,8 +849,10 @@
             // ts_Top
             // 
             this.ts_Top.AutoSize = false;
+            this.ts_Top.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ts_Top.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ts_Top.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator4,
             this.ts_Top_tsb_Logout,
             this.toolStripSeparator2,
             this.ts_Top_tsb_ChangeState,
@@ -911,15 +860,17 @@
             this.ts_Top_tsb_CallStore,
             this.toolStripSeparator3,
             this.ts_Top_tsb_Settings,
+            this.toolStripSeparator6,
             this.ts_Top_tsb_TeamStatus,
             this.ts_Top_tsl_CurrentCall,
+            this.toolStripSeparator5,
             this.ts_Top_tsb_StoreSearch,
+            this.toolStripSeparator7,
             this.ts_Top_tsb_HistorySearch,
             this.ts_Top_tsl_Override});
-            this.ts_Top.Location = new System.Drawing.Point(0, 28);
+            this.ts_Top.Location = new System.Drawing.Point(0, 24);
             this.ts_Top.Name = "ts_Top";
-            this.ts_Top.Size = new System.Drawing.Size(1141, 27);
-            this.ts_Top.Stretch = true;
+            this.ts_Top.Size = new System.Drawing.Size(856, 22);
             this.ts_Top.TabIndex = 69;
             this.ts_Top.Text = "toolStrip1";
             // 
@@ -929,7 +880,7 @@
             this.ts_Top_tsb_Logout.Image = global::Retail_HD.GlobalResources.logout;
             this.ts_Top_tsb_Logout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ts_Top_tsb_Logout.Name = "ts_Top_tsb_Logout";
-            this.ts_Top_tsb_Logout.Size = new System.Drawing.Size(24, 24);
+            this.ts_Top_tsb_Logout.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_Logout.Text = "toolStripButton1";
             this.ts_Top_tsb_Logout.ToolTipText = "Login/Logout of the queue";
             this.ts_Top_tsb_Logout.Click += new System.EventHandler(this.Login_Click);
@@ -937,7 +888,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 22);
             // 
             // ts_Top_tsb_ChangeState
             // 
@@ -945,7 +896,7 @@
             this.ts_Top_tsb_ChangeState.Image = global::Retail_HD.GlobalResources.icon_play;
             this.ts_Top_tsb_ChangeState.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ts_Top_tsb_ChangeState.Name = "ts_Top_tsb_ChangeState";
-            this.ts_Top_tsb_ChangeState.Size = new System.Drawing.Size(24, 24);
+            this.ts_Top_tsb_ChangeState.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_ChangeState.Text = "toolStripButton2";
             this.ts_Top_tsb_ChangeState.ToolTipText = "Toggle Ready/Not Ready queue state\r\nCTRL + S";
             this.ts_Top_tsb_ChangeState.Click += new System.EventHandler(this.ChangeState_Click);
@@ -953,7 +904,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 22);
             // 
             // ts_Top_tsb_CallStore
             // 
@@ -961,7 +912,7 @@
             this.ts_Top_tsb_CallStore.Image = global::Retail_HD.GlobalResources.mobile_phone;
             this.ts_Top_tsb_CallStore.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ts_Top_tsb_CallStore.Name = "ts_Top_tsb_CallStore";
-            this.ts_Top_tsb_CallStore.Size = new System.Drawing.Size(24, 24);
+            this.ts_Top_tsb_CallStore.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_CallStore.Text = "toolStripButton3";
             this.ts_Top_tsb_CallStore.ToolTipText = "Call the current store";
             this.ts_Top_tsb_CallStore.Click += new System.EventHandler(this.CallStore_Click);
@@ -969,7 +920,7 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 22);
             // 
             // ts_Top_tsb_Settings
             // 
@@ -977,7 +928,7 @@
             this.ts_Top_tsb_Settings.Image = global::Retail_HD.GlobalResources.settings_icon;
             this.ts_Top_tsb_Settings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ts_Top_tsb_Settings.Name = "ts_Top_tsb_Settings";
-            this.ts_Top_tsb_Settings.Size = new System.Drawing.Size(24, 24);
+            this.ts_Top_tsb_Settings.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_Settings.Text = "toolStripButton2";
             this.ts_Top_tsb_Settings.ToolTipText = "Change Cisco Phone Settings";
             this.ts_Top_tsb_Settings.Click += new System.EventHandler(this.Settings_Click);
@@ -988,7 +939,7 @@
             this.ts_Top_tsb_TeamStatus.Image = global::Retail_HD.GlobalResources.agents;
             this.ts_Top_tsb_TeamStatus.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ts_Top_tsb_TeamStatus.Name = "ts_Top_tsb_TeamStatus";
-            this.ts_Top_tsb_TeamStatus.Size = new System.Drawing.Size(24, 24);
+            this.ts_Top_tsb_TeamStatus.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_TeamStatus.Text = "toolStripButton1";
             this.ts_Top_tsb_TeamStatus.ToolTipText = "Opens a window that shows currently logged in Agents and their status.";
             this.ts_Top_tsb_TeamStatus.Click += new System.EventHandler(this.AgentStatusList_Click);
@@ -998,7 +949,7 @@
             this.ts_Top_tsl_CurrentCall.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.ts_Top_tsl_CurrentCall.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.ts_Top_tsl_CurrentCall.Name = "ts_Top_tsl_CurrentCall";
-            this.ts_Top_tsl_CurrentCall.Size = new System.Drawing.Size(177, 24);
+            this.ts_Top_tsl_CurrentCall.Size = new System.Drawing.Size(139, 19);
             this.ts_Top_tsl_CurrentCall.Text = "On a call with: Store 6066";
             this.ts_Top_tsl_CurrentCall.Visible = false;
             // 
@@ -1008,7 +959,7 @@
             this.ts_Top_tsb_StoreSearch.Image = global::Retail_HD.GlobalResources.magnifying;
             this.ts_Top_tsb_StoreSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ts_Top_tsb_StoreSearch.Name = "ts_Top_tsb_StoreSearch";
-            this.ts_Top_tsb_StoreSearch.Size = new System.Drawing.Size(24, 24);
+            this.ts_Top_tsb_StoreSearch.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_StoreSearch.Text = "toolStripButton1";
             this.ts_Top_tsb_StoreSearch.ToolTipText = "Search For a Store";
             this.ts_Top_tsb_StoreSearch.Click += new System.EventHandler(this.StoreSearch_Click);
@@ -1019,7 +970,7 @@
             this.ts_Top_tsb_HistorySearch.Image = global::Retail_HD.GlobalResources.sundial;
             this.ts_Top_tsb_HistorySearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ts_Top_tsb_HistorySearch.Name = "ts_Top_tsb_HistorySearch";
-            this.ts_Top_tsb_HistorySearch.Size = new System.Drawing.Size(24, 24);
+            this.ts_Top_tsb_HistorySearch.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_HistorySearch.Text = "toolStripButton1";
             this.ts_Top_tsb_HistorySearch.ToolTipText = "Search Call History";
             this.ts_Top_tsb_HistorySearch.Click += new System.EventHandler(this.HistorySearch_Click);
@@ -1028,7 +979,7 @@
             // 
             this.ts_Top_tsl_Override.ForeColor = System.Drawing.Color.Red;
             this.ts_Top_tsl_Override.Name = "ts_Top_tsl_Override";
-            this.ts_Top_tsl_Override.Size = new System.Drawing.Size(255, 24);
+            this.ts_Top_tsl_Override.Size = new System.Drawing.Size(200, 19);
             this.ts_Top_tsl_Override.Text = "                  Auto-READY Override: ON";
             this.ts_Top_tsl_Override.Visible = false;
             // 
@@ -1036,11 +987,9 @@
             // 
             this.groupBox1.Controls.Add(this.txtIncome);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(956, 62);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(717, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(165, 37);
+            this.groupBox1.Size = new System.Drawing.Size(124, 30);
             this.groupBox1.TabIndex = 70;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Income";
@@ -1050,11 +999,10 @@
             this.txtIncome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIncome.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIncome.Location = new System.Drawing.Point(8, 17);
-            this.txtIncome.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIncome.Location = new System.Drawing.Point(6, 14);
             this.txtIncome.Name = "txtIncome";
             this.txtIncome.ReadOnly = true;
-            this.txtIncome.Size = new System.Drawing.Size(149, 16);
+            this.txtIncome.Size = new System.Drawing.Size(112, 13);
             this.txtIncome.TabIndex = 0;
             this.txtIncome.TabStop = false;
             this.txtIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1063,11 +1011,9 @@
             // 
             this.groupBox2.Controls.Add(this.txtRank);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(956, 102);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(717, 83);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(165, 37);
+            this.groupBox2.Size = new System.Drawing.Size(124, 30);
             this.groupBox2.TabIndex = 71;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rank";
@@ -1077,11 +1023,10 @@
             this.txtRank.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRank.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRank.Location = new System.Drawing.Point(8, 17);
-            this.txtRank.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRank.Location = new System.Drawing.Point(6, 14);
             this.txtRank.Name = "txtRank";
             this.txtRank.ReadOnly = true;
-            this.txtRank.Size = new System.Drawing.Size(149, 16);
+            this.txtRank.Size = new System.Drawing.Size(112, 13);
             this.txtRank.TabIndex = 0;
             this.txtRank.TabStop = false;
             this.txtRank.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1090,11 +1035,9 @@
             // 
             this.gbSVS.Controls.Add(this.txtSVS);
             this.gbSVS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbSVS.Location = new System.Drawing.Point(299, 183);
-            this.gbSVS.Margin = new System.Windows.Forms.Padding(4);
+            this.gbSVS.Location = new System.Drawing.Point(224, 149);
             this.gbSVS.Name = "gbSVS";
-            this.gbSVS.Padding = new System.Windows.Forms.Padding(4);
-            this.gbSVS.Size = new System.Drawing.Size(163, 37);
+            this.gbSVS.Size = new System.Drawing.Size(122, 30);
             this.gbSVS.TabIndex = 61;
             this.gbSVS.TabStop = false;
             this.gbSVS.Text = "SVS";
@@ -1104,11 +1047,10 @@
             this.txtSVS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSVS.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSVS.Location = new System.Drawing.Point(8, 17);
-            this.txtSVS.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSVS.Location = new System.Drawing.Point(6, 14);
             this.txtSVS.Name = "txtSVS";
             this.txtSVS.ReadOnly = true;
-            this.txtSVS.Size = new System.Drawing.Size(147, 16);
+            this.txtSVS.Size = new System.Drawing.Size(110, 13);
             this.txtSVS.TabIndex = 0;
             this.txtSVS.TabStop = false;
             this.txtSVS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1118,11 +1060,9 @@
             // 
             this.gbBAMS.Controls.Add(this.txtBAMS);
             this.gbBAMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbBAMS.Location = new System.Drawing.Point(128, 183);
-            this.gbBAMS.Margin = new System.Windows.Forms.Padding(4);
+            this.gbBAMS.Location = new System.Drawing.Point(96, 149);
             this.gbBAMS.Name = "gbBAMS";
-            this.gbBAMS.Padding = new System.Windows.Forms.Padding(4);
-            this.gbBAMS.Size = new System.Drawing.Size(171, 37);
+            this.gbBAMS.Size = new System.Drawing.Size(128, 30);
             this.gbBAMS.TabIndex = 62;
             this.gbBAMS.TabStop = false;
             this.gbBAMS.Text = "BAMS";
@@ -1132,11 +1072,10 @@
             this.txtBAMS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBAMS.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBAMS.Location = new System.Drawing.Point(8, 17);
-            this.txtBAMS.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBAMS.Location = new System.Drawing.Point(6, 14);
             this.txtBAMS.Name = "txtBAMS";
             this.txtBAMS.ReadOnly = true;
-            this.txtBAMS.Size = new System.Drawing.Size(155, 16);
+            this.txtBAMS.Size = new System.Drawing.Size(116, 13);
             this.txtBAMS.TabIndex = 0;
             this.txtBAMS.TabStop = false;
             this.txtBAMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1146,11 +1085,9 @@
             // 
             this.gbTID1.Controls.Add(this.txtTID1);
             this.gbTID1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTID1.Location = new System.Drawing.Point(461, 183);
-            this.gbTID1.Margin = new System.Windows.Forms.Padding(4);
+            this.gbTID1.Location = new System.Drawing.Point(346, 149);
             this.gbTID1.Name = "gbTID1";
-            this.gbTID1.Padding = new System.Windows.Forms.Padding(4);
-            this.gbTID1.Size = new System.Drawing.Size(171, 37);
+            this.gbTID1.Size = new System.Drawing.Size(128, 30);
             this.gbTID1.TabIndex = 62;
             this.gbTID1.TabStop = false;
             this.gbTID1.Text = "TID1";
@@ -1160,11 +1097,10 @@
             this.txtTID1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTID1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTID1.Location = new System.Drawing.Point(8, 17);
-            this.txtTID1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTID1.Location = new System.Drawing.Point(6, 14);
             this.txtTID1.Name = "txtTID1";
             this.txtTID1.ReadOnly = true;
-            this.txtTID1.Size = new System.Drawing.Size(155, 16);
+            this.txtTID1.Size = new System.Drawing.Size(116, 13);
             this.txtTID1.TabIndex = 0;
             this.txtTID1.TabStop = false;
             this.txtTID1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1174,11 +1110,9 @@
             // 
             this.gbTID2.Controls.Add(this.txtTID2);
             this.gbTID2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTID2.Location = new System.Drawing.Point(632, 183);
-            this.gbTID2.Margin = new System.Windows.Forms.Padding(4);
+            this.gbTID2.Location = new System.Drawing.Point(474, 149);
             this.gbTID2.Name = "gbTID2";
-            this.gbTID2.Padding = new System.Windows.Forms.Padding(4);
-            this.gbTID2.Size = new System.Drawing.Size(171, 37);
+            this.gbTID2.Size = new System.Drawing.Size(128, 30);
             this.gbTID2.TabIndex = 62;
             this.gbTID2.TabStop = false;
             this.gbTID2.Text = "TID2";
@@ -1188,11 +1122,10 @@
             this.txtTID2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTID2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTID2.Location = new System.Drawing.Point(8, 17);
-            this.txtTID2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTID2.Location = new System.Drawing.Point(6, 14);
             this.txtTID2.Name = "txtTID2";
             this.txtTID2.ReadOnly = true;
-            this.txtTID2.Size = new System.Drawing.Size(155, 16);
+            this.txtTID2.Size = new System.Drawing.Size(116, 13);
             this.txtTID2.TabIndex = 0;
             this.txtTID2.TabStop = false;
             this.txtTID2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1202,11 +1135,9 @@
             // 
             this.gbTID3.Controls.Add(this.txtTID3);
             this.gbTID3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTID3.Location = new System.Drawing.Point(803, 183);
-            this.gbTID3.Margin = new System.Windows.Forms.Padding(4);
+            this.gbTID3.Location = new System.Drawing.Point(602, 149);
             this.gbTID3.Name = "gbTID3";
-            this.gbTID3.Padding = new System.Windows.Forms.Padding(4);
-            this.gbTID3.Size = new System.Drawing.Size(168, 37);
+            this.gbTID3.Size = new System.Drawing.Size(126, 30);
             this.gbTID3.TabIndex = 62;
             this.gbTID3.TabStop = false;
             this.gbTID3.Text = "TID3";
@@ -1216,11 +1147,10 @@
             this.txtTID3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTID3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTID3.Location = new System.Drawing.Point(8, 17);
-            this.txtTID3.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTID3.Location = new System.Drawing.Point(6, 14);
             this.txtTID3.Name = "txtTID3";
             this.txtTID3.ReadOnly = true;
-            this.txtTID3.Size = new System.Drawing.Size(152, 16);
+            this.txtTID3.Size = new System.Drawing.Size(114, 13);
             this.txtTID3.TabIndex = 0;
             this.txtTID3.TabStop = false;
             this.txtTID3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1230,11 +1160,9 @@
             // 
             this.gbTID4.Controls.Add(this.txtTID4);
             this.gbTID4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTID4.Location = new System.Drawing.Point(972, 183);
-            this.gbTID4.Margin = new System.Windows.Forms.Padding(4);
+            this.gbTID4.Location = new System.Drawing.Point(729, 149);
             this.gbTID4.Name = "gbTID4";
-            this.gbTID4.Padding = new System.Windows.Forms.Padding(4);
-            this.gbTID4.Size = new System.Drawing.Size(149, 37);
+            this.gbTID4.Size = new System.Drawing.Size(112, 30);
             this.gbTID4.TabIndex = 62;
             this.gbTID4.TabStop = false;
             this.gbTID4.Text = "TID4";
@@ -1244,11 +1172,10 @@
             this.txtTID4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTID4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTID4.Location = new System.Drawing.Point(8, 17);
-            this.txtTID4.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTID4.Location = new System.Drawing.Point(6, 14);
             this.txtTID4.Name = "txtTID4";
             this.txtTID4.ReadOnly = true;
-            this.txtTID4.Size = new System.Drawing.Size(133, 16);
+            this.txtTID4.Size = new System.Drawing.Size(100, 13);
             this.txtTID4.TabIndex = 0;
             this.txtTID4.TabStop = false;
             this.txtTID4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1270,14 +1197,14 @@
             this.ms_Top_msi_RefreshComputers,
             this.ms_Top_msi_ImportExcel});
             this.ms_Top_msi_File.Name = "ms_Top_msi_File";
-            this.ms_Top_msi_File.Size = new System.Drawing.Size(44, 24);
+            this.ms_Top_msi_File.Size = new System.Drawing.Size(37, 20);
             this.ms_Top_msi_File.Text = "&File";
             // 
             // ms_Top_msi_Settings
             // 
             this.ms_Top_msi_Settings.Image = global::Retail_HD.GlobalResources.icon_settings_3;
             this.ms_Top_msi_Settings.Name = "ms_Top_msi_Settings";
-            this.ms_Top_msi_Settings.Size = new System.Drawing.Size(207, 26);
+            this.ms_Top_msi_Settings.Size = new System.Drawing.Size(175, 22);
             this.ms_Top_msi_Settings.Text = "Settings";
             this.ms_Top_msi_Settings.ToolTipText = "Change Cisco Phone Settings";
             this.ms_Top_msi_Settings.Click += new System.EventHandler(this.Settings_Click);
@@ -1285,7 +1212,7 @@
             // ms_Top_msi_OldBatMenu
             // 
             this.ms_Top_msi_OldBatMenu.Name = "ms_Top_msi_OldBatMenu";
-            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(207, 26);
+            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(175, 22);
             this.ms_Top_msi_OldBatMenu.Text = "Old Bat Menu";
             this.ms_Top_msi_OldBatMenu.ToolTipText = "Opens Jason\'s BAT file CMD menue";
             this.ms_Top_msi_OldBatMenu.Click += new System.EventHandler(this.OldBatMenu_Click);
@@ -1293,7 +1220,7 @@
             // ms_Top_msi_CodeEntry
             // 
             this.ms_Top_msi_CodeEntry.Name = "ms_Top_msi_CodeEntry";
-            this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(207, 26);
+            this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(175, 22);
             this.ms_Top_msi_CodeEntry.Text = "&Code Entry";
             this.ms_Top_msi_CodeEntry.ToolTipText = "Konami Code";
             this.ms_Top_msi_CodeEntry.Click += new System.EventHandler(this.CodeEntry_Click);
@@ -1301,7 +1228,7 @@
             // ms_Top_msi_RefreshComputers
             // 
             this.ms_Top_msi_RefreshComputers.Name = "ms_Top_msi_RefreshComputers";
-            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(207, 26);
+            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(175, 22);
             this.ms_Top_msi_RefreshComputers.Text = "Refresh Computers";
             this.ms_Top_msi_RefreshComputers.ToolTipText = "Update\'s list of computers from AD";
             this.ms_Top_msi_RefreshComputers.Click += new System.EventHandler(this.RefreshComputers_Click);
@@ -1309,7 +1236,7 @@
             // ms_Top_msi_ImportExcel
             // 
             this.ms_Top_msi_ImportExcel.Name = "ms_Top_msi_ImportExcel";
-            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(207, 26);
+            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(175, 22);
             this.ms_Top_msi_ImportExcel.Text = "Import Excel File";
             this.ms_Top_msi_ImportExcel.Click += new System.EventHandler(this.ImportExcel_Click);
             // 
@@ -1318,14 +1245,14 @@
             this.ms_Top_msi_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ms_Top_msi_WhatTheJunk});
             this.ms_Top_msi_Help.Name = "ms_Top_msi_Help";
-            this.ms_Top_msi_Help.Size = new System.Drawing.Size(53, 24);
+            this.ms_Top_msi_Help.Size = new System.Drawing.Size(44, 20);
             this.ms_Top_msi_Help.Text = "&Help";
             // 
             // ms_Top_msi_WhatTheJunk
             // 
             this.ms_Top_msi_WhatTheJunk.Image = global::Retail_HD.GlobalResources.icon_paper_roll;
             this.ms_Top_msi_WhatTheJunk.Name = "ms_Top_msi_WhatTheJunk";
-            this.ms_Top_msi_WhatTheJunk.Size = new System.Drawing.Size(188, 26);
+            this.ms_Top_msi_WhatTheJunk.Size = new System.Drawing.Size(159, 22);
             this.ms_Top_msi_WhatTheJunk.Text = "Bug/Suggestion";
             this.ms_Top_msi_WhatTheJunk.ToolTipText = "Report an Issue to Developer";
             this.ms_Top_msi_WhatTheJunk.Click += new System.EventHandler(this.IssueReport_Click);
@@ -1333,7 +1260,7 @@
             // ms_Top_msi_Info
             // 
             this.ms_Top_msi_Info.Name = "ms_Top_msi_Info";
-            this.ms_Top_msi_Info.Size = new System.Drawing.Size(47, 24);
+            this.ms_Top_msi_Info.Size = new System.Drawing.Size(40, 20);
             this.ms_Top_msi_Info.Text = "&Info";
             this.ms_Top_msi_Info.ToolTipText = "Opens an Information Window";
             this.ms_Top_msi_Info.Click += new System.EventHandler(this.Info_Click);
@@ -1347,9 +1274,8 @@
             this.ms_Top_msi_Info});
             this.ms_Top.Location = new System.Drawing.Point(0, 0);
             this.ms_Top.Name = "ms_Top";
-            this.ms_Top.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
             this.ms_Top.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.ms_Top.Size = new System.Drawing.Size(1141, 28);
+            this.ms_Top.Size = new System.Drawing.Size(856, 24);
             this.ms_Top.TabIndex = 7;
             this.ms_Top.Text = "mnuTop";
             this.ms_Top.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
@@ -1358,10 +1284,10 @@
             // 
             this.ServicesUC.AutoSize = true;
             this.ServicesUC.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ServicesUC.Location = new System.Drawing.Point(128, 332);
-            this.ServicesUC.Margin = new System.Windows.Forms.Padding(5);
+            this.ServicesUC.Location = new System.Drawing.Point(96, 270);
+            this.ServicesUC.Margin = new System.Windows.Forms.Padding(4);
             this.ServicesUC.Name = "ServicesUC";
-            this.ServicesUC.Size = new System.Drawing.Size(243, 159);
+            this.ServicesUC.Size = new System.Drawing.Size(182, 129);
             this.ServicesUC.TabIndex = 3;
             this.ServicesUC.Visible = false;
             this.ServicesUC.VisibleChanged += new System.EventHandler(this.Services_UC_VisibleChanged);
@@ -1371,20 +1297,40 @@
             // 
             this.PingUC.AutoSize = true;
             this.PingUC.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PingUC.Location = new System.Drawing.Point(128, 367);
-            this.PingUC.Margin = new System.Windows.Forms.Padding(5);
+            this.PingUC.Location = new System.Drawing.Point(96, 298);
+            this.PingUC.Margin = new System.Windows.Forms.Padding(4);
             this.PingUC.Name = "PingUC";
-            this.PingUC.Size = new System.Drawing.Size(333, 124);
+            this.PingUC.Size = new System.Drawing.Size(250, 101);
             this.PingUC.TabIndex = 4;
             this.PingUC.Visible = false;
             this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
             this.PingUC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 22);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 22);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 22);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 22);
+            // 
             // RetailHD
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1141, 582);
+            this.ClientSize = new System.Drawing.Size(856, 473);
             this.Controls.Add(this.gbTID4);
             this.Controls.Add(this.gbTID3);
             this.Controls.Add(this.gbTID2);
@@ -1428,8 +1374,7 @@
             this.Controls.Add(this.RecentCalls_dgv);
             this.Icon = global::Retail_HD.GlobalResources.icoMain;
             this.MainMenuStrip = this.ms_Top;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1153, 618);
+            this.MinimumSize = new System.Drawing.Size(869, 509);
             this.Name = "RetailHD";
             this.Text = "Retail HD";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
@@ -1590,6 +1535,10 @@
 		private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_Info;
 		private System.Windows.Forms.MenuStrip ms_Top;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_ImportExcel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }
 

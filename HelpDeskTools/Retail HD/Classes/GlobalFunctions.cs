@@ -215,7 +215,6 @@ namespace Retail_HD
 			Process process = Process.Start(startInfo);
 		}
 
-
 		public static void v_LocalCMD(Computer computer)
 		{
 			v_LocalCMD(computer.name);
