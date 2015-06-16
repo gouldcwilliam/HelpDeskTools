@@ -154,12 +154,23 @@ namespace Shared
 			string Zip,
 			string Email,
 			string Phone,
-			string PosGate,
-			string Pos,
-			string MimGate,
-			string Mim,
-			string SensorGate,
-			string Sensor
+			string First,
+            string Second,
+            string Third,
+            string lan1,
+            string lan2,
+            string lan3,
+            string lan4,
+            string gate1,
+            string gate2,
+            string gate3,
+            string gate4,
+            string svs,
+            string bams,
+            string tid1,
+            string tid2,
+            string tid3,
+            string tid4
 			)
 		{
 			List<SqlParameter> parameters = new List<SqlParameter>();
@@ -176,16 +187,35 @@ namespace Shared
 			parameters.Add(new SqlParameter("@state", State));
 			parameters.Add(new SqlParameter("@zip", Zip));
 			parameters.Add(new SqlParameter("@email", Email));
-			parameters.Add(new SqlParameter("@phone", Phone));
-			parameters.Add(new SqlParameter("@pos_gate", PosGate));
-			parameters.Add(new SqlParameter("@pos", Pos));
-			parameters.Add(new SqlParameter("@mim_gate", MimGate));
-			parameters.Add(new SqlParameter("@mim", Mim));
-			parameters.Add(new SqlParameter("@sensor_gate", SensorGate));
-			parameters.Add(new SqlParameter("@sensor", Sensor));
+            parameters.Add(new SqlParameter("@first", First));
+            parameters.Add(new SqlParameter("@second", Second));
+            parameters.Add(new SqlParameter("@third", Third));
+            parameters.Add(new SqlParameter("@lan1", lan1));
+            parameters.Add(new SqlParameter("@lan2", lan2));
+            parameters.Add(new SqlParameter("@lan3", lan3));
+            parameters.Add(new SqlParameter("@lan4", lan4));
+            parameters.Add(new SqlParameter("@gate1", gate1));
+            parameters.Add(new SqlParameter("@gate2", gate2));
+            parameters.Add(new SqlParameter("@gate3", gate3));
+            parameters.Add(new SqlParameter("@gate4", gate4));
+            parameters.Add(new SqlParameter("@svs", svs));
+            parameters.Add(new SqlParameter("@bams", bams));
+            parameters.Add(new SqlParameter("@tid1", tid1));
+            parameters.Add(new SqlParameter("@tid2", tid2));
+            parameters.Add(new SqlParameter("@tid3", tid3));
+            parameters.Add(new SqlParameter("@tid4", tid4));
 
-			string updateSQL = "INSERT INTO [STORES] ([store],[TZ],[MP],[manager],[dm],[mall],[name],[type],[address],[city],[state],[zip],[email],[phone],[pos_gate],[pos],[mim_gate],[mim],[sensor_gate],[sensor]) VALUES(dbo.InitCap(@store),UPPER(@TZ),dbo.InitCap(@MP),dbo.InitCap(@manager),dbo.InitCap(@dm),dbo.InitCap(@mall),dbo.InitCap(@name),dbo.InitCap(@type),dbo.InitCap(@address),dbo.InitCap(@city),UPPER(@state),@zip,@email,@phone,@pos_gate,@pos,@mim_gate,@mim,@sensor_gate,@sensor)";
-			return Insert(updateSQL, parameters);
+            string updateSQL = "INSERT INTO [Stores] ([store],[TZ],[MP],[manager],[dm],[mall],[name],[type],[address],[city],[state],[zip],[email],[1st],[2nd],[3rd],[lan1],[gate1],[lan2],[gate2],[lan3],[gate3],[lan4],[gate4],[BAMS],[SVS],[TID1],[TID2],[TID3],[TID4]) VALUES(dbo.InitCap(@store),UPPER(@TZ),dbo.InitCap(@MP),dbo.InitCap(@manager),dbo.InitCap(@dm),dbo.InitCap(@mall),dbo.InitCap(@name),dbo.InitCap(@type),dbo.InitCap(@address),dbo.InitCap(@city),UPPER(@state),@zip,@email,@first,@second,@third,@lan1,@gate1,@lan2,@gate2,@lan3,@gate3,@lan4,@gate4,@svs,@bams,@tid1,@tid2,@tid3,@tid4)";
+			bool bstore = Insert(updateSQL, parameters);
+
+            parameters.Clear();
+			parameters.Add(new SqlParameter("@store", Store));
+            parameters.Add(new SqlParameter("@phone", Phone));
+
+            updateSQL = "INSERT INTO [Phones] ([store],[phone]) values (@store,@phone)";
+            bool bphone = Insert(updateSQL, parameters);
+
+            if (bstore && bphone) { return true; } else { return false; }
 		}
 
 		static public bool b_UsefulInfo_AddTab(string Tab, int Order)
@@ -538,12 +568,13 @@ namespace Shared
 		/// <param name="zip"></param>
 		/// <param name="phone"></param>
 		/// <returns></returns>
-		static public DataTable dt_StoreSearch(string tz, string mp, string dm, string name, string type, string address, string city, string state, string zip, string phone)
+		static public DataTable dt_StoreSearch(string tz, string mp,string manager, string dm, string name, string type, string address, string city, string state, string zip, string phone, string ip)
 		{
 			string setStatement = string.Empty;
 
 			if (tz != string.Empty) { setStatement += string.Format("SET @TZ = '{0}'\n", tz); }
 			if (mp != string.Empty) { setStatement += string.Format("SET @MP = '{0}'\n", mp); }
+            if (manager != string.Empty) { setStatement += string.Format("SET @MANGER = '{0}'\n", manager); }
 			if (dm != string.Empty) { setStatement += string.Format("SET @DM = '{0}'\n", dm); }
 			if (name != string.Empty) { setStatement += string.Format("SET @NAME = '{0}\n", name); }
 			if (type != string.Empty) { setStatement += string.Format("SET @TYPE = '{0}'\n", type); }
@@ -552,6 +583,7 @@ namespace Shared
 			if (state != string.Empty) { setStatement += string.Format("SET @STATE='{0}'\n", state); }
 			if (zip != string.Empty) { setStatement += string.Format("SET @ZIP='{0}'\n", zip); }
 			if (phone != string.Empty) { setStatement += string.Format("SET @PHONE='{0}'\n", phone); }
+            if (ip != string.Empty) { setStatement += string.Format("SET @IP='{0}'\n", ip); }
 
 			string query = string.Format("{0} \n {1} \n {2}",
 				SQLSettings.Default._StoreSearchDeclare,

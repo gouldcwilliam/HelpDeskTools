@@ -124,7 +124,7 @@ values
 SELECT 
 	[store]
 FROM 
-	[Stores]
+	[Phones]
 WHERE 
 	[phone] LIKE @phone</Value>
     </Setting>
@@ -239,33 +239,7 @@ DESC
     </Setting>
     <Setting Name="_StoreInfo" Type="System.String" Scope="User">
       <Value Profile="(Default)">SELECT TOP 1
-	[address],
-	[city],
-	[dm],
-	[email],
-	[manager],
-	[MP],
-	[name],
-	[P].phone,
-	[state],
-	[type],
-	[TZ],
-	[zip],
-	[pos],
-	[pos_gate],
-	[sensor],
-	[sensor_gate],
-	[mim],
-	[mim_gate],
-	[income],
-	[rank],
-	[BAMS],
-	[SVS],
-	[TID1],
-	[TID2],
-	[TID3],
-	[TID4]
-
+	*
 FROM
 	[Stores] as S
 	inner join 
@@ -303,6 +277,7 @@ DESC
     <Setting Name="_StoreSearchDeclare" Type="System.String" Scope="User">
       <Value Profile="(Default)">DECLARE @TZ VARCHAR(50)
 DECLARE @MP VARCHAR(50)
+DECLARE @MANAGER VARCHAR(50)
 DECLARE @DM VARCHAR(50)
 DECLARE @NAME VARCHAR(50)
 DECLARE @TYPE VARCHAR(50)
@@ -311,12 +286,14 @@ DECLARE @CITY VARCHAR(50)
 DECLARE @STATE VARCHAR(50)
 DECLARE @ZIP VARCHAR(50)
 DECLARE @PHONE VARCHAR(50)
-</Value>
+DECLARE @IP VARCHAR(50)</Value>
     </Setting>
     <Setting Name="_StoreSearch" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SELECT
-	[store],
+      <Value Profile="(Default)">
+SELECT
+	[Stores].[store],
 	[TZ],
+	[manager],
 	[dm],
 	[name],
 	[type],
@@ -329,9 +306,11 @@ DECLARE @PHONE VARCHAR(50)
 	[income]
 FROM
 	[Stores]
+	inner join [Phones] on [Phones].store=[Stores].store
 WHERE
 	(@TZ IS NULL OR (LOWER([TZ]) = LOWER(@TZ))) AND
 	(@MP IS NULL OR ([MP] = @MP)) AND
+	(@MANAGER IS NULL OR (LOWER([manager]) LIKE '%'+LOWER(@MANAGER)+'%')) AND
 	(@DM IS NULL OR (LOWER([dm]) LIKE '%'+LOWER(@DM)+'%')) AND
 	(@NAME IS NULL OR (LOWER([name]) LIKE '%'+LOWER(@NAME)+'%')) AND
 	(@TYPE IS NULL OR (LOWER([type]) LIKE '%'+LOWER(@TYPE)+'%')) AND
@@ -339,8 +318,19 @@ WHERE
 	(@CITY IS NULL OR (LOWER([city]) LIKE '%'+LOWER(@CITY)+'%')) AND
 	(@STATE IS NULL OR (LOWER([state]) = LOWER(@STATE))) AND
 	(@ZIP IS NULL OR (LOWER([zip]) = LOWER(@ZIP))) AND
-	(@PHONE IS NULL OR ([phone] = dbo.RemoveNonNumericCharacters
-(@PHONE)))</Value>
+	(@PHONE IS NULL OR ([phone] = dbo.RemoveNonNumericCharacters(@PHONE))) AND
+	(
+		@IP IS NULL OR 
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[lan1]) LIKE '%'+@IP+'%' OR 
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[lan2]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[lan3]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[lan4]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[gate1]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[gate2]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[gate3]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[gate4]) LIKE '%'+@IP+'%'
+	)
+</Value>
     </Setting>
   </Settings>
 </SettingsFile>

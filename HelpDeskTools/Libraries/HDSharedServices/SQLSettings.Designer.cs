@@ -85,7 +85,7 @@ order by
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT \n\t[computer] \nFROM \n\t[Computers] \nWHERE \n\t[store] = @store")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SELECT \r\n\t[computer] \r\nFROM \r\n\t[Computers] \r\nWHERE \r\n\t[store] = @store")]
         public string _ComputersByStore {
             get {
                 return ((string)(this["_ComputersByStore"]));
@@ -97,8 +97,9 @@ order by
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select \n\t[category], \n\t[topic], \n\t[mandatory] \nfrom \n\t[Topics] \n\tleft join \n\t\t[Ca" +
-            "tegories] \n\ton \n\t\t[Topics].[catID] = [Categories].[id]\nwhere\n\t[active] = \'TRUE\'")]
+        [global::System.Configuration.DefaultSettingValueAttribute("select \r\n\t[category], \r\n\t[topic], \r\n\t[mandatory] \r\nfrom \r\n\t[Topics] \r\n\tleft join " +
+            "\r\n\t\t[Categories] \r\n\ton \r\n\t\t[Topics].[catID] = [Categories].[id]\r\nwhere\r\n\t[active" +
+            "] = \'TRUE\'")]
         public string _CategoriesWithTopics {
             get {
                 return ((string)(this["_CategoriesWithTopics"]));
@@ -142,9 +143,10 @@ values (
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select\n\tcount([techID]) [Total]\nfrom\n\t[Calls]\n\tleft join \n\t\t[Technicians]\n\ton\n\t\t[" +
-            "Calls].[techID] = [Technicians].[id]\nwhere\n\t[date] > dbo.StartOfDay() and\n\tlower" +
-            "([Technicians].[technician]) = lower(@TECH) and\n\tlower([type]) = \'in\'\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("select\r\n\tcount([techID]) [Total]\r\nfrom\r\n\t[Calls]\r\n\tleft join \r\n\t\t[Technicians]\r\n\t" +
+            "on\r\n\t\t[Calls].[techID] = [Technicians].[id]\r\nwhere\r\n\t[date] > dbo.StartOfDay() a" +
+            "nd\r\n\tlower([Technicians].[technician]) = lower(@TECH) and\r\n\tlower([type]) = \'in\'" +
+            "\r\n")]
         public string _UserCallCount {
             get {
                 return ((string)(this["_UserCallCount"]));
@@ -180,9 +182,9 @@ where
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Insert into [Topics] ([topic], [catID], [active], [mandatory])\nvalues\n\t(@topic,\n\t" +
-            "(select [Categories].[id] from [Categories] where [category] = @category),\n\t\'tru" +
-            "e\',\n\t@mandatory)\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Insert into [Topics] ([topic], [catID], [active], [mandatory])\r\nvalues\r\n\t(@topic," +
+            "\r\n\t(select [Categories].[id] from [Categories] where [category] = @category),\r\n\t" +
+            "\'true\',\r\n\t@mandatory)\r\n")]
         public string _AddCallTopic {
             get {
                 return ((string)(this["_AddCallTopic"]));
@@ -194,7 +196,7 @@ where
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\r\nSELECT \r\n\t[store]\r\nFROM \r\n\t[Stores]\r\nWHERE \r\n\t[phone] LIKE @phone")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\nSELECT \r\n\t[store]\r\nFROM \r\n\t[Phones]\r\nWHERE \r\n\t[phone] LIKE @phone")]
         public string _StoreByPhone {
             get {
                 return ((string)(this["_StoreByPhone"]));
@@ -206,9 +208,9 @@ where
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select\n\tcount([techID]) [Total]\nfrom\n\t[Calls]\n\tleft join \n\t\t[Technicians]\n\ton\n\t\t[" +
-            "Calls].[techID] = [Technicians].[id]\nwhere\n\t[date] > dbo.StartOfDay() and\n\tlower" +
-            "([type]) = \'in\'")]
+        [global::System.Configuration.DefaultSettingValueAttribute("select\r\n\tcount([techID]) [Total]\r\nfrom\r\n\t[Calls]\r\n\tleft join \r\n\t\t[Technicians]\r\n\t" +
+            "on\r\n\t\t[Calls].[techID] = [Technicians].[id]\r\nwhere\r\n\t[date] > dbo.StartOfDay() a" +
+            "nd\r\n\tlower([type]) = \'in\'")]
         public string _TeamCallCount {
             get {
                 return ((string)(this["_TeamCallCount"]));
@@ -220,10 +222,10 @@ where
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DECLARE @STORE INT\nDECLARE @TYPE VARCHAR(50)\nDECLARE @DATE1 DATE\nDECLARE @DATE2 D" +
-            "ATE\nDECLARE @CATEGORY VARCHAR(50)\nDECLARE @TOPIC VARCHAR(50)\nDECLARE @TECH VARCH" +
-            "AR(50)\nDECLARE @DETAILS VARCHAR(2000)\nDECLARE @TRAX BIT\nDECLARE @URL VARCHAR(200" +
-            "0)\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DECLARE @STORE INT\r\nDECLARE @TYPE VARCHAR(50)\r\nDECLARE @DATE1 DATE\r\nDECLARE @DATE" +
+            "2 DATE\r\nDECLARE @CATEGORY VARCHAR(50)\r\nDECLARE @TOPIC VARCHAR(50)\r\nDECLARE @TECH" +
+            " VARCHAR(50)\r\nDECLARE @DETAILS VARCHAR(2000)\r\nDECLARE @TRAX BIT\r\nDECLARE @URL VA" +
+            "RCHAR(2000)\r\n")]
         public string _HistoryDeclare {
             get {
                 return ((string)(this["_HistoryDeclare"]));
@@ -336,43 +338,8 @@ DESC
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT TOP 1
-	[address],
-	[city],
-	[dm],
-	[email],
-	[manager],
-	[MP],
-	[name],
-	[P].phone,
-	[state],
-	[type],
-	[TZ],
-	[zip],
-	[pos],
-	[pos_gate],
-	[sensor],
-	[sensor_gate],
-	[mim],
-	[mim_gate],
-	[income],
-	[rank],
-	[BAMS],
-	[SVS],
-	[TID1],
-	[TID2],
-	[TID3],
-	[TID4]
-
-FROM
-	[Stores] as S
-	inner join 
-		[Phones] as P
-	on [S].[store] = [P].[store]
-WHERE
-	[S].[store] = @store
-ORDER BY
-	[P].[line]")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SELECT TOP 1\r\n\t*\r\nFROM\r\n\t[Stores] as S\r\n\tinner join \r\n\t\t[Phones] as P\r\n\ton [S].[s" +
+            "tore] = [P].[store]\r\nWHERE\r\n\t[S].[store] = @store\r\nORDER BY\r\n\t[P].[line]")]
         public string _StoreInfo {
             get {
                 return ((string)(this["_StoreInfo"]));
@@ -428,6 +395,7 @@ DESC
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"DECLARE @TZ VARCHAR(50)
 DECLARE @MP VARCHAR(50)
+DECLARE @MANAGER VARCHAR(50)
 DECLARE @DM VARCHAR(50)
 DECLARE @NAME VARCHAR(50)
 DECLARE @TYPE VARCHAR(50)
@@ -436,7 +404,7 @@ DECLARE @CITY VARCHAR(50)
 DECLARE @STATE VARCHAR(50)
 DECLARE @ZIP VARCHAR(50)
 DECLARE @PHONE VARCHAR(50)
-")]
+DECLARE @IP VARCHAR(50)")]
         public string _StoreSearchDeclare {
             get {
                 return ((string)(this["_StoreSearchDeclare"]));
@@ -448,9 +416,11 @@ DECLARE @PHONE VARCHAR(50)
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT
-	[store],
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+SELECT
+	[Stores].[store],
 	[TZ],
+	[manager],
 	[dm],
 	[name],
 	[type],
@@ -463,9 +433,11 @@ DECLARE @PHONE VARCHAR(50)
 	[income]
 FROM
 	[Stores]
+	inner join [Phones] on [Phones].store=[Stores].store
 WHERE
 	(@TZ IS NULL OR (LOWER([TZ]) = LOWER(@TZ))) AND
 	(@MP IS NULL OR ([MP] = @MP)) AND
+	(@MANAGER IS NULL OR (LOWER([manager]) LIKE '%'+LOWER(@MANAGER)+'%')) AND
 	(@DM IS NULL OR (LOWER([dm]) LIKE '%'+LOWER(@DM)+'%')) AND
 	(@NAME IS NULL OR (LOWER([name]) LIKE '%'+LOWER(@NAME)+'%')) AND
 	(@TYPE IS NULL OR (LOWER([type]) LIKE '%'+LOWER(@TYPE)+'%')) AND
@@ -473,8 +445,19 @@ WHERE
 	(@CITY IS NULL OR (LOWER([city]) LIKE '%'+LOWER(@CITY)+'%')) AND
 	(@STATE IS NULL OR (LOWER([state]) = LOWER(@STATE))) AND
 	(@ZIP IS NULL OR (LOWER([zip]) = LOWER(@ZIP))) AND
-	(@PHONE IS NULL OR ([phone] = dbo.RemoveNonNumericCharacters
-(@PHONE)))")]
+	(@PHONE IS NULL OR ([phone] = dbo.RemoveNonNumericCharacters(@PHONE))) AND
+	(
+		@IP IS NULL OR 
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[lan1]) LIKE '%'+@IP+'%' OR 
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[lan2]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[lan3]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[lan4]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[gate1]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[gate2]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[gate3]) LIKE '%'+@IP+'%' OR
+		CONCAT([1st],'.',[2nd],'.',[3rd],'.',[gate4]) LIKE '%'+@IP+'%'
+	)
+")]
         public string _StoreSearch {
             get {
                 return ((string)(this["_StoreSearch"]));

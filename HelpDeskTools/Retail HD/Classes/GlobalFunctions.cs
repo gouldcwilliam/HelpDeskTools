@@ -274,7 +274,8 @@ namespace Retail_HD
 		
 		public static bool b_FillStoreInfo()
 		{
-			try
+            bool r1 = false;
+            try
 			{
 				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectStore(Convert.ToInt32(Info.store)).Rows)
 				{
@@ -286,18 +287,25 @@ namespace Retail_HD
 					Info.manager = dr["manager"].ToString();
 					Info.MP = dr["MP"].ToString();
 					Info.name = dr["name"].ToString();
-					Info.phone = dr["phone"].ToString();
 					Info.state = dr["state"].ToString();
 					Info.type = dr["type"].ToString();
 					Info.TZ = dr["TZ"].ToString();
 					Info.zip = dr["zip"].ToString();
 
-					Info.pos = dr["pos"].ToString();
-					Info.pos_gate = dr["pos_gate"].ToString();
-					Info.sensor = dr["sensor"].ToString();
-					Info.sensor_gate = dr["sensor_gate"].ToString();
-					Info.mim = dr["mim"].ToString();
-					Info.mim_gate = dr["mim_gate"].ToString();
+                    Info.first = dr["1st"].ToString();
+                    Info.second = dr["2nd"].ToString();
+                    Info.third = dr["3rd"].ToString();
+
+                    Info.lan1 = dr["lan1"].ToString();
+                    Info.lan2 = dr["lan2"].ToString();
+                    Info.lan3 = dr["lan3"].ToString();
+                    Info.lan4 = dr["lan4"].ToString();
+
+                    Info.gate1 = dr["gate1"].ToString();
+                    Info.gate2 = dr["gate2"].ToString();
+                    Info.gate3 = dr["gate3"].ToString();
+                    Info.gate4 = dr["gate4"].ToString();
+
 					Info.income = dr["income"].ToString();
 					Info.rank = dr["rank"].ToString();
 
@@ -308,9 +316,18 @@ namespace Retail_HD
 					Info.TID3 = dr["TID3"].ToString();
 					Info.TID4 = dr["TID4"].ToString();
 				}
-				return true;
+				r1 = true;
 			}
 			catch (Exception ex) { Console.WriteLine(ex.Message + ex.InnerException); return false; }
+            try
+            {
+                List<SqlParameter> p = new List<SqlParameter>();
+                p.Add(new SqlParameter("@store", Info.store));
+                string sql = "Select * from [Phones] where [store]=@store and [line]='1'";
+                Info.phone = Shared.SQL.Select(sql, p).Rows[0]["phone"].ToString();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return r1;
 		}
 
 		

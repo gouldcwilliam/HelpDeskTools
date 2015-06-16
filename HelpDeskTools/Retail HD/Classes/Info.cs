@@ -9,12 +9,45 @@ namespace Retail_HD
 	public static class Info
 	{
 		/*IP*/
-		public static string mim { get; set; }
-		public static string mim_gate { get; set; }
-		public static string pos { get; set; }
-		public static string pos_gate { get; set; }
-		public static string sensor { get; set; }
-		public static string sensor_gate { get; set; }
+        public static string first { get; set; }
+        public static string second { get; set; }
+        public static string third { get; set; }
+        public static string lan1 { get; set; }
+        public static string gate1 { get; set; }
+        public static string lan2 { get; set; }
+        public static string gate2 { get; set; }
+        public static string lan3 { get; set; }
+        public static string gate3 { get; set; }
+        public static string lan4 { get; set; }
+        public static string gate4 { get; set; }
+
+		public static string mim 
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, lan4); }
+        }
+        public static string mim_gate
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, gate4); }
+        }
+        public static string pos
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, lan1); }
+        }
+        public static string pos_gate
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, gate1); }
+        }
+
+        public static string sensor
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, lan2); }
+        }
+
+        public static string sensor_gate
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, gate2); }
+        }
+
 
 		/*Global*/
 		public static int store { get; set; }
@@ -69,12 +102,17 @@ namespace Retail_HD
 
 		public static void Clear()	
 		{
-			pos = string.Empty;
-			pos_gate = string.Empty;
-			sensor = string.Empty;
-			sensor_gate = string.Empty;
-			mim = string.Empty;
-			mim_gate = string.Empty;
+            first = string.Empty;
+            second = string.Empty;
+            third = string.Empty;
+            lan1 = string.Empty;
+            lan2 = string.Empty;
+            lan3 = string.Empty;
+            lan4 = string.Empty;
+            gate1 = string.Empty;
+            gate2 = string.Empty;
+            gate3 = string.Empty;
+            gate4 = string.Empty;
 
 			store = 9999;
 			computers.Clear();
