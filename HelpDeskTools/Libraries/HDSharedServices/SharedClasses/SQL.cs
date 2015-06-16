@@ -574,7 +574,7 @@ namespace Shared
 
 			if (tz != string.Empty) { setStatement += string.Format("SET @TZ = '{0}'\n", tz); }
 			if (mp != string.Empty) { setStatement += string.Format("SET @MP = '{0}'\n", mp); }
-            if (manager != string.Empty) { setStatement += string.Format("SET @MANGER = '{0}'\n", manager); }
+            if (manager != string.Empty) { setStatement += string.Format("SET @MANAGER = '{0}'\n", manager); }
 			if (dm != string.Empty) { setStatement += string.Format("SET @DM = '{0}'\n", dm); }
 			if (name != string.Empty) { setStatement += string.Format("SET @NAME = '{0}\n", name); }
 			if (type != string.Empty) { setStatement += string.Format("SET @TYPE = '{0}'\n", type); }
