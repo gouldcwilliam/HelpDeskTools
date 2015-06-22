@@ -1035,11 +1035,16 @@ namespace Retail_HD
 		{
 			txtTID4.SelectAll();
 		}
+        private void txtRM_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtRM.SelectAll();
+        }
 
 		// Mouse double clicks
 		private void storeInfo_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
-			if (Info.infoFilled)
+            DataTable dt = Shared.SQL.dt_SelectStore(Info.store);
+			if (dt.Rows.Count == 1)
 			{
 				Forms.EditStoreInfo editStoreInfo = new Forms.EditStoreInfo();
 				editStoreInfo.ShowDialog();
@@ -1644,6 +1649,7 @@ namespace Retail_HD
 				txtAddress.Text = Info.address;
 				txtCity.Text = Info.city;
 				txtDM.Text = Info.dm;
+                txtRM.Text = Info.rm;
 				txtEmail.Text = Info.email;
 				txtIP.Text = Info.pos;
 				txtManager.Text = Info.manager;

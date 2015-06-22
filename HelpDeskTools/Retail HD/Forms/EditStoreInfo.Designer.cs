@@ -30,8 +30,6 @@
 		{
             this.txtName = new System.Windows.Forms.TextBox();
             this.gbName = new System.Windows.Forms.GroupBox();
-            this.txtIP = new System.Windows.Forms.TextBox();
-            this.gbIP = new System.Windows.Forms.GroupBox();
             this.txtManager = new System.Windows.Forms.TextBox();
             this.gbManager = new System.Windows.Forms.GroupBox();
             this.txtZip = new System.Windows.Forms.TextBox();
@@ -56,8 +54,9 @@
             this.grpPhone = new System.Windows.Forms.GroupBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtRM = new System.Windows.Forms.TextBox();
             this.gbName.SuspendLayout();
-            this.gbIP.SuspendLayout();
             this.gbManager.SuspendLayout();
             this.gbZip.SuspendLayout();
             this.gbState.SuspendLayout();
@@ -69,6 +68,7 @@
             this.gbTZ.SuspendLayout();
             this.gbEmail.SuspendLayout();
             this.grpPhone.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtName
@@ -78,7 +78,7 @@
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtName.Location = new System.Drawing.Point(6, 14);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(135, 13);
+            this.txtName.Size = new System.Drawing.Size(133, 13);
             this.txtName.TabIndex = 0;
             this.txtName.TabStop = false;
             this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -88,37 +88,12 @@
             // 
             this.gbName.Controls.Add(this.txtName);
             this.gbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbName.Location = new System.Drawing.Point(76, 75);
+            this.gbName.Location = new System.Drawing.Point(186, 45);
             this.gbName.Name = "gbName";
-            this.gbName.Size = new System.Drawing.Size(147, 30);
+            this.gbName.Size = new System.Drawing.Size(145, 30);
             this.gbName.TabIndex = 8;
             this.gbName.TabStop = false;
             this.gbName.Text = "Name";
-            // 
-            // txtIP
-            // 
-            this.txtIP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIP.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIP.Location = new System.Drawing.Point(6, 14);
-            this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(133, 13);
-            this.txtIP.TabIndex = 0;
-            this.txtIP.TabStop = false;
-            this.txtIP.Text = "___.___.___.___";
-            this.txtIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtIP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
-            // 
-            // gbIP
-            // 
-            this.gbIP.Controls.Add(this.txtIP);
-            this.gbIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIP.Location = new System.Drawing.Point(186, 45);
-            this.gbIP.Name = "gbIP";
-            this.gbIP.Size = new System.Drawing.Size(145, 30);
-            this.gbIP.TabIndex = 5;
-            this.gbIP.TabStop = false;
-            this.gbIP.Text = "IP Reg1";
             // 
             // txtManager
             // 
@@ -213,7 +188,7 @@
             this.gbDM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDM.Location = new System.Drawing.Point(12, 75);
             this.gbDM.Name = "gbDM";
-            this.gbDM.Size = new System.Drawing.Size(64, 30);
+            this.gbDM.Size = new System.Drawing.Size(103, 30);
             this.gbDM.TabIndex = 13;
             this.gbDM.TabStop = false;
             this.gbDM.Text = "DM";
@@ -225,7 +200,7 @@
             this.txtDM.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDM.Location = new System.Drawing.Point(6, 14);
             this.txtDM.Name = "txtDM";
-            this.txtDM.Size = new System.Drawing.Size(52, 13);
+            this.txtDM.Size = new System.Drawing.Size(91, 13);
             this.txtDM.TabIndex = 26;
             this.txtDM.TabStop = false;
             this.txtDM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -272,7 +247,7 @@
             this.txtType.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtType.Location = new System.Drawing.Point(6, 14);
             this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(120, 13);
+            this.txtType.Size = new System.Drawing.Size(91, 13);
             this.txtType.TabIndex = 0;
             this.txtType.TabStop = false;
             this.txtType.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -282,9 +257,9 @@
             // 
             this.gbType.Controls.Add(this.txtType);
             this.gbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbType.Location = new System.Drawing.Point(223, 75);
+            this.gbType.Location = new System.Drawing.Point(252, 75);
             this.gbType.Name = "gbType";
-            this.gbType.Size = new System.Drawing.Size(132, 30);
+            this.gbType.Size = new System.Drawing.Size(103, 30);
             this.gbType.TabIndex = 9;
             this.gbType.TabStop = false;
             this.gbType.Text = "Type";
@@ -411,17 +386,40 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtRM);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(115, 75);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(137, 30);
+            this.groupBox2.TabIndex = 27;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "RM";
+            // 
+            // txtRM
+            // 
+            this.txtRM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRM.Location = new System.Drawing.Point(6, 14);
+            this.txtRM.Name = "txtRM";
+            this.txtRM.Size = new System.Drawing.Size(125, 13);
+            this.txtRM.TabIndex = 26;
+            this.txtRM.TabStop = false;
+            this.txtRM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // EditStoreInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(516, 165);
+            this.ClientSize = new System.Drawing.Size(516, 159);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbDM);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.gbName);
-            this.Controls.Add(this.gbIP);
             this.Controls.Add(this.gbManager);
             this.Controls.Add(this.gbZip);
             this.Controls.Add(this.gbState);
@@ -441,8 +439,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.gbName.ResumeLayout(false);
             this.gbName.PerformLayout();
-            this.gbIP.ResumeLayout(false);
-            this.gbIP.PerformLayout();
             this.gbManager.ResumeLayout(false);
             this.gbManager.PerformLayout();
             this.gbZip.ResumeLayout(false);
@@ -465,6 +461,8 @@
             this.gbEmail.PerformLayout();
             this.grpPhone.ResumeLayout(false);
             this.grpPhone.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -472,9 +470,7 @@
 		#endregion
 
 		public System.Windows.Forms.TextBox txtName;
-		public System.Windows.Forms.GroupBox gbName;
-		public System.Windows.Forms.TextBox txtIP;
-		public System.Windows.Forms.GroupBox gbIP;
+        public System.Windows.Forms.GroupBox gbName;
 		public System.Windows.Forms.TextBox txtManager;
 		public System.Windows.Forms.GroupBox gbManager;
 		public System.Windows.Forms.TextBox txtZip;
@@ -501,6 +497,8 @@
 		public System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.TextBox txtDM;
+        public System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.TextBox txtRM;
 
 	}
 }

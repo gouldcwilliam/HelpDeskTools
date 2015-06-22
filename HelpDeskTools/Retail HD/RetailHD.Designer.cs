@@ -84,6 +84,7 @@
             this.grpPhone = new System.Windows.Forms.GroupBox();
             this.btnDelayed = new System.Windows.Forms.Button();
             this.ts_Top = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.ts_Top_tsb_Logout = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ts_Top_tsb_ChangeState = new System.Windows.Forms.ToolStripButton();
@@ -91,9 +92,12 @@
             this.ts_Top_tsb_CallStore = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ts_Top_tsb_Settings = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.ts_Top_tsb_TeamStatus = new System.Windows.Forms.ToolStripButton();
             this.ts_Top_tsl_CurrentCall = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.ts_Top_tsb_StoreSearch = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.ts_Top_tsb_HistorySearch = new System.Windows.Forms.ToolStripButton();
             this.ts_Top_tsl_Override = new System.Windows.Forms.ToolStripLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -125,10 +129,8 @@
             this.ms_Top = new System.Windows.Forms.MenuStrip();
             this.ServicesUC = new Retail_HD.UCs.ServicesControl();
             this.PingUC = new Retail_HD.UCs.PingControl();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtRM = new System.Windows.Forms.TextBox();
             this.grpStore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
             this.ss_Bottom_.SuspendLayout();
@@ -155,6 +157,7 @@
             this.gbTID3.SuspendLayout();
             this.gbTID4.SuspendLayout();
             this.ms_Top.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpStore
@@ -232,9 +235,9 @@
             this.ss_Bottom_ssl_UserCalls,
             this.toolStripStatusLabel6,
             this.ss_Bottom_ssl_TeamCalls});
-            this.ss_Bottom_.Location = new System.Drawing.Point(339, 450);
+            this.ss_Bottom_.Location = new System.Drawing.Point(308, 450);
             this.ss_Bottom_.Name = "ss_Bottom_";
-            this.ss_Bottom_.Size = new System.Drawing.Size(502, 22);
+            this.ss_Bottom_.Size = new System.Drawing.Size(533, 22);
             this.ss_Bottom_.SizingGrip = false;
             this.ss_Bottom_.TabIndex = 8;
             this.ss_Bottom_.Text = "statusStrip1";
@@ -672,7 +675,7 @@
             this.gbAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAddress.Location = new System.Drawing.Point(490, 50);
             this.gbAddress.Name = "gbAddress";
-            this.gbAddress.Size = new System.Drawing.Size(227, 30);
+            this.gbAddress.Size = new System.Drawing.Size(208, 30);
             this.gbAddress.TabIndex = 54;
             this.gbAddress.TabStop = false;
             this.gbAddress.Text = "Address";
@@ -685,7 +688,7 @@
             this.txtAddress.Location = new System.Drawing.Point(6, 14);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ReadOnly = true;
-            this.txtAddress.Size = new System.Drawing.Size(215, 13);
+            this.txtAddress.Size = new System.Drawing.Size(196, 13);
             this.txtAddress.TabIndex = 0;
             this.txtAddress.TabStop = false;
             this.txtAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -874,6 +877,11 @@
             this.ts_Top.TabIndex = 69;
             this.ts_Top.Text = "toolStrip1";
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 22);
+            // 
             // ts_Top_tsb_Logout
             // 
             this.ts_Top_tsb_Logout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -933,6 +941,11 @@
             this.ts_Top_tsb_Settings.ToolTipText = "Change Cisco Phone Settings";
             this.ts_Top_tsb_Settings.Click += new System.EventHandler(this.Settings_Click);
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 22);
+            // 
             // ts_Top_tsb_TeamStatus
             // 
             this.ts_Top_tsb_TeamStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -953,6 +966,11 @@
             this.ts_Top_tsl_CurrentCall.Text = "On a call with: Store 6066";
             this.ts_Top_tsl_CurrentCall.Visible = false;
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 22);
+            // 
             // ts_Top_tsb_StoreSearch
             // 
             this.ts_Top_tsb_StoreSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -963,6 +981,11 @@
             this.ts_Top_tsb_StoreSearch.Text = "toolStripButton1";
             this.ts_Top_tsb_StoreSearch.ToolTipText = "Search For a Store";
             this.ts_Top_tsb_StoreSearch.Click += new System.EventHandler(this.StoreSearch_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 22);
             // 
             // ts_Top_tsb_HistorySearch
             // 
@@ -987,9 +1010,9 @@
             // 
             this.groupBox1.Controls.Add(this.txtIncome);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(717, 50);
+            this.groupBox1.Location = new System.Drawing.Point(698, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(124, 30);
+            this.groupBox1.Size = new System.Drawing.Size(93, 30);
             this.groupBox1.TabIndex = 70;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Income";
@@ -1002,18 +1025,20 @@
             this.txtIncome.Location = new System.Drawing.Point(6, 14);
             this.txtIncome.Name = "txtIncome";
             this.txtIncome.ReadOnly = true;
-            this.txtIncome.Size = new System.Drawing.Size(112, 13);
+            this.txtIncome.Size = new System.Drawing.Size(81, 13);
             this.txtIncome.TabIndex = 0;
             this.txtIncome.TabStop = false;
             this.txtIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtIncome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtIncome.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtRank);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(717, 83);
+            this.groupBox2.Location = new System.Drawing.Point(791, 50);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(124, 30);
+            this.groupBox2.Size = new System.Drawing.Size(50, 30);
             this.groupBox2.TabIndex = 71;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rank";
@@ -1026,10 +1051,12 @@
             this.txtRank.Location = new System.Drawing.Point(6, 14);
             this.txtRank.Name = "txtRank";
             this.txtRank.ReadOnly = true;
-            this.txtRank.Size = new System.Drawing.Size(112, 13);
+            this.txtRank.Size = new System.Drawing.Size(38, 13);
             this.txtRank.TabIndex = 0;
             this.txtRank.TabStop = false;
             this.txtRank.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtRank.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // gbSVS
             // 
@@ -1055,6 +1082,8 @@
             this.txtSVS.TabStop = false;
             this.txtSVS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSVS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtSVS_MouseClick);
+            this.txtSVS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtSVS.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // gbBAMS
             // 
@@ -1080,6 +1109,8 @@
             this.txtBAMS.TabStop = false;
             this.txtBAMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBAMS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtBAMS_MouseClick);
+            this.txtBAMS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtBAMS.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // gbTID1
             // 
@@ -1105,6 +1136,8 @@
             this.txtTID1.TabStop = false;
             this.txtTID1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTID1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTID1_MouseClick);
+            this.txtTID1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtTID1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // gbTID2
             // 
@@ -1130,6 +1163,8 @@
             this.txtTID2.TabStop = false;
             this.txtTID2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTID2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTID2_MouseClick);
+            this.txtTID2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtTID2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // gbTID3
             // 
@@ -1155,6 +1190,8 @@
             this.txtTID3.TabStop = false;
             this.txtTID3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTID3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTID3_MouseClick);
+            this.txtTID3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtTID3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // gbTID4
             // 
@@ -1180,6 +1217,8 @@
             this.txtTID4.TabStop = false;
             this.txtTID4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTID4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTID4_MouseClick);
+            this.txtTID4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtTID4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // bw
             // 
@@ -1306,38 +1345,46 @@
             this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
             this.PingUC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
             // 
-            // toolStripSeparator4
+            // groupBox3
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 22);
+            this.groupBox3.Controls.Add(this.txtRM);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(717, 83);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(124, 30);
+            this.groupBox3.TabIndex = 72;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "RM";
             // 
-            // toolStripSeparator5
+            // txtRM
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 22);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 22);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 22);
+            this.txtRM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRM.Location = new System.Drawing.Point(6, 14);
+            this.txtRM.Name = "txtRM";
+            this.txtRM.ReadOnly = true;
+            this.txtRM.Size = new System.Drawing.Size(112, 13);
+            this.txtRM.TabIndex = 0;
+            this.txtRM.TabStop = false;
+            this.txtRM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRM.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtRM_MouseClick);
+            this.txtRM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.txtRM.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
             // RetailHD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(856, 473);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.gbTID4);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbTID3);
             this.Controls.Add(this.gbTID2);
             this.Controls.Add(this.gbTID1);
             this.Controls.Add(this.gbBAMS);
             this.Controls.Add(this.gbSVS);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ts_Top);
             this.Controls.Add(this.btnDelayed);
@@ -1432,6 +1479,8 @@
             this.gbTID4.PerformLayout();
             this.ms_Top.ResumeLayout(false);
             this.ms_Top.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1539,6 +1588,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        public System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.TextBox txtRM;
     }
 }
 

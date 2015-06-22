@@ -757,28 +757,25 @@ namespace Shared
 
 		public static bool b_updateStoreInfo(
 			string Store,
-			string Phone,
 			string Manager,
 			string MPID,
 			string Address,
 			string Email,
-			string IPreg1,
 			string City,
 			string DM,
 			string Name,
 			string Type,
 			string State,
 			string Zip,
-			string TZ)
+			string TZ,
+            string RM)
 		{
 			List<SqlParameter> parameters = new List<SqlParameter>();
 			parameters.Add(new SqlParameter("@store",Store));
-			parameters.Add(new SqlParameter("@phone",Phone));
 			parameters.Add(new SqlParameter("@manager",Manager));
 			parameters.Add(new SqlParameter("@mpid",MPID));
 			parameters.Add(new SqlParameter("@address",Address));
 			parameters.Add(new SqlParameter("@email",Email));
-			parameters.Add(new SqlParameter("@pos",IPreg1));
 			parameters.Add(new SqlParameter("@city",City));
 			parameters.Add(new SqlParameter("@dm", DM));
 			parameters.Add(new SqlParameter("@name",Name));
@@ -786,11 +783,22 @@ namespace Shared
 			parameters.Add(new SqlParameter("@state",State));
 			parameters.Add(new SqlParameter("@zip", Zip));
 			parameters.Add(new SqlParameter("@tz",TZ));
+            parameters.Add(new SqlParameter("@rm", RM));
 
-			string updateSQL = "UPDATE [STORES] SET [phone] = @phone,[manager] = @manager,[MP] = @mpid,[address] = @address,[email] = @email,[pos] = @pos,[city] = @city,[dm] = @dm,[name] = @name,[type] = @type,[state] = @state,[zip] = @zip,[TZ] = @tz WHERE [store] = @store";
-			return Update(updateSQL, parameters);
+			string updateSQL = "UPDATE [STORES] SET [manager] = @manager,[MP] = @mpid,[address] = @address,[email] = @email,[city] = @city,[dm] = @dm, [RM] = @rm, [name] = @name,[type] = @type,[state] = @state,[zip] = @zip,[TZ] = @tz WHERE [store] = @store";
+            return Update(updateSQL, parameters);
+            
 
 		}
+        public static bool b_UpdatePhone(string phone,string store)
+        {
+            List<SqlParameter>parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@phone",phone));
+            parameters.Add(new SqlParameter("@store",store));
+
+            string sql = "UPDATE [Phones] set [phone]=@phone where [store]=@store and [line]='1'";
+            return Update(sql, parameters);
+        }
 
 		/// <summary>
 		/// Inserts Text area of info form into sql

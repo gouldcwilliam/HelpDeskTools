@@ -59,6 +59,7 @@ namespace Retail_HD
 		public static string address{ get; set; }
 		public static string city{ get; set; }
 		public static string dm { get; set; }
+        public static string rm { get; set; }
 		public static string email{ get; set; }
 		public static string manager{ get; set; }
 		public static string MP{ get; set; }
@@ -77,28 +78,6 @@ namespace Retail_HD
 		public static string TID3 { get; set; }
 		public static string TID4 { get; set; }
 
-		public static bool infoFilled
-		{
-			get
-			{
-				return (
-					address != string.Empty ||
-					city != string.Empty ||
-					dm != string.Empty ||
-					email != string.Empty ||
-					manager != string.Empty ||
-					MP != string.Empty ||
-					name != string.Empty ||
-					phone != string.Empty ||
-					state != string.Empty ||
-					type != string.Empty ||
-					TZ != string.Empty ||
-					zip != string.Empty ||
-					income != string.Empty ||
-					rank != string.Empty
-					);
-			}
-		}
 
 		public static void Clear()	
 		{

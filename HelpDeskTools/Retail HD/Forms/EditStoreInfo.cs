@@ -24,7 +24,6 @@ namespace Retail_HD.Forms
 			txtMpId.Text = Info.MP;
 			txtAddress.Text = Info.address;
 			txtEmail.Text = Info.email;
-			txtIP.Text = Info.pos;
 			txtCity.Text = Info.city;
 			txtDM.Text = Info.dm;
 			txtName.Text = Info.name;
@@ -32,14 +31,15 @@ namespace Retail_HD.Forms
 			txtState.Text = Info.state;
 			txtZip.Text = Info.zip;
 			txtTZ.Text = Info.TZ;
+            txtRM.Text = Info.rm;
 
 			Text = "Edit Info | Store: " + Info.store;
 
 			txtAddress.TextChanged += Form_TextChanged;
 			txtCity.TextChanged += Form_TextChanged;
 			txtDM.TextChanged += Form_TextChanged;
+            txtRM.TextChanged += Form_TextChanged;
 			txtEmail.TextChanged += Form_TextChanged;
-			txtIP.TextChanged += Form_TextChanged;
 			txtManager.TextChanged += Form_TextChanged;
 			txtMpId.TextChanged += Form_TextChanged;
 			txtName.TextChanged += Form_TextChanged;
@@ -57,11 +57,14 @@ namespace Retail_HD.Forms
 
 		private void btnOK_Click(object sender, EventArgs e)
 		{
-			if (Shared.SQL.b_updateStoreInfo(Info.store.ToString(), txtPhone.Text, txtManager.Text, txtMpId.Text, txtAddress.Text, txtEmail.Text,
-				txtIP.Text, txtCity.Text, txtDM.Text, txtName.Text, txtType.Text, txtState.Text, txtZip.Text, txtTZ.Text))
+			if (Shared.SQL.b_updateStoreInfo(Info.store.ToString(), txtManager.Text, txtMpId.Text, txtAddress.Text, txtEmail.Text,
+				txtCity.Text, txtDM.Text, txtName.Text, txtType.Text, txtState.Text, txtZip.Text, txtTZ.Text, txtRM.Text))
 			{
-				DialogResult = System.Windows.Forms.DialogResult.OK;
-				Close();
+                if (Shared.SQL.b_UpdatePhone(txtPhone.Text, Info.store.ToString()))
+                {
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                    Close();
+                }
 			}
 			DialogResult = System.Windows.Forms.DialogResult.Cancel;
 		}
