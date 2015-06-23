@@ -1616,6 +1616,7 @@ namespace Retail_HD
 			txtAddress.Text = string.Empty;
 			txtCity.Text = string.Empty;
 			txtDM.Text = string.Empty;
+            txtRM.Text = string.Empty;
 			txtEmail.Text = string.Empty;
 			txtIP.Text = string.Empty;
 			txtManager.Text = string.Empty;

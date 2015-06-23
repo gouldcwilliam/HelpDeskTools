@@ -280,9 +280,9 @@ namespace Retail_HD
 				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectStore(Convert.ToInt32(Info.store)).Rows)
 				{
 					Info.address = dr["address"].ToString();
-					Console.WriteLine(Info.address);
 					Info.city = dr["city"].ToString();
 					Info.dm = dr["dm"].ToString();
+                    Info.rm = dr["rm"].ToString();
 					Info.email = dr["email"].ToString();
 					Info.manager = dr["manager"].ToString();
 					Info.MP = dr["MP"].ToString();
