@@ -101,7 +101,7 @@ namespace Retail_HD.Forms
 		// Perform query with the user input
 		private void Search(object sender, EventArgs e)
 		{
-			int limit = 1000;
+			int limit = 10000;
 			if(txtResultLimit.Text != string.Empty &&  Shared.Functions.isTxtBoxNumeric(txtResultLimit, out limit))
 			{
 				_resultLimit = limit;
@@ -116,7 +116,7 @@ namespace Retail_HD.Forms
 			}
 			else
 			{
-				dgvResults.DataSource = Shared.SQL.dt_HistorySearch(txtStore.Text, dtpDate1.Checked, dtpDate1.Value, cmbType.Text, cmbCategory.Text, cmbTopic.Text, cmbTech.Text, txtDetails.Text, ckbTrax.Checked, txtURL.Text, _resultLimit);
+				dgvResults.DataSource = Shared.SQL.dt_HistorySearch(txtStore.Text, dtpDate1.Checked, dtpDate1.Value, cmbType.Text, cmbCategory.Text, cmbTopic.Text, cmbTech.Text.Trim(), txtDetails.Text, ckbTrax.Checked, txtURL.Text, _resultLimit);
 			}
 			if (dgvResults.Rows.Count > 0)
 			{

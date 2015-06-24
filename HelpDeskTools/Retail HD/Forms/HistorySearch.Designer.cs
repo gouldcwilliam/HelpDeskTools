@@ -30,6 +30,8 @@
 		{
             this.dgvResults = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtResultLimit = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
@@ -53,10 +55,9 @@
             this.txtStore = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.txtTotal = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -66,7 +67,6 @@
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvResults
@@ -113,12 +113,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search Fields";
             // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.txtTotal);
+            this.groupBox11.Location = new System.Drawing.Point(693, 116);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(135, 43);
+            this.groupBox11.TabIndex = 13;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Total Results";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotal.Location = new System.Drawing.Point(31, 16);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(60, 20);
+            this.txtTotal.TabIndex = 1;
+            this.txtTotal.Text = "0";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtResultLimit);
-            this.groupBox2.Location = new System.Drawing.Point(518, 115);
+            this.groupBox2.Location = new System.Drawing.Point(805, 70);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(131, 43);
+            this.groupBox2.Size = new System.Drawing.Size(131, 40);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Result Limit";
@@ -169,9 +191,9 @@
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.txtURL);
-            this.groupBox10.Location = new System.Drawing.Point(518, 70);
+            this.groupBox10.Location = new System.Drawing.Point(491, 70);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(418, 40);
+            this.groupBox10.Size = new System.Drawing.Size(308, 40);
             this.groupBox10.TabIndex = 8;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Trax URL";
@@ -183,7 +205,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtURL.Location = new System.Drawing.Point(6, 17);
             this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(406, 20);
+            this.txtURL.Size = new System.Drawing.Size(296, 20);
             this.txtURL.TabIndex = 0;
             // 
             // groupBox9
@@ -191,7 +213,7 @@
             this.groupBox9.Controls.Add(this.txtDetails);
             this.groupBox9.Location = new System.Drawing.Point(124, 70);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(327, 89);
+            this.groupBox9.Size = new System.Drawing.Size(299, 40);
             this.groupBox9.TabIndex = 6;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Details";
@@ -202,15 +224,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDetails.Location = new System.Drawing.Point(6, 17);
-            this.txtDetails.Multiline = true;
             this.txtDetails.Name = "txtDetails";
-            this.txtDetails.Size = new System.Drawing.Size(315, 69);
+            this.txtDetails.Size = new System.Drawing.Size(287, 20);
             this.txtDetails.TabIndex = 0;
             // 
             // ckbTrax
             // 
             this.ckbTrax.AutoSize = true;
-            this.ckbTrax.Location = new System.Drawing.Point(457, 89);
+            this.ckbTrax.Location = new System.Drawing.Point(429, 87);
             this.ckbTrax.Name = "ckbTrax";
             this.ckbTrax.Size = new System.Drawing.Size(55, 17);
             this.ckbTrax.TabIndex = 7;
@@ -359,28 +380,6 @@
             this.cmbType.Size = new System.Drawing.Size(63, 21);
             this.cmbType.TabIndex = 0;
             // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.txtTotal);
-            this.groupBox11.Location = new System.Drawing.Point(693, 116);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(135, 43);
-            this.groupBox11.TabIndex = 13;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Total Results";
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotal.Location = new System.Drawing.Point(31, 16);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(60, 20);
-            this.txtTotal.TabIndex = 1;
-            this.txtTotal.Text = "0";
-            // 
             // HistorySearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,6 +396,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox10.ResumeLayout(false);
@@ -410,8 +411,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
 		}

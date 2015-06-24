@@ -270,7 +270,7 @@ WHERE
 	(@CATEGORY IS NULL OR ([category] = @CATEGORY)) AND
 	(@TOPIC IS NULL OR ([topic] = @TOPIC)) AND
 	(@TECH IS NULL OR ([initials] = @TECH)) AND
-	(@DETAILS IS NULL OR ([details] LIKE '%'+@DETAILS+'%')) AND
+	(@DETAILS IS NULL OR (LOWER([details]) LIKE '%'+LOWER(@DETAILS)+'%')) AND
 	(@TRAX IS NULL OR ([trax] = @TRAX)) AND
 	(@URL IS NULL OR ([url] = @URL))
 ORDER BY
@@ -320,7 +320,7 @@ WHERE
 	(@CATEGORY IS NULL OR ([category] = @CATEGORY)) AND
 	(@TOPIC IS NULL OR ([topic] = @TOPIC)) AND
 	(@TECH IS NULL OR ([initials] = @TECH)) AND
-	(@DETAILS IS NULL OR ([details] LIKE '%'+@DETAILS+'%')) AND
+	(@DETAILS IS NULL OR (LOWER([details]) LIKE '%'+LOWER(@DETAILS)+'%')) AND
 	(@TRAX IS NULL OR ([trax] = @TRAX)) AND
 	(@URL IS NULL OR ([url] = @URL))
 ORDER BY
