@@ -131,6 +131,7 @@
             this.PingUC = new Retail_HD.UCs.PingControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtRM = new System.Windows.Forms.TextBox();
+            this.ms_Top_msi_AdditionalPhone = new System.Windows.Forms.ToolStripMenuItem();
             this.grpStore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
             this.ss_Bottom_.SuspendLayout();
@@ -235,9 +236,9 @@
             this.ss_Bottom_ssl_UserCalls,
             this.toolStripStatusLabel6,
             this.ss_Bottom_ssl_TeamCalls});
-            this.ss_Bottom_.Location = new System.Drawing.Point(308, 450);
+            this.ss_Bottom_.Location = new System.Drawing.Point(339, 450);
             this.ss_Bottom_.Name = "ss_Bottom_";
-            this.ss_Bottom_.Size = new System.Drawing.Size(533, 22);
+            this.ss_Bottom_.Size = new System.Drawing.Size(502, 22);
             this.ss_Bottom_.SizingGrip = false;
             this.ss_Bottom_.TabIndex = 8;
             this.ss_Bottom_.Text = "statusStrip1";
@@ -1234,7 +1235,8 @@
             this.ms_Top_msi_OldBatMenu,
             this.ms_Top_msi_CodeEntry,
             this.ms_Top_msi_RefreshComputers,
-            this.ms_Top_msi_ImportExcel});
+            this.ms_Top_msi_ImportExcel,
+            this.ms_Top_msi_AdditionalPhone});
             this.ms_Top_msi_File.Name = "ms_Top_msi_File";
             this.ms_Top_msi_File.Size = new System.Drawing.Size(37, 20);
             this.ms_Top_msi_File.Text = "&File";
@@ -1243,7 +1245,7 @@
             // 
             this.ms_Top_msi_Settings.Image = global::Retail_HD.GlobalResources.icon_settings_3;
             this.ms_Top_msi_Settings.Name = "ms_Top_msi_Settings";
-            this.ms_Top_msi_Settings.Size = new System.Drawing.Size(175, 22);
+            this.ms_Top_msi_Settings.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_Settings.Text = "Settings";
             this.ms_Top_msi_Settings.ToolTipText = "Change Cisco Phone Settings";
             this.ms_Top_msi_Settings.Click += new System.EventHandler(this.Settings_Click);
@@ -1251,7 +1253,7 @@
             // ms_Top_msi_OldBatMenu
             // 
             this.ms_Top_msi_OldBatMenu.Name = "ms_Top_msi_OldBatMenu";
-            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(175, 22);
+            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_OldBatMenu.Text = "Old Bat Menu";
             this.ms_Top_msi_OldBatMenu.ToolTipText = "Opens Jason\'s BAT file CMD menue";
             this.ms_Top_msi_OldBatMenu.Click += new System.EventHandler(this.OldBatMenu_Click);
@@ -1259,7 +1261,7 @@
             // ms_Top_msi_CodeEntry
             // 
             this.ms_Top_msi_CodeEntry.Name = "ms_Top_msi_CodeEntry";
-            this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(175, 22);
+            this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_CodeEntry.Text = "&Code Entry";
             this.ms_Top_msi_CodeEntry.ToolTipText = "Konami Code";
             this.ms_Top_msi_CodeEntry.Click += new System.EventHandler(this.CodeEntry_Click);
@@ -1267,7 +1269,7 @@
             // ms_Top_msi_RefreshComputers
             // 
             this.ms_Top_msi_RefreshComputers.Name = "ms_Top_msi_RefreshComputers";
-            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(175, 22);
+            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_RefreshComputers.Text = "Refresh Computers";
             this.ms_Top_msi_RefreshComputers.ToolTipText = "Update\'s list of computers from AD";
             this.ms_Top_msi_RefreshComputers.Click += new System.EventHandler(this.RefreshComputers_Click);
@@ -1275,7 +1277,7 @@
             // ms_Top_msi_ImportExcel
             // 
             this.ms_Top_msi_ImportExcel.Name = "ms_Top_msi_ImportExcel";
-            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(175, 22);
+            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_ImportExcel.Text = "Import Excel File";
             this.ms_Top_msi_ImportExcel.Click += new System.EventHandler(this.ImportExcel_Click);
             // 
@@ -1371,6 +1373,13 @@
             this.txtRM.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtRM_MouseClick);
             this.txtRM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
             this.txtRM.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
+            // 
+            // ms_Top_msi_AdditionalPhone
+            // 
+            this.ms_Top_msi_AdditionalPhone.Name = "ms_Top_msi_AdditionalPhone";
+            this.ms_Top_msi_AdditionalPhone.Size = new System.Drawing.Size(195, 26);
+            this.ms_Top_msi_AdditionalPhone.Text = "Add Additional Phone";
+            this.ms_Top_msi_AdditionalPhone.Click += new System.EventHandler(this.AdditionalPhone_Click);
             // 
             // RetailHD
             // 
@@ -1590,6 +1599,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         public System.Windows.Forms.GroupBox groupBox3;
         public System.Windows.Forms.TextBox txtRM;
+        private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_AdditionalPhone;
     }
 }
 

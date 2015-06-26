@@ -131,7 +131,7 @@ namespace Retail_HD
 		Forms.HistorySearch HistorySearch = new Forms.HistorySearch();
 		Forms.EditSettings EditSettings = new Forms.EditSettings();
 		Forms.AddNewStore AddNewStore = new Forms.AddNewStore();
-
+        Forms.AdditionalPhone AdditionalPhone = new Forms.AdditionalPhone();
 		#endregion
 
 
@@ -1175,6 +1175,13 @@ namespace Retail_HD
 				Forms.ExcelLoadTables eSchemaInfo = new Forms.ExcelLoadTables(ofd.FileName);
 				eSchemaInfo.Show();
 			}
+        }
+
+        private void AdditionalPhone_Click(object sender, EventArgs e)
+        {
+            AdditionalPhone = new Forms.AdditionalPhone(Info.store.ToString());
+            if (AdditionalPhone.Visible) { AdditionalPhone.BringToFront(); return; }
+            AdditionalPhone.Show();
         }
 
 		#endregion
