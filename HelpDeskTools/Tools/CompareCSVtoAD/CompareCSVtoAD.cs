@@ -26,28 +26,36 @@ namespace CompareCSVtoAD
 				listCSV.Add(fuckingCSV[i, 0].Replace("\"", "").Split('.')[0].ToLower());
 			}
 
-			string ADFilter =
+			string ADSearchFilter =
 				string.Format("(&(objectCategory={0})(&({1}=*SAP*)(!({1}=*SAPQ*))))",
 				LDAP.ObjectClasses.Computer,
 				LDAP.ObjectAttribute.ComputerName);
 
 			List<string> listAD = new List<string>();
 
-			LDAP.OU[] OUs = { LDAP.RetailOUs.Boston, LDAP.RetailOUs.Michigan, LDAP.RetailOUs.Europe };
+            LDAP.OU ou = LDAP.RetailOUs.All;
 
-			foreach (LDAP.OU ou in OUs)
-			{
-				List<LDAP.Result> temp = AD.SearchAD(ou.ComputerOU, ADFilter, LDAP.ObjectAttribute.ComputerName);
-				foreach (LDAP.Result result in temp)
-				{
-					listAD.Add(result.Value.ToLower());
-				}
-			}
-			List<LDAP.Result> retail = AD.SearchAD(LDAP.RetailOUs.All.ComputerOU, ADFilter, LDAP.ObjectAttribute.ComputerName);
-			foreach(LDAP.Result item in retail)
-			{
-				listAD.Add(item.Value.ToLower());
-			}
+            string sStore = "";
+
+            List<LDAP.Result> tempResults = AD.SearchAD(ou.ComputerOU, ADSearchFilter, LDAP.ObjectAttribute.ComputerName);
+
+            if (tempResults != null)
+            {
+                if (tempResults.Count > 0)
+                {
+                    for (int i = ou.Lower; i < ou.Upper + 1; i++)
+                    {
+                        sStore = i.ToString();
+
+                        while (sStore.Length < 4) { sStore = "0" + sStore; }
+
+                        foreach (LDAP.Result item in tempResults.FindAll(x => x.Value.Contains(sStore)))
+                        {
+                            listAD.Add(item.Value);
+                        }
+                    }
+                }
+            }
 
 
 			List<string> InADonly = listAD.Except(listCSV).ToList();

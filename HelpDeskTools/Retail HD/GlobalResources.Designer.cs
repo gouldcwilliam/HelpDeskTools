@@ -77,16 +77,17 @@ namespace Retail_HD {
         ///	certutil.exe -store authroot | findstr &quot;040000000001154b5ac394&quot;
         ///	IF &apos;%ERRORLEVEL%&apos;==&apos;0&apos; goto importCertRoot2
         ///	verify &gt;nul
-        ///	certutil -addstore -f &quot;authroot&quot; &quot;c:\temp\global.cer&quot;
+        ///	certutil -addstore -f &quot;authroot&quot; &quot;C:\Temp\global.cer&quot;
         ///
         ///:importCertRoot2
         ///	verify &gt;nul
         ///	certutil -store authroot | findstr &quot;9b7e0649a33e62b9d5ee90487129ef57&quot;
         ///	IF &apos;%ERRORLEVEL%&apos;==&apos;0&apos; goto exit
         ///	verify &gt;nul
-        ///	certutil -addstore -f &quot;authroot&quot; &quot;c:\temp\verisign-root.cer&quot;
+        ///	certutil -addstore -f &quot;authroot&quot; &quot;C:\Temp\verisign-root.cer&quot;
         ///
         ///:exit
+        ///ping -n 5 &gt;nul
         ///.
         /// </summary>
         public static string batCerts {
@@ -118,7 +119,7 @@ namespace Retail_HD {
         ///
         ///	SET A=%1
         ///	SET S=%2
-        ///
+        ///	echo %S% %A%
         ///:BEGIN
         ///	IF %A%==start CALL:START 		
         ///	IF %A%==stop CALL:STOP
@@ -132,8 +133,8 @@ namespace Retail_HD {
         ///GOTO:DONE
         ///
         ///:STOP
-        ///	IF %S%==credit  CALL:creditSTOP 
-        ///	IF %S%==sql  CALL:sqlSTOP
+        ///	IF %S%==credit  CALL:creditSTOP
+        ///	IF %S%==sql CALL:sqlSTOP
         ///	IF %S%==pca CALL:pcaSTOP
         ///	IF %S%==citrix CALL:citrixSTOP
         ///	IF %S%==all ( 
@@ -145,8 +146,7 @@ namespace Retail_HD {
         ///:START
         ///	IF %S%==credit  CALL:creditSTART 
         ///	IF %S%==sql  CALL:sqlSTART 
-        ///	IF %S%==pca CALL:pcaSTART
-        ///	IF %S%== [rest of string was truncated]&quot;;.
+        ///	IF %S%==pca CALL:pcaSTART [rest of string was truncated]&quot;;.
         /// </summary>
         public static string batServices {
             get {
@@ -201,12 +201,52 @@ namespace Retail_HD {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap BOS {
+            get {
+                object obj = ResourceManager.GetObject("BOS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         public static byte[] Contra_33 {
             get {
                 object obj = ResourceManager.GetObject("Contra_33", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ferp {
+            get {
+                object obj = ResourceManager.GetObject("ferp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap glen_tassi {
+            get {
+                object obj = ResourceManager.GetObject("glen_tassi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap HelpDesk_Fire {
+            get {
+                object obj = ResourceManager.GetObject("HelpDesk_Fire", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -996,6 +1036,16 @@ namespace Retail_HD {
         public static System.Drawing.Bitmap mobile_phone {
             get {
                 object obj = ResourceManager.GetObject("mobile_phone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Scott_Purpose {
+            get {
+                object obj = ResourceManager.GetObject("Scott_Purpose", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

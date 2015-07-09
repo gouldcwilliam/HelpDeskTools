@@ -32,43 +32,29 @@ namespace MissingDLLs
 			// container for return values
 			List<Result> searchResults = new List<Result>();
 
-			// array of LDAP OUs
-			OU[] OUs = { RetailOUs.Boston, RetailOUs.Michigan };
+            LDAP.OU ou = LDAP.RetailOUs.All;
 
-			// search each OU
-			foreach (OU ou in OUs)
-			{
-				// Fill Result list with search results
-				List<Result> tempResults = AD.SearchAD(ou.ComputerOU, ADSearchFilter, ObjectAttribute.ComputerName);
+            string sn = "";
 
-				// Canada
-				if (ou.BaseOU == RetailOUs.Boston.BaseOU)
-				{
-					for (int i = 400; i < 499; i++)
-					{
-						foreach (Result result in tempResults.FindAll(x => x.Value.Contains("0" + i.ToString())))
-						{
-							searchResults.Add(result);
-						}
-					}
-				}
+            List<LDAP.Result> tempResults = AD.SearchAD(ou.ComputerOU, ADSearchFilter, LDAP.ObjectAttribute.ComputerName);
 
-				// Iterate through store number range
-				for (int i = ou.Lower; i < ou.Upper; i++)
-				{
-					// Search for store number as string in the list
-					foreach (Result result in tempResults.FindAll(x => x.Value.Contains(i.ToString())))
-					{
-						// Add matches to search results list
-						searchResults.Add(result);
-					}
-				}
-			}
-			List<Result> temp = AD.SearchAD(RetailOUs.All.ComputerOU, ADSearchFilter, ObjectAttribute.ComputerName);
-			foreach (Result result in temp)
-			{
-				searchResults.Add(result);
-			}
+            if (tempResults != null)
+            {
+                if (tempResults.Count > 0)
+                {
+                    for (int i = ou.Lower; i < ou.Upper + 1; i++)
+                    {
+                        sn = i.ToString();
+
+                        while (sn.Length < 4) { sn = "0" + sn; }
+
+                        foreach (LDAP.Result item in tempResults.FindAll(x => x.Value.Contains(sn)))
+                        {
+                            searchResults.Add(item);
+                        }
+                    }
+                }
+            }
 
 			// Sort list alphabetically
 			searchResults.Sort((x, y) => x.Value.CompareTo(y.Value));

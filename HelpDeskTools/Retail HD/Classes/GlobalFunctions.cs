@@ -274,23 +274,22 @@ namespace Retail_HD
 		
 		public static bool b_FillStoreInfo()
 		{
-            bool r1 = false;
             try
 			{
 				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectStore(Convert.ToInt32(Info.store)).Rows)
 				{
-					Info.address = dr["address"].ToString();
-					Info.city = dr["city"].ToString();
-					Info.dm = dr["dm"].ToString();
+                    Info.phone = dr["phone"].ToString();
+                    Info.address = dr["address"].ToString();
+                    Info.city = dr["city"].ToString();
+                    Info.state = dr["state"].ToString();
+                    Info.zip = dr["zip"].ToString();
+                    Info.TZ = dr["TZ"].ToString();
+                    Info.dm = dr["dm"].ToString();
                     Info.rm = dr["rm"].ToString();
-					Info.email = dr["email"].ToString();
 					Info.manager = dr["manager"].ToString();
 					Info.MP = dr["MP"].ToString();
 					Info.name = dr["name"].ToString();
-					Info.state = dr["state"].ToString();
 					Info.type = dr["type"].ToString();
-					Info.TZ = dr["TZ"].ToString();
-					Info.zip = dr["zip"].ToString();
 
                     Info.first = dr["1st"].ToString();
                     Info.second = dr["2nd"].ToString();
@@ -316,18 +315,10 @@ namespace Retail_HD
 					Info.TID3 = dr["TID3"].ToString();
 					Info.TID4 = dr["TID4"].ToString();
 				}
-				r1 = true;
 			}
-			catch (Exception ex) { Console.WriteLine(ex.Message + ex.InnerException); return false; }
-            try
-            {
-                List<SqlParameter> p = new List<SqlParameter>();
-                p.Add(new SqlParameter("@store", Info.store));
-                string sql = "Select * from [Phones] where [store]=@store and [line]='1'";
-                Info.phone = Shared.SQL.Select(sql, p).Rows[0]["phone"].ToString();
-            }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
-            return r1;
+			catch (Exception ex) { Console.WriteLine("fillStoreInfo : Store Info query\n" + ex.Message + ex.InnerException); return false; }
+
+            return true;
 		}
 
 		

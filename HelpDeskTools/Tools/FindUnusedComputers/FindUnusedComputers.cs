@@ -40,26 +40,29 @@ namespace FindUnusedComputers
 			// container for return values
 			List<Result> searchResults = new List<Result>();
 
-			// array of LDAP OUs
-			OU[] OUs = { RetailOUs.Boston, RetailOUs.Michigan };
+            LDAP.OU ou = LDAP.RetailOUs.All;
 
-			// search each OU
-			foreach (OU ou in OUs)
-			{
-				// Fill Result list with search results
-				List<Result> tempResults = AD.SearchAD(ou.ComputerOU, ADSearchFilter, ObjectAttribute.ComputerName);
+            string sStore = "";
 
-				// Iterate through store number range
-				for (int i = ou.Lower; i < ou.Upper; i++)
-				{
-					// Search for store number as string in the list
-					foreach (Result result in tempResults.FindAll(x => x.Value.Contains(i.ToString())))
-					{
-						// Add matches to search results list
-						searchResults.Add(result);
-					}
-				}
-			}
+            List<LDAP.Result> tempResults = AD.SearchAD(ou.ComputerOU, ADSearchFilter, LDAP.ObjectAttribute.ComputerName);
+
+            if (tempResults != null)
+            {
+                if (tempResults.Count > 0)
+                {
+                    for (int i = ou.Lower; i < ou.Upper + 1; i++)
+                    {
+                        sStore = i.ToString();
+
+                        while (sStore.Length < 4) { sStore = "0" + sStore; }
+
+                        foreach (LDAP.Result item in tempResults.FindAll(x => x.Value.Contains(sStore)))
+                        {
+                            searchResults.Add(item);
+                        }
+                    }
+                }
+            }
 
 			// Sort list alphabetically
 			searchResults.Sort((x, y) => x.Value.CompareTo(y.Value));

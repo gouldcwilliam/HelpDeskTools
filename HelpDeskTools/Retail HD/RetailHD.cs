@@ -132,6 +132,7 @@ namespace Retail_HD
 		Forms.EditSettings EditSettings = new Forms.EditSettings();
 		Forms.AddNewStore AddNewStore = new Forms.AddNewStore();
         Forms.AdditionalPhone AdditionalPhone = new Forms.AdditionalPhone();
+        Forms.Splash startup = new Forms.Splash();
 		#endregion
 
 
@@ -1542,8 +1543,6 @@ namespace Retail_HD
 			// Agent logout
 			if (_AgentLoginEnabled)
 			{
-				Helper.DisconnectXMPP();
-
 				if (curState != UserState.NOT_READY)
 				{
 					Helper.ChangeUserState(UserState.NOT_READY);
@@ -1552,6 +1551,7 @@ namespace Retail_HD
 				}
 				Helper.ChangeUserState(UserState.LOGOUT);
 				Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, UserState.LOGOUT.ToString(), "");
+                Helper.DisconnectXMPP();
 			}
 			//if log file is larger than 500kb, email it in
 			//call up the log sender app and close this
@@ -1605,7 +1605,16 @@ namespace Retail_HD
 
 				hasRun = true;
 			}
-
+            //if(Environment.UserName.ToString().ToUpper() == "CHIVINSC")
+            //{
+            //    startup = new Forms.Splash(GlobalResources.Scott_Purpose);
+            //    startup.Show();
+            //}
+            //else
+            //{ 
+            //    startup = new Forms.Splash(GlobalResources.glen_tassi);
+            //    startup.Show();
+            //}
 		}
 
 		#endregion
@@ -1654,6 +1663,7 @@ namespace Retail_HD
 			// Fill the store information area
 			if (GlobalFunctions.b_FillStoreInfo())
 			{
+                
 				txtAddress.Text = Info.address;
 				txtCity.Text = Info.city;
 				txtDM.Text = Info.dm;
@@ -1717,6 +1727,7 @@ namespace Retail_HD
 				}
                 catch (Exception ex) { Console.WriteLine("Update Info: {0}\n => {1}",RecentCalls_dgv.Name, ex.Message); }
 			}
+            Info.Debug();
 			// Call the method to update call totals
 			UpdateWrapUpTotal();
 		}

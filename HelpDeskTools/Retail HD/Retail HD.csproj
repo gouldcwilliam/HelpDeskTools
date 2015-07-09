@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>20</ApplicationRevision>
+    <ApplicationRevision>32</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -175,6 +175,12 @@
     <Compile Include="Forms\ExcelLoadTables.Designer.cs">
       <DependentUpon>ExcelLoadTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ScottStartup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScottStartup.Designer.cs">
+      <DependentUpon>ScottStartup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UserInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExcelLoadTables.resx">
       <DependentUpon>ExcelLoadTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScottStartup.resx">
+      <DependentUpon>ScottStartup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserInput.resx">
       <DependentUpon>UserInput.cs</DependentUpon>
@@ -613,11 +622,16 @@
     <None Include="Resources\Artua-Mac-Intranet.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\glen-tassi.png" />
+    <None Include="Resources\ferp.jpg" />
+    <None Include="Resources\_17-07-14.jpg" />
     <None Include="Resources\sundial.png" />
     <None Include="Resources\magnifying.png" />
     <None Include="Resources\agents.png" />
     <None Include="Resources\batInstallEndpoint12.txt" />
     <None Include="Resources\batCerts.txt" />
+    <None Include="Resources\8063i7F2F1F427E4A07E7.jpg" />
+    <None Include="Resources\BOS.png" />
     <Content Include="Resources\Contra_33.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -650,13 +664,29 @@
       <Project>{d47c1210-4bfe-4b10-956f-7b0b40f3c718}</Project>
       <Name>ProgressBar</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\BananaHammock\BananaHammock.csproj">
+      <Project>{ac0025ff-277f-425b-8435-b5645c0775ba}</Project>
+      <Name>BananaHammock</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\CheckTrickle\CheckTrickle.csproj">
       <Project>{44bd59f1-a129-4206-839d-bcff1c39cd63}</Project>
       <Name>CheckTrickle</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\CompareCSVtoAD\CompareCSVtoAD.csproj">
+      <Project>{7a720728-6be7-444a-8c4b-8a52c81b0f9b}</Project>
+      <Name>CompareCSVtoAD</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\DelayedStartServices\DelayedStartServices.csproj">
       <Project>{0361df41-99d6-4336-a6e7-ce0bd1c057ba}</Project>
       <Name>DelayedStartServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\EmailReport\EmailReport.csproj">
+      <Project>{9ee5907f-6e60-4f31-a700-590225bd456a}</Project>
+      <Name>EmailReport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\EReceiptMonitor\EReceiptMonitor.csproj">
+      <Project>{8c0ebe8b-4a84-40c5-8eb7-23c39c7ce530}</Project>
+      <Name>EReceiptMonitor</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tools\FindUnusedComputers\FindUnusedComputers.csproj">
       <Project>{3c4daabd-5a76-40ff-b56d-aea9b783441b}</Project>

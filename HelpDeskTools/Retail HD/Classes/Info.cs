@@ -48,6 +48,14 @@ namespace Retail_HD
             get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, gate2); }
         }
 
+        public static string email
+        {
+            get
+            {
+                if (store.ToString().Length < 4) { return "Store0" + store.ToString() + "@wwwinc.com"; }
+                else { return "Store" + store.ToString() + "@wwwinc.com"; }
+            }
+        }
 
 		/*Global*/
 		public static int store { get; set; }
@@ -60,7 +68,6 @@ namespace Retail_HD
 		public static string city{ get; set; }
 		public static string dm { get; set; }
         public static string rm { get; set; }
-		public static string email{ get; set; }
 		public static string manager{ get; set; }
 		public static string MP{ get; set; }
 		public static string name{ get; set; }
@@ -101,7 +108,6 @@ namespace Retail_HD
 			address = string.Empty;
 			city = string.Empty;
 			dm = string.Empty;
-			email = string.Empty;
 			manager = string.Empty;
 			MP = string.Empty;
 			name = string.Empty;
@@ -140,6 +146,53 @@ namespace Retail_HD
 				}
 			}
 		}
+
+        public static void Debug()
+        {
+            string computer = "";
+            for (int i = 0; i < computers.Count; i++)
+            {
+                computer += " | computer " + (i + 1).ToString() + " : " + computers[i].name;
+            }
+            Console.WriteLine(
+            " | store: " + store +
+            computer +
+            " | cashier: " + cashier + "\n" +
+
+            " | address: " + address +
+            " | city: " + city +
+            " | state: " + state +
+            " | zip: " + zip +
+            " | TZ: " + TZ + "\n" +
+            " | phone: " + phone +
+            " | email: " + email +
+            " | name: " + name +
+            " | type: " + type + "\n" +
+            " | dm: " + dm +
+            " | manager: " + manager +
+            " | MP: " + MP +
+            " | income: " + income +
+            " | rank: " + rank + "\n" +
+
+            " | BAMS: " + BAMS +
+            " | SVS: " + SVS +
+            " | TID1: " + TID1 +
+            " | TID2: " + TID2 +
+            " | TID3: " + TID3 +
+            " | TID4: " + TID4 + "\n" +
+            " | first: " + first +
+            " | second: " + second +
+            " | third: " + third +
+            " | lan1: " + lan1 +
+            " | lan2: " + lan2 +
+            " | lan3: " + lan3 +
+            " | lan4: " + lan4 +
+            " | gate1: " + gate1 +
+            " | gate2: " + gate2 +
+            " | gate3: " + gate3 +
+            " | gate4: " + gate4 + "\n"
+            );
+        }
 
 	}
 }
