@@ -215,10 +215,13 @@ namespace Retail_HD
 			Process process = Process.Start(startInfo);
 		}
 
+
 		public static void v_LocalCMD(Computer computer)
 		{
 			v_LocalCMD(computer.name);
 		}
+
+
 		public static void v_LocalCMD(List<Computer> SelectedComputers)
 		{
 			foreach (Computer computer in SelectedComputers)
@@ -291,19 +294,21 @@ namespace Retail_HD
 					Info.name = dr["name"].ToString();
 					Info.type = dr["type"].ToString();
 
-                    Info.first = dr["1st"].ToString();
-                    Info.second = dr["2nd"].ToString();
-                    Info.third = dr["3rd"].ToString();
+                    Info._first = dr["1st"].ToString();
+                    Info._second = dr["2nd"].ToString();
+                    Info._third = dr["3rd"].ToString();
 
-                    Info.lan1 = dr["lan1"].ToString();
-                    Info.lan2 = dr["lan2"].ToString();
-                    Info.lan3 = dr["lan3"].ToString();
-                    Info.lan4 = dr["lan4"].ToString();
+                    Info._lan1 = dr["lan1"].ToString();
+                    Info._lan2 = dr["lan2"].ToString();
+                    Info._lan3 = dr["lan3"].ToString();
+                    Info._lan4 = dr["lan4"].ToString();
 
-                    Info.gate1 = dr["gate1"].ToString();
-                    Info.gate2 = dr["gate2"].ToString();
-                    Info.gate3 = dr["gate3"].ToString();
-                    Info.gate4 = dr["gate4"].ToString();
+                    Info._gate1 = dr["gate1"].ToString();
+                    Info._gate2 = dr["gate2"].ToString();
+                    Info._gate3 = dr["gate3"].ToString();
+                    Info._gate4 = dr["gate4"].ToString();
+
+                    Info._cctv = dr["cctv"].ToString();
 
 					Info.income = dr["income"].ToString();
 					Info.rank = dr["rank"].ToString();

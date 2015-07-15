@@ -201,12 +201,6 @@ namespace Retail_HD.Forms
 				return;
 			}
 
-            //if ((details == string.Empty || details.Contains(requiredText)) && _mandatoryIssue()) //just in case they are retarded, instead of checking that it contains the required Text, let's only check that it is equivalent
-            //{
-            //    MessageBox.Show("Empty Details!", "Wrap Up Solution", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
-
             if ((details.Trim() == string.Empty || details.Trim() == requiredText) && _mandatoryIssue()) //just in case they are retarded, instead of checking that it contains the required Text, let's only check that it is equivalent
             {
                 MessageBox.Show("Empty Details!", "Wrap Up Solution", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -226,12 +220,6 @@ namespace Retail_HD.Forms
 				return;
 			}
 
-            //if (txtDetails.sText.Trim().Length < 69 && ckbTopics.CheckedItems[0].ToString() == "General Question")
-            //{
-            //    MessageBox.Show("General Question Details Length Requirement not met", "Wrap Up Details", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
-
             if (txtDetails.Text.Trim().Split(' ').Length < 15 && ckbTopics.CheckedItems[0].ToString() == "General Question") 
             {
                 MessageBox.Show("General Question Details Length Requirement not met.\nRequired minimum of 15 words.", "Wrap Up Details", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -245,13 +233,10 @@ namespace Retail_HD.Forms
                 this.DialogResult = System.Windows.Forms.DialogResult.None;
 				return;
 			}
-            else if(ckbTrax.Checked && !txtTRAX.Text.Contains("http://"))
-            {
-                txtTRAX.Text = "http://" + txtTRAX.Text;
-            }
 
-			string url = txtTRAX.Text;
-			if (!ckbTrax.Checked) { url = string.Empty; }
+            string url = txtTRAX.Text;
+
+            if (!ckbTrax.Checked) { url = string.Empty; }
 
 			if (!Shared.SQL.WrapUp_InsertCall(txtStore.Text, details, cmbCategory.Text, ckbTopics.CheckedItems[0].ToString(),  cmbType.Text, Environment.UserName.ToUpper(), ckbTrax.Checked, url))
 			{

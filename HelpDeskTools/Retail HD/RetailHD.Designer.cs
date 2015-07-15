@@ -123,6 +123,7 @@
             this.ms_Top_msi_CodeEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_RefreshComputers = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_ImportExcel = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_Top_msi_AdditionalPhone = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_WhatTheJunk = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Info = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,7 +132,6 @@
             this.PingUC = new Retail_HD.UCs.PingControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtRM = new System.Windows.Forms.TextBox();
-            this.ms_Top_msi_AdditionalPhone = new System.Windows.Forms.ToolStripMenuItem();
             this.grpStore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
             this.ss_Bottom_.SuspendLayout();
@@ -1245,7 +1245,7 @@
             // 
             this.ms_Top_msi_Settings.Image = global::Retail_HD.GlobalResources.icon_settings_3;
             this.ms_Top_msi_Settings.Name = "ms_Top_msi_Settings";
-            this.ms_Top_msi_Settings.Size = new System.Drawing.Size(195, 26);
+            this.ms_Top_msi_Settings.Size = new System.Drawing.Size(191, 22);
             this.ms_Top_msi_Settings.Text = "Settings";
             this.ms_Top_msi_Settings.ToolTipText = "Change Cisco Phone Settings";
             this.ms_Top_msi_Settings.Click += new System.EventHandler(this.Settings_Click);
@@ -1253,7 +1253,7 @@
             // ms_Top_msi_OldBatMenu
             // 
             this.ms_Top_msi_OldBatMenu.Name = "ms_Top_msi_OldBatMenu";
-            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(195, 26);
+            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(191, 22);
             this.ms_Top_msi_OldBatMenu.Text = "Old Bat Menu";
             this.ms_Top_msi_OldBatMenu.ToolTipText = "Opens Jason\'s BAT file CMD menue";
             this.ms_Top_msi_OldBatMenu.Click += new System.EventHandler(this.OldBatMenu_Click);
@@ -1261,7 +1261,7 @@
             // ms_Top_msi_CodeEntry
             // 
             this.ms_Top_msi_CodeEntry.Name = "ms_Top_msi_CodeEntry";
-            this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(195, 26);
+            this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(191, 22);
             this.ms_Top_msi_CodeEntry.Text = "&Code Entry";
             this.ms_Top_msi_CodeEntry.ToolTipText = "Konami Code";
             this.ms_Top_msi_CodeEntry.Click += new System.EventHandler(this.CodeEntry_Click);
@@ -1269,7 +1269,7 @@
             // ms_Top_msi_RefreshComputers
             // 
             this.ms_Top_msi_RefreshComputers.Name = "ms_Top_msi_RefreshComputers";
-            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(195, 26);
+            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(191, 22);
             this.ms_Top_msi_RefreshComputers.Text = "Refresh Computers";
             this.ms_Top_msi_RefreshComputers.ToolTipText = "Update\'s list of computers from AD";
             this.ms_Top_msi_RefreshComputers.Click += new System.EventHandler(this.RefreshComputers_Click);
@@ -1277,9 +1277,16 @@
             // ms_Top_msi_ImportExcel
             // 
             this.ms_Top_msi_ImportExcel.Name = "ms_Top_msi_ImportExcel";
-            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(195, 26);
+            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(191, 22);
             this.ms_Top_msi_ImportExcel.Text = "Import Excel File";
             this.ms_Top_msi_ImportExcel.Click += new System.EventHandler(this.ImportExcel_Click);
+            // 
+            // ms_Top_msi_AdditionalPhone
+            // 
+            this.ms_Top_msi_AdditionalPhone.Name = "ms_Top_msi_AdditionalPhone";
+            this.ms_Top_msi_AdditionalPhone.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_AdditionalPhone.Text = "Add Additional Phone";
+            this.ms_Top_msi_AdditionalPhone.Click += new System.EventHandler(this.AdditionalPhone_Click);
             // 
             // ms_Top_msi_Help
             // 
@@ -1341,7 +1348,7 @@
             this.PingUC.Location = new System.Drawing.Point(96, 298);
             this.PingUC.Margin = new System.Windows.Forms.Padding(4);
             this.PingUC.Name = "PingUC";
-            this.PingUC.Size = new System.Drawing.Size(250, 101);
+            this.PingUC.Size = new System.Drawing.Size(342, 101);
             this.PingUC.TabIndex = 4;
             this.PingUC.Visible = false;
             this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
@@ -1374,18 +1381,13 @@
             this.txtRM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
             this.txtRM.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
             // 
-            // ms_Top_msi_AdditionalPhone
-            // 
-            this.ms_Top_msi_AdditionalPhone.Name = "ms_Top_msi_AdditionalPhone";
-            this.ms_Top_msi_AdditionalPhone.Size = new System.Drawing.Size(195, 26);
-            this.ms_Top_msi_AdditionalPhone.Text = "Add Additional Phone";
-            this.ms_Top_msi_AdditionalPhone.Click += new System.EventHandler(this.AdditionalPhone_Click);
-            // 
             // RetailHD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(856, 473);
+            this.Controls.Add(this.ServicesUC);
+            this.Controls.Add(this.PingUC);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.gbTID4);
             this.Controls.Add(this.groupBox2);
@@ -1410,8 +1412,6 @@
             this.Controls.Add(this.gbTZ);
             this.Controls.Add(this.gbEmail);
             this.Controls.Add(this.grpPhone);
-            this.Controls.Add(this.ServicesUC);
-            this.Controls.Add(this.PingUC);
             this.Controls.Add(this.Restart);
             this.Controls.Add(this.LocalCMD);
             this.Controls.Add(this.PCAnywhere);

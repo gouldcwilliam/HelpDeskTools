@@ -71,32 +71,18 @@ namespace Shared
 		{
 			List<SqlParameter> paramList = new List<SqlParameter>();
 			paramList.Add(new SqlParameter("@store", store));
-			paramList.Add(new SqlParameter("@details", details));
+			paramList.Add(new SqlParameter("@details", string.IsNullOrEmpty(details) ? (object)DBNull.Value : details));
 			paramList.Add(new SqlParameter("@Category", category));
 			paramList.Add(new SqlParameter("@topic", topic));
 			paramList.Add(new SqlParameter("@type", type));
 			paramList.Add(new SqlParameter("@technician", technician));
 			paramList.Add(new SqlParameter("@trax", trax));
-			paramList.Add(new SqlParameter("@url", url));
+            paramList.Add(new SqlParameter("@url", string.IsNullOrEmpty(url) ? (object)DBNull.Value : url));
 
             return Insert(SQLSettings.Default._LogCall, paramList);
 		}
 
-		/// <summary>
-		/// Insert computer and store number into the temporary table
-		/// </summary>
-		/// <param name="computer">name of computer</param>
-		/// <param name="store">int store number</param>
-		/// <returns>bool</returns>
-		static public bool b_InsertTempComputer(string computer, int store)
-		{
-			List<SqlParameter> paramList = new List<SqlParameter>();
-			paramList.Add(new SqlParameter("@computer", computer));
-			paramList.Add(new SqlParameter("@store", store));
 
-			string sql = "INSERT INTO [Test].[dbo].[Computers] ([computer], [store]) VALUES (@computer, @store)";
-			return Insert(sql, paramList);
-		}
 
 		/// <summary>
 		/// Insert Category and wrapup Text into the wrapup table

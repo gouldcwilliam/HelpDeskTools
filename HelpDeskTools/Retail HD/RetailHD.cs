@@ -144,8 +144,8 @@ namespace Retail_HD
 			InitializeComponent();
 			Initialize_Buttons_ToolTips();
 
-			PingUC.btnOK.Click += Ping_OK_Click;
-			ServicesUC.btnOK.Click += Services_OK_Click;
+			PingUC.btnOK.Click += PingUC_OK_Click;
+			ServicesUC.btnOK.Click += ServicesUC_OK_Click;
 
 			Shared.Functions.v_InstallPsTools();
             //Shared.Functions.v_Install_DelayedStartServices();
@@ -183,6 +183,7 @@ namespace Retail_HD
 				v_CheckLoginConfig();
 			}
 		}
+
 
 
 		//
@@ -696,7 +697,6 @@ namespace Retail_HD
 		private void Buttons_Services_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false;
-			PingUC.Visible = false;
 
 			if (ServicesUC.Visible)
 			{
@@ -704,7 +704,6 @@ namespace Retail_HD
 			}
 			else
 			{
-				ServicesUC.Focus();
 				ServicesUC.Visible = true;
 			}
 		}
@@ -721,7 +720,6 @@ namespace Retail_HD
 			}
 			else
 			{
-				PingUC.Focus();
 				PingUC.Visible = true;
 			}
 		}
@@ -846,39 +844,15 @@ namespace Retail_HD
 		}
 		/// <summary> ping menu actions
 		/// </summary>
-		private void Ping_OK_Click(object sender, EventArgs e)
+		private void PingUC_OK_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false;
 		}
 		/// <summary> service menu actions
 		/// </summary>
-		private void Services_OK_Click(object sender, EventArgs e)
+		private void ServicesUC_OK_Click(object sender, EventArgs e)
 		{
-			string service = string.Empty;
-			string action = string.Empty;
-			foreach (RadioButton rb in ServicesUC.gbServices.Controls.OfType<RadioButton>())
-			{
-				if (rb.Checked) { service = rb.Tag.ToString(); }
-			}
-			foreach (RadioButton rb in ServicesUC.gbAction.Controls.OfType<RadioButton>())
-			{
-				if (rb.Checked) { action = rb.Tag.ToString(); }
-			}
-			if (action == string.Empty || service == string.Empty) { ServicesUC.Visible = false; return; }
-			
-			ServicesUC.Visible = false;
-
-			if (!GlobalFunctions.b_WriteBatFile(GlobalResources.batServices)) { return; }
-
-			foreach (Computer computer in Info.computers.FindAll(x => x.selected == true))
-			{
-				if (!GlobalFunctions.b_CopyBatFile(computer.name)) { return; }
-
-				string args = string.Format("-r:{0} {1} {2}", computer.name, Shared.Settings.Default._TempFile, action + " " + service);
-				//Console.WriteLine(args);
-				GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
-			}
-
+            ServicesUC.Visible = false;
 		}
 
 
@@ -1076,7 +1050,8 @@ namespace Retail_HD
 				Info.store = 9999;
 				ClearInfo();
 			}
-
+            ServicesUC.Visible = false;
+            PingUC.Visible = false;
 		}
 
 		// handles when an item in the computer list is changing it's checked state
@@ -1474,16 +1449,20 @@ namespace Retail_HD
 				case Keys.F12:
 					Buttons_Delayed_Click(sender, null);
 					break;
+                case Keys.C:
+                    if (PingUC.Visible) { PingUC.ckbCCTV.Checked = (!PingUC.ckbCCTV.Checked); }
+                    else if(e.Modifiers == Keys.Control && clbComputers.Focused)
+					{
+						Clipboard.SetText(clbComputers.SelectedItem.ToString());
+					}
+					break;
 				case Keys.D:
                     if (e.Modifiers == Keys.Control) { ts_Top_tsb_CallStore.PerformClick(); }
 					break;
                 case Keys.E:
                     break;
 				case Keys.F:
-					if (PingUC.Visible)
-					{
-						PingUC.ckbFortinet.Checked = (!PingUC.ckbFortinet.Checked);
-					}
+					if (PingUC.Visible) { PingUC.ckbFortinet.Checked = (!PingUC.ckbFortinet.Checked); }
 					break;
 				case Keys.M:
 					if (PingUC.Visible)
@@ -1509,16 +1488,8 @@ namespace Retail_HD
 					if (e.Modifiers == Keys.Control) { Test(); }
 					break;
 				case Keys.Return:
-					if (PingUC.Visible)
-					{
-						PingUC.btnOK.PerformClick();
-					}
-					break;
-				case Keys.C:
-					if(e.Modifiers == Keys.Control && clbComputers.Focused)
-					{
-						Clipboard.SetText(clbComputers.SelectedItem.ToString());
-					}
+                    if (PingUC.Visible) { PingUC.btnOK.PerformClick(); }
+                    else if (ServicesUC.Visible) { ServicesUC.btnOK.PerformClick(); }
 					break;
 				case Keys.L:
 					if (e.Modifiers == Keys.Control) { ts_Top_tsb_Logout.PerformClick(); }
@@ -1643,6 +1614,8 @@ namespace Retail_HD
 			txtType.Text = string.Empty;
 			txtTZ.Text = string.Empty;
 			txtZip.Text = string.Empty;
+            txtRank.Text = string.Empty;
+            txtIncome.Text = string.Empty;
 			txtBAMS.Text = string.Empty;
 			txtSVS.Text = string.Empty;
 			txtTID1.Text = string.Empty;
@@ -1699,6 +1672,7 @@ namespace Retail_HD
 					}
 					else { txtPhone.Text = Info.phone; }
 				}
+                PingUC.ckbCCTV.Enabled = (Info.cctv != string.Empty);
 			}
 			// Fill the computer list
 			if (GlobalFunctions.b_FillComputers())
@@ -1772,6 +1746,7 @@ namespace Retail_HD
 		private void Ping_UC_VisibleChanged(object sender, EventArgs e)
 		{
 			PingUC.Clear();
+            //if (PingUC.Visible) { PingUC.Focus(); }
 		}
 
 
@@ -1779,6 +1754,7 @@ namespace Retail_HD
 		private void Services_UC_VisibleChanged(object sender, EventArgs e)
 		{
 			ServicesUC.Clear();
+            //if (ServicesUC.Visible) { ServicesUC.Focus(); }
 		}
 
 
@@ -1821,6 +1797,10 @@ namespace Retail_HD
 		// Test methods
 		private void Test()
         {
+            foreach(TextBox tb in Retail_HD.RetailHD.ActiveForm.Controls.OfType<TextBox>())
+            {
+                Console.WriteLine(tb.Name);
+            }
 		}
 
 

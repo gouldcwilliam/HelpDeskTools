@@ -342,7 +342,7 @@ DESC
 	p.phone as [phone], [address], [city], [state], [zip],
 	 [TZ], [dm], [rm], [manager], [MP], [name], [type], 
 	 [1st], [2nd], [3rd], [lan1], lan2, lan3, lan4, 
-	 gate1, gate2, gate3, gate4, income, [rank], 
+	 gate1, gate2, gate3, gate4, cctv, income, [rank], 
 	 BAMS, SVS, TID1, TID2, TID3, TID4
 FROM
 	[Stores] as S

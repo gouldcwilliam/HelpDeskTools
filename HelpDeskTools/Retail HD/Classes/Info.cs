@@ -9,43 +9,54 @@ namespace Retail_HD
 	public static class Info
 	{
 		/*IP*/
-        public static string first { get; set; }
-        public static string second { get; set; }
-        public static string third { get; set; }
-        public static string lan1 { get; set; }
-        public static string gate1 { get; set; }
-        public static string lan2 { get; set; }
-        public static string gate2 { get; set; }
-        public static string lan3 { get; set; }
-        public static string gate3 { get; set; }
-        public static string lan4 { get; set; }
-        public static string gate4 { get; set; }
+        public static string _first { get; set; }
+        public static string _second { get; set; }
+        public static string _third { get; set; }
+        public static string _lan1 { get; set; }
+        public static string _gate1 { get; set; }
+        public static string _lan2 { get; set; }
+        public static string _gate2 { get; set; }
+        public static string _lan3 { get; set; }
+        public static string _gate3 { get; set; }
+        public static string _lan4 { get; set; }
+        public static string _gate4 { get; set; }
+        public static string _cctv { get; set; }
 
 		public static string mim 
         {
-            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, lan4); }
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan4); }
         }
         public static string mim_gate
         {
-            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, gate4); }
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate4); }
         }
         public static string pos
         {
-            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, lan1); }
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan1); }
         }
         public static string pos_gate
         {
-            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, gate1); }
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate1); }
         }
 
         public static string sensor
         {
-            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, lan2); }
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan2); }
         }
 
         public static string sensor_gate
         {
-            get { return string.Format("{0}.{1}.{2}.{3}", first, second, third, gate2); }
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate2); }
+        }
+
+        public static string cctv
+        {
+            get
+            {
+                if (_cctv == null) { return string.Empty; }
+                if (_cctv == string.Empty) { return string.Empty; }
+                return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _cctv);
+            }
         }
 
         public static string email
@@ -88,17 +99,17 @@ namespace Retail_HD
 
 		public static void Clear()	
 		{
-            first = string.Empty;
-            second = string.Empty;
-            third = string.Empty;
-            lan1 = string.Empty;
-            lan2 = string.Empty;
-            lan3 = string.Empty;
-            lan4 = string.Empty;
-            gate1 = string.Empty;
-            gate2 = string.Empty;
-            gate3 = string.Empty;
-            gate4 = string.Empty;
+            _first = string.Empty;
+            _second = string.Empty;
+            _third = string.Empty;
+            _lan1 = string.Empty;
+            _lan2 = string.Empty;
+            _lan3 = string.Empty;
+            _lan4 = string.Empty;
+            _gate1 = string.Empty;
+            _gate2 = string.Empty;
+            _gate3 = string.Empty;
+            _gate4 = string.Empty;
 
 			store = 9999;
 			computers.Clear();
@@ -180,17 +191,17 @@ namespace Retail_HD
             " | TID2: " + TID2 +
             " | TID3: " + TID3 +
             " | TID4: " + TID4 + "\n" +
-            " | first: " + first +
-            " | second: " + second +
-            " | third: " + third +
-            " | lan1: " + lan1 +
-            " | lan2: " + lan2 +
-            " | lan3: " + lan3 +
-            " | lan4: " + lan4 +
-            " | gate1: " + gate1 +
-            " | gate2: " + gate2 +
-            " | gate3: " + gate3 +
-            " | gate4: " + gate4 + "\n"
+            " | first: " + _first +
+            " | second: " + _second +
+            " | third: " + _third +
+            " | lan1: " + _lan1 +
+            " | lan2: " + _lan2 +
+            " | lan3: " + _lan3 +
+            " | lan4: " + _lan4 +
+            " | gate1: " + _gate1 +
+            " | gate2: " + _gate2 +
+            " | gate3: " + _gate3 +
+            " | gate4: " + _gate4 + "\n"
             );
         }
 

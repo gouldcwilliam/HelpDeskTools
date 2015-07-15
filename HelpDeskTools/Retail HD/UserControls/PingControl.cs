@@ -15,7 +15,6 @@ namespace Retail_HD.UCs
 		public PingControl()
 		{
 			InitializeComponent();
-			this.btnOK.Click += btnOK_Click;
 		}
 
 		void btnOK_Click(object sender, EventArgs e)
@@ -56,6 +55,11 @@ namespace Retail_HD.UCs
 			{
 				GlobalFunctions.v_Pinger(Info.sensor_gate, Info.store + " Sensor Gateway");
 			}
+
+            if (this.ckbCCTV.Checked)
+            {
+                GlobalFunctions.v_Pinger(Info.cctv, Info.store + "CCTV");
+            }
 		}
 
 		public void Clear()
