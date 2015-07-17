@@ -20,19 +20,19 @@ GOTO:DONE
 	IF %A%==stop CALL:creditSTOP
 	IF %a%==restart (
 		CALL:creditSTOP
-		CALL:creditSTOP
+		CALL:creditSTART
 	)
 GOTO:EOF
 	
 :creditSTART
-	NET START "RIBROKER"
 	NET START "CDCA MULTI CLIENT"
+	NET START "RIBROKER"
 GOTO:EOF
 	
 	
 :creditSTOP
-	NET STOP "CDCA MULTI CLIENT"
 	NET STOP "RIBROKER"
+	NET STOP "CDCA MULTI CLIENT"
 GOTO:EOF
 
 :SQL
@@ -40,7 +40,7 @@ GOTO:EOF
 	IF %A%==stop CALL:sqlSTOP
 	IF %a%==restart (
 		CALL:sqlSTOP
-		CALL:sqlSTOP
+		CALL:sqlSTART
 	)
 GOTO:EOF
 
@@ -53,7 +53,6 @@ GOTO:EOF
 :sqlSTOP
 	NET STOP "XPRESS SERVER"
 	NET STOP "MSSQLSERVER"
-	NET STOP "TRANSNET"
 GOTO:EOF
 
 :PCA
@@ -61,7 +60,7 @@ GOTO:EOF
 	IF %A%==stop CALL:pcaSTOP
 	IF %a%==restart (
 		CALL:pcaSTOP
-		CALL:pcaSTOP
+		CALL:pcaSTART
 	)
 GOTO:EOF
 
@@ -82,12 +81,15 @@ GOTO:EOF
 :VERIFONE
 	IF %A%==restart (
 		CALL:creditSTOP
-		CD "C:\Program Files\Verifone\MX915"
+		CD "C:\Program Files\Verifone\MX915\vfQueryUpdate"
+		ECHO Running vfQueryUpdate
 		START /wait vfQueryUpdate.exe
-		CALL:WAIT
-		CALL:WAIT
-		CALL:WAIT
-		CALL:WAIT
+		ECHO Done, now waiting for things to happen...... for 3 minutes
+		PING 127.0.0.1 -n 60 > NUL
+		ECHO 2 min...
+		PING 127.0.0.1 -n 60 > NUL
+		ECHO 1 min...
+		PING 127.0.0.1 -n 60 > NUL
 		CALL:creditSTART
 	)
 GOTO:EOF
@@ -97,7 +99,7 @@ GOTO:EOF
 	IF %A%==stop CALL:transnetSTOP
 	IF %a%==restart (
 		CALL:transnetSTOP
-		CALL:transnetSTOP
+		CALL:transnetSTART
 	)
 GOTO:EOF
 

@@ -319,6 +319,9 @@ namespace Retail_HD
 					Info.TID2 = dr["TID2"].ToString();
 					Info.TID3 = dr["TID3"].ToString();
 					Info.TID4 = dr["TID4"].ToString();
+
+                    Info.open = (bool)dr["open"];
+                    Info.pinpad = (bool)dr["pinpad"];
 				}
 			}
 			catch (Exception ex) { Console.WriteLine("fillStoreInfo : Store Info query\n" + ex.Message + ex.InnerException); return false; }

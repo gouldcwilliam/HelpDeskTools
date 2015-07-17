@@ -12,7 +12,7 @@ namespace UpdateComputerList.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -56,6 +56,32 @@ namespace UpdateComputerList.Properties {
             }
             set {
                 this["_tableName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\nUPDATE \r\n\t[Stores] \r\nSET \r\n\t[open] = 0 \r\nWHERE \r\n\t[store] NOT IN ( \r\n\t\tSELECT [" +
+            "S].[store] \r\n\t\tFROM [Stores] [S] \r\n\t\tJOIN [Computers] [C] ON [S].[store] = [C].[" +
+            "store] \r\n\t) \r\n\tAND [store] = [store]\r\n\r\n\r\n")]
+        public string _setClosedStores {
+            get {
+                return ((string)(this["_setClosedStores"]));
+            }
+            set {
+                this["_setClosedStores"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\nUPDATE \r\n\t[Stores] \r\nSET \r\n\t[open] = 1\r\n\r\n\r\n")]
+        public string _setAllOpen {
+            get {
+                return ((string)(this["_setAllOpen"]));
+            }
+            set {
+                this["_setAllOpen"] = value;
             }
         }
     }

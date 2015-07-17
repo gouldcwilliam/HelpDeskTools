@@ -11,5 +11,32 @@
     <Setting Name="_tableName" Type="System.String" Scope="User">
       <Value Profile="(Default)">[RetailHD].[dbo].[Computers]</Value>
     </Setting>
+    <Setting Name="_setClosedStores" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+UPDATE 
+	[Stores] 
+SET 
+	[open] = 0 
+WHERE 
+	[store] NOT IN ( 
+		SELECT [S].[store] 
+		FROM [Stores] [S] 
+		JOIN [Computers] [C] ON [S].[store] = [C].[store] 
+	) 
+	AND [store] = [store]
+
+
+</Value>
+    </Setting>
+    <Setting Name="_setAllOpen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+UPDATE 
+	[Stores] 
+SET 
+	[open] = 1
+
+
+</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

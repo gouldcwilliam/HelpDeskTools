@@ -95,8 +95,8 @@ namespace Retail_HD
 		public static string TID2 { get; set; }
 		public static string TID3 { get; set; }
 		public static string TID4 { get; set; }
-
-
+        public static bool open { get; set; }
+        public static bool pinpad { get; set; }
 		public static void Clear()	
 		{
             _first = string.Empty;
@@ -136,6 +136,9 @@ namespace Retail_HD
 			TID2 = string.Empty;
 			TID3 = string.Empty;
 			TID4 = string.Empty;
+
+            open = false;
+            pinpad = false;
 
 		}
 		public static bool OneSelected()
@@ -183,7 +186,9 @@ namespace Retail_HD
             " | manager: " + manager +
             " | MP: " + MP +
             " | income: " + income +
-            " | rank: " + rank + "\n" +
+            " | rank: " + rank + 
+            " | open: " + open + 
+            " | pin pad: " + pinpad + "\n" +
 
             " | BAMS: " + BAMS +
             " | SVS: " + SVS +

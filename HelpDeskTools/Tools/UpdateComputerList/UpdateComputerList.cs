@@ -57,7 +57,8 @@ namespace UpdateComputerList
                 }
             }
 			InsertIntoTable(Properties.Settings.Default._tableName, "SAPTESTLAB", "9999");
-
+            Console.WriteLine("Defaulting Open Status: {0}", ExecuteNonQuery(Properties.Settings.Default._setAllOpen));
+            Console.WriteLine("Setting Status to closed for stores without computers: {0}", ExecuteNonQuery(Properties.Settings.Default._setClosedStores));
 			Console.Write("\nCompleted....");
 			System.Threading.Thread.Sleep(5000);
 			Console.WriteLine("Exiting");
@@ -68,6 +69,8 @@ namespace UpdateComputerList
 			string sql = string.Format(@"DELETE FROM {0}", Properties.Settings.Default._tableName);
 			return ExecuteNonQuery(sql);
 		}
+
+
 		static public bool InsertIntoTable(string tblName, string computer, string store)
 		{
 			string sql = string.Format(@"INSERT INTO {0} ([computer], [store]) VALUES (@computer, @store)", tblName);

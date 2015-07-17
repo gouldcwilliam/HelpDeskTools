@@ -196,7 +196,8 @@ where
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\r\nSELECT \r\n\t[store]\r\nFROM \r\n\t[Phones]\r\nWHERE \r\n\t[phone] LIKE @phone")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SELECT \r\n\tp.[store]\r\nFROM \r\n\t[Phones] p\r\n\tINNER JOIN [Stores] s on p.store=s.stor" +
+            "e\r\nWHERE \r\n\tp.[phone] LIKE @PHONE and s.[open]=1\r\n")]
         public string _StoreByPhone {
             get {
                 return ((string)(this["_StoreByPhone"]));
@@ -343,7 +344,7 @@ DESC
 	 [TZ], [dm], [rm], [manager], [MP], [name], [type], 
 	 [1st], [2nd], [3rd], [lan1], lan2, lan3, lan4, 
 	 gate1, gate2, gate3, gate4, cctv, income, [rank], 
-	 BAMS, SVS, TID1, TID2, TID3, TID4
+	 BAMS, SVS, TID1, TID2, TID3, TID4, [open], [pinpad]
 FROM
 	[Stores] as S
 	full join 

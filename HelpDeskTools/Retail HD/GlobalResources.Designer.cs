@@ -119,34 +119,35 @@ namespace Retail_HD {
         ///
         ///	SET A=%1
         ///	SET S=%2
-        ///	echo %S% %A%
+        ///	ECHO %S% %A%
+        ///	
         ///:BEGIN
-        ///	IF %A%==start CALL:START 		
-        ///	IF %A%==stop CALL:STOP
-        ///	IF %A%==restart (
-        ///		CALL:STOP
-        ///		CALL:WAIT
-        ///		CALL:START
-        ///	)
+        ///	IF %S%==credit  CALL:CREDIT
+        ///	IF %S%==sql CALL:SQL
+        ///	IF %S%==pca CALL:PCA
+        ///	IF %S%==citrix CALL:CITRIX
+        ///	IF %S%==verifone CALL:VERIFONE
+        ///	IF %S%==transnet CALL:TRANSNET
         ///	CALL:WAIT
         ///	CALL:WAIT
         ///GOTO:DONE
         ///
-        ///:STOP
-        ///	IF %S%==credit  CALL:creditSTOP
-        ///	IF %S%==sql CALL:sqlSTOP
-        ///	IF %S%==pca CALL:pcaSTOP
-        ///	IF %S%==citrix CALL:citrixSTOP
-        ///	IF %S%==all ( 
+        ///:CREDIT
+        ///	IF %A%==start CALL:creditSTART
+        ///	IF %A%==stop CALL:creditSTOP
+        ///	IF %a%==restart (
         ///		CALL:creditSTOP
-        ///		CALL:sqlSTOP
+        ///		CALL:creditSTART
         ///	)
         ///GOTO:EOF
-        ///		
-        ///:START
-        ///	IF %S%==credit  CALL:creditSTART 
-        ///	IF %S%==sql  CALL:sqlSTART 
-        ///	IF %S%==pca CALL:pcaSTART [rest of string was truncated]&quot;;.
+        ///	
+        ///:creditSTART
+        ///	NET START &quot;CDCA MULTI CLIENT&quot;
+        ///	NET START &quot;RIBROKER&quot;
+        ///GOTO:EOF
+        ///	
+        ///	
+        ///:creditST [rest of string was truncated]&quot;;.
         /// </summary>
         public static string batServices {
             get {
@@ -233,6 +234,16 @@ namespace Retail_HD {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Finger {
+            get {
+                object obj = ResourceManager.GetObject("Finger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap glen_tassi {
             get {
                 object obj = ResourceManager.GetObject("glen_tassi", resourceCulture);
@@ -243,9 +254,9 @@ namespace Retail_HD {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap HelpDesk_Fire {
+        public static System.Drawing.Bitmap helpdesk_fire {
             get {
-                object obj = ResourceManager.GetObject("HelpDesk_Fire", resourceCulture);
+                object obj = ResourceManager.GetObject("helpdesk_fire", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

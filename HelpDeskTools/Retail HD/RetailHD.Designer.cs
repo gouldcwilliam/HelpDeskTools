@@ -100,6 +100,7 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.ts_Top_tsb_HistorySearch = new System.Windows.Forms.ToolStripButton();
             this.ts_Top_tsl_Override = new System.Windows.Forms.ToolStripLabel();
+            this.ts_Top_tsl_StoreClosed = new System.Windows.Forms.ToolStripLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtIncome = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -124,14 +125,16 @@
             this.ms_Top_msi_RefreshComputers = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_ImportExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_AdditionalPhone = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_Top_msi_PinPadInstalled = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_WhatTheJunk = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Info = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top = new System.Windows.Forms.MenuStrip();
-            this.ServicesUC = new Retail_HD.UCs.ServicesControl();
-            this.PingUC = new Retail_HD.UCs.PingControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtRM = new System.Windows.Forms.TextBox();
+            this.ServicesUC = new Retail_HD.UCs.ServicesControl();
+            this.PingUC = new Retail_HD.UCs.PingControl();
+            this.ts_Top_tsl_PinPad = new System.Windows.Forms.ToolStripLabel();
             this.grpStore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
             this.ss_Bottom_.SuspendLayout();
@@ -871,7 +874,9 @@
             this.ts_Top_tsb_StoreSearch,
             this.toolStripSeparator7,
             this.ts_Top_tsb_HistorySearch,
-            this.ts_Top_tsl_Override});
+            this.ts_Top_tsl_Override,
+            this.ts_Top_tsl_StoreClosed,
+            this.ts_Top_tsl_PinPad});
             this.ts_Top.Location = new System.Drawing.Point(0, 24);
             this.ts_Top.Name = "ts_Top";
             this.ts_Top.Size = new System.Drawing.Size(856, 22);
@@ -1006,6 +1011,15 @@
             this.ts_Top_tsl_Override.Size = new System.Drawing.Size(200, 19);
             this.ts_Top_tsl_Override.Text = "                  Auto-READY Override: ON";
             this.ts_Top_tsl_Override.Visible = false;
+            // 
+            // ts_Top_tsl_StoreClosed
+            // 
+            this.ts_Top_tsl_StoreClosed.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.ts_Top_tsl_StoreClosed.ForeColor = System.Drawing.Color.Red;
+            this.ts_Top_tsl_StoreClosed.Name = "ts_Top_tsl_StoreClosed";
+            this.ts_Top_tsl_StoreClosed.Size = new System.Drawing.Size(73, 19);
+            this.ts_Top_tsl_StoreClosed.Text = "Store Closed";
+            this.ts_Top_tsl_StoreClosed.Visible = false;
             // 
             // groupBox1
             // 
@@ -1236,7 +1250,8 @@
             this.ms_Top_msi_CodeEntry,
             this.ms_Top_msi_RefreshComputers,
             this.ms_Top_msi_ImportExcel,
-            this.ms_Top_msi_AdditionalPhone});
+            this.ms_Top_msi_AdditionalPhone,
+            this.ms_Top_msi_PinPadInstalled});
             this.ms_Top_msi_File.Name = "ms_Top_msi_File";
             this.ms_Top_msi_File.Size = new System.Drawing.Size(37, 20);
             this.ms_Top_msi_File.Text = "&File";
@@ -1245,7 +1260,7 @@
             // 
             this.ms_Top_msi_Settings.Image = global::Retail_HD.GlobalResources.icon_settings_3;
             this.ms_Top_msi_Settings.Name = "ms_Top_msi_Settings";
-            this.ms_Top_msi_Settings.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_Settings.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_Settings.Text = "Settings";
             this.ms_Top_msi_Settings.ToolTipText = "Change Cisco Phone Settings";
             this.ms_Top_msi_Settings.Click += new System.EventHandler(this.Settings_Click);
@@ -1253,7 +1268,7 @@
             // ms_Top_msi_OldBatMenu
             // 
             this.ms_Top_msi_OldBatMenu.Name = "ms_Top_msi_OldBatMenu";
-            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_OldBatMenu.Text = "Old Bat Menu";
             this.ms_Top_msi_OldBatMenu.ToolTipText = "Opens Jason\'s BAT file CMD menue";
             this.ms_Top_msi_OldBatMenu.Click += new System.EventHandler(this.OldBatMenu_Click);
@@ -1261,7 +1276,7 @@
             // ms_Top_msi_CodeEntry
             // 
             this.ms_Top_msi_CodeEntry.Name = "ms_Top_msi_CodeEntry";
-            this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_CodeEntry.Text = "&Code Entry";
             this.ms_Top_msi_CodeEntry.ToolTipText = "Konami Code";
             this.ms_Top_msi_CodeEntry.Click += new System.EventHandler(this.CodeEntry_Click);
@@ -1269,7 +1284,7 @@
             // ms_Top_msi_RefreshComputers
             // 
             this.ms_Top_msi_RefreshComputers.Name = "ms_Top_msi_RefreshComputers";
-            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_RefreshComputers.Text = "Refresh Computers";
             this.ms_Top_msi_RefreshComputers.ToolTipText = "Update\'s list of computers from AD";
             this.ms_Top_msi_RefreshComputers.Click += new System.EventHandler(this.RefreshComputers_Click);
@@ -1277,16 +1292,23 @@
             // ms_Top_msi_ImportExcel
             // 
             this.ms_Top_msi_ImportExcel.Name = "ms_Top_msi_ImportExcel";
-            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_ImportExcel.Text = "Import Excel File";
             this.ms_Top_msi_ImportExcel.Click += new System.EventHandler(this.ImportExcel_Click);
             // 
             // ms_Top_msi_AdditionalPhone
             // 
             this.ms_Top_msi_AdditionalPhone.Name = "ms_Top_msi_AdditionalPhone";
-            this.ms_Top_msi_AdditionalPhone.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_AdditionalPhone.Size = new System.Drawing.Size(195, 26);
             this.ms_Top_msi_AdditionalPhone.Text = "Add Additional Phone";
             this.ms_Top_msi_AdditionalPhone.Click += new System.EventHandler(this.AdditionalPhone_Click);
+            // 
+            // ms_Top_msi_PinPadInstalled
+            // 
+            this.ms_Top_msi_PinPadInstalled.Name = "ms_Top_msi_PinPadInstalled";
+            this.ms_Top_msi_PinPadInstalled.Size = new System.Drawing.Size(195, 26);
+            this.ms_Top_msi_PinPadInstalled.Text = "Pin Pad Installed";
+            this.ms_Top_msi_PinPadInstalled.Click += new System.EventHandler(this.PinPadInstalled_Click);
             // 
             // ms_Top_msi_Help
             // 
@@ -1328,32 +1350,6 @@
             this.ms_Top.Text = "mnuTop";
             this.ms_Top.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
             // 
-            // ServicesUC
-            // 
-            this.ServicesUC.AutoSize = true;
-            this.ServicesUC.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ServicesUC.Location = new System.Drawing.Point(96, 270);
-            this.ServicesUC.Margin = new System.Windows.Forms.Padding(4);
-            this.ServicesUC.Name = "ServicesUC";
-            this.ServicesUC.Size = new System.Drawing.Size(182, 129);
-            this.ServicesUC.TabIndex = 3;
-            this.ServicesUC.Visible = false;
-            this.ServicesUC.VisibleChanged += new System.EventHandler(this.Services_UC_VisibleChanged);
-            this.ServicesUC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-            // 
-            // PingUC
-            // 
-            this.PingUC.AutoSize = true;
-            this.PingUC.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PingUC.Location = new System.Drawing.Point(96, 298);
-            this.PingUC.Margin = new System.Windows.Forms.Padding(4);
-            this.PingUC.Name = "PingUC";
-            this.PingUC.Size = new System.Drawing.Size(342, 101);
-            this.PingUC.TabIndex = 4;
-            this.PingUC.Visible = false;
-            this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
-            this.PingUC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtRM);
@@ -1380,6 +1376,41 @@
             this.txtRM.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtRM_MouseClick);
             this.txtRM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
             this.txtRM.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
+            // 
+            // ServicesUC
+            // 
+            this.ServicesUC.AutoSize = true;
+            this.ServicesUC.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ServicesUC.Location = new System.Drawing.Point(96, 270);
+            this.ServicesUC.Margin = new System.Windows.Forms.Padding(4);
+            this.ServicesUC.Name = "ServicesUC";
+            this.ServicesUC.Size = new System.Drawing.Size(182, 176);
+            this.ServicesUC.TabIndex = 3;
+            this.ServicesUC.Visible = false;
+            this.ServicesUC.VisibleChanged += new System.EventHandler(this.Services_UC_VisibleChanged);
+            this.ServicesUC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            // 
+            // PingUC
+            // 
+            this.PingUC.AutoSize = true;
+            this.PingUC.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PingUC.Location = new System.Drawing.Point(96, 298);
+            this.PingUC.Margin = new System.Windows.Forms.Padding(4);
+            this.PingUC.Name = "PingUC";
+            this.PingUC.Size = new System.Drawing.Size(342, 101);
+            this.PingUC.TabIndex = 4;
+            this.PingUC.Visible = false;
+            this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
+            this.PingUC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            // 
+            // ts_Top_tsl_PinPad
+            // 
+            this.ts_Top_tsl_PinPad.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.ts_Top_tsl_PinPad.ForeColor = System.Drawing.Color.Magenta;
+            this.ts_Top_tsl_PinPad.Name = "ts_Top_tsl_PinPad";
+            this.ts_Top_tsl_PinPad.Size = new System.Drawing.Size(94, 19);
+            this.ts_Top_tsl_PinPad.Text = "Verifone Pin Pad";
+            this.ts_Top_tsl_PinPad.Visible = false;
             // 
             // RetailHD
             // 
@@ -1600,6 +1631,9 @@
         public System.Windows.Forms.GroupBox groupBox3;
         public System.Windows.Forms.TextBox txtRM;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_AdditionalPhone;
+        private System.Windows.Forms.ToolStripLabel ts_Top_tsl_StoreClosed;
+        private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_PinPadInstalled;
+        private System.Windows.Forms.ToolStripLabel ts_Top_tsl_PinPad;
     }
 }
 

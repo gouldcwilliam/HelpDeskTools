@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>34</ApplicationRevision>
+    <ApplicationRevision>48</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -60,7 +60,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Artua-Mac-Intranet.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\Artua-Mac-Intranet.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>1CB69570E6B19142D4C094E7C1D4A5B33DCF8E57</ManifestCertificateThumbprint>
@@ -175,6 +175,12 @@
     <Compile Include="Forms\ExcelLoadTables.Designer.cs">
       <DependentUpon>ExcelLoadTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PinPadInstalled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PinPadInstalled.Designer.cs">
+      <DependentUpon>PinPadInstalled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ScottStartup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,11 @@
     </Compile>
     <Compile Include="Forms\ExcelCompareData.Designer.cs">
       <DependentUpon>ExcelCompareData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -257,11 +268,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GlobalResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GlobalResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\PingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,10 +288,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\main.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\batTest.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\AdditionalPhone.resx">
@@ -320,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExcelLoadTables.resx">
       <DependentUpon>ExcelLoadTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PinPadInstalled.resx">
+      <DependentUpon>PinPadInstalled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScottStartup.resx">
       <DependentUpon>ScottStartup.cs</DependentUpon>
@@ -359,7 +364,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>GlobalResources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PingControl.resx">
       <DependentUpon>PingControl.cs</DependentUpon>
@@ -369,229 +374,233 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\batUnlock.txt" />
+    <None Include="Resources\Batch\Unlock.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\play.png" />
+    <None Include="Resources\Icons\play.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\browser.png" />
+    <None Include="Resources\Icons\browser.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\folder.png" />
+    <None Include="Resources\Icons\folder.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\speech-bubble-center.png" />
+    <None Include="Resources\Icons\speech-bubble-center.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\list.png" />
+    <None Include="Resources\Icons\list.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\spinner-3.png" />
+    <None Include="Resources\Icons\spinner-3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\stop.png" />
+    <None Include="Resources\Icons\stop.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\subtract.png" />
+    <None Include="Resources\Icons\subtract.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\swap.png" />
+    <None Include="Resources\Icons\swap.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\swap-2.png" />
+    <None Include="Resources\Icons\swap-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-off.png" />
+    <None Include="Resources\Icons\switch-off.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-on.png" />
+    <None Include="Resources\Icons\switch-on.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\terminal-2.png" />
+    <None Include="Resources\Icons\terminal-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\terminal-3.png" />
+    <None Include="Resources\Icons\terminal-3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\terminal.png" />
+    <None Include="Resources\Icons\terminal.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\transfer.png" />
+    <None Include="Resources\Icons\transfer.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\unlocked.png" />
+    <None Include="Resources\Icons\unlocked.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\support.png" />
+    <None Include="Resources\Icons\support.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\support-2.png" />
+    <None Include="Resources\Icons\support-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\support-3.png" />
+    <None Include="Resources\Icons\support-3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\timeline.png" />
+    <None Include="Resources\Icons\timeline.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\toggle-off.png" />
+    <None Include="Resources\Icons\toggle-off.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\toggle-on.png" />
+    <None Include="Resources\Icons\toggle-on.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\video.png" />
+    <None Include="Resources\Icons\video.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\video-2.png" />
+    <None Include="Resources\Icons\video-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\watch.png" />
+    <None Include="Resources\Icons\watch.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\watch-2.png" />
+    <None Include="Resources\Icons\watch-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\windows.png" />
+    <None Include="Resources\Icons\windows.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\split-2.png" />
+    <None Include="Resources\Icons\split-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\split.png" />
+    <None Include="Resources\Icons\split.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sleep.png" />
+    <None Include="Resources\Icons\sleep.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\spam.png" />
+    <None Include="Resources\Icons\spam.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\spam-2.png" />
+    <None Include="Resources\Icons\spam-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings.png" />
+    <None Include="Resources\Icons\settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings-2.png" />
+    <None Include="Resources\Icons\settings-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings-3.png" />
+    <None Include="Resources\Icons\settings-3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings-4.png" />
+    <None Include="Resources\Icons\settings-4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shred.png" />
+    <None Include="Resources\Icons\shred.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shuffle.png" />
+    <None Include="Resources\Icons\shuffle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\rulers.png" />
+    <None Include="Resources\Icons\rulers.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\repeat.png" />
+    <None Include="Resources\Icons\repeat.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\repeat-2.png" />
+    <None Include="Resources\Icons\repeat-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pull.png" />
+    <None Include="Resources\Icons\pull.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\power.png" />
+    <None Include="Resources\Icons\power.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\plus.png" />
+    <None Include="Resources\Icons\plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paper-ripped.png" />
+    <None Include="Resources\Icons\paper-ripped.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paper-roll.png" />
+    <None Include="Resources\Icons\paper-roll.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paper-roll-ripped.png" />
+    <None Include="Resources\Icons\paper-roll-ripped.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paragraph-center.png" />
+    <None Include="Resources\Icons\paragraph-center.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paragraph-center-2.png" />
+    <None Include="Resources\Icons\paragraph-center-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paragraph-justify.png" />
+    <None Include="Resources\Icons\paragraph-justify.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paragraph-justify-2.png" />
+    <None Include="Resources\Icons\paragraph-justify-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paragraph-left.png" />
+    <None Include="Resources\Icons\paragraph-left.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paragraph-left-2.png" />
+    <None Include="Resources\Icons\paragraph-left-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paragraph-right.png" />
+    <None Include="Resources\Icons\paragraph-right.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\paragraph-right-2.png" />
+    <None Include="Resources\Icons\paragraph-right-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\nope.png" />
+    <None Include="Resources\Icons\nope.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\marquee.png" />
+    <None Include="Resources\Icons\marquee.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\marquee-download.png" />
+    <None Include="Resources\Icons\marquee-download.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\marquee-minus.png" />
+    <None Include="Resources\Icons\marquee-minus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\marquee-plus.png" />
+    <None Include="Resources\Icons\marquee-plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\marquee-upload.png" />
+    <None Include="Resources\Icons\marquee-upload.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\maximise.png" />
+    <None Include="Resources\Icons\maximise.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu.png" />
+    <None Include="Resources\Icons\menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu-2.png" />
+    <None Include="Resources\Icons\menu-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu-pull-down.png" />
+    <None Include="Resources\Icons\menu-pull-down.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu-pull-up.png" />
+    <None Include="Resources\Icons\menu-pull-up.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\minus.png" />
+    <None Include="Resources\Icons\minus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mixer.png" />
+    <None Include="Resources\Icons\mixer.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\key.png" />
+    <None Include="Resources\Icons\key.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\key-2.png" />
+    <None Include="Resources\Icons\key-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\keys.png" />
+    <None Include="Resources\Icons\keys.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\in.png" />
+    <None Include="Resources\Icons\in.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\batServices.txt" />
+    <None Include="Resources\Batch\Services.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -616,32 +625,34 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icoMain.ico" />
+    <None Include="Resources\Icons\Artua-Mac-Intranet.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Artua-Mac-Intranet.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\glen-tassi.png" />
-    <None Include="Resources\ferp.jpg" />
-    <None Include="Resources\_17-07-14.jpg" />
-    <None Include="Resources\sundial.png" />
-    <None Include="Resources\magnifying.png" />
-    <None Include="Resources\agents.png" />
-    <None Include="Resources\batInstallEndpoint12.txt" />
-    <None Include="Resources\batCerts.txt" />
-    <None Include="Resources\8063i7F2F1F427E4A07E7.jpg" />
-    <None Include="Resources\BOS.png" />
-    <Content Include="Resources\Contra_33.mp3">
+    <None Include="Resources\Funny\Finger.png" />
+    <None Include="Resources\Funny\glen-tassi.png" />
+    <None Include="Resources\Funny\ferp.jpg" />
+    <None Include="Resources\Funny\scott-purpose.jpg" />
+    <None Include="Resources\Icons\sundial.png" />
+    <None Include="Resources\Icons\magnifying.png" />
+    <None Include="Resources\Icons\agents.png" />
+    <None Include="Resources\Batch\InstallEndpoint12.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Batch\Certs.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Funny\helpdesk-fire.jpg" />
+    <None Include="Resources\Funny\BOS.png" />
+    <Content Include="Resources\Music\Contra_33.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\settings-icon.png" />
-    <None Include="Resources\phonesettings.png" />
-    <None Include="Resources\logout.png" />
-    <None Include="Resources\login.png" />
-    <None Include="Resources\mobile_phone.png" />
-    <None Include="Resources\phone1.png" />
-    <None Include="Resources\icon_phone1.jpg" />
+    <None Include="Resources\Icons\settings-icon.png" />
+    <None Include="Resources\Icons\phonesettings.png" />
+    <None Include="Resources\Icons\logout.png" />
+    <None Include="Resources\Icons\login.png" />
+    <None Include="Resources\Icons\mobile_phone.png" />
+    <None Include="Resources\Icons\phone1.png" />
+    <None Include="Resources\Icons\icon_phone1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Libraries\AD\AD.csproj">

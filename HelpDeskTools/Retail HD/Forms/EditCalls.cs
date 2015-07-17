@@ -191,10 +191,7 @@ namespace Retail_HD.Forms
                 MessageBox.Show("Must include a valid TRAX URL", "Wrap Up Trax URL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            else if (ckbTrax.Checked && !txtTRAX.Text.Contains("http://"))
-            {
-                txtTRAX.Text = "http://" + txtTRAX.Text;
-            }
+            
 
 			string url = txtTRAX.Text;
 			if (!ckbTrax.Checked) { url = string.Empty; }

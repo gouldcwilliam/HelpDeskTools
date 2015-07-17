@@ -59,7 +59,7 @@ namespace CiscoFinesseNET
 
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                System.Diagnostics.Debug.WriteLine(_s);
+                //System.Diagnostics.Debug.WriteLine(_s);
             }
 
             Helper.UpdateObjects(_s);

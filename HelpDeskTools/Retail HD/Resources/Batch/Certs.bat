@@ -1,4 +1,5 @@
 @ECHO OFF
+REM
 :importCertRoot
 	verify >nul
 	certutil.exe -store authroot | findstr "040000000001154b5ac394"

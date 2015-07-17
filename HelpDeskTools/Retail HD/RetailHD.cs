@@ -133,6 +133,7 @@ namespace Retail_HD
 		Forms.AddNewStore AddNewStore = new Forms.AddNewStore();
         Forms.AdditionalPhone AdditionalPhone = new Forms.AdditionalPhone();
         Forms.Splash startup = new Forms.Splash();
+        Forms.PinPadInstalled pinPadInstalled = new Forms.PinPadInstalled();
 		#endregion
 
 
@@ -182,9 +183,8 @@ namespace Retail_HD
 				_AgentLoginEnabled = true;
 				v_CheckLoginConfig();
 			}
+            
 		}
-
-
 
 		//
 		#region HANDLER INITIALIZATIONS
@@ -592,10 +592,11 @@ namespace Retail_HD
 					Console.WriteLine(number2Search);
 
                     System.Data.DataTable _dt = Shared.SQL.dt_SelectStoreByPhone(number2Search);
-
-                    foreach (System.Data.DataRow _r in _dt.Rows)
+                    if (_dt.Rows.Count > 0) 
                     {
+                        System.Data.DataRow _r = _dt.Rows[0];
                         //shouldn't be more than 1 here
+                        Console.WriteLine(_r["store"]);
                         if (txtStore.InvokeRequired) txtStore.Invoke(new MethodInvoker(delegate { txtStore.Text = _r["store"].ToString(); }));
                         else txtStore.Text = _r["store"].ToString();
 						currentStoreNumber = txtStore.Text == "9999" ? originalNumber : txtStore.Text;
@@ -1138,8 +1139,8 @@ namespace Retail_HD
 		{
 			if (AddNewStore.Visible) { AddNewStore.BringToFront(); return; }
 			AddNewStore = new Forms.AddNewStore();
-			AddNewStore.Show();
-			UpdateInfo();
+            AddNewStore.ShowDialog();
+            UpdateInfo();
 		}
 
 
@@ -1155,10 +1156,19 @@ namespace Retail_HD
 
         private void AdditionalPhone_Click(object sender, EventArgs e)
         {
-            AdditionalPhone = new Forms.AdditionalPhone(Info.store.ToString());
             if (AdditionalPhone.Visible) { AdditionalPhone.BringToFront(); return; }
+            AdditionalPhone = new Forms.AdditionalPhone(Info.store.ToString());
             AdditionalPhone.Show();
         }
+
+        private void PinPadInstalled_Click(object sender, EventArgs e)
+        {
+            if (pinPadInstalled.Visible) { pinPadInstalled.BringToFront(); return; }
+            pinPadInstalled = new Forms.PinPadInstalled();
+            pinPadInstalled.ShowDialog();
+            UpdateInfo();
+        }
+
 
 		#endregion
 
@@ -1576,13 +1586,14 @@ namespace Retail_HD
 
 				hasRun = true;
 			}
-            //if(Environment.UserName.ToString().ToUpper() == "CHIVINSC")
-            //{
-            //    startup = new Forms.Splash(GlobalResources.Scott_Purpose);
-            //    startup.Show();
-            //}
+            if (Environment.UserName.ToString().ToUpper() == "CHIVINSC")
+            {
+                startup = new Forms.Splash(GlobalResources.Finger);
+                startup.Show();
+            }
+            Console.WriteLine(DateTime.Now);
             //else
-            //{ 
+            //{
             //    startup = new Forms.Splash(GlobalResources.glen_tassi);
             //    startup.Show();
             //}
@@ -1599,6 +1610,9 @@ namespace Retail_HD
 		// Clear all the form information fields
 		private void ClearInfo()
 		{
+            ts_Top_tsl_StoreClosed.Visible = false;
+            ts_Top_tsl_PinPad.Visible = false;
+            ts_Top_tsl_Override.Visible = false;
 			// Clear the store information
 			txtAddress.Text = string.Empty;
 			txtCity.Text = string.Empty;
@@ -1629,82 +1643,88 @@ namespace Retail_HD
 
 
 		// Update all the form information from the store information gathered from SQL
-		private void UpdateInfo()
-		{
+        private void UpdateInfo()
+        {
             if (!_NetworkEnabled) { return; }
-			ClearInfo();
-			// Fill the store information area
-			if (GlobalFunctions.b_FillStoreInfo())
-			{
-                
-				txtAddress.Text = Info.address;
-				txtCity.Text = Info.city;
-				txtDM.Text = Info.dm;
+            ClearInfo();
+            // Fill the store information area
+            if (GlobalFunctions.b_FillStoreInfo())
+            {
+
+                txtAddress.Text = Info.address;
+                txtCity.Text = Info.city;
+                txtDM.Text = Info.dm;
                 txtRM.Text = Info.rm;
-				txtEmail.Text = Info.email;
-				txtIP.Text = Info.pos;
-				txtManager.Text = Info.manager;
-				txtMpId.Text = Info.MP;
-				txtName.Text = Info.name;
-				txtState.Text = Info.state;
-				txtType.Text = Info.type;
-				txtTZ.Text = Info.TZ;
-				txtZip.Text = Info.zip;
-				txtBAMS.Text = Info.BAMS;
-				txtSVS.Text = Info.SVS;
-				txtTID1.Text = Info.TID1;
-				txtTID2.Text = Info.TID2;
-				txtTID3.Text = Info.TID3;
-				txtTID4.Text = Info.TID4;
-				if (Info.income == string.Empty) { txtIncome.Text = string.Empty; }
-				else { txtIncome.Text = "$" + Info.income; }
-				if (Info.rank == string.Empty) { txtRank.Text = string.Empty; }
-				else { txtRank.Text = Info.rank; }
-				if (Info.phone != string.Empty)
-				{
-					if (Info.phone.Length == 10)
-					{
-						txtPhone.Text = Info.phone.Substring(0, 3) + "-" + Info.phone.Substring(3, 3) + "-" + Info.phone.Substring(6);
-					}
-					else if (Info.phone.Length == 7)
-					{
-						txtPhone.Text = Info.phone.Substring(0, 3) + "-" + Info.phone.Substring(3);
-					}
-					else { txtPhone.Text = Info.phone; }
-				}
+                txtEmail.Text = Info.email;
+                txtIP.Text = Info.pos;
+                txtManager.Text = Info.manager;
+                txtMpId.Text = Info.MP;
+                txtName.Text = Info.name;
+                txtState.Text = Info.state;
+                txtType.Text = Info.type;
+                txtTZ.Text = Info.TZ;
+                txtZip.Text = Info.zip;
+                txtBAMS.Text = Info.BAMS;
+                txtSVS.Text = Info.SVS;
+                txtTID1.Text = Info.TID1;
+                txtTID2.Text = Info.TID2;
+                txtTID3.Text = Info.TID3;
+                txtTID4.Text = Info.TID4;
+                if (Info.income == string.Empty) { txtIncome.Text = string.Empty; }
+                else { txtIncome.Text = "$" + Info.income; }
+                if (Info.rank == string.Empty) { txtRank.Text = string.Empty; }
+                else { txtRank.Text = Info.rank; }
+                if (!string.IsNullOrEmpty(Info.phone))
+                {
+                    if (Info.phone.Length == 10)
+                    {
+                        txtPhone.Text = Info.phone.Substring(0, 3) + "-" + Info.phone.Substring(3, 3) + "-" + Info.phone.Substring(6);
+                    }
+                    else if (Info.phone.Length == 7)
+                    {
+                        txtPhone.Text = Info.phone.Substring(0, 3) + "-" + Info.phone.Substring(3);
+                    }
+                    else { txtPhone.Text = Info.phone; }
+                }
                 PingUC.ckbCCTV.Enabled = (Info.cctv != string.Empty);
-			}
-			// Fill the computer list
-			if (GlobalFunctions.b_FillComputers())
-			{
-				foreach (Computer computer in Info.computers)
-				{
-				 	clbComputers.Items.Add(computer.name);
-				}
-			}
-			// Fill the recent calls
-			if (GlobalFunctions.b_FillRecentCalls())
-			{
-				RecentCalls_dgv.DataSource = Info.recentCalls;
-				try
-				{
-					RecentCalls_dgv.Columns["ID"].Visible = false;
-					RecentCalls_dgv.Columns["Store"].Visible = false;
-					RecentCalls_dgv.Columns["Date"].FillWeight = 2;
-					RecentCalls_dgv.Columns["Tech"].FillWeight = 2;
-					RecentCalls_dgv.Columns["Category"].FillWeight = 3;
-					RecentCalls_dgv.Columns["Topic"].FillWeight = 3;
-					RecentCalls_dgv.Columns["Details"].FillWeight = 12;
-					RecentCalls_dgv.Columns["In/Out"].FillWeight = 2;
-					RecentCalls_dgv.Columns["Trax"].Visible = false;
-					RecentCalls_dgv.Columns["URL"].Visible = false;
-				}
-                catch (Exception ex) { Console.WriteLine("Update Info: {0}\n => {1}",RecentCalls_dgv.Name, ex.Message); }
-			}
+            }
+            // Fill the computer list
+            if (GlobalFunctions.b_FillComputers())
+            {
+                foreach (Computer computer in Info.computers)
+                {
+                    clbComputers.Items.Add(computer.name);
+                }
+            }
+            // Fill the recent calls
+            if (GlobalFunctions.b_FillRecentCalls())
+            {
+                RecentCalls_dgv.DataSource = Info.recentCalls;
+                try
+                {
+                    RecentCalls_dgv.Columns["ID"].Visible = false;
+                    RecentCalls_dgv.Columns["Store"].Visible = false;
+                    RecentCalls_dgv.Columns["Date"].FillWeight = 4;
+                    RecentCalls_dgv.Columns["Tech"].FillWeight = 1;
+                    RecentCalls_dgv.Columns["Category"].FillWeight = 3;
+                    RecentCalls_dgv.Columns["Topic"].FillWeight = 3;
+                    RecentCalls_dgv.Columns["Details"].FillWeight = 12;
+                    RecentCalls_dgv.Columns["In/Out"].FillWeight = 1;
+                    RecentCalls_dgv.Columns["Trax"].Visible = false;
+                    RecentCalls_dgv.Columns["URL"].Visible = false;
+                }
+                catch (Exception ex) { Console.WriteLine("Update Info: {0}\n => {1}", RecentCalls_dgv.Name, ex.Message); }
+            }
             Info.Debug();
-			// Call the method to update call totals
-			UpdateWrapUpTotal();
-		}
+            // Call the method to update call totals
+            UpdateWrapUpTotal();
+
+            if (!Info.open) { ts_Top_tsl_StoreClosed.Visible = true; }
+            else { ts_Top_tsl_StoreClosed.Visible = false; }
+
+            if (Info.pinpad) { ts_Top_tsl_PinPad.Visible = true; }
+            else { ts_Top_tsl_PinPad.Visible = false; }
+        }
 
 
 		// Update the team's and user's total calls
@@ -1802,6 +1822,7 @@ namespace Retail_HD
                 Console.WriteLine(tb.Name);
             }
 		}
+
 
 
 
