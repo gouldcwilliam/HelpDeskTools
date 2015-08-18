@@ -30,6 +30,8 @@
 		{
             this.rbSQL = new System.Windows.Forms.RadioButton();
             this.gbServices = new System.Windows.Forms.GroupBox();
+            this.rbVerifone = new System.Windows.Forms.RadioButton();
+            this.rbTransnet = new System.Windows.Forms.RadioButton();
             this.rbCitrix = new System.Windows.Forms.RadioButton();
             this.rbPCA = new System.Windows.Forms.RadioButton();
             this.rbCredit = new System.Windows.Forms.RadioButton();
@@ -38,8 +40,6 @@
             this.rbRestart = new System.Windows.Forms.RadioButton();
             this.rbStop = new System.Windows.Forms.RadioButton();
             this.btnOK = new System.Windows.Forms.Button();
-            this.rbTransnet = new System.Windows.Forms.RadioButton();
-            this.rbVerifone = new System.Windows.Forms.RadioButton();
             this.gbServices.SuspendLayout();
             this.gbAction.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,31 @@
             this.gbServices.TabIndex = 0;
             this.gbServices.TabStop = false;
             this.gbServices.Text = "Service";
+            // 
+            // rbVerifone
+            // 
+            this.rbVerifone.AutoSize = true;
+            this.rbVerifone.Location = new System.Drawing.Point(6, 134);
+            this.rbVerifone.Name = "rbVerifone";
+            this.rbVerifone.Size = new System.Drawing.Size(64, 17);
+            this.rbVerifone.TabIndex = 6;
+            this.rbVerifone.TabStop = true;
+            this.rbVerifone.Tag = "verifone";
+            this.rbVerifone.Text = "Verifone";
+            this.rbVerifone.UseVisualStyleBackColor = true;
+            this.rbVerifone.CheckedChanged += new System.EventHandler(this.rbVerifone_CheckedChanged);
+            // 
+            // rbTransnet
+            // 
+            this.rbTransnet.AutoSize = true;
+            this.rbTransnet.Location = new System.Drawing.Point(6, 111);
+            this.rbTransnet.Name = "rbTransnet";
+            this.rbTransnet.Size = new System.Drawing.Size(67, 17);
+            this.rbTransnet.TabIndex = 5;
+            this.rbTransnet.TabStop = true;
+            this.rbTransnet.Tag = "transnet";
+            this.rbTransnet.Text = "Transnet";
+            this.rbTransnet.UseVisualStyleBackColor = true;
             // 
             // rbCitrix
             // 
@@ -165,31 +190,6 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // rbTransnet
-            // 
-            this.rbTransnet.AutoSize = true;
-            this.rbTransnet.Location = new System.Drawing.Point(6, 111);
-            this.rbTransnet.Name = "rbTransnet";
-            this.rbTransnet.Size = new System.Drawing.Size(67, 17);
-            this.rbTransnet.TabIndex = 5;
-            this.rbTransnet.TabStop = true;
-            this.rbTransnet.Tag = "transnet";
-            this.rbTransnet.Text = "Transnet";
-            this.rbTransnet.UseVisualStyleBackColor = true;
-            // 
-            // rbVerifone
-            // 
-            this.rbVerifone.AutoSize = true;
-            this.rbVerifone.Location = new System.Drawing.Point(6, 134);
-            this.rbVerifone.Name = "rbVerifone";
-            this.rbVerifone.Size = new System.Drawing.Size(64, 17);
-            this.rbVerifone.TabIndex = 6;
-            this.rbVerifone.TabStop = true;
-            this.rbVerifone.Tag = "verifone";
-            this.rbVerifone.Text = "Verifone";
-            this.rbVerifone.UseVisualStyleBackColor = true;
-            this.rbVerifone.CheckedChanged += new System.EventHandler(this.rbVerifone_CheckedChanged);
             // 
             // ServicesControl
             // 

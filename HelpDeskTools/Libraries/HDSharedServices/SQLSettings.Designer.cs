@@ -481,5 +481,19 @@ WHERE
                 this["_StoreSearch"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\nUPDATE \r\n\t[Phones] \r\nSET \r\n\t[phone] = @phone\r\nWHERE \r\n\t[store] = @store \r\nAND [" +
+            "line]=\'1\'\r\n\r\nIF @@ROWCOUNT = 0\r\nBEGIN\r\n\tINSERT INTO \r\n\t\t[Phones] ([phone], [stor" +
+            "e])\r\n\tVALUES\r\n\t\t(@phone, @store)\r\nEND\r\n")]
+        public string _StoreInfoPhone {
+            get {
+                return ((string)(this["_StoreInfoPhone"]));
+            }
+            set {
+                this["_StoreInfoPhone"] = value;
+            }
+        }
     }
 }

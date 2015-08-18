@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>48</ApplicationRevision>
+    <ApplicationRevision>64</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -220,7 +220,7 @@
     <Compile Include="Forms\ExcelCompareData.Designer.cs">
       <DependentUpon>ExcelCompareData.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalResources.Designer.cs">
+    <Compile Include="GlobalResources1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalResources.resx</DependentUpon>
@@ -374,9 +374,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Batch\Unlock.bat">
+    <None Include="Resources\args.xml" />
+    <Content Include="Resources\Batch\Unlock.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icons\play.png" />
@@ -598,9 +599,9 @@
     <None Include="Resources\Icons\in.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Batch\Services.bat">
+    <Content Include="Resources\Batch\Services.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -635,12 +636,12 @@
     <None Include="Resources\Icons\sundial.png" />
     <None Include="Resources\Icons\magnifying.png" />
     <None Include="Resources\Icons\agents.png" />
-    <None Include="Resources\Batch\InstallEndpoint12.bat">
+    <Content Include="Resources\Batch\InstallEndpoint12.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Batch\Certs.bat">
+    </Content>
+    <Content Include="Resources\Batch\Certs.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Resources\Funny\helpdesk-fire.jpg" />
     <None Include="Resources\Funny\BOS.png" />
     <Content Include="Resources\Music\Contra_33.mp3">

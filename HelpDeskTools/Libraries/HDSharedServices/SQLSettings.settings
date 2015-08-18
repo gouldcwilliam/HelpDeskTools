@@ -338,5 +338,24 @@ WHERE
 	)
 </Value>
     </Setting>
+    <Setting Name="_StoreInfoPhone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+UPDATE 
+	[Phones] 
+SET 
+	[phone] = @phone
+WHERE 
+	[store] = @store 
+AND [line]='1'
+
+IF @@ROWCOUNT = 0
+BEGIN
+	INSERT INTO 
+		[Phones] ([phone], [store])
+	VALUES
+		(@phone, @store)
+END
+</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

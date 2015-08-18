@@ -782,8 +782,7 @@ namespace Shared
             parameters.Add(new SqlParameter("@phone",phone));
             parameters.Add(new SqlParameter("@store",store));
 
-            string sql = "UPDATE [Phones] set [phone]=@phone where [store]=@store and [line]='1'";
-            return Update(sql, parameters);
+            return Update(SQLSettings.Default._StoreInfoPhone, parameters);
         }
 
 		/// <summary>

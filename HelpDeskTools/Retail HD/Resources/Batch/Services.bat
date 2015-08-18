@@ -20,19 +20,20 @@ GOTO:DONE
 	IF %A%==stop CALL:creditSTOP
 	IF %a%==restart (
 		CALL:creditSTOP
+		CALL:WAIT
 		CALL:creditSTART
 	)
 GOTO:EOF
 	
 :creditSTART
-	NET START "CDCA MULTI CLIENT"
 	NET START "RIBROKER"
+	NET START "CDCA MULTI CLIENT"
 GOTO:EOF
 	
 	
 :creditSTOP
-	NET STOP "RIBROKER"
 	NET STOP "CDCA MULTI CLIENT"
+	NET STOP "RIBROKER"
 GOTO:EOF
 
 :SQL
@@ -60,6 +61,7 @@ GOTO:EOF
 	IF %A%==stop CALL:pcaSTOP
 	IF %a%==restart (
 		CALL:pcaSTOP
+		CALL:WAIT
 		CALL:pcaSTART
 	)
 GOTO:EOF
@@ -84,13 +86,8 @@ GOTO:EOF
 		CD "C:\Program Files\Verifone\MX915\vfQueryUpdate"
 		ECHO Running vfQueryUpdate
 		START /wait vfQueryUpdate.exe
-		ECHO Done, now waiting for things to happen...... for 3 minutes
-		PING 127.0.0.1 -n 60 > NUL
-		ECHO 2 min...
-		PING 127.0.0.1 -n 60 > NUL
-		ECHO 1 min...
-		PING 127.0.0.1 -n 60 > NUL
-		CALL:creditSTART
+		ECHO Have the user monitor the verifone screen
+		CALL:WAIT
 	)
 GOTO:EOF
 

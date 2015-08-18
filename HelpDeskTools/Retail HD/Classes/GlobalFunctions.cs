@@ -171,6 +171,8 @@ namespace Retail_HD
 			System.Threading.Thread.Sleep(2500);
 			Console.WriteLine("Launched altiris on: " + computer);
 		}
+        
+
 		public static void v_ConnectWithAltiris(Computer computer)
 		{
 			v_ConnectWithAltiris(computer.name);
@@ -182,7 +184,35 @@ namespace Retail_HD
 				v_ConnectWithAltiris(computer.name);
 			}
 		}
-
+        public static void v_ConnectWithDW(string computer)
+        {
+            if (!Shared.Functions.DnsLookup(computer)) { return; }
+            if (File.Exists(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe"))
+            {
+                Process altiris = Process.Start(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
+            }
+            else if (File.Exists(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe"))
+            {
+                Process altiris = Process.Start(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Unable to launch DameWare Remote Control Center\nVerify that it is installed and using the default instalation path", "DameWare Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
+            System.Threading.Thread.Sleep(2500);
+            Console.WriteLine("Launched DameWare on: " + computer);
+        }
+        public static void v_ConnectWithDW(Computer computer)
+        {
+            v_ConnectWithDW(computer.name);
+        }
+        public static void v_ConnectWithDW(List<Computer> SelectedComputers)
+        {
+            foreach(Computer computer in SelectedComputers)
+            {
+                v_ConnectWithDW(computer.name);
+            }
+        }
 
 
 

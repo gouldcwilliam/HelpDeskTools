@@ -631,7 +631,7 @@ namespace Retail_HD
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (Info.reg1 == string.Empty) { return; }
-			GlobalFunctions.v_ConnectWithAltiris(_computers);
+			GlobalFunctions.v_ConnectWithDW(_computers);
 		}
 		/// <summary> Opens fmrInput for cashier number, writes, copies, and executes BAT file remotley to unlock user account.
 		/// Has a status bar and gives progress reports of background process
@@ -1687,6 +1687,7 @@ namespace Retail_HD
                     else { txtPhone.Text = Info.phone; }
                 }
                 PingUC.ckbCCTV.Enabled = (Info.cctv != string.Empty);
+                ServicesUC.rbVerifone.Enabled = Info.pinpad;
             }
             // Fill the computer list
             if (GlobalFunctions.b_FillComputers())

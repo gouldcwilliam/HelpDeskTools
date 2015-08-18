@@ -1,0 +1,161 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <!-- These arguments are read by vfQueryUpdate on application startup -->
+  <tblArgs>
+    <Argument>commtype</Argument>
+    <Description>RS232 (default), USB, or TCPIP</Description>
+    <Value>USB</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>cp</Argument>
+    <Description>Comm Port Number - If you leave it empty for USB, it will look in registry for COM port</Description>
+    <Value>9</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>ip</Argument>
+    <Description>IP Address of the Mx800 - this is for TCPIP communication if cp is greater than 30</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>bd</Argument>
+    <Description>Baud Rate 8=115200, 7=38400, 6=19200, 5=9600</Description>
+    <Value>8</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>prot</Argument>
+    <Description>Protocol 4=8,N,1  and  0=7,E,1</Description>
+    <Value>4</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>hs</Argument>
+    <Description>Handshaking - 1 or 0</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>usesfl</Argument>
+    <Description>This specifies to use SFL instead XDLD/DDL.exe</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>consoledebug</Argument>
+    <Description>Obsolete</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>debug</Argument>
+    <Description>If set to 1, it will write debug information to a log file</Description>
+    <Value>1</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>logfilepath</Argument>
+    <Description>
+      If set to something it will use this path to store the log files - otherwise it will use the
+      "logfiles" folder in the application's directory.
+    </Description>
+    <Value>..\UpdateFiles\logfiles</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>logsize</Argument>
+    <Description>This will set the logsize parameter</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>tgzfilepath</Argument>
+    <Description>
+      If set to something it will use this path for the downloadspecfile, as well as the files specified in
+      the downloadspecfile - otherwise it will use the application's directory.
+    </Description>
+    <Value>..\UpdateFiles</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>dukptengine</Argument>
+    <Description>Set dukptengine parameter if it needs to be set</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>dontchangego</Argument>
+    <Description>If set to 1 then don't change the *go parameter to the non-debug app when getting log files</Description>
+    <Value>1</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>downloadfile</Argument>
+    <Description>File to download - this is not as flexible as using the "downloadspecfile" method</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>tasklistfile</Argument>
+    <Description>Spec File containing files to download as well as versions and pre-requisite versions</Description>
+    <!--Value>..\UpdateFiles\tasklist.xml</Value-->
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>iprange</Argument>
+    <Description>Spec range of IP addresses of the POS in case there are more than one IP assigned for this PC</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>netmask</Argument>
+    <Description>Netmask of device</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>dns1</Argument>
+    <Description>DNS1 of device</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>dns2</Argument>
+    <Description>DNS2 of device</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>gatewayoctet</Argument>
+    <Description>Value of last octet of gateway</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>ipadd</Argument>
+    <Description>Value to add to the last octet of the IP address of the POS to set the Mx800 to</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>vps</Argument>
+    <Description>Whether Payware Vision is to be enabled</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>setvar</Argument>
+    <Description>Variables to set separated by ; character</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>calibrate</Argument>
+    <Description>Whether to calibrate or not</Description>
+    <Value>1</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>restart</Argument>
+    <Description>Whether to restart (1=app 2=device)</Description>
+    <Value>1</Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>getlogs</Argument>
+    <Description>Whether to get the logs</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>getvar</Argument>
+    <Description>Variables to retrieve</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>volume</Argument>
+    <Description>Volume, Bass, Treble, separated by semicolons</Description>
+    <Value></Value>
+  </tblArgs>
+  <tblArgs>
+    <Argument>ppstatus</Argument>
+    <Description>Status of PP1000 - will attempt a test PIN command to port specified in Value</Description>
+    <Value></Value>
+  </tblArgs>
+</DocumentElement>

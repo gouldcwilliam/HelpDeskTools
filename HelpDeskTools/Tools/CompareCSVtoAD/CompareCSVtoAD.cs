@@ -51,7 +51,7 @@ namespace CompareCSVtoAD
 
                         foreach (LDAP.Result item in tempResults.FindAll(x => x.Value.Contains(sStore)))
                         {
-                            listAD.Add(item.Value);
+                            listAD.Add(item.Value.ToLower());
                         }
                     }
                 }

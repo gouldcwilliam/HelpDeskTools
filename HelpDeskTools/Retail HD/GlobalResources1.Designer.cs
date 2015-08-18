@@ -71,7 +71,31 @@ namespace Retail_HD {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; standalone=&quot;yes&quot;?&gt;
+        ///&lt;DocumentElement&gt;
+        ///&lt;!-- These arguments are read by vfQueryUpdate on application startup --&gt;
+        ///  &lt;tblArgs&gt;
+        ///    &lt;Argument&gt;commtype&lt;/Argument&gt;
+        ///    &lt;Description&gt;RS232 (default), USB, or TCPIP&lt;/Description&gt;
+        ///    &lt;Value&gt;USB&lt;/Value&gt;
+        ///  &lt;/tblArgs&gt;
+        ///  &lt;tblArgs&gt;
+        ///    &lt;Argument&gt;cp&lt;/Argument&gt;
+        ///    &lt;Description&gt;Comm Port Number - If you leave it empty for USB, it will look in registry for COM port&lt;/Description&gt;
+        ///    &lt;Value&gt;9&lt;/Value&gt;
+        ///  &lt;/tblArgs&gt;
+        ///  &lt;tblArgs&gt;
+        ///    &lt;Argument&gt;ip&lt;/ [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string args {
+            get {
+                return ResourceManager.GetString("args", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @ECHO OFF
+        ///REM
         ///:importCertRoot
         ///	verify &gt;nul
         ///	certutil.exe -store authroot | findstr &quot;040000000001154b5ac394&quot;
@@ -152,22 +176,6 @@ namespace Retail_HD {
         public static string batServices {
             get {
                 return ResourceManager.GetString("batServices", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to @ECHO OFF
-        ///
-        ///ECHO %1
-        ///
-        ///PING 127.0.0.1
-        ///PAUSE
-        ///EXIT /B %ERRORLEVEL%
-        ///.
-        /// </summary>
-        public static string batTest {
-            get {
-                return ResourceManager.GetString("batTest", resourceCulture);
             }
         }
         
