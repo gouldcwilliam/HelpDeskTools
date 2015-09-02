@@ -118,7 +118,7 @@
             this.txtServerAddress.Name = "txtServerAddress";
             this.txtServerAddress.Size = new System.Drawing.Size(231, 20);
             this.txtServerAddress.TabIndex = 8;
-            this.txtServerAddress.Text = "rocccx01.wwwint.corp";
+            this.txtServerAddress.Text = "rocucccxp01.wwwint.corp";
             // 
             // label4
             // 

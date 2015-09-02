@@ -266,22 +266,33 @@ namespace Retail_HD
 				//instantiate modal login dialog box here
 				//frmCiscoLogin loginForm = new frmCiscoLogin();
 				Forms.frmCiscoLogin loginForm = new Forms.frmCiscoLogin();
-				if (loginForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-				{
-					//login user
-					if (!Helper.IsUserInfoCaptured())
-					{
-						curState = Helper.LoginUser(loginForm.ciscoSettings.s_AgentUsername, loginForm.ciscoSettings.s_AgentPassword, loginForm.ciscoSettings.s_AgentACD);
-						//curState = Helper.LoginUser(GlobalFunctions._pusr, GlobalFunctions._ppas, GlobalFunctions._pacd);
-						//isLoggedIn = true;
-					}
-					else
-					{
-						curState = Helper.LoginUser();
-						//isLoggedIn = true;
-					}
-				}
-				else Application.Exit(); //user must be logged in
+                if (loginForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    //login user
+                    if (!Helper.IsUserInfoCaptured())
+                    {
+                        curState = Helper.LoginUser(loginForm.ciscoSettings.s_AgentUsername, loginForm.ciscoSettings.s_AgentPassword, loginForm.ciscoSettings.s_AgentACD);
+                        //curState = Helper.LoginUser(GlobalFunctions._pusr, GlobalFunctions._ppas, GlobalFunctions._pacd);
+                        //isLoggedIn = true;
+                    }
+                    else
+                    {
+                        curState = Helper.LoginUser();
+                        //isLoggedIn = true;
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("There is an error in your Cisco login settings!\n Check your login settings?", "Config Check Failure", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    {
+                        v_CheckLoginConfig();
+                        return;
+                    }
+                    else
+                    {
+                        Application.Exit(); //user must be logged in
+                    }
+                }
 			}
 			else
 			{

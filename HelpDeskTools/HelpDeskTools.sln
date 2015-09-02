@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}"
 EndProject
@@ -15,6 +15,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiscoFinesseNET", "Libraries\CiscoFinesseNET\CiscoFinesseNET.csproj", "{3E9001A4-FD82-4B28-81C4-9720C607C62A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Libraries\HDSharedServices\Shared.csproj", "{84B74DD0-3B52-456F-A742-3B57FA31E664}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D47C1210-4BFE-4B10-956F-7B0B40F3C718} = {D47C1210-4BFE-4B10-956F-7B0B40F3C718}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDAP", "Libraries\LDAP\LDAP.csproj", "{5A5601E8-C1B8-43AB-961B-3DEB1BC5B06E}"
 EndProject
@@ -25,14 +28,23 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckTrickle", "Tools\CheckTrickle\CheckTrickle.csproj", "{44BD59F1-A129-4206-839D-BCFF1C39CD63}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompareCSVtoAD", "Tools\CompareCSVtoAD\CompareCSVtoAD.csproj", "{7A720728-6BE7-444A-8C4B-8A52C81B0F9B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{84B74DD0-3B52-456F-A742-3B57FA31E664} = {84B74DD0-3B52-456F-A742-3B57FA31E664}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelayedStartServices", "Tools\DelayedStartServices\DelayedStartServices.csproj", "{0361DF41-99D6-4336-A6E7-CE0BD1C057BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailReport", "Tools\EmailReport\EmailReport.csproj", "{9EE5907F-6E60-4F31-A700-590225BD456A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EReceiptMonitor", "Tools\EReceiptMonitor\EReceiptMonitor.csproj", "{8C0EBE8B-4A84-40C5-8EB7-23C39C7CE530}"
+	ProjectSection(ProjectDependencies) = postProject
+		{84B74DD0-3B52-456F-A742-3B57FA31E664} = {84B74DD0-3B52-456F-A742-3B57FA31E664}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindUnusedComputers", "Tools\FindUnusedComputers\FindUnusedComputers.csproj", "{3C4DAABD-5A76-40FF-B56D-AEA9B783441B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{84B74DD0-3B52-456F-A742-3B57FA31E664} = {84B74DD0-3B52-456F-A742-3B57FA31E664}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissingDLLs", "Tools\MissingDLLs\MissingDLLs.csproj", "{FF09E0C8-1C44-4B44-88CE-BF2EBB7F520C}"
 EndProject
@@ -60,6 +72,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bit9Report", "Tools\Bit9Report\Bit9Report.csproj", "{C3B25DC5-22F7-4F93-A1E2-D867B7C4454E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DameWareCheck", "Tools\DameWareCheck\DameWareCheck.csproj", "{26406CE1-4A92-47A8-92D4-17B96372B6DE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{84B74DD0-3B52-456F-A742-3B57FA31E664} = {84B74DD0-3B52-456F-A742-3B57FA31E664}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
