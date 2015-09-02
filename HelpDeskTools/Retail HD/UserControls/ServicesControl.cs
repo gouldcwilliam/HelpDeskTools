@@ -43,6 +43,7 @@ namespace Retail_HD.UCs
             {
                 if (rb.Checked) { action = rb.Tag.ToString(); }
             }
+            Console.WriteLine("action: " + action + " service: " + service);
             if (action == string.Empty || service == string.Empty) { return; }
 
             
@@ -53,16 +54,14 @@ namespace Retail_HD.UCs
                 if (!GlobalFunctions.b_CopyBatFile(computer.name)) { return; }
                 if (service == "verifone") 
                 {
-                    if (!copyArgsXML(computer.name))
-                    {
-                        System.Windows.Forms.MessageBox.Show("Unable to send the args.xml file to the machine", "File Copy Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    } 
+                    Forms.StupidFuckingVerifone sfv = new Forms.StupidFuckingVerifone(computer.name);
+                    sfv.Show();
                 }
-               
-                string args = string.Format("-r:{0} {1} {2}", computer.name, Shared.Settings.Default._TempFile, action + " " + service);
-                
-                GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
+                else
+                {
+                    string args = string.Format("-r:{0} {1} {2}", computer.name, Shared.Settings.Default._TempFile, action + " " + service);
+                    GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
+                }
             }
 		}
 

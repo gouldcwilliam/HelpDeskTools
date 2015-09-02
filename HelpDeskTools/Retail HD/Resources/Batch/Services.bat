@@ -82,6 +82,7 @@ GOTO:EOF
 
 :VERIFONE
 	IF %A%==restart (
+		CALL:KILL
 		CALL:creditSTOP
 		CD "C:\Program Files\Verifone\MX915\vfQueryUpdate"
 		ECHO Running vfQueryUpdate
