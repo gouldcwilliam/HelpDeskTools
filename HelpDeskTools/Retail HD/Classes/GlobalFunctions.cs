@@ -154,6 +154,7 @@ namespace Retail_HD
 		{
 			foreach (Computer computer in SelectedComputers)
 			{
+                if (!Shared.Functions.DnsLookup(computer.name)) { continue; }
 				Process explore = Process.Start("EXPLORER", string.Format(@"\\{0}\c$", computer.name));
 			}
 		}

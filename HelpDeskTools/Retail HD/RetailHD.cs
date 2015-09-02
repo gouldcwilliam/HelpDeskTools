@@ -192,17 +192,18 @@ namespace Retail_HD
 
 		private void Initialize_Buttons_ToolTips()
 		{
-			tt_Main.SetToolTip(PCAnywhere, "Remotely connect using PCAnyWhere\nPress F1");
-			tt_Main.SetToolTip(Unlock, "Connects to and runs POS SQL unlock for the Cashier Number entered\nPress F2");
-			tt_Main.SetToolTip(Browse, "Opens C:\\ in Windows Explorer to browse files remotely\nPress F3");
-			tt_Main.SetToolTip(RemoteCMD, "Remotely connect with CMD window, nice when a simple command may fix issue\nPress F4");
-			tt_Main.SetToolTip(LocalCMD, "Open local CMD window on selected machines, very useful while remotely connected\nPress F5");
-			tt_Main.SetToolTip(CrashingFix, "Opens a dialog to perform actions on multiple store computers\nPress F6");
+			tt_Main.SetToolTip(PCAnywhere, "Remotely connect to computer(s) using Dameware Mini Remote\nPress F1");
+			tt_Main.SetToolTip(Unlock, "Unlocks the Cashier Number entered\nPress F2");
+            tt_Main.SetToolTip(Browse, "Opens C:\\ on computer(s) in Windows Explorer to browse files remotely\nPress F3");
+			tt_Main.SetToolTip(RemoteCMD, "Opens a CMD window on your machine running on the remote computer(s),\n Nice when a simple command may fix issue\nPress F4");
+			tt_Main.SetToolTip(LocalCMD, "Opens a CMD window on selected machines desktop, very useful while remotely connected\nPress F5");
+			tt_Main.SetToolTip(ListActions, "Opens a window able to perform actions on multiple store computers\nPress F6");
 			tt_Main.SetToolTip(KillPOS, "Quickly closes POS software rather than talking caller through taskmanager\nPress F7");
-			tt_Main.SetToolTip(Services, "Shows a submenu with actions regarding POS services\nPress F8");
+			tt_Main.SetToolTip(Services, "Submenu with actions regarding POS services\nPress F8");
 			tt_Main.SetToolTip(Ping, "Submenu for pinging common store network devices\nPress F9");
 			tt_Main.SetToolTip(WrapUp, "Form to be used after each call for capturing Store Number, Issue, Time, etc.\nPress F10");
 			tt_Main.SetToolTip(Restart, "Forces the computer to restart\nPress F11");
+            tt_Main.SetToolTip(btnDelayed, "Tagets register 1 and attempts to start SQL and Express a defined number of times with a delay in between attemps\nUsed when a register is improperly shutdown and the rebuilding RAID is preventing service autostart\nPress F12");
 		}
 
 		#endregion
@@ -1180,6 +1181,12 @@ namespace Retail_HD
             UpdateInfo();
         }
 
+        private void FlushDNS_Click(object sender, EventArgs e)
+        {
+            GlobalFunctions.i_ExecuteCommand("ipconfig", false, "/flushdns");
+            //int ec = GlobalFunctions.i_ExecuteCommand("ipconfig", false, "/flushdns");
+            //System.Diagnostics.Debug.WriteLine("\"IPCONFIG /FLUSHDNS\" exit code:{0}", ec );
+        }
 
 		#endregion
 
@@ -1834,6 +1841,7 @@ namespace Retail_HD
                 Console.WriteLine(tb.Name);
             }
 		}
+
 
 
 

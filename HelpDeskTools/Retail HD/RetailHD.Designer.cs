@@ -51,7 +51,7 @@
             this.Unlock = new System.Windows.Forms.Button();
             this.Browse = new System.Windows.Forms.Button();
             this.RemoteCMD = new System.Windows.Forms.Button();
-            this.CrashingFix = new System.Windows.Forms.Button();
+            this.ListActions = new System.Windows.Forms.Button();
             this.KillPOS = new System.Windows.Forms.Button();
             this.Services = new System.Windows.Forms.Button();
             this.Ping = new System.Windows.Forms.Button();
@@ -127,6 +127,7 @@
             this.ms_Top_msi_ImportExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_AdditionalPhone = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_PinPadInstalled = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_Top_msi_FlushDNS = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_WhatTheJunk = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Info = new System.Windows.Forms.ToolStripMenuItem();
@@ -405,20 +406,20 @@
             this.RemoteCMD.Click += new System.EventHandler(this.Buttons_RemoteCMD_Click);
             this.RemoteCMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
             // 
-            // CrashingFix
+            // ListActions
             // 
-            this.CrashingFix.Image = global::Retail_HD.GlobalResources.icon_split;
-            this.CrashingFix.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CrashingFix.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.CrashingFix.Location = new System.Drawing.Point(12, 237);
-            this.CrashingFix.Name = "CrashingFix";
-            this.CrashingFix.Size = new System.Drawing.Size(78, 24);
-            this.CrashingFix.TabIndex = 44;
-            this.CrashingFix.Text = "List Action";
-            this.CrashingFix.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CrashingFix.UseVisualStyleBackColor = true;
-            this.CrashingFix.Click += new System.EventHandler(this.Buttons_ListAction_Click);
-            this.CrashingFix.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            this.ListActions.Image = global::Retail_HD.GlobalResources.icon_split;
+            this.ListActions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ListActions.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ListActions.Location = new System.Drawing.Point(12, 237);
+            this.ListActions.Name = "ListActions";
+            this.ListActions.Size = new System.Drawing.Size(78, 24);
+            this.ListActions.TabIndex = 44;
+            this.ListActions.Text = "List Action";
+            this.ListActions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ListActions.UseVisualStyleBackColor = true;
+            this.ListActions.Click += new System.EventHandler(this.Buttons_ListAction_Click);
+            this.ListActions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
             // 
             // KillPOS
             // 
@@ -1260,7 +1261,8 @@
             this.ms_Top_msi_RefreshComputers,
             this.ms_Top_msi_ImportExcel,
             this.ms_Top_msi_AdditionalPhone,
-            this.ms_Top_msi_PinPadInstalled});
+            this.ms_Top_msi_PinPadInstalled,
+            this.ms_Top_msi_FlushDNS});
             this.ms_Top_msi_File.Name = "ms_Top_msi_File";
             this.ms_Top_msi_File.Size = new System.Drawing.Size(37, 20);
             this.ms_Top_msi_File.Text = "&File";
@@ -1318,6 +1320,13 @@
             this.ms_Top_msi_PinPadInstalled.Size = new System.Drawing.Size(191, 22);
             this.ms_Top_msi_PinPadInstalled.Text = "Pin Pad Installed";
             this.ms_Top_msi_PinPadInstalled.Click += new System.EventHandler(this.PinPadInstalled_Click);
+            // 
+            // ms_Top_msi_FlushDNS
+            // 
+            this.ms_Top_msi_FlushDNS.Name = "ms_Top_msi_FlushDNS";
+            this.ms_Top_msi_FlushDNS.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_FlushDNS.Text = "Flush DNS";
+            this.ms_Top_msi_FlushDNS.Click += new System.EventHandler(this.FlushDNS_Click);
             // 
             // ms_Top_msi_Help
             // 
@@ -1449,7 +1458,7 @@
             this.Controls.Add(this.Unlock);
             this.Controls.Add(this.Browse);
             this.Controls.Add(this.RemoteCMD);
-            this.Controls.Add(this.CrashingFix);
+            this.Controls.Add(this.ListActions);
             this.Controls.Add(this.KillPOS);
             this.Controls.Add(this.Services);
             this.Controls.Add(this.Ping);
@@ -1541,7 +1550,7 @@
 		public System.Windows.Forms.Button Unlock;
 		public System.Windows.Forms.Button Browse;
 		public System.Windows.Forms.Button RemoteCMD;
-		public System.Windows.Forms.Button CrashingFix;
+		public System.Windows.Forms.Button ListActions;
 		public System.Windows.Forms.Button KillPOS;
 		public System.Windows.Forms.Button Services;
 		public System.Windows.Forms.Button Ping;
@@ -1634,6 +1643,7 @@
         private System.Windows.Forms.ToolStripLabel ts_Top_tsl_StoreClosed;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_PinPadInstalled;
         private System.Windows.Forms.ToolStripLabel ts_Top_tsl_PinPad;
+        private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_FlushDNS;
     }
 }
 

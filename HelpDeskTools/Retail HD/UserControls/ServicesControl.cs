@@ -51,6 +51,7 @@ namespace Retail_HD.UCs
 
             foreach (Computer computer in Info.computers.FindAll(x => x.selected == true))
             {
+                if (!Shared.Functions.DnsLookup(computer.name)) { continue; }
                 if (!GlobalFunctions.b_CopyBatFile(computer.name)) { return; }
                 if (service == "verifone") 
                 {

@@ -168,8 +168,8 @@ namespace Retail_HD.Forms
 					System.Threading.Thread.Sleep(500);
 				}
 			}
-
-            MessageBox.Show(actionList, "Completed", MessageBoxButtons.OK);
+            //TODO implement action log window instead of a popup message.
+            //MessageBox.Show(actionList, "Completed", MessageBoxButtons.OK);
 		}
 
 		private string getAction()

@@ -99,6 +99,7 @@
             this.btnPhoneSettings.TabIndex = 15;
             this.btnPhoneSettings.Text = "Cisco Call Center Settings";
             this.btnPhoneSettings.UseVisualStyleBackColor = true;
+            this.btnPhoneSettings.Click += new System.EventHandler(this.btnPhoneSettings_Click);
             // 
             // btnApply
             // 
@@ -110,6 +111,7 @@
             this.btnApply.TabIndex = 14;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // btnCancel
             // 
@@ -121,6 +123,7 @@
             this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
@@ -131,6 +134,7 @@
             this.btnOK.TabIndex = 12;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // EditSettings
             // 
