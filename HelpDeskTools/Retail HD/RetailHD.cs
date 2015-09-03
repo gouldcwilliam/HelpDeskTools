@@ -152,6 +152,8 @@ namespace Retail_HD
             //Shared.Functions.v_Install_DelayedStartServices();
             Shared.Functions.v_RemoveDelayedStartServices();
 			Shared.Functions.v_CreateTempFolder();
+            GlobalFunctions.b_WriteFile(GlobalResources.batServices, Shared.Settings.Default._BatServices);
+            GlobalFunctions.b_WriteFile(GlobalResources.batUnlock, Shared.Settings.Default._BatUnlock);
 
             _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
 

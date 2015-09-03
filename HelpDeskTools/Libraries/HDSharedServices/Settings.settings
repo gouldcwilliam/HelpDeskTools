@@ -32,5 +32,11 @@
     <Setting Name="_MostRecentLogSent" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)">2015-03-01</Value>
     </Setting>
+    <Setting Name="_BatUnlock" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\temp\unlock.bat</Value>
+    </Setting>
+    <Setting Name="_BatServices" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\temp\services.bat</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
