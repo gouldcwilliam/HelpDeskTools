@@ -154,6 +154,7 @@ namespace Retail_HD
 			Shared.Functions.v_CreateTempFolder();
             GlobalFunctions.b_WriteFile(GlobalResources.batServices, Shared.Settings.Default._BatServices);
             GlobalFunctions.b_WriteFile(GlobalResources.batUnlock, Shared.Settings.Default._BatUnlock);
+            GlobalFunctions.b_WriteFile(GlobalResources.args, @"C:\temp\args.xml");
 
             _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
 

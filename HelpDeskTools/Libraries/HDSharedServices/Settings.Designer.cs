@@ -166,5 +166,17 @@ namespace Shared {
                 this["_BatServices"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\VeriFone\\MX915\\vfQueryUpdate\\args.xml")]
+        public string _ArgsXMLpath {
+            get {
+                return ((string)(this["_ArgsXMLpath"]));
+            }
+            set {
+                this["_ArgsXMLpath"] = value;
+            }
+        }
     }
 }

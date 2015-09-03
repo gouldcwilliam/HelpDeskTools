@@ -684,10 +684,6 @@
       <Project>{d47c1210-4bfe-4b10-956f-7b0b40f3c718}</Project>
       <Name>ProgressBar</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tools\BananaHammock\BananaHammock.csproj">
-      <Project>{ac0025ff-277f-425b-8435-b5645c0775ba}</Project>
-      <Name>BananaHammock</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Tools\CheckTrickle\CheckTrickle.csproj">
       <Project>{44bd59f1-a129-4206-839d-bcff1c39cd63}</Project>
       <Name>CheckTrickle</Name>

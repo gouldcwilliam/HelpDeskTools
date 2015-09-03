@@ -103,13 +103,12 @@ namespace Retail_HD.Forms
 
 						if (action != string.Empty && service != string.Empty)
 						{
-							if (GlobalFunctions.b_WriteBatFile(GlobalResources.batServices))
-							{
-                                if (!GlobalFunctions.b_CopyBatFile(computer)) { MessageBox.Show("An error occurred copying batch files.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); break; }
+							
+                                if (!GlobalFunctions.b_CopyFile(computer, Shared.Settings.Default._BatServices)) { MessageBox.Show("An error occurred copying batch files.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); break; }
 
-								string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempFile, action + " " + service);
+								string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._BatServices, action + " " + service);
 								GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
-							}
+							
 						}
 
                         actionList += computer + " had services restarted.\n";

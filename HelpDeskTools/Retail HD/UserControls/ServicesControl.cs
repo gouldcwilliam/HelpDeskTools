@@ -47,12 +47,10 @@ namespace Retail_HD.UCs
             if (action == string.Empty || service == string.Empty) { return; }
 
             
-            if (!GlobalFunctions.b_WriteBatFile(GlobalResources.batServices)) { return; }
-
             foreach (Computer computer in Info.computers.FindAll(x => x.selected == true))
             {
                 if (!Shared.Functions.DnsLookup(computer.name)) { continue; }
-                if (!GlobalFunctions.b_CopyBatFile(computer.name)) { return; }
+                if (!GlobalFunctions.b_CopyFile(computer.name, Shared.Settings.Default._BatServices)) { return; }
                 if (service == "verifone") 
                 {
                     Forms.StupidFuckingVerifone sfv = new Forms.StupidFuckingVerifone(computer.name);
@@ -60,7 +58,7 @@ namespace Retail_HD.UCs
                 }
                 else
                 {
-                    string args = string.Format("-r:{0} {1} {2}", computer.name, Shared.Settings.Default._TempFile, action + " " + service);
+                    string args = string.Format("-r:{0} {1} {2}", computer.name, Shared.Settings.Default._BatServices, action + " " + service);
                     GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
                 }
             }

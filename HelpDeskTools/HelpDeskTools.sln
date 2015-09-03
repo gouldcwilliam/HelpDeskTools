@@ -37,14 +37,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailReport", "Tools\EmailReport\EmailReport.csproj", "{9EE5907F-6E60-4F31-A700-590225BD456A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EReceiptMonitor", "Tools\EReceiptMonitor\EReceiptMonitor.csproj", "{8C0EBE8B-4A84-40C5-8EB7-23C39C7CE530}"
-	ProjectSection(ProjectDependencies) = postProject
-		{84B74DD0-3B52-456F-A742-3B57FA31E664} = {84B74DD0-3B52-456F-A742-3B57FA31E664}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindUnusedComputers", "Tools\FindUnusedComputers\FindUnusedComputers.csproj", "{3C4DAABD-5A76-40FF-B56D-AEA9B783441B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{84B74DD0-3B52-456F-A742-3B57FA31E664} = {84B74DD0-3B52-456F-A742-3B57FA31E664}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissingDLLs", "Tools\MissingDLLs\MissingDLLs.csproj", "{FF09E0C8-1C44-4B44-88CE-BF2EBB7F520C}"
 EndProject
@@ -60,7 +54,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retail HD", "Retail HD\Reta
 		{FF09E0C8-1C44-4B44-88CE-BF2EBB7F520C} = {FF09E0C8-1C44-4B44-88CE-BF2EBB7F520C}
 		{26406CE1-4A92-47A8-92D4-17B96372B6DE} = {26406CE1-4A92-47A8-92D4-17B96372B6DE}
 		{44BD59F1-A129-4206-839D-BCFF1C39CD63} = {44BD59F1-A129-4206-839D-BCFF1C39CD63}
-		{AC0025FF-277F-425B-8435-B5645C0775BA} = {AC0025FF-277F-425B-8435-B5645C0775BA}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E5E05E6-06D7-4E66-AF0A-F8E92A72DA3D}"
@@ -72,9 +65,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bit9Report", "Tools\Bit9Report\Bit9Report.csproj", "{C3B25DC5-22F7-4F93-A1E2-D867B7C4454E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DameWareCheck", "Tools\DameWareCheck\DameWareCheck.csproj", "{26406CE1-4A92-47A8-92D4-17B96372B6DE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{84B74DD0-3B52-456F-A742-3B57FA31E664} = {84B74DD0-3B52-456F-A742-3B57FA31E664}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
