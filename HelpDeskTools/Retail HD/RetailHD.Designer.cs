@@ -121,17 +121,18 @@
             this.bw = new System.ComponentModel.BackgroundWorker();
             this.ms_Top_msi_File = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Settings = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms_Top_msi_OldBatMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_CodeEntry = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms_Top_msi_RefreshComputers = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms_Top_msi_ImportExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_AdditionalPhone = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_PinPadInstalled = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_Top_msi_RefreshComputers = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_Top_msi_ImportExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_FlushDNS = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_WhatTheJunk = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top_msi_Info = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_Top = new System.Windows.Forms.MenuStrip();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_Top_msi_OldBatMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtRM = new System.Windows.Forms.TextBox();
             this.ServicesUC = new Retail_HD.UCs.ServicesControl();
@@ -1256,13 +1257,9 @@
             // 
             this.ms_Top_msi_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ms_Top_msi_Settings,
-            this.ms_Top_msi_OldBatMenu,
             this.ms_Top_msi_CodeEntry,
-            this.ms_Top_msi_RefreshComputers,
-            this.ms_Top_msi_ImportExcel,
             this.ms_Top_msi_AdditionalPhone,
-            this.ms_Top_msi_PinPadInstalled,
-            this.ms_Top_msi_FlushDNS});
+            this.ms_Top_msi_PinPadInstalled});
             this.ms_Top_msi_File.Name = "ms_Top_msi_File";
             this.ms_Top_msi_File.Size = new System.Drawing.Size(37, 20);
             this.ms_Top_msi_File.Text = "&File";
@@ -1276,14 +1273,6 @@
             this.ms_Top_msi_Settings.ToolTipText = "Change Cisco Phone Settings";
             this.ms_Top_msi_Settings.Click += new System.EventHandler(this.Settings_Click);
             // 
-            // ms_Top_msi_OldBatMenu
-            // 
-            this.ms_Top_msi_OldBatMenu.Name = "ms_Top_msi_OldBatMenu";
-            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(191, 22);
-            this.ms_Top_msi_OldBatMenu.Text = "Old Bat Menu";
-            this.ms_Top_msi_OldBatMenu.ToolTipText = "Opens Jason\'s BAT file CMD menue";
-            this.ms_Top_msi_OldBatMenu.Click += new System.EventHandler(this.OldBatMenu_Click);
-            // 
             // ms_Top_msi_CodeEntry
             // 
             this.ms_Top_msi_CodeEntry.Name = "ms_Top_msi_CodeEntry";
@@ -1291,21 +1280,6 @@
             this.ms_Top_msi_CodeEntry.Text = "&Code Entry";
             this.ms_Top_msi_CodeEntry.ToolTipText = "Konami Code";
             this.ms_Top_msi_CodeEntry.Click += new System.EventHandler(this.CodeEntry_Click);
-            // 
-            // ms_Top_msi_RefreshComputers
-            // 
-            this.ms_Top_msi_RefreshComputers.Name = "ms_Top_msi_RefreshComputers";
-            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(191, 22);
-            this.ms_Top_msi_RefreshComputers.Text = "Refresh Computers";
-            this.ms_Top_msi_RefreshComputers.ToolTipText = "Update\'s list of computers from AD";
-            this.ms_Top_msi_RefreshComputers.Click += new System.EventHandler(this.RefreshComputers_Click);
-            // 
-            // ms_Top_msi_ImportExcel
-            // 
-            this.ms_Top_msi_ImportExcel.Name = "ms_Top_msi_ImportExcel";
-            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(191, 22);
-            this.ms_Top_msi_ImportExcel.Text = "Import Excel File";
-            this.ms_Top_msi_ImportExcel.Click += new System.EventHandler(this.ImportExcel_Click);
             // 
             // ms_Top_msi_AdditionalPhone
             // 
@@ -1321,10 +1295,25 @@
             this.ms_Top_msi_PinPadInstalled.Text = "Pin Pad Installed";
             this.ms_Top_msi_PinPadInstalled.Click += new System.EventHandler(this.PinPadInstalled_Click);
             // 
+            // ms_Top_msi_RefreshComputers
+            // 
+            this.ms_Top_msi_RefreshComputers.Name = "ms_Top_msi_RefreshComputers";
+            this.ms_Top_msi_RefreshComputers.Size = new System.Drawing.Size(175, 22);
+            this.ms_Top_msi_RefreshComputers.Text = "Refresh Computers";
+            this.ms_Top_msi_RefreshComputers.ToolTipText = "Update\'s list of computers from AD";
+            this.ms_Top_msi_RefreshComputers.Click += new System.EventHandler(this.RefreshComputers_Click);
+            // 
+            // ms_Top_msi_ImportExcel
+            // 
+            this.ms_Top_msi_ImportExcel.Name = "ms_Top_msi_ImportExcel";
+            this.ms_Top_msi_ImportExcel.Size = new System.Drawing.Size(175, 22);
+            this.ms_Top_msi_ImportExcel.Text = "Import Excel File";
+            this.ms_Top_msi_ImportExcel.Click += new System.EventHandler(this.ImportExcel_Click);
+            // 
             // ms_Top_msi_FlushDNS
             // 
             this.ms_Top_msi_FlushDNS.Name = "ms_Top_msi_FlushDNS";
-            this.ms_Top_msi_FlushDNS.Size = new System.Drawing.Size(191, 22);
+            this.ms_Top_msi_FlushDNS.Size = new System.Drawing.Size(175, 22);
             this.ms_Top_msi_FlushDNS.Text = "Flush DNS";
             this.ms_Top_msi_FlushDNS.Click += new System.EventHandler(this.FlushDNS_Click);
             // 
@@ -1359,7 +1348,8 @@
             this.ms_Top.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ms_Top_msi_File,
             this.ms_Top_msi_Help,
-            this.ms_Top_msi_Info});
+            this.ms_Top_msi_Info,
+            this.toolsToolStripMenuItem});
             this.ms_Top.Location = new System.Drawing.Point(0, 0);
             this.ms_Top.Name = "ms_Top";
             this.ms_Top.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -1367,6 +1357,25 @@
             this.ms_Top.TabIndex = 7;
             this.ms_Top.Text = "mnuTop";
             this.ms_Top.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ms_Top_msi_RefreshComputers,
+            this.ms_Top_msi_ImportExcel,
+            this.ms_Top_msi_FlushDNS,
+            this.ms_Top_msi_OldBatMenu});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // ms_Top_msi_OldBatMenu
+            // 
+            this.ms_Top_msi_OldBatMenu.Name = "ms_Top_msi_OldBatMenu";
+            this.ms_Top_msi_OldBatMenu.Size = new System.Drawing.Size(175, 22);
+            this.ms_Top_msi_OldBatMenu.Text = "Old Bat Menu";
+            this.ms_Top_msi_OldBatMenu.ToolTipText = "Opens Jason\'s BAT file CMD menue";
+            this.ms_Top_msi_OldBatMenu.Click += new System.EventHandler(this.OldBatMenu_Click);
             // 
             // groupBox3
             // 
@@ -1625,7 +1634,6 @@
 		private System.Windows.Forms.ToolStripButton ts_Top_tsb_HistorySearch;
 		private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_File;
 		private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_Settings;
-		private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_OldBatMenu;
 		private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_CodeEntry;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_RefreshComputers;
 		private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_Help;
@@ -1644,6 +1652,8 @@
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_PinPadInstalled;
         private System.Windows.Forms.ToolStripLabel ts_Top_tsl_PinPad;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_FlushDNS;
+        private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_OldBatMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
     }
 }
 

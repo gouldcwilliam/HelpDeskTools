@@ -141,9 +141,31 @@ namespace Retail_HD
 			return true;
 		}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ComputerName"></param>
+        /// <returns></returns>
+        public static bool copyArgsXML(string ComputerName)
+        {
+            string tempFile = @"C:\temp\args.xml";
+            try { System.IO.File.WriteAllText(tempFile, GlobalResources.args.ToString()); }
+            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+            try
+            {
+                string Destination = string.Format(@"\\{0}\C$\Program Files\VeriFone\MX915\vfQueryUpdate\args.xml", ComputerName);
+                Console.WriteLine(Destination);
+                System.IO.File.Copy(tempFile, Destination, true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
+        }
 
-
-		public static void v_UpdateComputersFromAD()
+        public static void v_UpdateComputersFromAD()
 		{
 			Process.Start(@".\UpdateComputerList.exe");
 		}

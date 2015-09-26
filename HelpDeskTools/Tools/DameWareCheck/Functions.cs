@@ -133,7 +133,15 @@ namespace DameWareCheck
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
         }
-
+        public static bool FindAltiris(string computer)
+        {
+            try
+            {
+                return System.IO.Directory.Exists(
+                    string.Format(@"\\{0}\C$\Program Files\Symantec", computer));
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+        }
 
 		/// <summary>
 		/// 

@@ -1708,7 +1708,6 @@ namespace Retail_HD
                     else { txtPhone.Text = Info.phone; }
                 }
                 PingUC.ckbCCTV.Enabled = (Info.cctv != string.Empty);
-                ServicesUC.rbVerifone.Enabled = Info.pinpad;
             }
             // Fill the computer list
             if (GlobalFunctions.b_FillComputers())
@@ -1846,10 +1845,5 @@ namespace Retail_HD
 		}
 
 
-
-
-
-
-		
-	}
+    }
 }

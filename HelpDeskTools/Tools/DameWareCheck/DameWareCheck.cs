@@ -89,7 +89,7 @@ namespace DameWareCheck
 					}
 					else
 					{
-						if(!Functions.FindDameWare(prop.Value))
+						if(!Functions.FindAltiris(prop.Value))
                         {
                             failed.Add(prop.Value);
                         }
@@ -138,9 +138,9 @@ namespace DameWareCheck
 					else
 					{
 						// check files
-						if (!Functions.FindDameWare(computer))
+						if (!Functions.FindAltiris(computer))
 						{
-                            body += string.Format(Settings.Default.body, computer, "Dameware not found", " ");
+                            body += string.Format(Settings.Default.body, computer, "pcAnywhere found", " ");
 						}
 
 					}

@@ -11,7 +11,7 @@
 	IF %S%==citrix CALL:CITRIX
 	IF %S%==verifone CALL:VERIFONE
 	IF %S%==transnet CALL:TRANSNET
-	CALL:WAIT
+	IF %S%==dameware CALL:DAMEWARE
 	CALL:WAIT
 GOTO:DONE
 
@@ -95,7 +95,7 @@ GOTO:EOF
 :TRANSNET
 	IF %A%==start CALL:transnetSTART
 	IF %A%==stop CALL:transnetSTOP
-	IF %a%==restart (
+	IF %A%==restart (
 		CALL:transnetSTOP
 		CALL:transnetSTART
 	)
@@ -111,6 +111,23 @@ GOTO:EOF
 	NET STOP "NFM CLIENT SERVICE"
 	NET STOP "NTM JAVA CLIENT"
 	NET STOP "TRANSNET"
+GOTO:EOF
+
+:DAMEWARE
+	IF %A%==start CALL:damewareSTART
+	IF %A%==stop CALL:damewareSTOP
+	IF %A%==restart (
+		CALL:damewareSTOP
+		CALL:damewareSTART
+	)
+GOTO:EOF
+
+:damewareSTART
+	NET START DWMRCS
+GOTO:EOF
+
+:damewareSTOP
+	NET STOP DWMRCS
 GOTO:EOF
 
 :KILL

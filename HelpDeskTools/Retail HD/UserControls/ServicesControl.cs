@@ -19,16 +19,15 @@ namespace Retail_HD.UCs
 
 		public void Clear()
 		{
-			this.rbCredit.Checked = false;
-			this.rbRestart.Checked = false;
-			this.rbSQL.Checked = false;
-			this.rbStart.Checked = false;
-			this.rbStop.Checked = false;
-			this.rbPCA.Checked = false;
-			this.rbCitrix.Checked = false;
-            this.rbVerifone.Checked = false;
-            this.rbTransnet.Checked = false;
-		}
+            foreach (RadioButton rb in gbServices.Controls.OfType<RadioButton>())
+            {
+                rb.Checked = false;
+            }
+            foreach (RadioButton rb in gbAction.Controls.OfType<RadioButton>())
+            {
+                rb.Checked = false;
+            }
+        }
 
 		private void btnOK_Click(object sender, EventArgs e)
 		{
@@ -75,23 +74,6 @@ namespace Retail_HD.UCs
             rbStart.Enabled = (!rbVerifone.Checked);
             rbStop.Enabled = (!rbVerifone.Checked);
         }
-        private bool copyArgsXML(string ComputerName)
-        {
-            string tempFile=@"C:\temp\args.xml";
-            try { System.IO.File.WriteAllText(tempFile, GlobalResources.args.ToString()); }
-            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
-            try
-            {
-                string Destination = string.Format(@"\\{0}\C$\Program Files\VeriFone\MX915\vfQueryUpdate\args.xml", ComputerName);
-                Console.WriteLine(Destination);
-                System.IO.File.Copy(tempFile, Destination, true);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-            return true;
-        }
+
 	}
 }
