@@ -1172,7 +1172,7 @@ namespace Retail_HD
         private void AdditionalPhone_Click(object sender, EventArgs e)
         {
             if (AdditionalPhone.Visible) { AdditionalPhone.BringToFront(); return; }
-            AdditionalPhone = new Forms.AdditionalPhone(Info.store.ToString());
+            AdditionalPhone = new Forms.AdditionalPhone(Info.store.ToString(), currentStoreNumber);
             AdditionalPhone.Show();
         }
 

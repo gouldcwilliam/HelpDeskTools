@@ -30,6 +30,7 @@
 		{
 			this.rbSQL = new System.Windows.Forms.RadioButton();
 			this.gbServices = new System.Windows.Forms.GroupBox();
+			this.rbDameware = new System.Windows.Forms.RadioButton();
 			this.rbVerifone = new System.Windows.Forms.RadioButton();
 			this.rbTransnet = new System.Windows.Forms.RadioButton();
 			this.rbCitrix = new System.Windows.Forms.RadioButton();
@@ -39,7 +40,6 @@
 			this.rbRestart = new System.Windows.Forms.RadioButton();
 			this.rbStop = new System.Windows.Forms.RadioButton();
 			this.btnOK = new System.Windows.Forms.Button();
-			this.rbDameware = new System.Windows.Forms.RadioButton();
 			this.gbServices.SuspendLayout();
 			this.gbAction.SuspendLayout();
 			this.SuspendLayout();
@@ -71,10 +71,22 @@
 			this.gbServices.TabStop = false;
 			this.gbServices.Text = "Service";
 			// 
+			// rbDameware
+			// 
+			this.rbDameware.AutoSize = true;
+			this.rbDameware.Location = new System.Drawing.Point(6, 111);
+			this.rbDameware.Name = "rbDameware";
+			this.rbDameware.Size = new System.Drawing.Size(76, 17);
+			this.rbDameware.TabIndex = 7;
+			this.rbDameware.TabStop = true;
+			this.rbDameware.Tag = "dameware";
+			this.rbDameware.Text = "Dameware";
+			this.rbDameware.UseVisualStyleBackColor = true;
+			// 
 			// rbVerifone
 			// 
 			this.rbVerifone.AutoSize = true;
-			this.rbVerifone.Location = new System.Drawing.Point(6, 111);
+			this.rbVerifone.Location = new System.Drawing.Point(6, 133);
 			this.rbVerifone.Name = "rbVerifone";
 			this.rbVerifone.Size = new System.Drawing.Size(64, 17);
 			this.rbVerifone.TabIndex = 6;
@@ -178,18 +190,6 @@
 			this.btnOK.Text = "OK";
 			this.btnOK.UseVisualStyleBackColor = true;
 			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-			// 
-			// rbDameware
-			// 
-			this.rbDameware.AutoSize = true;
-			this.rbDameware.Location = new System.Drawing.Point(6, 134);
-			this.rbDameware.Name = "rbDameware";
-			this.rbDameware.Size = new System.Drawing.Size(76, 17);
-			this.rbDameware.TabIndex = 7;
-			this.rbDameware.TabStop = true;
-			this.rbDameware.Tag = "dameware";
-			this.rbDameware.Text = "Dameware";
-			this.rbDameware.UseVisualStyleBackColor = true;
 			// 
 			// ServicesControl
 			// 

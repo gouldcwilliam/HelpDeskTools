@@ -22,7 +22,12 @@ namespace Retail_HD.Forms
             InitializeComponent();
             txtStore.Text = storeNumber;
         }
-
+		public AdditionalPhone(string storeNumber, string phoneNumber)
+		{
+			InitializeComponent();
+			txtStore.Text = storeNumber;
+			txtPhone.Text = phoneNumber;
+		}
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = System.Windows.Forms.DialogResult.Cancel;
