@@ -154,7 +154,7 @@ namespace Retail_HD.Forms
                 if (ckbOpenProgram.Checked)
                 {
                     if (ckbMulti.Checked) { GlobalFunctions.Multi(computer); }
-                    if (ckbAltiris.Checked) { GlobalFunctions.v_ConnectWithAltiris(computer); }
+                    if (ckbDameware.Checked) { GlobalFunctions.v_ConnectWithDW(computer); }
                     if (ckbCMD.Checked) { GlobalFunctions.v_LocalCMD(computer); }
                 }
 

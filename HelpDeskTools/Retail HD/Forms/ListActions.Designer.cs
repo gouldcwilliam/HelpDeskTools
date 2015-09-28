@@ -47,7 +47,7 @@
 			this.ckbOpenProgram = new System.Windows.Forms.CheckBox();
 			this.gbProgram = new System.Windows.Forms.GroupBox();
 			this.ckbCMD = new System.Windows.Forms.CheckBox();
-			this.ckbAltiris = new System.Windows.Forms.CheckBox();
+			this.ckbDameware = new System.Windows.Forms.CheckBox();
 			this.ckbMulti = new System.Windows.Forms.CheckBox();
 			this.btnClear = new System.Windows.Forms.Button();
 			this.ckbInstallEndpoint = new System.Windows.Forms.CheckBox();
@@ -266,11 +266,11 @@
 			// 
 			this.gbProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.gbProgram.Controls.Add(this.ckbCMD);
-			this.gbProgram.Controls.Add(this.ckbAltiris);
+			this.gbProgram.Controls.Add(this.ckbDameware);
 			this.gbProgram.Controls.Add(this.ckbMulti);
-			this.gbProgram.Location = new System.Drawing.Point(194, 337);
+			this.gbProgram.Location = new System.Drawing.Point(175, 337);
 			this.gbProgram.Name = "gbProgram";
-			this.gbProgram.Size = new System.Drawing.Size(181, 50);
+			this.gbProgram.Size = new System.Drawing.Size(200, 50);
 			this.gbProgram.TabIndex = 9;
 			this.gbProgram.TabStop = false;
 			this.gbProgram.Text = "Program";
@@ -279,22 +279,22 @@
 			// ckbCMD
 			// 
 			this.ckbCMD.AutoSize = true;
-			this.ckbCMD.Location = new System.Drawing.Point(116, 19);
+			this.ckbCMD.Location = new System.Drawing.Point(143, 19);
 			this.ckbCMD.Name = "ckbCMD";
 			this.ckbCMD.Size = new System.Drawing.Size(50, 17);
 			this.ckbCMD.TabIndex = 2;
 			this.ckbCMD.Text = "CMD";
 			this.ckbCMD.UseVisualStyleBackColor = true;
 			// 
-			// ckbAltiris
+			// ckbDameware
 			// 
-			this.ckbAltiris.AutoSize = true;
-			this.ckbAltiris.Location = new System.Drawing.Point(60, 19);
-			this.ckbAltiris.Name = "ckbAltiris";
-			this.ckbAltiris.Size = new System.Drawing.Size(50, 17);
-			this.ckbAltiris.TabIndex = 1;
-			this.ckbAltiris.Text = "Altiris";
-			this.ckbAltiris.UseVisualStyleBackColor = true;
+			this.ckbDameware.AutoSize = true;
+			this.ckbDameware.Location = new System.Drawing.Point(60, 19);
+			this.ckbDameware.Name = "ckbDameware";
+			this.ckbDameware.Size = new System.Drawing.Size(77, 17);
+			this.ckbDameware.TabIndex = 1;
+			this.ckbDameware.Text = "Dameware";
+			this.ckbDameware.UseVisualStyleBackColor = true;
 			// 
 			// ckbMulti
 			// 
@@ -540,7 +540,7 @@
 		private System.Windows.Forms.GroupBox gbProgram;
 		private System.Windows.Forms.CheckBox ckbMulti;
 		private System.Windows.Forms.CheckBox ckbCMD;
-		private System.Windows.Forms.CheckBox ckbAltiris;
+		private System.Windows.Forms.CheckBox ckbDameware;
 		public System.Windows.Forms.Button btnClear;
 		private System.Windows.Forms.CheckBox ckbInstallEndpoint;
 		private System.Windows.Forms.CheckBox ckbDisableStartupRepair;
