@@ -4,8 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -40,39 +38,7 @@ namespace Retail_HD
 				else { _curNum = string.Format("{0}", value); }
 			}
 		}
-		//string currentStoreNumber
-		//{
-		//	get
-		//	{
-		//		return _curNum;
-		//	}
-		//	set
-		//	{
-		//		if (value.Length > 4) //it's not a store number
-		//		{
-		//			if (Functions.isNumeric(value) && value.Length == 10)
-		//			{
-		//				//if a phone number was passed as the value
-		//				string name = GlobalFunctions.s_LookupPhoneNumber(value);
-		//				if (name == string.Empty)
-		//				{
-		//					_curNum = string.Format("{0:(###)###-####}", Convert.ToInt64(value));
-		//				}
-		//				else
-		//				{
-		//					_curNum = name;
-		//				}
-		//			}
-		//			else
-		//			{
-		//				//if name was looked up and passed as the value or is non looked up extension
-		//				_curNum = string.Format("{0}", value);
-		//			}
-		//		}
-		//		else _curNum = string.Format("Store {0}", value);
-		//	}
-		//}
-		
+
         bool hasCallWrappedUp = false;
         UserState _cState;
         UserState curState
@@ -133,7 +99,8 @@ namespace Retail_HD
 		Forms.AddNewStore AddNewStore = new Forms.AddNewStore();
         Forms.AdditionalPhone AdditionalPhone = new Forms.AdditionalPhone();
         Forms.Splash startup = new Forms.Splash();
-        Forms.PinPadInstalled pinPadInstalled = new Forms.PinPadInstalled();
+		Forms.IPs ips = new Forms.IPs();
+		Forms.EditCalls editCalls = new Forms.EditCalls();
 		#endregion
 
 
@@ -1134,7 +1101,7 @@ namespace Retail_HD
 				{
 					adjustedPath += pathParts[i] + "\\";
 				}
-				var absolute_path = Path.Combine(adjustedPath, @"Resources\Contra_33.mp3");
+				var absolute_path = Path.Combine(adjustedPath, @"Resources\Music\Contra_33.mp3");
 				System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo("wmplayer", "\"" + absolute_path + "\"");
 				info.CreateNoWindow = true;
 				info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
@@ -1176,19 +1143,10 @@ namespace Retail_HD
             AdditionalPhone.Show();
         }
 
-        private void PinPadInstalled_Click(object sender, EventArgs e)
-        {
-            if (pinPadInstalled.Visible) { pinPadInstalled.BringToFront(); return; }
-            pinPadInstalled = new Forms.PinPadInstalled();
-            pinPadInstalled.ShowDialog();
-            UpdateInfo();
-        }
 
         private void FlushDNS_Click(object sender, EventArgs e)
         {
-            GlobalFunctions.i_ExecuteCommand("ipconfig", false, "/flushdns");
-            //int ec = GlobalFunctions.i_ExecuteCommand("ipconfig", false, "/flushdns");
-            //System.Diagnostics.Debug.WriteLine("\"IPCONFIG /FLUSHDNS\" exit code:{0}", ec );
+            GlobalFunctions.i_ExecuteCommand("ipconfig", true, "/flushdns");
         }
 
 		#endregion
@@ -1325,8 +1283,20 @@ namespace Retail_HD
 			HistorySearch = new Forms.HistorySearch();
 			HistorySearch.Show();
 		}
-		
 
+		// Show the new VLAN IPs for the meraki install
+		private void NewIps_Click(object sender, EventArgs e)
+		{
+			if (ips.Visible)
+			{
+				ips.BringToFront();
+			}
+			else
+			{
+				ips = new Forms.IPs(Info.store.ToString());
+				ips.Show();
+			}
+		}
 
 		#endregion
 
@@ -1845,5 +1815,5 @@ namespace Retail_HD
 		}
 
 
-    }
+	}
 }

@@ -52,7 +52,7 @@ namespace Retail_HD.UCs
                 if (!GlobalFunctions.b_CopyFile(computer.name, Shared.Settings.Default._BatServices)) { return; }
                 if (service == "verifone") 
                 {
-                    Forms.StupidFuckingVerifone sfv = new Forms.StupidFuckingVerifone(computer.name);
+                    Forms.VerifoneConfirm sfv = new Forms.VerifoneConfirm(computer.name);
                     sfv.Show();
                 }
                 else

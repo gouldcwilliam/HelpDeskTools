@@ -10,118 +10,10 @@ using System.Threading;
 using System.Net.Mail;
 using System.Web;
 
-using EReceiptMonitor.Properties;
-using LDAP;
-
-namespace EReceiptMonitor
+namespace WetSandwich
 {
-	/// <summary>
-	/// 
-	/// </summary>
-	public static class Functions
+	class Functions
 	{
-		/// <summary>
-		/// Adds store to
-		/// </summary>
-		/// <param name="args"></param>
-		/// <returns></returns>
-		public static List<string> GetIgnoreList(string[] args)
-		{
-			List<string> value = new List<string>();
-			if (args.Count() == 0) { return value; }
-
-			Console.Write("Stores to ignore: ");
-			for (int i = 0; i < args.Count(); i++)
-			{
-				string add = string.Empty;
-				int store = 0;
-
-				if (int.TryParse(args[i].Trim(), out store))
-				{
-					add = store.ToString() + "SAP";
-					if (add.Length < 7) { add = "0" + add; }
-					Console.Write(add + " ");
-					value.Add(add);
-				}
-			}
-			Console.WriteLine();
-			return value;
-		}
-
-
-
-
-
-		/// <summary>
-		/// Writes LDAP Result Llst to file where each Result value is on a new line
-		/// </summary>
-		/// <param name="ResultList">LDAP Result List</param>
-		/// <param name="FilePath">Path to write file</param>
-		/// <param name="FileName">Name of file to write to</param>
-		public async static void ListToFile(List<Result> ResultList, string FilePath, string FileName)
-		{
-			StringBuilder sb = new StringBuilder();
-
-			// Add each item to the string builder
-			foreach (Result Result in ResultList)
-			{
-				sb.Append(Result.Value);				// Append the value
-				sb.AppendLine(Environment.NewLine);		// and newline
-			}
-
-			// Create missing directory if needed
-			if (!Directory.Exists(FilePath)) { Directory.CreateDirectory(FilePath); }
-
-			// Append file name to file path
-			FilePath = string.Format(@"{0}\{1}", FilePath, FileName);
-
-			// Asynchronously writes string to file
-			using (StreamWriter outfile = new StreamWriter(FilePath, true))
-			{
-				await outfile.WriteAsync(sb.ToString());
-			}
-		}
-		/// <summary>
-		/// Writes LDAP Result Llst to file where each Result value is on a new line
-		/// Uses %TEMP\[ProcessID]\List.csv filepath/name
-		/// </summary>
-		/// <param name="ResultList">LDAP Result List</param>
-		public static void ListToFile(List<Result> ResultList)
-		{
-			// default file path is usually "C:\Users\[USERNAME]\AppData\Local\Temp\[ProcesName]-[ProcessID]\"
-			string filePath =
-				System.Environment.ExpandEnvironmentVariables("%TMP%") + @"\" +
-				System.Diagnostics.Process.GetCurrentProcess().ProcessName + @"-" +
-				System.Diagnostics.Process.GetCurrentProcess().Id.ToString();
-
-			// default file name is List.csv
-			string fileName = @"List.csv";
-			// execute with the default filepath/name
-			ListToFile(ResultList, filePath, fileName);
-		}
-
-
-
-
-
-
-		public static long CheckFileSize(string fileWithPath, string computer)
-		{
-			try
-			{
-				//Console.WriteLine(string.Format(@"\\{0}\c$\{1}", computer, fileWithPath));
-				System.IO.FileInfo fi = new FileInfo(string.Format(@"\\{0}\c$\{1}", computer, fileWithPath));
-				return fi.Length;
-			}
-			catch(Exception)
-			{
-				return 0;
-			}
-			
-		}
-
-
-
 
 		/// <summary>
 		/// 
@@ -155,6 +47,32 @@ namespace EReceiptMonitor
 			}
 		}
 
+		public static bool checkMultiVersion(string computerName, string dateFileFormat)
+		{
+			try
+			{
+				return File.ReadAllText(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computerName, dateFileFormat))
+					.Contains("4.2.12.139");
+			}
+			catch(Exception ex) { Console.WriteLine(ex.Message);return false; }
+		}
+
+		public static bool checkRIBrokerVersion(string computerName)
+		{
+			try
+			{
+				File.Copy(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computerName), @"C:\temp\tmp.log",true);
+				return File.ReadAllText(@"C:\temp\tmp.log")
+					.Contains("2.0.0.926");
+
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
+
+
+
+
+
 
 
 
@@ -180,11 +98,8 @@ namespace EReceiptMonitor
 			message.Body = Body;
 			// use HTML in body
 			message.IsBodyHtml = HTML;
-			// reply to list
-			foreach (string reply in Settings.Default.relplyToList)
-			{
-				message.ReplyToList.Add(reply);
-			}
+			//
+			message.ReplyToList.Add("ITRetailHelpdeskDL@wwwinc.com");
 			// add attachments
 			foreach (string path in Attachments)
 			{
@@ -254,6 +169,5 @@ namespace EReceiptMonitor
 		{
 			return SendMail(From, To, Subject, Body, new string[] { }, false);
 		}
-
 	}
 }

@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>79</ApplicationRevision>
+    <ApplicationRevision>82</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -43,11 +43,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\debug\Retail HD.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\Retail HD.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -174,11 +174,11 @@
     <Compile Include="Forms\ExcelLoadTables.Designer.cs">
       <DependentUpon>ExcelLoadTables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PinPadInstalled.cs">
+    <Compile Include="Forms\IPs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PinPadInstalled.Designer.cs">
-      <DependentUpon>PinPadInstalled.cs</DependentUpon>
+    <Compile Include="Forms\IPs.Designer.cs">
+      <DependentUpon>IPs.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ScottStartup.cs">
       <SubType>Form</SubType>
@@ -186,11 +186,11 @@
     <Compile Include="Forms\ScottStartup.Designer.cs">
       <DependentUpon>ScottStartup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\StupidFuckingVerifone.cs">
+    <Compile Include="Forms\VerifoneConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\StupidFuckingVerifone.Designer.cs">
-      <DependentUpon>StupidFuckingVerifone.cs</DependentUpon>
+    <Compile Include="Forms\VerifoneConfirm.Designer.cs">
+      <DependentUpon>VerifoneConfirm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserInput.cs">
       <SubType>Form</SubType>
@@ -328,14 +328,14 @@
     <EmbeddedResource Include="Forms\ExcelLoadTables.resx">
       <DependentUpon>ExcelLoadTables.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PinPadInstalled.resx">
-      <DependentUpon>PinPadInstalled.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\IPs.resx">
+      <DependentUpon>IPs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScottStartup.resx">
       <DependentUpon>ScottStartup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StupidFuckingVerifone.resx">
-      <DependentUpon>StupidFuckingVerifone.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\VerifoneConfirm.resx">
+      <DependentUpon>VerifoneConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserInput.resx">
       <DependentUpon>UserInput.cs</DependentUpon>
@@ -699,10 +699,6 @@
     <ProjectReference Include="..\Tools\EmailReport\EmailReport.csproj">
       <Project>{9ee5907f-6e60-4f31-a700-590225bd456a}</Project>
       <Name>EmailReport</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tools\EReceiptMonitor\EReceiptMonitor.csproj">
-      <Project>{8c0ebe8b-4a84-40c5-8eb7-23c39c7ce530}</Project>
-      <Name>EReceiptMonitor</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tools\FindUnusedComputers\FindUnusedComputers.csproj">
       <Project>{3c4daabd-5a76-40ff-b56d-aea9b783441b}</Project>

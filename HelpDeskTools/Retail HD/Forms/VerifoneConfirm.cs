@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
-    public partial class StupidFuckingVerifone : Form
+    public partial class VerifoneConfirm : Form
     {
-        public StupidFuckingVerifone(string Computer)
+        public VerifoneConfirm(string Computer)
         {
             InitializeComponent();
             _Computer = Computer;

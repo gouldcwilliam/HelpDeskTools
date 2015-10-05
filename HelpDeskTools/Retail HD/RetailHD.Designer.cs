@@ -99,6 +99,8 @@
 			this.ts_Top_tsb_StoreSearch = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
 			this.ts_Top_tsb_HistorySearch = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+			this.ts_Top_tsb_NewIPs = new System.Windows.Forms.ToolStripButton();
 			this.ts_Top_tsl_Override = new System.Windows.Forms.ToolStripLabel();
 			this.ts_Top_tsl_StoreClosed = new System.Windows.Forms.ToolStripLabel();
 			this.ts_Top_tsl_PinPad = new System.Windows.Forms.ToolStripLabel();
@@ -123,7 +125,6 @@
 			this.ms_Top_msi_Settings = new System.Windows.Forms.ToolStripMenuItem();
 			this.ms_Top_msi_CodeEntry = new System.Windows.Forms.ToolStripMenuItem();
 			this.ms_Top_msi_AdditionalPhone = new System.Windows.Forms.ToolStripMenuItem();
-			this.ms_Top_msi_PinPadInstalled = new System.Windows.Forms.ToolStripMenuItem();
 			this.ms_Top_msi_RefreshComputers = new System.Windows.Forms.ToolStripMenuItem();
 			this.ms_Top_msi_ImportExcel = new System.Windows.Forms.ToolStripMenuItem();
 			this.ms_Top_msi_FlushDNS = new System.Windows.Forms.ToolStripMenuItem();
@@ -876,6 +877,8 @@
             this.ts_Top_tsb_StoreSearch,
             this.toolStripSeparator7,
             this.ts_Top_tsb_HistorySearch,
+            this.toolStripSeparator8,
+            this.ts_Top_tsb_NewIPs,
             this.ts_Top_tsl_Override,
             this.ts_Top_tsl_StoreClosed,
             this.ts_Top_tsl_PinPad});
@@ -1005,6 +1008,22 @@
 			this.ts_Top_tsb_HistorySearch.Text = "toolStripButton1";
 			this.ts_Top_tsb_HistorySearch.ToolTipText = "Search Call History";
 			this.ts_Top_tsb_HistorySearch.Click += new System.EventHandler(this.HistorySearch_Click);
+			// 
+			// toolStripSeparator8
+			// 
+			this.toolStripSeparator8.Name = "toolStripSeparator8";
+			this.toolStripSeparator8.Size = new System.Drawing.Size(6, 22);
+			// 
+			// ts_Top_tsb_NewIPs
+			// 
+			this.ts_Top_tsb_NewIPs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.ts_Top_tsb_NewIPs.Image = global::Retail_HD.GlobalResources.icon_marquee_plus;
+			this.ts_Top_tsb_NewIPs.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.ts_Top_tsb_NewIPs.Name = "ts_Top_tsb_NewIPs";
+			this.ts_Top_tsb_NewIPs.Size = new System.Drawing.Size(24, 19);
+			this.ts_Top_tsb_NewIPs.Text = "toolStripButton1";
+			this.ts_Top_tsb_NewIPs.ToolTipText = "Additional IPs";
+			this.ts_Top_tsb_NewIPs.Click += new System.EventHandler(this.NewIps_Click);
 			// 
 			// ts_Top_tsl_Override
 			// 
@@ -1258,8 +1277,7 @@
 			this.ms_Top_msi_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ms_Top_msi_Settings,
             this.ms_Top_msi_CodeEntry,
-            this.ms_Top_msi_AdditionalPhone,
-            this.ms_Top_msi_PinPadInstalled});
+            this.ms_Top_msi_AdditionalPhone});
 			this.ms_Top_msi_File.Name = "ms_Top_msi_File";
 			this.ms_Top_msi_File.Size = new System.Drawing.Size(37, 20);
 			this.ms_Top_msi_File.Text = "&File";
@@ -1287,13 +1305,6 @@
 			this.ms_Top_msi_AdditionalPhone.Size = new System.Drawing.Size(195, 26);
 			this.ms_Top_msi_AdditionalPhone.Text = "Add Additional Phone";
 			this.ms_Top_msi_AdditionalPhone.Click += new System.EventHandler(this.AdditionalPhone_Click);
-			// 
-			// ms_Top_msi_PinPadInstalled
-			// 
-			this.ms_Top_msi_PinPadInstalled.Name = "ms_Top_msi_PinPadInstalled";
-			this.ms_Top_msi_PinPadInstalled.Size = new System.Drawing.Size(195, 26);
-			this.ms_Top_msi_PinPadInstalled.Text = "Pin Pad Installed";
-			this.ms_Top_msi_PinPadInstalled.Click += new System.EventHandler(this.PinPadInstalled_Click);
 			// 
 			// ms_Top_msi_RefreshComputers
 			// 
@@ -1649,11 +1660,12 @@
         public System.Windows.Forms.TextBox txtRM;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_AdditionalPhone;
         private System.Windows.Forms.ToolStripLabel ts_Top_tsl_StoreClosed;
-        private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_PinPadInstalled;
         private System.Windows.Forms.ToolStripLabel ts_Top_tsl_PinPad;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_FlushDNS;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_OldBatMenu;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-    }
+		private System.Windows.Forms.ToolStripButton ts_Top_tsb_NewIPs;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+	}
 }
 

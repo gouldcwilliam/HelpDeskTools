@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DameWareCheck.Properties {
+namespace WetSandwich.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -34,7 +34,7 @@ namespace DameWareCheck.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("patrick.bailor@wwwinc.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("chad.gould@wwwinc.com")]
         public string to {
             get {
                 return ((string)(this["to"]));
@@ -43,7 +43,7 @@ namespace DameWareCheck.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dameware Install Check")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Multi/RedIron Check")]
         public string subject {
             get {
                 return ((string)(this["subject"]));
@@ -91,7 +91,7 @@ namespace DameWareCheck.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Computer Name</th><th>Multi</th><" +
-            "th>Red Iron</th><th>Notes</th></tr>\r\n")]
+            "th>RedIron</th><th>Notes</th></tr>\r\n")]
         public string tableHead {
             get {
                 return ((string)(this["tableHead"]));

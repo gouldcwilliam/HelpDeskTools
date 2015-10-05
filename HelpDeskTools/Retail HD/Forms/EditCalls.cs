@@ -13,8 +13,26 @@ namespace Retail_HD.Forms
 {
 	public partial class EditCalls : Form
 	{
-		
-
+		/// <summary>
+		/// Call Editing Form - Used to initialize component
+		/// </summary>
+		public EditCalls()
+		{
+			InitializeComponent();
+		}
+		/// <summary>
+		/// Call Editing Form
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="store"></param>
+		/// <param name="date"></param>
+		/// <param name="tech"></param>
+		/// <param name="category"></param>
+		/// <param name="topic"></param>
+		/// <param name="details"></param>
+		/// <param name="type"></param>
+		/// <param name="trax"></param>
+		/// <param name="url"></param>
 		public EditCalls(string id, string store, string date, string tech, string category, string topic, string details, string type, bool trax, string url)
 		{
 			InitializeComponent();

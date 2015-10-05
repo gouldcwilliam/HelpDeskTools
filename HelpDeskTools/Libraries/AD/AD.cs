@@ -12,43 +12,8 @@ using LDAP;
 /// </summary>
 public static class AD
 {
-	/// <summary>
-	/// Gets OU by store number
-	/// </summary>
-	/// <param name="store">store number as int</param>
-	/// <returns></returns>
-	public static string GetOU(int store)
-	{
-		if (RetailOUs.Europe.Lower <= store && store <= RetailOUs.Europe.Upper)
-		{
-			return RetailOUs.Europe.BaseOU;
-		}
-		else if (RetailOUs.Michigan.Lower <= store && store <= RetailOUs.Michigan.Upper)
-		{
-			return RetailOUs.Michigan.BaseOU;
-		}
-		else if (RetailOUs.Boston.Lower <= store && store <= RetailOUs.Boston.Upper)
-		{
-			return RetailOUs.Boston.BaseOU;
-		}
-		else
-		{ return string.Empty; }
-	}
-	/// <summary>
-	/// Gets OU by store number, attempts to convert and returns empty string on fail
-	/// </summary>
-	/// <param name="store">store numbers as string</param>
-	/// <returns></returns>
-	public static string GetOU(string store)
-	{
-		int value = 0;
-		// Convert string to int
-		if (int.TryParse(store, out value))
-		{
-			return GetOU(value);
-		}
-		return string.Empty;
-	}
+
+
 
 
 
