@@ -60,7 +60,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SharedClasses\SP.cs" />
     <Compile Include="SharedClasses\SQL.cs" />
     <Compile Include="SharedClasses\UserDetails.cs" />
     <Compile Include="SQLSettings.Designer.cs">

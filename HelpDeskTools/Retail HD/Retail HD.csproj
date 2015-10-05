@@ -700,14 +700,6 @@
       <Project>{9ee5907f-6e60-4f31-a700-590225bd456a}</Project>
       <Name>EmailReport</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tools\FindUnusedComputers\FindUnusedComputers.csproj">
-      <Project>{3c4daabd-5a76-40ff-b56d-aea9b783441b}</Project>
-      <Name>FindUnusedComputers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tools\MissingDLLs\MissingDLLs.csproj">
-      <Project>{ff09e0c8-1c44-4b44-88ce-bf2ebb7f520c}</Project>
-      <Name>MissingDLLs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Tools\UpdateComputerList\UpdateComputerList.csproj">
       <Project>{5f8edf63-6596-44af-a947-2d85878cb12f}</Project>
       <Name>UpdateComputerList</Name>

@@ -101,9 +101,6 @@
 			this.ts_Top_tsb_HistorySearch = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
 			this.ts_Top_tsb_NewIPs = new System.Windows.Forms.ToolStripButton();
-			this.ts_Top_tsl_Override = new System.Windows.Forms.ToolStripLabel();
-			this.ts_Top_tsl_StoreClosed = new System.Windows.Forms.ToolStripLabel();
-			this.ts_Top_tsl_PinPad = new System.Windows.Forms.ToolStripLabel();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txtIncome = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -132,7 +129,7 @@
 			this.ms_Top_msi_WhatTheJunk = new System.Windows.Forms.ToolStripMenuItem();
 			this.ms_Top_msi_Info = new System.Windows.Forms.ToolStripMenuItem();
 			this.ms_Top = new System.Windows.Forms.MenuStrip();
-			this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ms_Top_msi_Tools = new System.Windows.Forms.ToolStripMenuItem();
 			this.ms_Top_msi_OldBatMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.txtRM = new System.Windows.Forms.TextBox();
@@ -186,9 +183,7 @@
 			this.txtStore.Name = "txtStore";
 			this.txtStore.Size = new System.Drawing.Size(36, 20);
 			this.txtStore.TabIndex = 0;
-			this.txtStore.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtStore_MouseClick);
 			this.txtStore.TextChanged += new System.EventHandler(this.txtStore_TextChanged);
-			this.txtStore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// clbComputers
 			// 
@@ -201,7 +196,6 @@
 			this.clbComputers.Sorted = true;
 			this.clbComputers.TabIndex = 1;
 			this.clbComputers.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbComputers_ItemCheck);
-			this.clbComputers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// RecentCalls_dgv
 			// 
@@ -223,7 +217,7 @@
 			this.RecentCalls_dgv.TabIndex = 5;
 			this.RecentCalls_dgv.TabStop = false;
 			this.RecentCalls_dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.RecentCalls_dgv_DataBindingComplete);
-			this.RecentCalls_dgv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+			this.RecentCalls_dgv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
 			this.RecentCalls_dgv.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RecentCalls_MouseDoubleClick);
 			// 
 			// ss_Bottom_
@@ -248,6 +242,8 @@
 			this.ss_Bottom_.SizingGrip = false;
 			this.ss_Bottom_.TabIndex = 8;
 			this.ss_Bottom_.Text = "statusStrip1";
+			this.ss_Bottom_.Click += new System.EventHandler(this.Main_Click);
+			this.ss_Bottom_.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
 			// 
 			// ss_Bottom_ssl_PreviousCall
 			// 
@@ -331,7 +327,6 @@
 			this.Restart.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.Restart.UseVisualStyleBackColor = true;
 			this.Restart.Click += new System.EventHandler(this.Buttons_Restart_Click);
-			this.Restart.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// LocalCMD
 			// 
@@ -346,7 +341,6 @@
 			this.LocalCMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.LocalCMD.UseVisualStyleBackColor = true;
 			this.LocalCMD.Click += new System.EventHandler(this.Buttons_LocalCMD_Click);
-			this.LocalCMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// PCAnywhere
 			// 
@@ -361,7 +355,6 @@
 			this.PCAnywhere.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.PCAnywhere.UseVisualStyleBackColor = true;
 			this.PCAnywhere.Click += new System.EventHandler(this.Buttons_PCAnywhere_Click);
-			this.PCAnywhere.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// Unlock
 			// 
@@ -376,7 +369,6 @@
 			this.Unlock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.Unlock.UseVisualStyleBackColor = true;
 			this.Unlock.Click += new System.EventHandler(this.Buttons_Unlock_Click);
-			this.Unlock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// Browse
 			// 
@@ -391,7 +383,6 @@
 			this.Browse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.Browse.UseVisualStyleBackColor = true;
 			this.Browse.Click += new System.EventHandler(this.Buttons_Browse_Click);
-			this.Browse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// RemoteCMD
 			// 
@@ -406,7 +397,6 @@
 			this.RemoteCMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.RemoteCMD.UseVisualStyleBackColor = true;
 			this.RemoteCMD.Click += new System.EventHandler(this.Buttons_RemoteCMD_Click);
-			this.RemoteCMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// ListActions
 			// 
@@ -421,7 +411,6 @@
 			this.ListActions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.ListActions.UseVisualStyleBackColor = true;
 			this.ListActions.Click += new System.EventHandler(this.Buttons_ListAction_Click);
-			this.ListActions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// KillPOS
 			// 
@@ -436,7 +425,6 @@
 			this.KillPOS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.KillPOS.UseVisualStyleBackColor = true;
 			this.KillPOS.Click += new System.EventHandler(this.Buttons_KillPOS_Click);
-			this.KillPOS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// Services
 			// 
@@ -451,7 +439,6 @@
 			this.Services.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.Services.UseVisualStyleBackColor = true;
 			this.Services.Click += new System.EventHandler(this.Buttons_Services_Click);
-			this.Services.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// Ping
 			// 
@@ -466,7 +453,6 @@
 			this.Ping.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.Ping.UseVisualStyleBackColor = true;
 			this.Ping.Click += new System.EventHandler(this.Buttons_Ping_Click);
-			this.Ping.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// WrapUp
 			// 
@@ -481,7 +467,6 @@
 			this.WrapUp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.WrapUp.UseVisualStyleBackColor = true;
 			this.WrapUp.Click += new System.EventHandler(this.Buttons_WrapUp_Click);
-			this.WrapUp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// txtDM
 			// 
@@ -496,9 +481,6 @@
 			this.txtDM.TabStop = false;
 			this.txtDM.Text = "DM";
 			this.txtDM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtDM.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtDM_MouseClick);
-			this.txtDM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtDM.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// txtName
 			// 
@@ -512,9 +494,6 @@
 			this.txtName.TabIndex = 0;
 			this.txtName.TabStop = false;
 			this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtName_MouseClick);
-			this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbName
 			// 
@@ -540,9 +519,6 @@
 			this.txtIP.TabStop = false;
 			this.txtIP.Text = "___.___.___.___";
 			this.txtIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtIP.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtIP_MouseClick);
-			this.txtIP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtIP.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbIP
 			// 
@@ -567,9 +543,6 @@
 			this.txtManager.TabIndex = 0;
 			this.txtManager.TabStop = false;
 			this.txtManager.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtManager.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtManager_MouseClick);
-			this.txtManager.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtManager.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbManager
 			// 
@@ -595,9 +568,6 @@
 			this.txtZip.TabStop = false;
 			this.txtZip.Text = "_____";
 			this.txtZip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtZip.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtZip_MouseClick);
-			this.txtZip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtZip.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbZip
 			// 
@@ -623,9 +593,6 @@
 			this.txtState.TabStop = false;
 			this.txtState.Text = "__";
 			this.txtState.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtState.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtState_MouseClick);
-			this.txtState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtState.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbState
 			// 
@@ -650,9 +617,6 @@
 			this.txtCity.TabIndex = 0;
 			this.txtCity.TabStop = false;
 			this.txtCity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtCity.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCity_MouseClick);
-			this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtCity.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbDM
 			// 
@@ -699,9 +663,6 @@
 			this.txtAddress.TabIndex = 0;
 			this.txtAddress.TabStop = false;
 			this.txtAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtAddress.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtAddress_MouseClick);
-			this.txtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtAddress.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// txtType
 			// 
@@ -715,9 +676,6 @@
 			this.txtType.TabIndex = 0;
 			this.txtType.TabStop = false;
 			this.txtType.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtType.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtType_MouseClick);
-			this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtType.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbType
 			// 
@@ -743,9 +701,6 @@
 			this.txtMpId.TabStop = false;
 			this.txtMpId.Text = "_______";
 			this.txtMpId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtMpId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtMpId_MouseClick);
-			this.txtMpId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtMpId.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbMpId
 			// 
@@ -771,9 +726,6 @@
 			this.txtTZ.TabStop = false;
 			this.txtTZ.Text = "__";
 			this.txtTZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtTZ.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTZ_MouseClick);
-			this.txtTZ.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtTZ.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbTZ
 			// 
@@ -810,9 +762,6 @@
 			this.txtEmail.TabStop = false;
 			this.txtEmail.Text = "store@wwwinc.com";
 			this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtEmail.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtEmail_MouseClick);
-			this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtEmail.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// txtPhone
 			// 
@@ -827,9 +776,6 @@
 			this.txtPhone.TabStop = false;
 			this.txtPhone.Text = "(555) 555-5555";
 			this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtPhone.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPhone_MouseClick);
-			this.txtPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtPhone.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// grpPhone
 			// 
@@ -878,15 +824,14 @@
             this.toolStripSeparator7,
             this.ts_Top_tsb_HistorySearch,
             this.toolStripSeparator8,
-            this.ts_Top_tsb_NewIPs,
-            this.ts_Top_tsl_Override,
-            this.ts_Top_tsl_StoreClosed,
-            this.ts_Top_tsl_PinPad});
+            this.ts_Top_tsb_NewIPs});
 			this.ts_Top.Location = new System.Drawing.Point(0, 24);
 			this.ts_Top.Name = "ts_Top";
 			this.ts_Top.Size = new System.Drawing.Size(856, 22);
 			this.ts_Top.TabIndex = 69;
 			this.ts_Top.Text = "toolStrip1";
+			this.ts_Top.Click += new System.EventHandler(this.Main_Click);
+			this.ts_Top.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
 			// 
 			// toolStripSeparator4
 			// 
@@ -1025,32 +970,6 @@
 			this.ts_Top_tsb_NewIPs.ToolTipText = "Additional IPs";
 			this.ts_Top_tsb_NewIPs.Click += new System.EventHandler(this.NewIps_Click);
 			// 
-			// ts_Top_tsl_Override
-			// 
-			this.ts_Top_tsl_Override.ForeColor = System.Drawing.Color.Red;
-			this.ts_Top_tsl_Override.Name = "ts_Top_tsl_Override";
-			this.ts_Top_tsl_Override.Size = new System.Drawing.Size(200, 19);
-			this.ts_Top_tsl_Override.Text = "                  Auto-READY Override: ON";
-			this.ts_Top_tsl_Override.Visible = false;
-			// 
-			// ts_Top_tsl_StoreClosed
-			// 
-			this.ts_Top_tsl_StoreClosed.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.ts_Top_tsl_StoreClosed.ForeColor = System.Drawing.Color.Red;
-			this.ts_Top_tsl_StoreClosed.Name = "ts_Top_tsl_StoreClosed";
-			this.ts_Top_tsl_StoreClosed.Size = new System.Drawing.Size(73, 19);
-			this.ts_Top_tsl_StoreClosed.Text = "Store Closed";
-			this.ts_Top_tsl_StoreClosed.Visible = false;
-			// 
-			// ts_Top_tsl_PinPad
-			// 
-			this.ts_Top_tsl_PinPad.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.ts_Top_tsl_PinPad.ForeColor = System.Drawing.Color.Magenta;
-			this.ts_Top_tsl_PinPad.Name = "ts_Top_tsl_PinPad";
-			this.ts_Top_tsl_PinPad.Size = new System.Drawing.Size(94, 19);
-			this.ts_Top_tsl_PinPad.Text = "Verifone Pin Pad";
-			this.ts_Top_tsl_PinPad.Visible = false;
-			// 
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.txtIncome);
@@ -1074,8 +993,6 @@
 			this.txtIncome.TabIndex = 0;
 			this.txtIncome.TabStop = false;
 			this.txtIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtIncome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtIncome.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// groupBox2
 			// 
@@ -1100,8 +1017,6 @@
 			this.txtRank.TabIndex = 0;
 			this.txtRank.TabStop = false;
 			this.txtRank.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtRank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtRank.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbSVS
 			// 
@@ -1126,9 +1041,6 @@
 			this.txtSVS.TabIndex = 0;
 			this.txtSVS.TabStop = false;
 			this.txtSVS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtSVS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtSVS_MouseClick);
-			this.txtSVS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtSVS.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbBAMS
 			// 
@@ -1153,9 +1065,6 @@
 			this.txtBAMS.TabIndex = 0;
 			this.txtBAMS.TabStop = false;
 			this.txtBAMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtBAMS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtBAMS_MouseClick);
-			this.txtBAMS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtBAMS.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbTID1
 			// 
@@ -1180,9 +1089,6 @@
 			this.txtTID1.TabIndex = 0;
 			this.txtTID1.TabStop = false;
 			this.txtTID1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtTID1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTID1_MouseClick);
-			this.txtTID1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtTID1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbTID2
 			// 
@@ -1207,9 +1113,6 @@
 			this.txtTID2.TabIndex = 0;
 			this.txtTID2.TabStop = false;
 			this.txtTID2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtTID2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTID2_MouseClick);
-			this.txtTID2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtTID2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbTID3
 			// 
@@ -1234,9 +1137,6 @@
 			this.txtTID3.TabIndex = 0;
 			this.txtTID3.TabStop = false;
 			this.txtTID3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtTID3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTID3_MouseClick);
-			this.txtTID3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtTID3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// gbTID4
 			// 
@@ -1261,9 +1161,6 @@
 			this.txtTID4.TabIndex = 0;
 			this.txtTID4.TabStop = false;
 			this.txtTID4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtTID4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTID4_MouseClick);
-			this.txtTID4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtTID4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// bw
 			// 
@@ -1286,7 +1183,7 @@
 			// 
 			this.ms_Top_msi_Settings.Image = global::Retail_HD.GlobalResources.icon_settings_3;
 			this.ms_Top_msi_Settings.Name = "ms_Top_msi_Settings";
-			this.ms_Top_msi_Settings.Size = new System.Drawing.Size(195, 26);
+			this.ms_Top_msi_Settings.Size = new System.Drawing.Size(191, 22);
 			this.ms_Top_msi_Settings.Text = "Settings";
 			this.ms_Top_msi_Settings.ToolTipText = "Change Cisco Phone Settings";
 			this.ms_Top_msi_Settings.Click += new System.EventHandler(this.Settings_Click);
@@ -1294,7 +1191,7 @@
 			// ms_Top_msi_CodeEntry
 			// 
 			this.ms_Top_msi_CodeEntry.Name = "ms_Top_msi_CodeEntry";
-			this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(195, 26);
+			this.ms_Top_msi_CodeEntry.Size = new System.Drawing.Size(191, 22);
 			this.ms_Top_msi_CodeEntry.Text = "&Code Entry";
 			this.ms_Top_msi_CodeEntry.ToolTipText = "Konami Code";
 			this.ms_Top_msi_CodeEntry.Click += new System.EventHandler(this.CodeEntry_Click);
@@ -1302,7 +1199,7 @@
 			// ms_Top_msi_AdditionalPhone
 			// 
 			this.ms_Top_msi_AdditionalPhone.Name = "ms_Top_msi_AdditionalPhone";
-			this.ms_Top_msi_AdditionalPhone.Size = new System.Drawing.Size(195, 26);
+			this.ms_Top_msi_AdditionalPhone.Size = new System.Drawing.Size(191, 22);
 			this.ms_Top_msi_AdditionalPhone.Text = "Add Additional Phone";
 			this.ms_Top_msi_AdditionalPhone.Click += new System.EventHandler(this.AdditionalPhone_Click);
 			// 
@@ -1359,7 +1256,7 @@
 			this.ms_Top.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ms_Top_msi_File,
             this.ms_Top_msi_Help,
-            this.toolsToolStripMenuItem,
+            this.ms_Top_msi_Tools,
             this.ms_Top_msi_Info});
 			this.ms_Top.Location = new System.Drawing.Point(0, 0);
 			this.ms_Top.Name = "ms_Top";
@@ -1367,18 +1264,19 @@
 			this.ms_Top.Size = new System.Drawing.Size(856, 24);
 			this.ms_Top.TabIndex = 7;
 			this.ms_Top.Text = "mnuTop";
-			this.ms_Top.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+			this.ms_Top.Click += new System.EventHandler(this.Main_Click);
+			this.ms_Top.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
 			// 
-			// toolsToolStripMenuItem
+			// ms_Top_msi_Tools
 			// 
-			this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.ms_Top_msi_Tools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ms_Top_msi_RefreshComputers,
             this.ms_Top_msi_ImportExcel,
             this.ms_Top_msi_FlushDNS,
             this.ms_Top_msi_OldBatMenu});
-			this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-			this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-			this.toolsToolStripMenuItem.Text = "Tools";
+			this.ms_Top_msi_Tools.Name = "ms_Top_msi_Tools";
+			this.ms_Top_msi_Tools.Size = new System.Drawing.Size(48, 20);
+			this.ms_Top_msi_Tools.Text = "Tools";
 			// 
 			// ms_Top_msi_OldBatMenu
 			// 
@@ -1411,9 +1309,6 @@
 			this.txtRM.TabIndex = 0;
 			this.txtRM.TabStop = false;
 			this.txtRM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtRM.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtRM_MouseClick);
-			this.txtRM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
-			this.txtRM.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.storeInfo_MouseDoubleClick);
 			// 
 			// ServicesUC
 			// 
@@ -1426,7 +1321,6 @@
 			this.ServicesUC.TabIndex = 3;
 			this.ServicesUC.Visible = false;
 			this.ServicesUC.VisibleChanged += new System.EventHandler(this.Services_UC_VisibleChanged);
-			this.ServicesUC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// PingUC
 			// 
@@ -1439,7 +1333,6 @@
 			this.PingUC.TabIndex = 4;
 			this.PingUC.Visible = false;
 			this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
-			this.PingUC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
 			// 
 			// RetailHD
 			// 
@@ -1496,7 +1389,8 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
 			this.Load += new System.EventHandler(this.Main_Load);
 			this.Shown += new System.EventHandler(this.Main_FormShown);
-			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_keyDown);
+			this.Click += new System.EventHandler(this.Main_Click);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
 			this.grpStore.ResumeLayout(false);
 			this.grpStore.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).EndInit();
@@ -1620,7 +1514,6 @@
         private System.Windows.Forms.ToolStripButton ts_Top_tsb_Settings;
 		private System.Windows.Forms.ToolStripButton ts_Top_tsb_TeamStatus;
         private System.Windows.Forms.ToolStripLabel ts_Top_tsl_CurrentCall;
-        private System.Windows.Forms.ToolStripLabel ts_Top_tsl_Override;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
 		private System.Windows.Forms.ToolStripStatusLabel ss_Bottom_ssl_TeamCalls;
 		public System.Windows.Forms.GroupBox groupBox1;
@@ -1659,11 +1552,9 @@
         public System.Windows.Forms.GroupBox groupBox3;
         public System.Windows.Forms.TextBox txtRM;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_AdditionalPhone;
-        private System.Windows.Forms.ToolStripLabel ts_Top_tsl_StoreClosed;
-        private System.Windows.Forms.ToolStripLabel ts_Top_tsl_PinPad;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_FlushDNS;
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_OldBatMenu;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_Tools;
 		private System.Windows.Forms.ToolStripButton ts_Top_tsb_NewIPs;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
 	}

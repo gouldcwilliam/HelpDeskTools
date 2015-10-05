@@ -111,6 +111,7 @@ namespace Retail_HD
 
 			InitializeComponent();
 			Initialize_Buttons_ToolTips();
+			Initialize_MainHandlers();
 
 			PingUC.btnOK.Click += PingUC_OK_Click;
 			ServicesUC.btnOK.Click += ServicesUC_OK_Click;
@@ -153,7 +154,7 @@ namespace Retail_HD
 				_AgentLoginEnabled = true;
 				v_CheckLoginConfig();
 			}
-            
+
 		}
 
 		//
@@ -175,6 +176,48 @@ namespace Retail_HD
 			tt_Main.SetToolTip(Restart, "Forces the computer to restart\nPress F11");
             tt_Main.SetToolTip(btnDelayed, "Tagets register 1 and attempts to start SQL and Express a defined number of times with a delay in between attemps\nUsed when a register is improperly shutdown and the rebuilding RAID is preventing service autostart\nPress F12");
 		}
+
+		private void Initialize_MainHandlers()
+		{
+			// Set handlers for all the buttons
+			foreach (System.Windows.Forms.Button btn in this.Controls.OfType<Button>())
+			{
+				if (btn.Name == "Services" || btn.Name == "Ping") { continue; }
+				btn.Click += Main_Click;
+				btn.KeyDown += Main_KeyDown;
+			}
+			// Set handlers for the tool strip
+			foreach (ToolStripButton tsb in this.Controls.OfType<ToolStripButton>())
+			{
+				tsb.Click += Main_Click;
+			}
+			// Set handlers for the menu
+			foreach (ToolStripMenuItem tsmi in this.ms_Top.Items.OfType<ToolStripMenuItem>())
+			{
+				tsmi.Click += Main_Click;
+			}
+			// Sets handlers for the text boxes
+			foreach(GroupBox gb in this.Controls.OfType<GroupBox>())
+			{
+				Console.WriteLine(gb.Name);
+				foreach(TextBox tb in gb.Controls.OfType<TextBox>())
+				{
+					if(tb.Name != "txtStore") { tb.DoubleClick += MainText_DoubleClick; }
+					tb.Click += MainText_Click;
+					tb.Click += Main_Click;
+					tb.KeyDown += Main_KeyDown;
+				}
+			}
+			foreach(UserControl uc in this.Controls.OfType<UserControl>())
+			{
+				uc.KeyDown += Main_KeyDown;
+			}
+			foreach(ToolStripStatusLabel tssl in this.ss_Bottom_.Items.OfType<ToolStripStatusLabel>())
+			{
+				tssl.Click += Main_Click;
+			}
+		}
+
 
 		#endregion
 
@@ -341,16 +384,16 @@ namespace Retail_HD
                 {
                     ts_Top.Invoke(new MethodInvoker(delegate
                         {
-							if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
-							//if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
-                            {
-                                ts_Top_tsl_Override.Visible = true;
-                            }
-                            else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
-							//else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
-                            {
-                                ts_Top_tsl_Override.Visible = false;
-                            }
+							//if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+							////if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
+       //                     {
+       //                         ts_Top_tsl_Override.Visible = true;
+       //                     }
+       //                     else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+							////else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
+       //                     {
+       //                         ts_Top_tsl_Override.Visible = false;
+       //                     }
 
                             if (ts_Top_tsl_CurrentCall.Visible)
                             {
@@ -358,25 +401,25 @@ namespace Retail_HD
                                 else ts_Top_tsl_CurrentCall.ForeColor = SystemColors.HotTrack;
                             }
 
-                            if (ts_Top_tsl_Override.Visible)
-                            {
-                                if (ts_Top_tsl_Override.ForeColor == Color.Red) ts_Top_tsl_Override.ForeColor = Color.Purple;
-                                else ts_Top_tsl_Override.ForeColor = Color.Red;
-                            }
+                            //if (ts_Top_tsl_Override.Visible)
+                            //{
+                            //    if (ts_Top_tsl_Override.ForeColor == Color.Red) ts_Top_tsl_Override.ForeColor = Color.Purple;
+                            //    else ts_Top_tsl_Override.ForeColor = Color.Red;
+                            //}
                         }));
                 }
                 else
                 {
-					if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
-					//if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
-                    {
-                        ts_Top_tsl_Override.Visible = true;
-                    }
-                    else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
-					//else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
-                    {
-                        ts_Top_tsl_Override.Visible = false;
-                    }
+					//if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
+					////if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
+     //               {
+     //                   ts_Top_tsl_Override.Visible = true;
+     //               }
+     //               else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
+					////else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
+     //               {
+     //                   ts_Top_tsl_Override.Visible = false;
+     //               }
 
                     if (ts_Top_tsl_CurrentCall.Visible)
                     {
@@ -384,11 +427,11 @@ namespace Retail_HD
                         else ts_Top_tsl_CurrentCall.ForeColor = SystemColors.HotTrack;
                     }
 
-                    if (ts_Top_tsl_Override.Visible)
-                    {
-                        if (ts_Top_tsl_Override.ForeColor == Color.Red) ts_Top_tsl_Override.ForeColor = Color.Purple;
-                        else ts_Top_tsl_Override.ForeColor = Color.Red;
-                    }
+                    //if (ts_Top_tsl_Override.Visible)
+                    //{
+                    //    if (ts_Top_tsl_Override.ForeColor == Color.Red) ts_Top_tsl_Override.ForeColor = Color.Purple;
+                    //    else ts_Top_tsl_Override.ForeColor = Color.Red;
+                    //}
                 }
             }
 
@@ -615,6 +658,7 @@ namespace Retail_HD
 			if (Info.reg1 == string.Empty) { return; }
 			GlobalFunctions.v_ConnectWithDW(_computers);
 		}
+
 		/// <summary> Opens fmrInput for cashier number, writes, copies, and executes BAT file remotley to unlock user account.
 		/// Has a status bar and gives progress reports of background process
 		/// </summary>
@@ -640,6 +684,7 @@ namespace Retail_HD
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			GlobalFunctions.v_BrowseComputer(_computers);
 		}
+
 		/// <summary> Opens remote cmd prompt on your local machine
 		/// </summary>
 		private void Buttons_RemoteCMD_Click(object sender, EventArgs e)
@@ -647,6 +692,7 @@ namespace Retail_HD
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			GlobalFunctions.v_RemoteCMD(_computers);
 		}
+
 		/// <summary> Opens local admin cmd prompt on remote machine
 		/// </summary>
 		private void Buttons_LocalCMD_Click(object sender, EventArgs e)
@@ -654,6 +700,7 @@ namespace Retail_HD
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			GlobalFunctions.v_LocalCMD(_computers);
 		}
+
 		/// <summary> Removes temp files responsible for repeat crashing of POS
 		/// </summary>
 		private void Buttons_ListAction_Click(object sender, EventArgs e)
@@ -663,6 +710,7 @@ namespace Retail_HD
 			ListAction = new Forms.ListActions();
 			ListAction.Show();
 		}
+
 		/// <summary> Kill the POS software
 		/// </summary>
 		private void Buttons_KillPOS_Click(object sender, EventArgs e)
@@ -675,6 +723,7 @@ namespace Retail_HD
 				kill.Show();
 			}
 		}
+
 		/// <summary> shows the user control menu for services
 		/// </summary>
 		private void Buttons_Services_Click(object sender, EventArgs e)
@@ -690,6 +739,7 @@ namespace Retail_HD
 				ServicesUC.Visible = true;
 			}
 		}
+
 		/// <summary> shows the user control menu for ping
 		/// </summary>
 		private void Buttons_Ping_Click(object sender, EventArgs e)
@@ -706,6 +756,7 @@ namespace Retail_HD
 				PingUC.Visible = true;
 			}
 		}
+
 		/// <summary> Call wrap up form
 		/// </summary>
 		private void Buttons_WrapUp_Click(object sender, EventArgs e)
@@ -790,6 +841,7 @@ namespace Retail_HD
             }
 			
 		}
+
 		/// <summary> Opens History window
 		/// </summary>
 		/// <param name="sender"></param>
@@ -802,6 +854,7 @@ namespace Retail_HD
 			HistorySearch = new Forms.HistorySearch();
             HistorySearch.Show();
 		}
+
 		/// <summary> Restart the Computer
 		/// </summary>
 		private void Buttons_Restart_Click(object sender, EventArgs e)
@@ -814,23 +867,27 @@ namespace Retail_HD
 				restart.Show();
 			}
 		}
+
 		/// <summary> runs the delayed SQL start
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void Buttons_Delayed_Click(object sender, EventArgs e)
 		{
+			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (Info.computers.Count() > 0)
 			{
 				GlobalFunctions.i_ExecuteCommand(@".\DelayedStartServices.exe", true, Info.reg1, "Delayed Services on " + Info.reg1, false);
 			}
 		}
+
 		/// <summary> ping menu actions
 		/// </summary>
 		private void PingUC_OK_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false;
 		}
+
 		/// <summary> service menu actions
 		/// </summary>
 		private void ServicesUC_OK_Click(object sender, EventArgs e)
@@ -863,8 +920,9 @@ namespace Retail_HD
 				bool trax = (RecentCalls_dgv.SelectedRows[0].Cells["Trax"].Value.ToString().Contains("True"));
 				string url = RecentCalls_dgv.SelectedRows[0].Cells["URL"].Value.ToString();
 
-				Forms.EditCalls editCalls = new Forms.EditCalls(id, store, date, tech, category, topic, details, type, trax, url);
-				editCalls.ShowDialog();
+				if (editCalls.Visible) { editCalls.BringToFront(); }
+				editCalls = new Forms.EditCalls(id, store, date, tech, category, topic, details, type, trax, url);
+				editCalls.Show();
 				UpdateInfo();
 			}
 		}
@@ -892,128 +950,8 @@ namespace Retail_HD
 		// 
 		#region STORE INFORMATION - store's information methods/handlers
 
-		// Mouse Click
 
-		private void txtStore_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtStore.SelectAll();
-		}
 
-		private void txtPhone_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtPhone.SelectAll();
-		}
-
-		private void txtManager_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtManager.SelectAll();
-		}
-
-		private void txtMpId_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtMpId.SelectAll();
-		}
-
-		private void txtAddress_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtAddress.SelectAll();
-		}
-
-		private void txtEmail_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtEmail.SelectAll();
-		}
-
-		private void txtIP_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtIP.SelectAll();
-		}
-
-		private void txtCity_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtCity.SelectAll();
-		}
-
-		private void txtDM_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtDM.SelectAll();
-		}
-
-		private void txtName_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtName.SelectAll();
-		}
-
-		private void txtType_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtType.SelectAll();
-		}
-
-		private void txtState_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtState.SelectAll();
-		}
-
-		private void txtZip_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtZip.SelectAll();
-		}
-
-		private void txtTZ_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtTZ.SelectAll();
-		}
-
-		private void txtBAMS_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtBAMS.SelectAll();
-		}
-
-		private void txtSVS_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtSVS.SelectAll();
-		}
-
-		private void txtTID1_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtTID1.SelectAll();
-		}
-
-		private void txtTID2_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtTID2.SelectAll();
-		}
-
-		private void txtTID3_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtTID3.SelectAll();
-		}
-
-		private void txtTID4_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtTID4.SelectAll();
-		}
-        private void txtRM_MouseClick(object sender, MouseEventArgs e)
-        {
-            txtRM.SelectAll();
-        }
-
-		// Mouse double clicks
-		private void storeInfo_MouseDoubleClick(object sender, MouseEventArgs e)
-		{
-            DataTable dt = Shared.SQL.dt_SelectStore(Info.store);
-			if (dt.Rows.Count == 1)
-			{
-				Forms.EditStoreInfo editStoreInfo = new Forms.EditStoreInfo();
-				editStoreInfo.ShowDialog();
-			}
-			else
-			{
-				Forms.AddNewStore addStore = new Forms.AddNewStore(Info.store.ToString());
-				addStore.ShowDialog();
-			}
-			UpdateInfo();
-		}
 
 		// handles when store number Text box Text has changed
 		private void txtStore_TextChanged(object sender, EventArgs e)
@@ -1143,10 +1081,9 @@ namespace Retail_HD
             AdditionalPhone.Show();
         }
 
-
         private void FlushDNS_Click(object sender, EventArgs e)
         {
-            GlobalFunctions.i_ExecuteCommand("ipconfig", true, "/flushdns");
+			GlobalFunctions.i_ExecuteCommand("ipconfig", true, "/flushdns");
         }
 
 		#endregion
@@ -1161,7 +1098,7 @@ namespace Retail_HD
 		private void ChangeState_Click(object sender, EventArgs e)
 		{
 			if (!_AgentLoginEnabled) { return; }
-
+			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (availableState == UserState.READY || availableState == UserState.NOT_READY)
 			{
 				//valid states
@@ -1177,6 +1114,7 @@ namespace Retail_HD
 		private void Login_Click(object sender, EventArgs e)
 		{
 			if (!_AgentLoginEnabled) { return; }
+			PingUC.Visible = false; ServicesUC.Visible = false;
 
 			if (curState == UserState.READY)
 			{
@@ -1230,6 +1168,8 @@ namespace Retail_HD
 		// shows status of other team members
 		private void AgentStatusList_Click(object sender, EventArgs e)
 		{
+			PingUC.Visible = false; ServicesUC.Visible = false;
+
 			if (!agentStatus.Visible && _AgentLoginEnabled)
 			{
 				agentStatus = new Forms.frmAgentStatus();
@@ -1243,6 +1183,7 @@ namespace Retail_HD
 		private void CallStore_Click(object sender, EventArgs e)
 		{
 			if (!_AgentLoginEnabled) { return; }
+			PingUC.Visible = false; ServicesUC.Visible = false;
 
 			if (txtPhone.Text != "(555) 555-5555" && txtPhone.Text != string.Empty && txtPhone.Text.Length > 6 && (curState == UserState.READY || curState == UserState.WORK || curState == UserState.HOLD || curState == UserState.NOT_READY))
 			{
@@ -1268,6 +1209,7 @@ namespace Retail_HD
 		// Opens the store search form
 		private void StoreSearch_Click(object sender, EventArgs e)
 		{
+			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (StoreSearch.Visible) { StoreSearch.BringToFront(); return; }
 			StoreSearch = new Forms.StoreSearch();
 			StoreSearch.Show();
@@ -1287,15 +1229,11 @@ namespace Retail_HD
 		// Show the new VLAN IPs for the meraki install
 		private void NewIps_Click(object sender, EventArgs e)
 		{
-			if (ips.Visible)
-			{
-				ips.BringToFront();
-			}
-			else
-			{
-				ips = new Forms.IPs(Info.store.ToString());
-				ips.Show();
-			}
+			PingUC.Visible = false; ServicesUC.Visible = false;
+
+			if (ips.Visible) { ips.BringToFront(); return; }
+			ips = new Forms.IPs(Info.store.ToString());
+			ips.Show();
 		}
 
 		#endregion
@@ -1307,7 +1245,7 @@ namespace Retail_HD
 
 		/// <summary> key press event handlers for all objects in frmMain
 		/// </summary>
-		private void Main_keyDown(object sender, KeyEventArgs e)
+		private void Main_KeyDown(object sender, KeyEventArgs e)
 		{
             bool breakIf = false;
             if (txtStore.Focused)
@@ -1590,6 +1528,35 @@ namespace Retail_HD
             //}
 		}
 
+		private void Main_Click(object sender, EventArgs e)
+		{
+			PingUC.Visible = false; ServicesUC.Visible = false;
+		}
+
+
+		private void MainText_Click(object sender, EventArgs e)
+		{
+			TextBox tb = sender as TextBox;
+			tb.SelectAll();
+		}
+
+
+		// Mouse double clicks
+		private void MainText_DoubleClick(object sender, EventArgs e)
+		{
+			DataTable dt = Shared.SQL.dt_SelectStore(Info.store);
+			if (dt.Rows.Count == 1)
+			{
+				Forms.EditStoreInfo editStoreInfo = new Forms.EditStoreInfo();
+				editStoreInfo.ShowDialog();
+			}
+			else
+			{
+				Forms.AddNewStore addStore = new Forms.AddNewStore(Info.store.ToString());
+				addStore.ShowDialog();
+			}
+			UpdateInfo();
+		}
 		#endregion
 
 
@@ -1601,9 +1568,6 @@ namespace Retail_HD
 		// Clear all the form information fields
 		private void ClearInfo()
 		{
-            ts_Top_tsl_StoreClosed.Visible = false;
-            ts_Top_tsl_PinPad.Visible = false;
-            ts_Top_tsl_Override.Visible = false;
 			// Clear the store information
 			txtAddress.Text = string.Empty;
 			txtCity.Text = string.Empty;
@@ -1710,11 +1674,6 @@ namespace Retail_HD
             // Call the method to update call totals
             UpdateWrapUpTotal();
 
-            if (!Info.open) { ts_Top_tsl_StoreClosed.Visible = true; }
-            else { ts_Top_tsl_StoreClosed.Visible = false; }
-
-            if (Info.pinpad) { ts_Top_tsl_PinPad.Visible = true; }
-            else { ts_Top_tsl_PinPad.Visible = false; }
         }
 
 
