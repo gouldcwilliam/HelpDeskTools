@@ -177,6 +177,9 @@ namespace Retail_HD
             tt_Main.SetToolTip(btnDelayed, "Tagets register 1 and attempts to start SQL and Express a defined number of times with a delay in between attemps\nUsed when a register is improperly shutdown and the rebuilding RAID is preventing service autostart\nPress F12");
 		}
 
+		/// <summary>
+		/// Sets the common handlers for controls
+		/// </summary>
 		private void Initialize_MainHandlers()
 		{
 			// Set handlers for all the buttons
@@ -199,7 +202,6 @@ namespace Retail_HD
 			// Sets handlers for the text boxes
 			foreach(GroupBox gb in this.Controls.OfType<GroupBox>())
 			{
-				Console.WriteLine(gb.Name);
 				foreach(TextBox tb in gb.Controls.OfType<TextBox>())
 				{
 					if(tb.Name != "txtStore") { tb.DoubleClick += MainText_DoubleClick; }
@@ -1528,12 +1530,21 @@ namespace Retail_HD
             //}
 		}
 
+		/// <summary>
+		/// Handler for Main Form clicks
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Main_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 		}
 
-
+		/// <summary>
+		///  Handler for text box click
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MainText_Click(object sender, EventArgs e)
 		{
 			TextBox tb = sender as TextBox;
@@ -1541,7 +1552,11 @@ namespace Retail_HD
 		}
 
 
-		// Mouse double clicks
+		/// <summary>
+		/// Handler for text box doubleclick
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MainText_DoubleClick(object sender, EventArgs e)
 		{
 			DataTable dt = Shared.SQL.dt_SelectStore(Info.store);

@@ -12,11 +12,6 @@ using LDAP;
 /// </summary>
 public static class AD
 {
-
-
-
-
-
 	/// <summary>
 	/// Search AD Directory Entry (OU) using LDAP query filter for specified properties
 	/// </summary>

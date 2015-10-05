@@ -48,82 +48,11 @@ namespace DameWareCheck
 			return value;
 		}
 
-
-
-
-
 		/// <summary>
-		/// Writes LDAP Result Llst to file where each Result value is on a new line
-		/// </summary>
-		/// <param name="ResultList">LDAP Result List</param>
-		/// <param name="FilePath">Path to write file</param>
-		/// <param name="FileName">Name of file to write to</param>
-		public async static void ListToFile(List<Result> ResultList, string FilePath, string FileName)
-		{
-			StringBuilder sb = new StringBuilder();
-
-			// Add each item to the string builder
-			foreach (Result Result in ResultList)
-			{
-				sb.Append(Result.Value);				// Append the value
-				sb.AppendLine(Environment.NewLine);		// and newline
-			}
-
-			// Create missing directory if needed
-			if (!Directory.Exists(FilePath)) { Directory.CreateDirectory(FilePath); }
-
-			// Append file name to file path
-			FilePath = string.Format(@"{0}\{1}", FilePath, FileName);
-
-			// Asynchronously writes string to file
-			using (StreamWriter outfile = new StreamWriter(FilePath, true))
-			{
-				await outfile.WriteAsync(sb.ToString());
-			}
-		}
-		/// <summary>
-		/// Writes LDAP Result Llst to file where each Result value is on a new line
-		/// Uses %TEMP\[ProcessID]\List.csv filepath/name
-		/// </summary>
-		/// <param name="ResultList">LDAP Result List</param>
-		public static void ListToFile(List<Result> ResultList)
-		{
-			// default file path is usually "C:\Users\[USERNAME]\AppData\Local\Temp\[ProcesName]-[ProcessID]\"
-			string filePath =
-				System.Environment.ExpandEnvironmentVariables("%TMP%") + @"\" +
-				System.Diagnostics.Process.GetCurrentProcess().ProcessName + @"-" +
-				System.Diagnostics.Process.GetCurrentProcess().Id.ToString();
-
-			// default file name is List.csv
-			string fileName = @"List.csv";
-			// execute with the default filepath/name
-			ListToFile(ResultList, filePath, fileName);
-		}
-
-
-
-
-
-		/// <summary>
-		/// 
+		/// search the computer for DameWare install
 		/// </summary>
 		/// <param name="computer"></param>
-		/// <param name="TRXs"></param>
 		/// <returns></returns>
-		public static bool CountTRX(string computer, out int TRXs)
-		{
-			try
-			{
-				TRXs = System.IO.Directory.GetFiles(
-						string.Format(@"\\{0}\c$\trickle\", computer), "*.trx").Count();
-			}
-			catch (DirectoryNotFoundException) { TRXs = -1; return false; }
-			catch (Exception) { TRXs = -2; return false; }
-			return true;
-
-		}
-
-
         public static bool FindDameWare(string computer)
         {
             try
@@ -133,15 +62,7 @@ namespace DameWareCheck
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
         }
-        public static bool FindAltiris(string computer)
-        {
-            try
-            {
-                return System.IO.Directory.Exists(
-                    string.Format(@"\\{0}\C$\Program Files\Symantec", computer));
-            }
-            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
-        }
+
 
 		/// <summary>
 		/// 
@@ -174,9 +95,6 @@ namespace DameWareCheck
 				return false;
 			}
 		}
-
-
-
 
 
 

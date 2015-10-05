@@ -19,41 +19,39 @@ namespace DameWareCheck
 
 
 			// Filter results by Object category of Computer and Name and exclude
-			string ADSearchFilter = 
-				string.Format("(&(objectCategory={0})(&({1}=*SAP*)(!({1}=*SAPQ*))))", 
-				ObjectClasses.Computer, 
-				ObjectAttribute.ComputerName);
+			//string ADSearchFilter = 
+			//	string.Format("(&(objectCategory={0})(&({1}=*SAP*)(!({1}=*SAPQ*))))", 
+			//	ObjectClasses.Computer, 
+			//	ObjectAttribute.ComputerName);
+
+			string ADSearchFilter =
+				string.Format("(objectCategory={0})",
+				ObjectClasses.Computer);
+
+
+			string ou = "LDAP://OU=Computers,OU=Big Rapids,OU=North America,OU=WWW,DC=wwwint,DC=corp";
 
 			// container for return values
-			List<Result> searchResults = new List<Result>();
+			List<Result> searchResults = AD.SearchAD(ou, ADSearchFilter, LDAP.ObjectAttribute.ComputerName);
 
-            LDAP.OU ou = LDAP.RetailOUs.All;
 
-            string sStore = "";
-
-            List<LDAP.Result> tempResults = AD.SearchAD(ou.ComputerOU, ADSearchFilter, LDAP.ObjectAttribute.ComputerName);
-
-            if (tempResults != null)
-            {
-                if (tempResults.Count > 0)
-                {
-                    for (int i = ou.Lower; i < ou.Upper + 1; i++)
-                    {
-                        sStore = i.ToString();
-
-                        while (sStore.Length < 4) { sStore = "0" + sStore; }
-
-                        foreach (LDAP.Result item in tempResults.FindAll(x => x.Value.Contains(sStore)))
-                        {
-                            searchResults.Add(item);
-                        }
-                    }
-                }
-            }
-            
 			// Sort list alphabetically
 			searchResults.Sort((x, y) => x.Value.CompareTo(y.Value));
 
+			if (searchResults != null && searchResults.Count > 0)
+			{
+				foreach (Result result in searchResults)
+				{
+					Console.WriteLine(result.Value);
+				}
+			}
+			else
+			{
+				Console.WriteLine("No results found, check that you are using a valid LDAP OU string");
+			}
+
+			Console.ReadKey();
+			Environment.Exit(0);
 
 			/* ============================================================================================================= */
 
@@ -87,13 +85,7 @@ namespace DameWareCheck
 					{
 						failed.Add(prop.Value);
 					}
-					else
-					{
-						if(!Functions.FindAltiris(prop.Value))
-                        {
-                            failed.Add(prop.Value);
-                        }
-					}
+					
 				}
 
 				failed.Sort((x, y) => x.CompareTo(y));
@@ -135,15 +127,7 @@ namespace DameWareCheck
 					{
 						body += string.Format(Settings.Default.body, computer, "Unable to ping register", " ");
 					}
-					else
-					{
-						// check files
-						if (!Functions.FindAltiris(computer))
-						{
-                            body += string.Format(Settings.Default.body, computer, "pcAnywhere found", " ");
-						}
-
-					}
+					
 				}
 				// end progress bar
 				progressBar.Completed();
