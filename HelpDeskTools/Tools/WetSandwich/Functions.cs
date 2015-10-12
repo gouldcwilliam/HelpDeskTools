@@ -51,10 +51,30 @@ namespace WetSandwich
 		{
 			try
 			{
-				return File.ReadAllText(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computerName, dateFileFormat))
+				File.Copy(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computerName, dateFileFormat), @"C:\temp\tmp.log",true);
+				return File.ReadAllText(@"C:\temp\tmp.log")
 					.Contains("4.2.12.139");
 			}
 			catch(Exception ex) { Console.WriteLine(ex.Message);return false; }
+		}
+
+		public static bool CopyTempLog(string pathToLog)
+		{
+			try
+			{
+				File.Copy(pathToLog, @"C:\temp\tmp.log", true);
+				return true;
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
+
+		public static bool FindInLog(string searchString)
+		{
+			try
+			{
+				return File.ReadAllText(@"C:\temp\tmp.log").Contains(searchString);
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
 
 		public static bool checkRIBrokerVersion(string computerName)

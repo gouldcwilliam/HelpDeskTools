@@ -208,10 +208,10 @@ namespace Retail_HD.Forms
         /// <returns></returns>
 		private List<string> SpecificRegister(List<string> Computers)
 		{
-			if (!ckb1.Checked) { Computers.Remove(Computers.Find(x => x.Contains("SAP" + ckb1.Text))); }
-			if (!ckb2.Checked) { Computers.Remove(Computers.Find(x => x.Contains("SAP" + ckb2.Text))); }
-			if (!ckb3.Checked) { Computers.Remove(Computers.Find(x => x.Contains("SAP" + ckb3.Text))); }
-			if (!ckb4.Checked) { Computers.Remove(Computers.Find(x => x.Contains("SAP" + ckb4.Text))); }
+			if (!ckb1.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb1.Text)); }
+			if (!ckb2.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb2.Text)); }
+			if (!ckb3.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb3.Text)); }
+			if (!ckb4.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb4.Text)); }
 
 			return Computers;
 		}

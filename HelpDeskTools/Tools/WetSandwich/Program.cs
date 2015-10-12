@@ -16,12 +16,17 @@ namespace WetSandwich
 			string year = DateTime.Today.Year.ToString();
 			string month = DateTime.Today.Month.ToString();
 			if (month.Length < 2) { month = 0 + month; }
-			string day = (DateTime.Today.Day-1).ToString();
+			string day = (DateTime.Today.Day - 1).ToString();
 			if (day.Length < 2) { day = 0 + day; }
 
 			string dateString = year + month + day;
-			
-			
+
+			//string computer = "rock0711sap1";
+			//Console.WriteLine(Functions.CheckNetwork(computer));
+			//Console.WriteLine(Functions.checkMultiVersion(computer,dateString));
+			//Console.WriteLine(Functions.checkRIBrokerVersion(computer));
+			//Console.ReadKey();
+			//Environment.Exit(0);
 
 			// Filter results by Object category of Computer and Name and exclude
 			string ADSearchFilter =
@@ -69,14 +74,14 @@ namespace WetSandwich
 
 			ProgressBar progressBar;
 
-			List<string> failed = new List<string>();
-
+			//searchResults = new List<Result>();
+			//searchResults.Add(new Result("name", "whit1663sap2"));
 			// Progress bar
 			if (searchResults.Count() > 0)
 			{
 				progressBar = new ProgressBar(
 				   searchResults.Count(),
-				   "Check Multi",
+				   "Checking Logs",
 				   " ");
 
 				// List all items
@@ -85,22 +90,22 @@ namespace WetSandwich
 					// Update the progress bar
 					progressBar.Update(i);
 
-					Result prop = searchResults[i];
-
-					if (!Functions.CheckNetwork(prop.Value))
+					string computer = searchResults[i].Value;
+					if (!Functions.CheckNetwork(computer))
 					{
-						body += string.Format(Settings.Default.body, prop.Value, "N/A", "N/A", "Connection Unavailable");
+						body += string.Format(Settings.Default.body, computer, "N/A", "N/A", "Connection Unavailable");
 					}
 					else
 					{
-						body +=
-							string.Format(
-								Settings.Default.body,
-								prop.Value,
-								Functions.checkMultiVersion(prop.Value, dateString),
-								Functions.checkRIBrokerVersion(prop.Value),
-								""
-								);
+						string multi;
+						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read log"; }
+						else { multi = Functions.FindInLog("4.2.12.139").ToString(); }
+
+						string ri;
+						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read log"; }
+						else { ri = Functions.FindInLog("2.0.0.926").ToString(); }
+
+						if( ri.ToUpper()!="TRUE" || multi.ToUpper() != "TRUE") { body += string.Format(Settings.Default.body, computer, multi, ri, ""); }
 					}
 				}
 
@@ -127,7 +132,7 @@ namespace WetSandwich
 				Console.Write("Failed!");
 			}
 			Console.ResetColor();
-			Console.ReadKey();
+			//Console.ReadKey();
 		}
 	}
 }

@@ -213,7 +213,7 @@
 			this.RecentCalls_dgv.ReadOnly = true;
 			this.RecentCalls_dgv.RowHeadersVisible = false;
 			this.RecentCalls_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.RecentCalls_dgv.Size = new System.Drawing.Size(745, 268);
+			this.RecentCalls_dgv.Size = new System.Drawing.Size(742, 266);
 			this.RecentCalls_dgv.TabIndex = 5;
 			this.RecentCalls_dgv.TabStop = false;
 			this.RecentCalls_dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.RecentCalls_dgv_DataBindingComplete);
@@ -236,7 +236,7 @@
             this.ss_Bottom_ssl_UserCalls,
             this.toolStripStatusLabel6,
             this.ss_Bottom_ssl_TeamCalls});
-			this.ss_Bottom_.Location = new System.Drawing.Point(339, 450);
+			this.ss_Bottom_.Location = new System.Drawing.Point(336, 448);
 			this.ss_Bottom_.Name = "ss_Bottom_";
 			this.ss_Bottom_.Size = new System.Drawing.Size(502, 22);
 			this.ss_Bottom_.SizingGrip = false;
@@ -827,7 +827,7 @@
             this.ts_Top_tsb_NewIPs});
 			this.ts_Top.Location = new System.Drawing.Point(0, 24);
 			this.ts_Top.Name = "ts_Top";
-			this.ts_Top.Size = new System.Drawing.Size(856, 22);
+			this.ts_Top.Size = new System.Drawing.Size(853, 22);
 			this.ts_Top.TabIndex = 69;
 			this.ts_Top.Text = "toolStrip1";
 			this.ts_Top.Click += new System.EventHandler(this.Main_Click);
@@ -1261,7 +1261,7 @@
 			this.ms_Top.Location = new System.Drawing.Point(0, 0);
 			this.ms_Top.Name = "ms_Top";
 			this.ms_Top.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-			this.ms_Top.Size = new System.Drawing.Size(856, 24);
+			this.ms_Top.Size = new System.Drawing.Size(853, 24);
 			this.ms_Top.TabIndex = 7;
 			this.ms_Top.Text = "mnuTop";
 			this.ms_Top.Click += new System.EventHandler(this.Main_Click);
@@ -1338,7 +1338,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(856, 473);
+			this.ClientSize = new System.Drawing.Size(853, 471);
 			this.Controls.Add(this.ServicesUC);
 			this.Controls.Add(this.PingUC);
 			this.Controls.Add(this.groupBox3);
@@ -1381,6 +1381,7 @@
 			this.Controls.Add(this.grpStore);
 			this.Controls.Add(this.clbComputers);
 			this.Controls.Add(this.RecentCalls_dgv);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = global::Retail_HD.GlobalResources.icoMain;
 			this.MainMenuStrip = this.ms_Top;
 			this.MinimumSize = new System.Drawing.Size(869, 509);
