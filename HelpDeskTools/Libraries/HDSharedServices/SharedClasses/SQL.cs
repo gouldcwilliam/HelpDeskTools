@@ -554,11 +554,12 @@ namespace Shared
 		/// <param name="zip"></param>
 		/// <param name="phone"></param>
 		/// <returns></returns>
-		static public DataTable dt_StoreSearch(string tz, string mp,string manager, string dm, string name, string type, string address, string city, string state, string zip, string phone, string ip)
+		static public DataTable dt_StoreSearch(string tz,string bams, string mp,string manager, string dm, string name, string type, string address, string city, string state, string zip, string phone, string ip)
 		{
 			string setStatement = string.Empty;
 
 			if (tz != string.Empty) { setStatement += string.Format("SET @TZ = '{0}'\n", tz); }
+			if (bams != string.Empty) { setStatement += string.Format("SET @BAMS = '{0}'\n", bams); }
 			if (mp != string.Empty) { setStatement += string.Format("SET @MP = '{0}'\n", mp); }
             if (manager != string.Empty) { setStatement += string.Format("SET @MANAGER = '{0}'\n", manager); }
 			if (dm != string.Empty) { setStatement += string.Format("SET @DM = '{0}'\n", dm); }

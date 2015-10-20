@@ -1,0 +1,56 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PinPadReport.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="header" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;
+&lt;style&gt;
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+padding: 5px;
+}
+&lt;/style&gt;&lt;/head&gt;
+&lt;p&gt;</Value>
+    </Setting>
+    <Setting Name="footer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</Value>
+    </Setting>
+    <Setting Name="tableHead" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/p&gt;
+&lt;body&gt;&lt;table style="width:100%"&gt;
+&lt;tr&gt;&lt;th&gt;Store&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;/tr&gt;</Value>
+    </Setting>
+    <Setting Name="from" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="to" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;chad.gould@wwwinc.com&lt;/string&gt;
+  &lt;string&gt;jason.bergman@wwwinc.com&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="query" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT 
+	[Calls].[store],
+	[Calls].[date]
+FROM 
+	[Calls]
+	INNER JOIN
+		[Topics] AS [T] ON [T].[id] = [Calls].[topID]
+WHERE
+	[date] &gt; DATEADD(day,-1,GETDATE()) AND
+	[T].[topic] = 'Pin Pad'
+</Value>
+    </Setting>
+    <Setting Name="subject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Pin Pad Report</Value>
+    </Setting>
+    <Setting Name="row" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;/tr&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

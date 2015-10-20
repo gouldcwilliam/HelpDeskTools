@@ -282,6 +282,7 @@ DESC
     </Setting>
     <Setting Name="_StoreSearchDeclare" Type="System.String" Scope="User">
       <Value Profile="(Default)">DECLARE @TZ VARCHAR(50)
+DECLARE @BAMS VARCHAR(50)
 DECLARE @MP VARCHAR(50)
 DECLARE @MANAGER VARCHAR(50)
 DECLARE @DM VARCHAR(50)
@@ -315,6 +316,7 @@ FROM
 	inner join [Phones] on [Phones].store=[Stores].store
 WHERE
 	(@TZ IS NULL OR (LOWER([TZ]) = LOWER(@TZ))) AND
+	(@BAMS IS NULL OR (LOWER([BAMS]) LIKE '%'+LOWER(@BAMS)+'%')) AND
 	(@MP IS NULL OR ([MP] = @MP)) AND
 	(@MANAGER IS NULL OR (LOWER([manager]) LIKE '%'+LOWER(@MANAGER)+'%')) AND
 	(@DM IS NULL OR (LOWER([dm]) LIKE '%'+LOWER(@DM)+'%')) AND
