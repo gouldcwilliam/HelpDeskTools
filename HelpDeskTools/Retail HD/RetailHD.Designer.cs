@@ -573,7 +573,7 @@
 			// 
 			this.gbZip.Controls.Add(this.txtZip);
 			this.gbZip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.gbZip.Location = new System.Drawing.Point(729, 116);
+			this.gbZip.Location = new System.Drawing.Point(773, 83);
 			this.gbZip.Name = "gbZip";
 			this.gbZip.Size = new System.Drawing.Size(68, 30);
 			this.gbZip.TabIndex = 62;
@@ -588,7 +588,7 @@
 			this.txtState.Location = new System.Drawing.Point(6, 14);
 			this.txtState.Name = "txtState";
 			this.txtState.ReadOnly = true;
-			this.txtState.Size = new System.Drawing.Size(36, 13);
+			this.txtState.Size = new System.Drawing.Size(44, 13);
 			this.txtState.TabIndex = 0;
 			this.txtState.TabStop = false;
 			this.txtState.Text = "__";
@@ -598,9 +598,9 @@
 			// 
 			this.gbState.Controls.Add(this.txtState);
 			this.gbState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.gbState.Location = new System.Drawing.Point(680, 116);
+			this.gbState.Location = new System.Drawing.Point(717, 83);
 			this.gbState.Name = "gbState";
-			this.gbState.Size = new System.Drawing.Size(48, 30);
+			this.gbState.Size = new System.Drawing.Size(56, 30);
 			this.gbState.TabIndex = 61;
 			this.gbState.TabStop = false;
 			this.gbState.Text = "State";
@@ -644,7 +644,7 @@
 			// 
 			this.gbAddress.Controls.Add(this.txtAddress);
 			this.gbAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.gbAddress.Location = new System.Drawing.Point(490, 50);
+			this.gbAddress.Location = new System.Drawing.Point(633, 50);
 			this.gbAddress.Name = "gbAddress";
 			this.gbAddress.Size = new System.Drawing.Size(208, 30);
 			this.gbAddress.TabIndex = 54;
@@ -974,7 +974,7 @@
 			// 
 			this.groupBox1.Controls.Add(this.txtIncome);
 			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox1.Location = new System.Drawing.Point(698, 50);
+			this.groupBox1.Location = new System.Drawing.Point(490, 50);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(93, 30);
 			this.groupBox1.TabIndex = 70;
@@ -998,7 +998,7 @@
 			// 
 			this.groupBox2.Controls.Add(this.txtRank);
 			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(791, 50);
+			this.groupBox2.Location = new System.Drawing.Point(583, 50);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(50, 30);
 			this.groupBox2.TabIndex = 71;
@@ -1290,9 +1290,9 @@
 			// 
 			this.groupBox3.Controls.Add(this.txtRM);
 			this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox3.Location = new System.Drawing.Point(717, 83);
+			this.groupBox3.Location = new System.Drawing.Point(680, 116);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(124, 30);
+			this.groupBox3.Size = new System.Drawing.Size(119, 30);
 			this.groupBox3.TabIndex = 72;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "RM";
@@ -1305,7 +1305,7 @@
 			this.txtRM.Location = new System.Drawing.Point(6, 14);
 			this.txtRM.Name = "txtRM";
 			this.txtRM.ReadOnly = true;
-			this.txtRM.Size = new System.Drawing.Size(112, 13);
+			this.txtRM.Size = new System.Drawing.Size(107, 13);
 			this.txtRM.TabIndex = 0;
 			this.txtRM.TabStop = false;
 			this.txtRM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;

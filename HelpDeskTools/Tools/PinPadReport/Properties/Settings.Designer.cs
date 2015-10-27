@@ -74,11 +74,9 @@ namespace PinPadReport.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>chad.gould@wwwinc.com</string>
-  <string>jason.bergman@wwwinc.com</string>
-</ArrayOfString>")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>chad.gould@wwwinc.com</string>\r\n</ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection to {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["to"]));
@@ -90,15 +88,16 @@ namespace PinPadReport.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT \r\n\t[Calls].[store],\r\n\t[Calls].[date]\r\nFROM \r\n\t[Calls]\r\n\tINNER JOIN\r\n\t\t[Top" +
-            "ics] AS [T] ON [T].[id] = [Calls].[topID]\r\nWHERE\r\n\t[date] > DATEADD(day,-1,GETDA" +
-            "TE()) AND\r\n\t[T].[topic] = \'Pin Pad\'\r\n")]
-        public string query {
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\nSELECT \r\n\t[Calls].[store],\r\n\t[Calls].[date]\r\nFROM \r\n\t[Calls]\r\n\tINNER JOIN\r\n\t\t[T" +
+            "opics] AS [T] ON [T].[id] = [Calls].[topID]\r\nWHERE\r\n\t[Calls].[date] > DATEADD(da" +
+            "y,-1,GETDATE()) AND\r\n\t[T].[topic] = \'Pin Pad\'\r\nORDER BY\r\n\t[Calls].[store],[Calls" +
+            "].[date]")]
+        public string query_calls {
             get {
-                return ((string)(this["query"]));
+                return ((string)(this["query_calls"]));
             }
             set {
-                this["query"] = value;
+                this["query_calls"] = value;
             }
         }
         
@@ -123,6 +122,20 @@ namespace PinPadReport.Properties {
             }
             set {
                 this["row"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\nSELECT \r\n\tCount([Calls].[store])\r\nFROM \r\n\t[Calls]\r\n\tINNER JOIN\r\n\t\t[Topics] AS [" +
+            "T] ON [T].[id] = [Calls].[topID]\r\nWHERE\r\n\t[Calls].[date] > DATEADD(day,-1,GETDAT" +
+            "E()) AND\r\n\t[T].[topic] = \'Pin Pad\'\r\n")]
+        public string query_count {
+            get {
+                return ((string)(this["query_count"]));
+            }
+            set {
+                this["query_count"] = value;
             }
         }
     }
