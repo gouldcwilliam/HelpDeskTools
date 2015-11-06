@@ -93,7 +93,8 @@ namespace WetSandwich
 					string computer = searchResults[i].Value;
 					if (!Functions.CheckNetwork(computer))
 					{
-						body += string.Format(Settings.Default.body, computer, "N/A", "N/A", "Connection Unavailable");
+						//body += string.Format(Settings.Default.body, computer, "N/A", "N/A", "Connection Unavailable");
+						continue;
 					}
 					else
 					{
@@ -105,7 +106,7 @@ namespace WetSandwich
 						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read log"; }
 						else { ri = Functions.FindInLog("2.0.0.926").ToString(); }
 
-						if( ri.ToUpper()!="TRUE" || multi.ToUpper() != "TRUE") { body += string.Format(Settings.Default.body, computer, multi, ri, ""); }
+						if( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, ""); }
 					}
 				}
 
