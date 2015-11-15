@@ -53,7 +53,11 @@ namespace Retail_HD.UCs
                 if (service == "verifone") 
                 {
                     Forms.VerifoneConfirm sfv = new Forms.VerifoneConfirm(computer.name);
-                    sfv.Show();
+					if (!copyArgsXML(computer.name)) { return; };
+					if (!GlobalFunctions.b_CopyBatFile(computer.name)) { return; }
+					string args = string.Format("-r:{0} {1} {2}",computer.name, Shared.Settings.Default._BatServices, "restart verifone");
+					GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
+					sfv.Show();
                 }
                 else
                 {
@@ -74,6 +78,25 @@ namespace Retail_HD.UCs
             rbStart.Enabled = (!rbVerifone.Checked);
             rbStop.Enabled = (!rbVerifone.Checked);
         }
+
+		private bool copyArgsXML(string Computer)
+		{
+			string tempFile = @"C:\temp\args.xml";
+			try { System.IO.File.WriteAllText(tempFile, GlobalResources.args.ToString()); }
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+			try
+			{
+				string Destination = string.Format(@"\\{0}\C$\Program Files\VeriFone\MX915\vfQueryUpdate\args.xml", Computer);
+				Console.WriteLine(Destination);
+				System.IO.File.Copy(tempFile, Destination, true);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				return false;
+			}
+			return true;
+		}
 
 	}
 }

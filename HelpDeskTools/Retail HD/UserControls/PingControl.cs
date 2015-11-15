@@ -58,6 +58,7 @@ namespace Retail_HD.UCs
 
             if (this.ckbCCTV.Checked)
             {
+                //GlobalFunctions.v_Pinger(Info.cctv, Info.store + "CCTV");
                 GlobalFunctions.v_Pinger(Info.cctv, Info.store + "CCTV");
             }
 		}

@@ -25,18 +25,6 @@ namespace Shared {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\HD.bat")]
-        public string _TempFile {
-            get {
-                return ((string)(this["_TempFile"]));
-            }
-            set {
-                this["_TempFile"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("\\\\wwwint\\roc\\IS-Share\\Helpdesk\\Retail Helpdesk")]
         public string _NetworkShare {
             get {
@@ -145,7 +133,7 @@ namespace Shared {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\unlock.bat")]
+        [global::System.Configuration.DefaultSettingValueAttribute("unlock.bat")]
         public string _BatUnlock {
             get {
                 return ((string)(this["_BatUnlock"]));
@@ -157,7 +145,7 @@ namespace Shared {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\services.bat")]
+        [global::System.Configuration.DefaultSettingValueAttribute("services.bat")]
         public string _BatServices {
             get {
                 return ((string)(this["_BatServices"]));
@@ -176,6 +164,30 @@ namespace Shared {
             }
             set {
                 this["_ArgsXMLpath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\")]
+        public string _TempPath {
+            get {
+                return ((string)(this["_TempPath"]));
+            }
+            set {
+                this["_TempPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("InstallEndpoint12.bat")]
+        public string _BatEndpoint {
+            get {
+                return ((string)(this["_BatEndpoint"]));
+            }
+            set {
+                this["_BatEndpoint"] = value;
             }
         }
     }

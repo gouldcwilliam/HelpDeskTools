@@ -104,7 +104,7 @@ namespace Retail_HD
 
 		public static bool b_WriteBatFile(string Contents)
 		{
-			return b_WriteFile(Contents, Shared.Settings.Default._TempFile);
+			return b_WriteFile(Contents, Shared.Settings.Default._TempPath+Shared.Settings.Default._BatServices);
 		}
 
 
@@ -120,7 +120,7 @@ namespace Retail_HD
 
 		public static bool b_CopyBatFile(string ComputerName)
 		{
-			return b_CopyFile(ComputerName, Shared.Settings.Default._TempFile);
+			return b_CopyFile(ComputerName, Shared.Settings.Default._BatServices);
 		}
 
 	
@@ -255,15 +255,15 @@ namespace Retail_HD
 		public static void v_InstallSemantic(string computer)
 		{
 			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.FileName = "PSEXEC";
-			startInfo.Arguments = string.Format(@"\\{0} -s -d -i {1}", computer, Shared.Settings.Default._TempFile);
+			startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
+			startInfo.Arguments = string.Format(@"\\{0} -s -d -i {1}", computer, Shared.Settings.Default._TempPath+Shared.Settings.Default._BatEndpoint);
 			Process process = Process.Start(startInfo);
 		}
 
 		public static void v_LocalCMD(string computer)
 		{
 			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.FileName = "PSEXEC";
+			startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
 			startInfo.Arguments = string.Format(@"\\{0} -s -d -i CMD", computer);
 			Process process = Process.Start(startInfo);
 		}
@@ -288,7 +288,7 @@ namespace Retail_HD
 		public static void Multi(string computer)
 		{
 			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.FileName = "PSEXEC";
+			startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
 			startInfo.Arguments = string.Format(@"\\{0} -s -d -i \HELPDESK\multi.bat", computer);
 			Process process = Process.Start(startInfo);
 		}
@@ -328,80 +328,37 @@ namespace Retail_HD
 			}
 		}
 		
-		public static bool b_FillStoreInfo()
-		{
-            try
-			{
-				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectStore(Convert.ToInt32(Info.store)).Rows)
-				{
-                    Info.phone = dr["phone"].ToString();
-                    Info.address = dr["address"].ToString();
-                    Info.city = dr["city"].ToString();
-                    Info.state = dr["state"].ToString();
-                    Info.zip = dr["zip"].ToString();
-                    Info.TZ = dr["TZ"].ToString();
-                    Info.dm = dr["dm"].ToString();
-                    Info.rm = dr["rm"].ToString();
-					Info.manager = dr["manager"].ToString();
-					Info.MP = dr["MP"].ToString();
-					Info.name = dr["name"].ToString();
-					Info.type = dr["type"].ToString();
-
-                    Info._first = dr["1st"].ToString();
-                    Info._second = dr["2nd"].ToString();
-                    Info._third = dr["3rd"].ToString();
-
-                    Info._lan1 = dr["lan1"].ToString();
-                    Info._lan2 = dr["lan2"].ToString();
-                    Info._lan3 = dr["lan3"].ToString();
-                    Info._lan4 = dr["lan4"].ToString();
-
-                    Info._gate1 = dr["gate1"].ToString();
-                    Info._gate2 = dr["gate2"].ToString();
-                    Info._gate3 = dr["gate3"].ToString();
-                    Info._gate4 = dr["gate4"].ToString();
-
-                    Info._cctv = dr["cctv"].ToString();
-
-					Info.income = dr["income"].ToString();
-					Info.rank = dr["rank"].ToString();
-
-					Info.BAMS = dr["BAMS"].ToString();
-					Info.SVS = dr["SVS"].ToString();
-					Info.TID1 = dr["TID1"].ToString();
-					Info.TID2 = dr["TID2"].ToString();
-					Info.TID3 = dr["TID3"].ToString();
-					Info.TID4 = dr["TID4"].ToString();
-
-                    Info.open = (bool)dr["open"];
-                    Info.pinpad = (bool)dr["pinpad"];
-				}
-			}
-			catch (Exception ex) { Console.WriteLine("fillStoreInfo : Store Info query\n" + ex.Message + ex.InnerException); return false; }
-
-            return true;
-		}
-
 		
 		
-		public static bool b_FillComputers()
+
+
+		public static bool checkMultiVersion(string computerName, string dateFileFormat)
 		{
 			try
 			{
-				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectComputers(Info.store).Rows)
-				{
-					Info.computers.Add(new Computer(dr["computer"].ToString().ToUpper()));
-				}
+				File.Copy(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computerName, dateFileFormat), @"C:\temp\tmp.log", true);
+				return File.ReadAllText(Shared.Settings.Default._TempPath + "multi.log")
+					.Contains(Properties.Settings.Default.multiVersion);
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
+
+		public static bool CopyTempLog(string pathToLog)
+		{
+			try
+			{
+				File.Copy(pathToLog, Shared.Settings.Default._TempPath + "temp.log", true);
 				return true;
 			}
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
 
-		
-		
-		public static bool b_FillRecentCalls()
+		public static bool FindInLog(string searchString)
 		{
-			try { Info.recentCalls = Shared.SQL.dt_SelectRecentCalls(Info.store); return true; }
+			try
+			{
+				return File.ReadAllText(@"C:\temp\tmp.log").Contains(searchString);
+			}
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
 

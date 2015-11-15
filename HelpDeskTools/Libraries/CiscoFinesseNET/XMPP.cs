@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using Matrix;
 using Matrix.Xmpp.Client;
 
 namespace CiscoFinesseNET
 {
-    internal class XMPPHandler
+	internal class XMPPHandler
     {
         XmppClient _client = new XmppClient();
         StreamWriter _sw;

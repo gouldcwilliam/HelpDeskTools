@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -13,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace Retail_HD.Forms
 {
-	
+
 	/// <summary> Display form for choosing what information to compare 
 	/// and update in the store information table
 	/// </summary>

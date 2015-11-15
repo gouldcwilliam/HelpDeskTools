@@ -63,6 +63,7 @@
 			this.rbTransnet = new System.Windows.Forms.RadioButton();
 			this.rbCredit = new System.Windows.Forms.RadioButton();
 			this.rbSQL = new System.Windows.Forms.RadioButton();
+			this.ckbRIMulti = new System.Windows.Forms.CheckBox();
 			this.gbRegister.SuspendLayout();
 			this.gbProgram.SuspendLayout();
 			this.gbAction.SuspendLayout();
@@ -71,9 +72,6 @@
 			// 
 			// txtList
 			// 
-			this.txtList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtList.Location = new System.Drawing.Point(12, 29);
 			this.txtList.Multiline = true;
 			this.txtList.Name = "txtList";
@@ -96,7 +94,7 @@
 			// btnOK
 			// 
 			this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnOK.Location = new System.Drawing.Point(219, 503);
+			this.btnOK.Location = new System.Drawing.Point(219, 492);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
 			this.btnOK.TabIndex = 12;
@@ -106,7 +104,6 @@
 			// 
 			// ckbBrowser
 			// 
-			this.ckbBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckbBrowser.AutoSize = true;
 			this.ckbBrowser.Location = new System.Drawing.Point(12, 292);
 			this.ckbBrowser.Name = "ckbBrowser";
@@ -118,7 +115,6 @@
 			// 
 			// txtSuffix
 			// 
-			this.txtSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtSuffix.Location = new System.Drawing.Point(112, 290);
 			this.txtSuffix.Name = "txtSuffix";
 			this.txtSuffix.Size = new System.Drawing.Size(263, 20);
@@ -127,7 +123,6 @@
 			// 
 			// lblSuffix
 			// 
-			this.lblSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblSuffix.AutoSize = true;
 			this.lblSuffix.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSuffix.Location = new System.Drawing.Point(180, 313);
@@ -139,7 +134,6 @@
 			// 
 			// gbRegister
 			// 
-			this.gbRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.gbRegister.Controls.Add(this.ckb3);
 			this.gbRegister.Controls.Add(this.ckb4);
 			this.gbRegister.Controls.Add(this.ckb2);
@@ -194,7 +188,6 @@
 			// 
 			// ckbService
 			// 
-			this.ckbService.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckbService.AutoSize = true;
 			this.ckbService.Location = new System.Drawing.Point(12, 219);
 			this.ckbService.Name = "ckbService";
@@ -206,7 +199,6 @@
 			// 
 			// ckbRegister
 			// 
-			this.ckbRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckbRegister.AutoSize = true;
 			this.ckbRegister.Location = new System.Drawing.Point(12, 128);
 			this.ckbRegister.Name = "ckbRegister";
@@ -220,7 +212,7 @@
 			// 
 			this.ckbRestart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckbRestart.AutoSize = true;
-			this.ckbRestart.Location = new System.Drawing.Point(12, 506);
+			this.ckbRestart.Location = new System.Drawing.Point(12, 495);
 			this.ckbRestart.Name = "ckbRestart";
 			this.ckbRestart.Size = new System.Drawing.Size(61, 17);
 			this.ckbRestart.TabIndex = 11;
@@ -229,7 +221,6 @@
 			// 
 			// ckbActivate
 			// 
-			this.ckbActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckbActivate.AutoSize = true;
 			this.ckbActivate.Location = new System.Drawing.Point(12, 405);
 			this.ckbActivate.Name = "ckbActivate";
@@ -242,7 +233,7 @@
 			// 
 			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(300, 503);
+			this.btnCancel.Location = new System.Drawing.Point(300, 492);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 13;
@@ -252,7 +243,6 @@
 			// 
 			// ckbOpenProgram
 			// 
-			this.ckbOpenProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckbOpenProgram.AutoSize = true;
 			this.ckbOpenProgram.Location = new System.Drawing.Point(12, 356);
 			this.ckbOpenProgram.Name = "ckbOpenProgram";
@@ -264,7 +254,6 @@
 			// 
 			// gbProgram
 			// 
-			this.gbProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.gbProgram.Controls.Add(this.ckbCMD);
 			this.gbProgram.Controls.Add(this.ckbDameware);
 			this.gbProgram.Controls.Add(this.ckbMulti);
@@ -320,7 +309,7 @@
 			// ckbInstallEndpoint
 			// 
 			this.ckbInstallEndpoint.AutoSize = true;
-			this.ckbInstallEndpoint.Location = new System.Drawing.Point(12, 448);
+			this.ckbInstallEndpoint.Location = new System.Drawing.Point(12, 428);
 			this.ckbInstallEndpoint.Name = "ckbInstallEndpoint";
 			this.ckbInstallEndpoint.Size = new System.Drawing.Size(113, 17);
 			this.ckbInstallEndpoint.TabIndex = 16;
@@ -340,7 +329,7 @@
 			// ckbFastPrinter
 			// 
 			this.ckbFastPrinter.AutoSize = true;
-			this.ckbFastPrinter.Location = new System.Drawing.Point(175, 448);
+			this.ckbFastPrinter.Location = new System.Drawing.Point(175, 428);
 			this.ckbFastPrinter.Name = "ckbFastPrinter";
 			this.ckbFastPrinter.Size = new System.Drawing.Size(151, 17);
 			this.ckbFastPrinter.TabIndex = 18;
@@ -471,13 +460,24 @@
 			this.rbSQL.Text = "SQL/Express";
 			this.rbSQL.UseVisualStyleBackColor = true;
 			// 
+			// ckbRIMulti
+			// 
+			this.ckbRIMulti.AutoSize = true;
+			this.ckbRIMulti.Location = new System.Drawing.Point(12, 451);
+			this.ckbRIMulti.Name = "ckbRIMulti";
+			this.ckbRIMulti.Size = new System.Drawing.Size(120, 17);
+			this.ckbRIMulti.TabIndex = 21;
+			this.ckbRIMulti.Text = "RI and Multi version";
+			this.ckbRIMulti.UseVisualStyleBackColor = true;
+			// 
 			// ListActions
 			// 
 			this.AcceptButton = this.btnOK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(387, 538);
+			this.ClientSize = new System.Drawing.Size(387, 527);
+			this.Controls.Add(this.ckbRIMulti);
 			this.Controls.Add(this.gbAction);
 			this.Controls.Add(this.gbServices);
 			this.Controls.Add(this.ckbFastPrinter);
@@ -504,7 +504,6 @@
 			this.Name = "ListActions";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "List Actions";
-			this.TopMost = true;
 			this.gbRegister.ResumeLayout(false);
 			this.gbRegister.PerformLayout();
 			this.gbProgram.ResumeLayout(false);
@@ -555,5 +554,6 @@
         public System.Windows.Forms.RadioButton rbSQL;
         public System.Windows.Forms.RadioButton rbVerifone;
         public System.Windows.Forms.RadioButton rbCitrix;
-    }
+		private System.Windows.Forms.CheckBox ckbRIMulti;
+	}
 }

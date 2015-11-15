@@ -23,6 +23,20 @@ namespace Retail_HD.Forms
 		}
 
 
+		private string dateString
+		{
+			get
+			{
+				string year = DateTime.Today.Year.ToString();
+				string month = DateTime.Today.Month.ToString();
+				if (month.Length < 2) { month = 0 + month; }
+				string day = DateTime.Today.Day.ToString();
+				if (day.Length < 2) { day = 0 + day; }
+
+				return year + month + day;
+			}
+		}
+
 
         /// <summary>
         /// returns the service name of selected radio button
@@ -91,8 +105,8 @@ namespace Retail_HD.Forms
         /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
-            // exit if no store entered
-            if (txtList.Text.Trim() == string.Empty) { return; }
+			// exit if no store entered
+			if (txtList.Text.Trim() == string.Empty) { return; }
 
             // load computers per store number entered
             List<string> computers = new List<string>();
@@ -181,10 +195,25 @@ namespace Retail_HD.Forms
                     GlobalFunctions.i_ExecuteCommand("WINRS", false, args, false);
                     args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\EPSON\\BA-T500II Software\\BA500IIUTL\\BA500IIUTL.EXE\"", computer);
                     GlobalFunctions.v_LocalCMD(computer);
-                    GlobalFunctions.i_ExecuteCommand("PSEXEC", true, args, false);
+                    GlobalFunctions.i_ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", true, args, false);
                     args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\OPOS\\Epson2\\SetupPOS.exe\"", computer);
-                    GlobalFunctions.i_ExecuteCommand("PSEXEC", true, args, false);
+                    GlobalFunctions.i_ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", true, args, false);
                 }
+
+				if (ckbRIMulti.Checked)
+				{
+					string multi;
+					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read log"; }
+					else { multi = GlobalFunctions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
+
+					string ri;
+					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read log"; }
+					else { ri = GlobalFunctions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
+
+					;
+					MessageBox.Show(string.Format("Multi up to date: {0} \nRedIron up to date: {1}", multi, ri),
+						"RedIron/Multi Version Check: " + computer, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
 
                 if (reboot)
                 {

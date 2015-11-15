@@ -1,26 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Retail_HD
 {
 	public static class Info
 	{
-		/*IP*/
-        public static string _first { get; set; }
+		public static string _first { get; set; }
         public static string _second { get; set; }
         public static string _third { get; set; }
-        public static string _lan1 { get; set; }
-        public static string _gate1 { get; set; }
-        public static string _lan2 { get; set; }
-        public static string _gate2 { get; set; }
-        public static string _lan3 { get; set; }
-        public static string _gate3 { get; set; }
-        public static string _lan4 { get; set; }
-        public static string _gate4 { get; set; }
-        public static string _cctv { get; set; }
+
+        private static string _lan1 { get; set; }
+        private static string _gate1 { get; set; }
+        private static string _lan2 { get; set; }
+        private static string _gate2 { get; set; }
+        private static string _lan3 { get; set; }
+        private static string _gate3 { get; set; }
+        private static string _lan4 { get; set; }
+        private static string _gate4 { get; set; }
+        private static string _cctv { get; set; }
 
 		public static string mim 
         {
@@ -38,43 +35,40 @@ namespace Retail_HD
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate1); }
         }
-
         public static string sensor
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan2); }
         }
-
         public static string sensor_gate
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate2); }
         }
+		public static string cctv
+		{
+			get
+			{
+				return _cctv;
 
-        public static string cctv
-        {
-            get
-            {
-                if (_cctv == null) { return string.Empty; }
-                if (_cctv == string.Empty) { return string.Empty; }
-                return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _cctv);
-            }
-        }
+				// Use this if I migrate to using only the CCTV's 4th octet
+				//if (_cctv == null) { return string.Empty; }
+				//if (_cctv == string.Empty) { return string.Empty; }
+				//return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _cctv);
 
-        public static string email
-        {
-            get
-            {
-                if (store.ToString().Length < 4) { return "Store0" + store.ToString() + "@wwwinc.com"; }
-                else { return "Store" + store.ToString() + "@wwwinc.com"; }
-            }
-        }
+			}
+		}
 
-		/*Global*/
+
 		public static int store { get; set; }
-		public static List<Computer> computers = new List<Computer>();
-		public static System.Data.DataTable recentCalls = new System.Data.DataTable();
 		public static string cashier { get; set; }
 
-		/*Information*/
+		public static string email
+		{
+			get
+			{
+				if (store.ToString().Length < 4) { return "Store0" + store.ToString() + "@wwwinc.com"; }
+				else { return "Store" + store.ToString() + "@wwwinc.com"; }
+			}
+		}
 		public static string address{ get; set; }
 		public static string city{ get; set; }
 		public static string dm { get; set; }
@@ -95,8 +89,37 @@ namespace Retail_HD
 		public static string TID2 { get; set; }
 		public static string TID3 { get; set; }
 		public static string TID4 { get; set; }
-        public static bool open { get; set; }
-        public static bool pinpad { get; set; }
+
+		/// <summary>
+		/// Store's computers
+		/// </summary>
+		public static List<Computer> computers = new List<Computer>();
+		/// <summary>
+		/// Wrap up categories
+		/// </summary>
+		public static List<Classes.Category> categories = new List<Classes.Category>();
+		/// <summary>
+		/// Wrap up topics
+		/// </summary>
+		public static List<Classes.Topic> topics = new List<Classes.Topic>();
+		/// <summary>
+		/// Technicians
+		/// </summary>
+		public static List<Classes.Technician> technicians = new List<Classes.Technician>();
+		/// <summary>
+		/// Store's call history
+		/// </summary>
+		public static System.Data.DataTable recentCalls = new System.Data.DataTable();
+
+
+
+		/************************************************************************************/
+
+
+
+		/// <summary>
+		/// Clears all Info
+		/// </summary>
 		public static void Clear()	
 		{
             _first = string.Empty;
@@ -137,15 +160,23 @@ namespace Retail_HD
 			TID3 = string.Empty;
 			TID4 = string.Empty;
 
-            open = false;
-            pinpad = false;
-
+			categories = new List<Classes.Category>();
 		}
+
+
+		/// <summary>
+		/// Returns true if at least one is selected
+		/// </summary>
+		/// <returns></returns>
 		public static bool OneSelected()
 		{
 			return (computers.FindAll(x => x.selected == true).Count > 0);
 		}
 
+
+		/// <summary>
+		/// Returns register 1 from the list
+		/// </summary>
 		public static string reg1
 		{
 			get
@@ -161,9 +192,13 @@ namespace Retail_HD
 			}
 		}
 
+
+		/// <summary>
+		/// Prints all of the info
+		/// </summary>
         public static void Debug()
         {
-            string computer = "";
+			string computer = "";
             for (int i = 0; i < computers.Count; i++)
             {
                 computer += " | computer " + (i + 1).ToString() + " : " + computers[i].name;
@@ -186,9 +221,7 @@ namespace Retail_HD
             " | manager: " + manager +
             " | MP: " + MP +
             " | income: " + income +
-            " | rank: " + rank + 
-            " | open: " + open + 
-            " | pin pad: " + pinpad + "\n" +
+            " | rank: " + rank + "\n" +
 
             " | BAMS: " + BAMS +
             " | SVS: " + SVS +
@@ -210,5 +243,136 @@ namespace Retail_HD
             );
         }
 
+
+		/// <summary>
+		/// Retrieve store's information
+		/// </summary>
+		/// <returns></returns>
+		public static bool GetStoreInfo()
+		{
+			try
+			{
+				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectStore(Info.store).Rows)
+				{
+					Info.phone = dr["phone"].ToString();
+					Info.address = dr["address"].ToString();
+					Info.city = dr["city"].ToString();
+					Info.state = dr["state"].ToString();
+					Info.zip = dr["zip"].ToString();
+					Info.TZ = dr["TZ"].ToString();
+					Info.dm = dr["dm"].ToString();
+					Info.rm = dr["rm"].ToString();
+					Info.manager = dr["manager"].ToString();
+					Info.MP = dr["MP"].ToString();
+					Info.name = dr["name"].ToString();
+					Info.type = dr["type"].ToString();
+
+					Info._first = dr["1st"].ToString();
+					Info._second = dr["2nd"].ToString();
+					Info._third = dr["3rd"].ToString();
+
+					Info._lan1 = dr["lan1"].ToString();
+					Info._lan2 = dr["lan2"].ToString();
+					Info._lan3 = dr["lan3"].ToString();
+					Info._lan4 = dr["lan4"].ToString();
+
+					Info._gate1 = dr["gate1"].ToString();
+					Info._gate2 = dr["gate2"].ToString();
+					Info._gate3 = dr["gate3"].ToString();
+					Info._gate4 = dr["gate4"].ToString();
+
+					Info._cctv = dr["cctv"].ToString();
+
+					Info.income = dr["income"].ToString();
+					Info.rank = dr["rank"].ToString();
+
+					Info.BAMS = dr["BAMS"].ToString();
+					Info.SVS = dr["SVS"].ToString();
+
+					Info.TID1 = dr["TID1"].ToString();
+					Info.TID2 = dr["TID2"].ToString();
+					Info.TID3 = dr["TID3"].ToString();
+					Info.TID4 = dr["TID4"].ToString();
+
+				}
+			}
+			catch (Exception ex) { Console.WriteLine("fillStoreInfo : Store Info query\n" + ex.Message + ex.InnerException); return false; }
+
+			return true;
+		}
+
+
+		/// <summary>
+		/// Retrieve store's computer list
+		/// </summary>
+		/// <returns></returns>
+		public static bool GetComputers()
+		{
+			try
+			{
+				foreach (System.Data.DataRow dr in Shared.SQL.dt_SelectComputers(Info.store).Rows)
+				{
+					Info.computers.Add(new Computer(dr["computer"].ToString().ToUpper()));
+				}
+				return true;
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
+
+
+		/// <summary>
+		/// Retrive store's recent calls
+		/// </summary>
+		/// <returns></returns>
+		public static bool GetRecentCalls()
+		{
+			List<System.Data.SqlClient.SqlParameter> parameters = new List<System.Data.SqlClient.SqlParameter>();
+			parameters.Add(new System.Data.SqlClient.SqlParameter("@store", Info.store.ToString()));
+
+            try { Info.recentCalls = Shared.SQL.Select(Shared.SQLSettings.Default._RecentCallsByStore, parameters); return true; }
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
+
+
+		/// <summary>
+		/// Retrive list of wrap up categories
+		/// </summary>
+		/// <returns></returns>
+		public static bool GetCategories()
+		{
+			foreach (System.Data.DataRow dr in Shared.SQL.Select("select * from [Categories]").Rows)
+			{
+				categories.Add(new Classes.Category((int)dr[0], dr[1].ToString()));
+			}
+			return (categories.Count > 0);
+		}
+
+
+		/// <summary>
+		/// Retrive list of wrap up topics
+		/// </summary>
+		/// <returns></returns>
+		public static bool FillTopics()
+		{
+			foreach(System.Data.DataRow dr in Shared.SQL.Select("select * from [Topics]").Rows)
+			{
+				Info.topics.Add(new Classes.Topic((int)dr["id"], dr["topic"].ToString(), (int)dr["catID"], (bool)dr["mandatory"], (bool)dr["active"]));
+			}
+			return (topics.Count > 0);
+		}
+
+
+		/// <summary>
+		/// Retrive list of technician names 
+		/// </summary>
+		/// <returns></returns>
+		public static bool FillTechnicians()
+		{
+			foreach (System.Data.DataRow dr in Shared.SQL.Select("select * from [Technicians]").Rows)
+			{
+				technicians.Add(new Classes.Technician((int)dr["id"], dr["technician"].ToString(), dr["full_name"].ToString(), dr["initials"].ToString()));
+			}
+			return (technicians.Count > 0);
+		}
 	}
 }

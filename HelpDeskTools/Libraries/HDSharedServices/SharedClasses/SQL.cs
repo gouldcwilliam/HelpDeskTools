@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace Shared
 {
-	
+
 	public static class SQL
 	{
         public static string connString = string.Format("server={0};database={1};Integrated Security={2}", 
@@ -618,7 +615,7 @@ namespace Shared
 				Console.WriteLine(ex.Errors);
 				return new DataTable();
 			}
-			finally { conn.Close(); }
+			finally { adapter.Dispose(); ds.Dispose();  conn.Close(); }
 		}
 		static public DataTable Select(string selectSQL)
 		{
@@ -634,7 +631,10 @@ namespace Shared
 
 
 
-
+		static public object DBNullIfEmpty(this string str)
+		{
+			return !String.IsNullOrEmpty(str) ? str : (object)DBNull.Value;
+        }
 
 
 

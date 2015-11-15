@@ -41,10 +41,10 @@ namespace Retail_HD.Forms
 
         private void StupidFuckingVerifone_Shown(object sender, EventArgs e)
         {
-            if (!copyArgsXML(_Computer)) { return; };
-            if (!GlobalFunctions.b_CopyBatFile(_Computer)) { return; }
-            string args = string.Format("-r:{0} {1} {2}", _Computer, Shared.Settings.Default._BatServices, "restart verifone");
-            GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
+            //if (!copyArgsXML(_Computer)) { return; };
+            //if (!GlobalFunctions.b_CopyBatFile(_Computer)) { return; }
+            //string args = string.Format("-r:{0} {1} {2}", _Computer, Shared.Settings.Default._BatServices, "restart verifone");
+            //GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace Retail_HD.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string args2 = string.Format("-r:{0} {1} {2}", _Computer, Shared.Settings.Default._TempFile, "start credit");
+            string args2 = string.Format("-r:{0} {1} {2}", _Computer, Shared.Settings.Default._TempPath+Shared.Settings.Default._BatServices, "start credit");
             GlobalFunctions.i_ExecuteCommand("WINRS", true, args2, false);
             this.Close();
         }

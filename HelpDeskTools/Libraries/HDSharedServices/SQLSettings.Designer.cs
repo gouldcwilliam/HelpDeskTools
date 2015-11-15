@@ -339,22 +339,8 @@ DESC
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT TOP 1
-	p.phone as [phone], [address], [city], [state], [zip],
-	 [TZ], [dm], [rm], [manager], [MP], [name], [type], 
-	 [1st], [2nd], [3rd], [lan1], lan2, lan3, lan4, 
-	 gate1, gate2, gate3, gate4, cctv, income, [rank], 
-	 BAMS, SVS, TID1, TID2, TID3, TID4, [open], [pinpad]
-FROM
-	[Stores] as S
-	full join 
-		[Phones] as P
-	on [S].[store] = [P].[store]
-WHERE
-	[S].[store] = @store
-ORDER BY
-	[P].[line]
-")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SELECT TOP 1\r\n* FROM\r\n\t[Stores] as S\r\n\tfull join \r\n\t\t[Phones] as P\r\n\ton [S].[stor" +
+            "e] = [P].[store]\r\nWHERE\r\n\t[S].[store] = @store\r\nORDER BY\r\n\t[P].[line]\r\n")]
         public string _StoreInfo {
             get {
                 return ((string)(this["_StoreInfo"]));

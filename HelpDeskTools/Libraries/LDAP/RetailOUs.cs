@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LDAP
+﻿namespace LDAP
 {
 	/// <summary>
 	/// Specifies computer and user LDAP search root and store number upper and lower bounds

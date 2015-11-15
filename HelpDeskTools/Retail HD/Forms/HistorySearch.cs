@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using Retail_HD.Classes;
 
 namespace Retail_HD.Forms
 {
@@ -21,7 +20,45 @@ namespace Retail_HD.Forms
 
 		int _resultLimit = 10000;
 		string _defaultText = "History";
+		List<Topic> _topics = new List<Topic>();
+		List<Technician> _technicians = new List<Technician>();
 		BGWorkers.Exporting exp = new BGWorkers.Exporting();
+
+
+		// On form load
+		private void HistorySearch_Load(object sender, EventArgs e)
+		{
+			Info.GetCategories();
+
+			foreach(Category c in Info.categories) { cmbCategory.Items.Add(c._category); }
+
+			Info.FillTopics();
+
+			foreach(Topic t in Info.topics) { cmbTopic.Items.Add(t._topic); }
+
+			Info.FillTechnicians();
+
+			foreach (Technician t in Info.technicians) { cmbTech.Items.Add(t._initials); }
+
+			dgvResults.DataSource = Shared.SQL.dt_HistorySearch();
+			if (dgvResults.Rows.Count > 0)
+			{
+				dgvResults.Columns["ID"].Visible = false;
+				dgvResults.Columns["Date"].FillWeight = 2;
+				dgvResults.Columns["Store"].FillWeight = 2;
+				dgvResults.Columns["Tech"].FillWeight = 2;
+				dgvResults.Columns["Category"].FillWeight = 4;
+				dgvResults.Columns["Topic"].FillWeight = 4;
+				dgvResults.Columns["Details"].FillWeight = 10;
+				dgvResults.Columns["In/Out"].FillWeight = 2;
+				dgvResults.Columns["Trax"].Visible = false;
+				dgvResults.Columns["URL"].FillWeight = 4;
+			}
+
+		}
+
+
+
 
 		// Double click data view
 		private void dgvResults_DoubleClick(object sender, EventArgs e)
@@ -42,7 +79,7 @@ namespace Retail_HD.Forms
 				Forms.EditCalls editCalls = new Forms.EditCalls(id, store, date, tech, category, topic, details, type, trax, url);
 				editCalls.ShowDialog();
 			}
-			SQLquery_Load(sender, e);
+			HistorySearch_Load(sender, e);
 		}
 
 
@@ -61,41 +98,6 @@ namespace Retail_HD.Forms
             txtTotal.Text = dgvResults.Rows.Count.ToString();
 		}
 
-
-		// On form load
-		private void SQLquery_Load(object sender, EventArgs e)
-		{
-			foreach (DataRow dr in Shared.SQL.Select("select [category] from [Categories]").Rows)
-			{
-				cmbCategory.Items.Add(dr[0].ToString());
-			}
-
-			foreach (DataRow dr in Shared.SQL.Select("select [topic] from [Topics]").Rows)
-			{
-				cmbTopic.Items.Add(dr[0].ToString());
-			}
-
-			foreach (DataRow dr in Shared.SQL.Select("select [initials] from [Technicians]").Rows)
-			{
-				cmbTech.Items.Add(dr[0].ToString());
-			}
-
-			dgvResults.DataSource = Shared.SQL.dt_HistorySearch();
-			if (dgvResults.Rows.Count > 0)
-			{
-				dgvResults.Columns["ID"].Visible = false;
-				dgvResults.Columns["Date"].FillWeight = 2;
-				dgvResults.Columns["Store"].FillWeight = 2;
-				dgvResults.Columns["Tech"].FillWeight = 2;
-				dgvResults.Columns["Category"].FillWeight = 4;
-				dgvResults.Columns["Topic"].FillWeight = 4;
-				dgvResults.Columns["Details"].FillWeight = 10;
-				dgvResults.Columns["In/Out"].FillWeight = 2;
-				dgvResults.Columns["Trax"].Visible = false;
-				dgvResults.Columns["URL"].FillWeight = 4;
-			}
-
-		}
 
 
 		// Perform query with the user input
@@ -169,6 +171,9 @@ namespace Retail_HD.Forms
 			exp.Show();
 		}
 
-
 	}
+
+
 }
+
+

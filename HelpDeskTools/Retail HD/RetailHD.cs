@@ -116,12 +116,10 @@ namespace Retail_HD
 			PingUC.btnOK.Click += PingUC_OK_Click;
 			ServicesUC.btnOK.Click += ServicesUC_OK_Click;
 
-			Shared.Functions.v_InstallPsTools();
-            //Shared.Functions.v_Install_DelayedStartServices();
-            Shared.Functions.v_RemoveDelayedStartServices();
 			Shared.Functions.v_CreateTempFolder();
-            GlobalFunctions.b_WriteFile(GlobalResources.batServices, Shared.Settings.Default._BatServices);
-            GlobalFunctions.b_WriteFile(GlobalResources.batUnlock, Shared.Settings.Default._BatUnlock);
+			Console.WriteLine(GlobalFunctions.b_WriteFile(GlobalResources.batServices, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices) ? "Updated local version of " + Shared.Settings.Default._BatServices : "Unable to update local version of " + Shared.Settings.Default._BatServices);
+			Console.WriteLine(GlobalFunctions.b_WriteFile(GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock) ? "Updated local version of " + Shared.Settings.Default._BatUnlock : "Unable to update local version of" + Shared.Settings.Default._BatUnlock);
+			Shared.Functions.v_InstallPsTools();
             GlobalFunctions.b_WriteFile(GlobalResources.args, @"C:\temp\args.xml");
 
             _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
@@ -748,6 +746,10 @@ namespace Retail_HD
 		{
 			ServicesUC.Visible = false;
 
+			if (Info.store > 999) { PingUC.ckbSensor.Enabled = false;PingUC.ckbSensorGate.Enabled = false; }
+			else { PingUC.ckbSensor.Enabled = true; PingUC.ckbSensorGate.Enabled = true; }
+
+
 			if (PingUC.Visible)
 			{
 				PingUC.Visible = false;
@@ -940,6 +942,7 @@ namespace Retail_HD
 				if (r.Cells["Trax"].Value.ToString().Contains("True"))
 				{
 					r.DefaultCellStyle = red;
+					r.DefaultCellStyle.SelectionForeColor = Color.DarkRed;
 				}
 			}
 
@@ -1344,7 +1347,6 @@ namespace Retail_HD
 				case Keys.Escape:
 					txtStore.Text = string.Empty;
 					txtStore.Focus();
-					ClearInfo();
 					Info.Clear();
 					ServicesUC.Visible = false;
 					PingUC.Visible = false;
@@ -1551,7 +1553,6 @@ namespace Retail_HD
 			tb.SelectAll();
 		}
 
-
 		/// <summary>
 		/// Handler for text box doubleclick
 		/// </summary>
@@ -1572,6 +1573,7 @@ namespace Retail_HD
 			}
 			UpdateInfo();
 		}
+
 		#endregion
 
 
@@ -1611,16 +1613,13 @@ namespace Retail_HD
 			Info.computers.Clear();
 		}
 
-
 		// Update all the form information from the store information gathered from SQL
         private void UpdateInfo()
         {
             if (!_NetworkEnabled) { return; }
             ClearInfo();
-            // Fill the store information area
-            if (GlobalFunctions.b_FillStoreInfo())
+            if (Info.GetStoreInfo())
             {
-
                 txtAddress.Text = Info.address;
                 txtCity.Text = Info.city;
                 txtDM.Text = Info.dm;
@@ -1656,10 +1655,11 @@ namespace Retail_HD
                     }
                     else { txtPhone.Text = Info.phone; }
                 }
+                //PingUC.ckbCCTV.Enabled = (Info.cctv != string.Empty);
                 PingUC.ckbCCTV.Enabled = (Info.cctv != string.Empty);
             }
             // Fill the computer list
-            if (GlobalFunctions.b_FillComputers())
+            if (Info.GetComputers())
             {
                 foreach (Computer computer in Info.computers)
                 {
@@ -1667,7 +1667,7 @@ namespace Retail_HD
                 }
             }
             // Fill the recent calls
-            if (GlobalFunctions.b_FillRecentCalls())
+            if (Info.GetRecentCalls())
             {
                 RecentCalls_dgv.DataSource = Info.recentCalls;
                 try
@@ -1691,7 +1691,6 @@ namespace Retail_HD
 
         }
 
-
 		// Update the team's and user's total calls
 		private void UpdateWrapUpTotal()
 		{
@@ -1710,7 +1709,6 @@ namespace Retail_HD
 			}
 		}
 
-
 		// displays the current caller
 		private void CurrentCall(bool isShown)
 		{
@@ -1726,14 +1724,12 @@ namespace Retail_HD
 
 		}
 
-
 		// Methods when the ping user control changes visibility
 		private void Ping_UC_VisibleChanged(object sender, EventArgs e)
 		{
 			PingUC.Clear();
             //if (PingUC.Visible) { PingUC.Focus(); }
 		}
-
 
 		// Methods when the services user control changes visibility
 		private void Services_UC_VisibleChanged(object sender, EventArgs e)
@@ -1775,6 +1771,7 @@ namespace Retail_HD
 			ClearInfo();
 			UpdateInfo();
 		}
+
 
 		#endregion
 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Shared
+﻿namespace Shared
 {
-    public class UserDetails
+	public class UserDetails
     {
         public string name { get; set; }
         public string birthday { get; set; }

@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-
-using System.Web;
 using System.Net;
 using System.DirectoryServices.AccountManagement;
 
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
 
 
 namespace Shared
@@ -907,14 +902,20 @@ namespace Shared
 		{
 			try
 			{
-
-				if (!File.Exists(Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe"))
+				if (!File.Exists(Shared.Settings.Default._TempPath + "PsExec.exe"))
 				{
-					Console.WriteLine(@"PsExec not found, copying to: {0}\System32\", Environment.ExpandEnvironmentVariables("%WINDIR%"));
+					Console.WriteLine(@"PsExec not found, copying to: {0}", Shared.Settings.Default._TempPath + "PsExec.exe");
 					File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
-						Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe",
+						Shared.Settings.Default._TempPath + "PsExec.exe",
 						true);
 				}
+				//if (!File.Exists(Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe"))
+				//{
+				//	Console.WriteLine(@"PsExec not found, copying to: {0}\System32\", Environment.ExpandEnvironmentVariables("%WINDIR%"));
+				//	File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
+				//		Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe",
+				//		true);
+				//}
 			}
 			catch (Exception) { }
 		}
@@ -939,10 +940,12 @@ namespace Shared
         }
 		public static void v_CreateTempFolder()
 		{
-			if (!Directory.Exists(@"C:\Temp"))
+			if (!Directory.Exists(Shared.Settings.Default._TempPath))
 			{
-				Directory.CreateDirectory(@"C:\Temp");
+				Console.WriteLine("Creating temporary directory: " + Shared.Settings.Default._TempPath);
+				Directory.CreateDirectory(Shared.Settings.Default._TempPath);
 			}
+			else { Console.WriteLine("Found temporary directory: " + Shared.Settings.Default._TempPath); }
 		}
 
 		public static bool PlaceCerts(string Computer)

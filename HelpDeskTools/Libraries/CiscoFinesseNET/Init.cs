@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using System.IO;
 using System.Net;
-using System.Web;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace CiscoFinesseNET
 {
-    public static class Init
+	public static class Init
     {
         //https://rocucccxp01:8445/desktop/container/?locale=en_US
         private const string connectURIHTTPS = "https://{0}/finesse/api/{1}";

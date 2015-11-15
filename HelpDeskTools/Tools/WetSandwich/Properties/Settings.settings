@@ -39,5 +39,11 @@ padding: 5px;
 &lt;tr&gt;&lt;th&gt;Computer Name&lt;/th&gt;&lt;th&gt;Multi&lt;/th&gt;&lt;th&gt;RedIron&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/tr&gt;
 </Value>
     </Setting>
+    <Setting Name="multiVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4.2.12.139</Value>
+    </Setting>
+    <Setting Name="redIronVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2.0.0.926</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

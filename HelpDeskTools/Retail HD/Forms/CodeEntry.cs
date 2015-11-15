@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Retail_HD
 {
-    public partial class frmCodeEntry : Form
+	public partial class frmCodeEntry : Form
     {
         int keyCount = 0;
         Keys[] keyPattern = new Keys[10];

@@ -16,7 +16,7 @@ namespace WetSandwich
 			string year = DateTime.Today.Year.ToString();
 			string month = DateTime.Today.Month.ToString();
 			if (month.Length < 2) { month = 0 + month; }
-			string day = (DateTime.Today.Day - 1).ToString();
+			string day = DateTime.Today.Day.ToString();
 			if (day.Length < 2) { day = 0 + day; }
 
 			string dateString = year + month + day;
@@ -100,11 +100,11 @@ namespace WetSandwich
 					{
 						string multi;
 						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read log"; }
-						else { multi = Functions.FindInLog("4.2.12.139").ToString(); }
+						else { multi = Functions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
 
 						string ri;
 						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read log"; }
-						else { ri = Functions.FindInLog("2.0.0.926").ToString(); }
+						else { ri = Functions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
 
 						if( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, ""); }
 					}

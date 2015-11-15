@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Management;
 using System.Diagnostics;
 using System.IO;
 using DelayedStartServices.Properties;

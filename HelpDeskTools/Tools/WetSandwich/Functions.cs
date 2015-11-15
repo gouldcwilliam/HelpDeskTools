@@ -53,7 +53,7 @@ namespace WetSandwich
 			{
 				File.Copy(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computerName, dateFileFormat), @"C:\temp\tmp.log",true);
 				return File.ReadAllText(@"C:\temp\tmp.log")
-					.Contains("4.2.12.139");
+					.Contains(Properties.Settings.Default.multiVersion);
 			}
 			catch(Exception ex) { Console.WriteLine(ex.Message);return false; }
 		}
@@ -62,7 +62,7 @@ namespace WetSandwich
 		{
 			try
 			{
-				File.Copy(pathToLog, @"C:\temp\tmp.log", true);
+                File.Copy(pathToLog, @"C:\temp\tmp.log", true);
 				return true;
 			}
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
@@ -83,7 +83,7 @@ namespace WetSandwich
 			{
 				File.Copy(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computerName), @"C:\temp\tmp.log",true);
 				return File.ReadAllText(@"C:\temp\tmp.log")
-					.Contains("2.0.0.926");
+					.Contains(Properties.Settings.Default.redIronVersion);
 
 			}
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }

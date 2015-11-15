@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CiscoFinesseNET
 {
-    public class Team
+	public class Team
     {
         public string uri { get; set; }
         public string id { get; set; }

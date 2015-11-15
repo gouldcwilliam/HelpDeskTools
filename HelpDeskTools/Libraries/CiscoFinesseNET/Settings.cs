@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Win32;
 
 namespace CiscoFinesseNET
 {
-    public class Settings
+	public class Settings
     {
         public int port { get; set; }
         public string ACD { get; set; }
@@ -45,18 +43,18 @@ namespace CiscoFinesseNET
             }
         }
 
-        private void SaveSaveLocationRegistry()
-        {
-            try
-            {
-                _key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RetailHD\PhoneCisco", false);
-                _key.SetValue("SettingsSaveLocation", GetSaveLocation(false));
-            }
-            catch
-            {
-                //don't crash, but don't do anything either
-            }
-        }
+        //private void SaveSaveLocationRegistry()
+        //{
+        //    try
+        //    {
+        //        _key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RetailHD\PhoneCisco", false);
+        //        _key.SetValue("SettingsSaveLocation", GetSaveLocation(false));
+        //    }
+        //    catch
+        //    {
+        //        //don't crash, but don't do anything either
+        //    }
+        //}
         //const string saveLocation = @"C:\FINESSE\";
         public string GetSaveLocation(bool withFilename) 
         {
@@ -76,7 +74,7 @@ namespace CiscoFinesseNET
         public void SetSaveLocation(string loc)
         {
             saveLocation = loc;
-            SaveSaveLocationRegistry();
+            //SaveSaveLocationRegistry();
         }
 
 

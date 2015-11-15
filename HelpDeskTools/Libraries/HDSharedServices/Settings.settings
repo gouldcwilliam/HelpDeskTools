@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Shared" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="_TempFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Temp\HD.bat</Value>
-    </Setting>
     <Setting Name="_NetworkShare" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk</Value>
     </Setting>
@@ -33,13 +30,19 @@
       <Value Profile="(Default)">2015-03-01</Value>
     </Setting>
     <Setting Name="_BatUnlock" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\temp\unlock.bat</Value>
+      <Value Profile="(Default)">unlock.bat</Value>
     </Setting>
     <Setting Name="_BatServices" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\temp\services.bat</Value>
+      <Value Profile="(Default)">services.bat</Value>
     </Setting>
     <Setting Name="_ArgsXMLpath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files\VeriFone\MX915\vfQueryUpdate\args.xml</Value>
+    </Setting>
+    <Setting Name="_TempPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Temp\</Value>
+    </Setting>
+    <Setting Name="_BatEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">InstallEndpoint12.bat</Value>
     </Setting>
   </Settings>
 </SettingsFile>

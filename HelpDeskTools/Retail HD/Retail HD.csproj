@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>86</ApplicationRevision>
+    <ApplicationRevision>93</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -102,9 +102,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\Computer.cs" />
     <Compile Include="Classes\GlobalFunctions.cs" />
     <Compile Include="Classes\Info.cs" />
+    <Compile Include="Classes\Technician.cs" />
+    <Compile Include="Classes\Topic.cs" />
     <Compile Include="Forms\AdditionalPhone.cs">
       <SubType>Form</SubType>
     </Compile>

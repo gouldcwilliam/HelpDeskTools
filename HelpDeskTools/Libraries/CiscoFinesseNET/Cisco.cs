@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CiscoFinesseNET
+﻿namespace CiscoFinesseNET
 {
-    public class CiscoSettings
+	public class CiscoSettings
     {
         public string s_AgentACD { get; set; }
         public string s_AgentPassword { get; set; }
