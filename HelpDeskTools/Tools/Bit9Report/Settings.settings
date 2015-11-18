@@ -16,7 +16,8 @@ padding: 5px;
 &lt;/style&gt;&lt;/head&gt;</Value>
     </Setting>
     <Setting Name="ahcTable" Type="System.String" Scope="User">
-      <Value Profile="(Default)">&lt;table style="width:50%"&gt;
+      <Value Profile="(Default)">
+&lt;table style="width:50%"&gt;
 &lt;tr&gt;&lt;th&gt;Computer&lt;/th&gt;&lt;th&gt;Time&lt;/th&gt;&lt;th&gt;Subtype&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;IP_Address&lt;/th&gt;&lt;/tr&gt;
 {0}
 &lt;/table&gt;</Value>
@@ -77,7 +78,7 @@ Subtype like '%block%' and
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;chad.gould@wwwinc.com&lt;/string&gt;
   &lt;string&gt;jason.bergman@wwwinc.com&lt;/string&gt;
-  &lt;string&gt;scott.chivington@wwwinc.com&lt;/string&gt;
+  &lt;string&gt;michael.nedd@wwwinc.com&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>

@@ -139,21 +139,21 @@ namespace Retail_HD.Forms
                 // perform service actions
                 if (bservices)
                 {
-					string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._BatServices, _action + " " + _service);
-					if (!GlobalFunctions.b_CopyFile(computer, Shared.Settings.Default._BatServices))
+					string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, _action + " " + _service);
+					if (!GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
 					{
 						// failed to copy services.bat
 					}
 					else
 					{
-						if (_service == "verifone" && !GlobalFunctions.copyArgsXML(computer))
+						if (_service == "verifone" && !GlobalFunctions.CopyArgsXML(computer))
 						{
 							// failed to copy args.xml
 						}
 						else
 						{
 							Console.WriteLine("WINRS {0}", args);
-							GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
+							GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
 						}
 					}
 				}
@@ -161,43 +161,42 @@ namespace Retail_HD.Forms
 
                 if (ckbBrowser.Checked)
                 {
-                    string suffix = txtSuffix.Text.ToLower().Replace("c:", "");
-                    GlobalFunctions.v_BrowseComputer(computer, suffix);
+                    GlobalFunctions.BrowseComputer(computer, txtSuffix.Text);
                 }
 
                 if (ckbOpenProgram.Checked)
                 {
                     if (ckbMulti.Checked) { GlobalFunctions.Multi(computer); }
-                    if (ckbDameware.Checked) { GlobalFunctions.v_ConnectWithDW(computer); }
+                    if (ckbDameware.Checked) { GlobalFunctions.ConnectWithDW(computer); }
                     if (ckbCMD.Checked) { GlobalFunctions.v_LocalCMD(computer); }
                 }
 
                 if (ckbActivate.Checked)
                 {
-                    GlobalFunctions.i_ExecuteCommand("WINRS", true, String.Format("-r:{0} SLMGR.VBS /IPK FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4 && SLMGR /ATO", computer), false);
+                    GlobalFunctions.ExecuteCommand("WINRS", String.Format("-r:{0} SLMGR.VBS /IPK FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4 && SLMGR /ATO", computer), true, false);
                 }
 
                 if (ckbInstallEndpoint.Checked)
                 {
-                    GlobalFunctions.b_WriteBatFile(GlobalResources.batInstallEndpoint12);
-                    GlobalFunctions.b_CopyBatFile(computer);
+                    
+					GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint);
                     GlobalFunctions.v_InstallSemantic(computer);
                 }
 
                 if (ckbDisableStartupRepair.Checked)
                 {
-                    int retCode = GlobalFunctions.i_ExecuteCommand("WINRS", true, String.Format("-r:{0} ", computer) + "bcdedit /set {default} recoveryenabled no && bcdedit /set {default} bootstatuspolicy ignoreallfailures", true);
+                    int retCode = GlobalFunctions.ExecuteCommand("WINRS", String.Format("-r:{0} ", computer) + "bcdedit /set {default} recoveryenabled no && bcdedit /set {default} bootstatuspolicy ignoreallfailures", true, true);
                 }
 
                 if (ckbFastPrinter.Checked)
                 {
                     string args = string.Format("-r:{0} TASKKILL /F /IM POSW.EXE", computer);
-                    GlobalFunctions.i_ExecuteCommand("WINRS", false, args, false);
+                    GlobalFunctions.ExecuteCommand("WINRS", args, false, false);
                     args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\EPSON\\BA-T500II Software\\BA500IIUTL\\BA500IIUTL.EXE\"", computer);
                     GlobalFunctions.v_LocalCMD(computer);
-                    GlobalFunctions.i_ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", true, args, false);
+                    GlobalFunctions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
                     args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\OPOS\\Epson2\\SetupPOS.exe\"", computer);
-                    GlobalFunctions.i_ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", true, args, false);
+                    GlobalFunctions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
                 }
 
 				if (ckbRIMulti.Checked)
@@ -218,7 +217,7 @@ namespace Retail_HD.Forms
                 if (reboot)
                 {
                     string args = string.Format("-r:{0} SHUTDOWN /f /r /t 0", computer);
-                    GlobalFunctions.i_ExecuteCommand("WINRS", true, args, false);
+                    GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
                 }
 
                 System.Threading.Thread.Sleep(500);

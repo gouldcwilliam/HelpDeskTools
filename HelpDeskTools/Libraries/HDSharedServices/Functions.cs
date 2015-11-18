@@ -552,11 +552,13 @@ namespace Shared
 			{
 				Console.WriteLine(ex.Message);
 				Console.WriteLine("Exception caught during DNS lookup\nThe computer is not online");
+				System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Exception", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
 				return false;
 			}
 			if (host == null || host.AddressList.GetLength(0) == 0)
 			{
 				Console.WriteLine("No addresses availible for the hostname");
+				System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Failed", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
 				return false;
 			}
 			return true;

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using DelayedStartServices.Properties;
 
+
 namespace DelayedStartServices
 {
 	class DelayedStartServices
@@ -30,23 +31,17 @@ namespace DelayedStartServices
 				} while (Computer == "");
 			}
 
-			// Write the batch file locally
-			try { File.WriteAllText(Settings.Default._TempFile, Resources.batServices); }
-			catch (Exception ex)
-			{
-				Console.WriteLine("Writing Temp File {0}", ex.Message);
-				Environment.Exit(1);
-			}
+			bool fileCopied = false;
 
 			// Get the process start info ready
 			ProcessStartInfo startInfo = new ProcessStartInfo();
 			startInfo.FileName = "WINRS";
-			startInfo.Arguments = string.Format("-r:{0} {1} {2}", Computer, Settings.Default._TempFile, "start sql");
+			startInfo.Arguments = string.Format("-r:{0} {1} {2}", Computer, Settings.Default._BatServices, "start sql");
 			startInfo.CreateNoWindow = false;
 			startInfo.UseShellExecute = true;
 
 			// Remote network path
-			string networkPath = string.Format(@"\\{0}\C$\{1}", Computer, Settings.Default._TempFile.Substring(2));
+			string networkPath = string.Format(@"\\{0}\C$\{1}", Computer, Settings.Default._BatServices.Substring(2));
 
 			// Time information displayed to the user
 			int min = (Settings.Default._DelayInMiliseconds / 1000) / 60;
@@ -62,11 +57,19 @@ namespace DelayedStartServices
 				System.Threading.Thread.Sleep(Settings.Default._DelayInMiliseconds);
 
 				// Copy batch file to remote computer
-				try { File.Copy(Settings.Default._TempFile, networkPath, true); }
-				catch (Exception ex)
+				if (!fileCopied)
 				{
-					Console.WriteLine("Copying Temp File {0}", ex.Message);
-					continue;
+					try
+					{
+						File.Copy(Settings.Default._BatServices, networkPath, true);
+						
+					}
+					catch (Exception ex)
+					{
+						Console.WriteLine("Copying Temp File \n{0}", ex.Message);
+						continue;
+					}
+					fileCopied = true;
 				}
 
 				// Runs the remote process

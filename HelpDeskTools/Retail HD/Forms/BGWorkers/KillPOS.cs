@@ -42,7 +42,7 @@ namespace Retail_HD.Forms.BGWorkers
 				worker.ReportProgress(0, "Killing POS on: " + computer.name);
 				if (worker.CancellationPending) { e.Cancel = true; return; };
 				string args = string.Format("-r:{0} TASKKILL /F /IM POSW.EXE", computer.name);
-				error = GlobalFunctions.i_ExecuteCommand("WINRS", false, args);
+				error = GlobalFunctions.ExecuteCommand("WINRS", args, false);
 			}
 			if (error > 0) { e.Result = "Failed to Kill POS"; }
 			else { e.Result = "Killed POS Successfully"; }

@@ -35,7 +35,7 @@ namespace Retail_HD.Forms.BGWorkers
 
 				string args = string.Format("-r:{0} SHUTDOWN /f /r /t 0", computer.name);
 
-				error += GlobalFunctions.i_ExecuteCommand("WINRS", false, args);
+				error += GlobalFunctions.ExecuteCommand("WINRS", args, false);
 			}
 			if (error > 0) { e.Result = "Error code: " + error.ToString(); }
 			else { e.Result = "Restarted Computer(s)"; }

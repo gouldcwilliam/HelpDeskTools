@@ -67,7 +67,7 @@ namespace Retail_HD
 		#region Variables
 		
 		bool _AgentLoginEnabled = false;
-        public bool _NetworkEnabled { get; private set; }
+        bool _NetworkEnabled { get; set; }
 		bool hasRun = false;
 
 
@@ -117,10 +117,11 @@ namespace Retail_HD
 			ServicesUC.btnOK.Click += ServicesUC_OK_Click;
 
 			Shared.Functions.v_CreateTempFolder();
-			Console.WriteLine(GlobalFunctions.b_WriteFile(GlobalResources.batServices, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices) ? "Updated local version of " + Shared.Settings.Default._BatServices : "Unable to update local version of " + Shared.Settings.Default._BatServices);
-			Console.WriteLine(GlobalFunctions.b_WriteFile(GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock) ? "Updated local version of " + Shared.Settings.Default._BatUnlock : "Unable to update local version of" + Shared.Settings.Default._BatUnlock);
 			Shared.Functions.v_InstallPsTools();
-            GlobalFunctions.b_WriteFile(GlobalResources.args, @"C:\temp\args.xml");
+			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.batServices, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices) ? "Updated local version of " + Shared.Settings.Default._BatServices : "Unable to update local version of " + Shared.Settings.Default._BatServices);
+			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock) ? "Updated local version of " + Shared.Settings.Default._BatUnlock : "Unable to update local version of " + Shared.Settings.Default._BatUnlock);
+			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.batInstallEndpoint12, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint) ? "Updated local version of " + Shared.Settings.Default._BatEndpoint : "Unable to update local version of " + Shared.Settings.Default._BatEndpoint);
+			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.args, Shared.Settings.Default._TempPath + "args.xml") ? "Updated local version of args.xml" : "Unable to update local version of args.xml");
 
             _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
 
@@ -656,7 +657,7 @@ namespace Retail_HD
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (Info.reg1 == string.Empty) { return; }
-			GlobalFunctions.v_ConnectWithDW(_computers);
+			GlobalFunctions.ConnectWithDW(_computers);
 		}
 
 		/// <summary> Opens fmrInput for cashier number, writes, copies, and executes BAT file remotley to unlock user account.
@@ -682,7 +683,7 @@ namespace Retail_HD
 		private void Buttons_Browse_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
-			GlobalFunctions.v_BrowseComputer(_computers);
+			GlobalFunctions.BrowseComputer(_computers);
 		}
 
 		/// <summary> Opens remote cmd prompt on your local machine
@@ -881,7 +882,7 @@ namespace Retail_HD
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (Info.computers.Count() > 0)
 			{
-				GlobalFunctions.i_ExecuteCommand(@".\DelayedStartServices.exe", true, Info.reg1, "Delayed Services on " + Info.reg1, false);
+				GlobalFunctions.ExecuteCommand(@".\DelayedStartServices.exe", Info.reg1, true, "Delayed Services on " + Info.reg1, false);
 			}
 		}
 
@@ -942,7 +943,7 @@ namespace Retail_HD
 				if (r.Cells["Trax"].Value.ToString().Contains("True"))
 				{
 					r.DefaultCellStyle = red;
-					r.DefaultCellStyle.SelectionForeColor = Color.DarkRed;
+					r.DefaultCellStyle.SelectionForeColor = Color.Red;
 				}
 			}
 
@@ -1056,7 +1057,7 @@ namespace Retail_HD
 		// Runs the external computer refresh program
 		private void RefreshComputers_Click(object sender, EventArgs e)
 		{
-			GlobalFunctions.v_UpdateComputersFromAD();
+			GlobalFunctions.UpdateComputersFromAD();
 		}
 
 		// open form for new store entry
@@ -1088,7 +1089,7 @@ namespace Retail_HD
 
         private void FlushDNS_Click(object sender, EventArgs e)
         {
-			GlobalFunctions.i_ExecuteCommand("ipconfig", true, "/flushdns");
+			GlobalFunctions.ExecuteCommand("ipconfig", "/flushdns", true);
         }
 
 		#endregion
@@ -1685,7 +1686,6 @@ namespace Retail_HD
                 }
                 catch (Exception ex) { Console.WriteLine("Update Info: {0}\n => {1}", RecentCalls_dgv.Name, ex.Message); }
             }
-            Info.Debug();
             // Call the method to update call totals
             UpdateWrapUpTotal();
 

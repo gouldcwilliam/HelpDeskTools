@@ -93,6 +93,7 @@ namespace Retail_HD.Forms
 				if (r.Cells["Trax"].Value.ToString().Contains("True"))
 				{
 					r.DefaultCellStyle = red;
+					r.DefaultCellStyle.SelectionForeColor = Color.Red;
 				}
 			}
             txtTotal.Text = dgvResults.Rows.Count.ToString();

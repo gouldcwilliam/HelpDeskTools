@@ -15,66 +15,15 @@ namespace Retail_HD
 {
 	public static class GlobalFunctions
     {
-
-
-        public static bool b_CheckValidExtensionPrefix(string extprefix)
-        {
-            switch (extprefix)
-            {
-                case "300":
-                case "302":
-                case "303":
-                case "304":
-                case "305":
-                case "311":
-                case "314":
-                case "315":
-                case "317":
-                case "318":
-                case "400":
-                case "500":
-                case "502":
-                    return true;
-                default:
-                    return false;
-            }
-        }
-
-
-
-
-		
-
-		public static bool b_KillProcess(string ComputerName, string ProcName)
-		{
-			try
-			{
-				ManagementScope msScope = new ManagementScope(string.Format(@"\\{0}\root\cimv2", ComputerName));
-				msScope.Connect();
-				ObjectQuery oqQuery = new ObjectQuery(string.Format("SELECT * FROM Win32_Process WHERE Name='{0}'", ProcName));
-				ManagementObjectSearcher mosSearcher = new ManagementObjectSearcher(msScope, oqQuery);
-				ManagementObjectCollection mocCollection = mosSearcher.Get();
-
-				foreach (ManagementObject moObj in mocCollection)
-				{
-					moObj.InvokeMethod("Terminate", null);
-				}
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				return false;
-			}
-			return true;
-		}
-
-
-
-		public static int i_ExecuteCommand(string ExecutableFile, bool Interactive, string Arguments, string Title, bool wait)
-		{
-			return i_ExecuteCommand("CMD", Interactive, string.Format("/C TITLE {0} && {1} {2}", Title, ExecutableFile, Arguments), wait);
-		}
-		public static int i_ExecuteCommand(string ExecutableFile, bool Interactive, string Arguments, bool Wait)
+		/// <summary>
+		/// Launches an instance of another program/executable
+		/// </summary>
+		/// <param name="ExecutableFile">Name of program or path to EXE</param>
+		/// <param name="Arguments">Arguments given to the EXE</param>
+		/// <param name="Interactive">Show the program running</param>
+		/// <param name="Wait">Pause all other processing until process completes</param>
+		/// <returns></returns>
+		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive, bool Wait)
 		{
 			ProcessStartInfo startInfo = new ProcessStartInfo();
 			startInfo.FileName = ExecutableFile;
@@ -85,53 +34,68 @@ namespace Retail_HD
 			if (Wait) { process.WaitForExit(); return process.ExitCode; }
 			return 0;
 		}
-		public static void i_ExecuteCommand(List<Computer> computers,string ExecutableFile, bool Interactive, string Arguments, bool Wait)
+		/// <summary>
+		/// Launches an instance of another program/executable
+		/// </summary>
+		/// <param name="ExecutableFile">Name of program or path to EXE</param>
+		/// <param name="Arguments">Arguments given to the EXE</param>
+		/// <param name="Interactive">Show the program running</param>
+		/// <param name="Title">Change the title of the program (only tested on batch files)</param>
+		/// <param name="Wait">Pause all other processing until process completes</param>
+		/// <returns></returns>
+		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive, string Title, bool Wait)
 		{
-			foreach (Computer computer in computers)
-			{
-				i_ExecuteCommand(ExecutableFile, Interactive, Arguments, Wait);
-			}
+			return ExecuteCommand("CMD", string.Format("/C TITLE {0} && {1} {2}", Title, ExecutableFile, Arguments), Interactive, Wait);
 		}
-		public static int i_ExecuteCommand(string ExecutableFile, bool Interactive)
+		/// <summary>
+		/// Launches an instance of another program/executable
+		/// </summary>
+		/// <param name="ExecutableFile">Name of program or path to EXE</param>
+		/// <param name="Interactive">Show the program running</param>
+		/// <returns></returns>
+		public static int ExecuteCommand(string ExecutableFile, bool Interactive)
 		{
-			return i_ExecuteCommand(ExecutableFile, Interactive, string.Empty);
+			return ExecuteCommand(ExecutableFile, string.Empty, Interactive);
 		}
-		public static int i_ExecuteCommand(string ExecutableFile, bool Interactive, string Arguments)
+		/// <summary>
+		/// Launches an instance of another program/executable
+		/// </summary>
+		/// <param name="ExecutableFile">Name of program or path to EXE</param>
+		/// <param name="Arguments">Arguments given to the EXE</param>
+		/// <param name="Interactive">Show the program running</param>
+		/// <returns></returns>
+		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive)
 		{
-			return i_ExecuteCommand(ExecutableFile, Interactive, Arguments, true);
+			return ExecuteCommand(ExecutableFile, Arguments, Interactive, true);
 		}
 
 
-		public static bool b_WriteBatFile(string Contents)
+		/// <summary>
+		/// Writes a string to a file
+		/// </summary>
+		/// <param name="Contents">Text to put in file</param>
+		/// <param name="FileLocation">Location to write file to</param>
+		/// <returns></returns>
+		public static bool WriteFile(string Contents, string FileLocation)
 		{
-			return b_WriteFile(Contents, Shared.Settings.Default._TempPath+Shared.Settings.Default._BatServices);
-		}
-
-
-
-		public static bool b_WriteFile(string Contents, string TempFileLocation)
-		{
-			try { File.WriteAllText(TempFileLocation, Contents); }
+			try { File.WriteAllText(FileLocation, Contents); }
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 			return true;
 		}
 
-		
-
-		public static bool b_CopyBatFile(string ComputerName)
-		{
-			return b_CopyFile(ComputerName, Shared.Settings.Default._BatServices);
-		}
-
-	
-
-		public static bool b_CopyFile(string ComputerName, string TempFileLocation)
+		/// <summary>
+		/// Copies a local file to the same directory on a remote machine
+		/// </summary>
+		/// <param name="ComputerName">Name of remote machine</param>
+		/// <param name="FileLocation">Location of file to copy</param>
+		/// <returns></returns>
+		public static bool CopyFileRemote(string ComputerName, string FileLocation)
 		{
 			try
 			{
-				string Destination = string.Format(@"\\{0}\C$\{1}", ComputerName, TempFileLocation.Substring(3));
+				string Destination = string.Format(@"\\{0}\C$\{1}", ComputerName, FileLocation.Substring(3));
 				Console.WriteLine(Destination);
-				File.Copy(TempFileLocation, Destination, true);
+				File.Copy(FileLocation, Destination, true);
 			}
 			catch (Exception ex)
 			{
@@ -146,16 +110,13 @@ namespace Retail_HD
         /// </summary>
         /// <param name="ComputerName"></param>
         /// <returns></returns>
-        public static bool copyArgsXML(string ComputerName)
+        public static bool CopyArgsXML(string ComputerName)
         {
-            string tempFile = @"C:\temp\args.xml";
-            try { System.IO.File.WriteAllText(tempFile, GlobalResources.args.ToString()); }
-            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
             try
             {
                 string Destination = string.Format(@"\\{0}\C$\Program Files\VeriFone\MX915\vfQueryUpdate\args.xml", ComputerName);
                 Console.WriteLine(Destination);
-                System.IO.File.Copy(tempFile, Destination, true);
+                System.IO.File.Copy(Shared.Settings.Default._TempPath + "args.xml", Destination, true);
             }
             catch (Exception ex)
             {
@@ -165,49 +126,60 @@ namespace Retail_HD
             return true;
         }
 
-        public static void v_UpdateComputersFromAD()
+		/// <summary>
+		/// Runs my tool that updates our list of computers in SQL
+		/// </summary>
+        public static void UpdateComputersFromAD()
 		{
 			Process.Start(@".\UpdateComputerList.exe");
 		}
 
 
-
-		public static void v_BrowseComputer(List<Computer> SelectedComputers)
+		/// <summary>
+		/// Opens an explorer window on the remote machines C:
+		/// </summary>
+		/// <param name="Computer">Name of remote machine</param>
+		/// <param name="Suffix">Remote path to browse relative to C:</param>
+		public static void BrowseComputer(string Computer, string Suffix)
 		{
-			foreach (Computer computer in SelectedComputers)
-			{
-                if (!Shared.Functions.DnsLookup(computer.name)) { continue; }
-				Process explore = Process.Start("EXPLORER", string.Format(@"\\{0}\c$", computer.name));
-			}
-		}
-		public static void v_BrowseComputer(string Computer, string Suffix)
-		{
+			if (!Shared.Functions.DnsLookup(Computer)) { return; }
+			Suffix = Suffix.ToLower().Replace("c:", "");
+			if (Suffix!="" && Suffix.Substring(0,1) !="\\") { Suffix = "\\" + Suffix; }
 			Process explore = Process.Start("EXPLORER", string.Format(@"\\{0}\c${1}", Computer, Suffix));
 		}
-
-
-
-		public static void v_ConnectWithAltiris(string computer)
+		/// <summary>
+		/// Opens an explorer window on the remote machines C:
+		/// </summary>
+		/// <param name="Computer">Name of remote machine</param>
+		public static void BrowseComputer(string Computer)
 		{
-			if (!Shared.Functions.DnsLookup(computer)) { return; }
-			Process altiris = Process.Start("AWREM32", @"C:\Users\All Users\Symantec\pcAnywhere\Remotes\Network, Cable, DSL.chf /c" + computer);
-			System.Threading.Thread.Sleep(2500);
-			Console.WriteLine("Launched altiris on: " + computer);
+			BrowseComputer(Computer, "");
 		}
-        
-
-		public static void v_ConnectWithAltiris(Computer computer)
+		/// <summary>
+		/// Opens an explorer window on the remote machines C:
+		/// </summary>
+		/// <param name="Computers">List of Computers to browse</param>
+		public static void BrowseComputer(List<Computer> Computers)
 		{
-			v_ConnectWithAltiris(computer.name);
-		}
-		public static void v_ConnectWithAltiris(List<Computer> SelectedComputers)
-		{
-			foreach (Computer computer in SelectedComputers)
+			foreach (Computer Computer in Computers)
 			{
-				v_ConnectWithAltiris(computer.name);
+				BrowseComputer(Computer.name);
 			}
 		}
-        public static void v_ConnectWithDW(string computer)
+		/// <summary>
+		/// Opens an explorer window on the remote machines C:
+		/// </summary>
+		/// <param name="Computers">List of strings to browse</param>
+		public static void BrowseComputer(List<string>Computers)
+		{
+			foreach (string computer in Computers)
+			{
+				BrowseComputer(computer);
+			}
+		}
+
+
+		public static void ConnectWithDW(string computer)
         {
             if (!Shared.Functions.DnsLookup(computer)) { return; }
             if (File.Exists(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe"))
@@ -225,15 +197,15 @@ namespace Retail_HD
             System.Threading.Thread.Sleep(2500);
             Console.WriteLine("Launched DameWare on: " + computer);
         }
-        public static void v_ConnectWithDW(Computer computer)
+        public static void ConnectWithDW(Computer computer)
         {
-            v_ConnectWithDW(computer.name);
+            ConnectWithDW(computer.name);
         }
-        public static void v_ConnectWithDW(List<Computer> SelectedComputers)
+        public static void ConnectWithDW(List<Computer> SelectedComputers)
         {
             foreach(Computer computer in SelectedComputers)
             {
-                v_ConnectWithDW(computer.name);
+                ConnectWithDW(computer.name);
             }
         }
 
@@ -330,19 +302,6 @@ namespace Retail_HD
 		
 		
 		
-
-
-		public static bool checkMultiVersion(string computerName, string dateFileFormat)
-		{
-			try
-			{
-				File.Copy(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computerName, dateFileFormat), @"C:\temp\tmp.log", true);
-				return File.ReadAllText(Shared.Settings.Default._TempPath + "multi.log")
-					.Contains(Properties.Settings.Default.multiVersion);
-			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
-		}
-
 		public static bool CopyTempLog(string pathToLog)
 		{
 			try

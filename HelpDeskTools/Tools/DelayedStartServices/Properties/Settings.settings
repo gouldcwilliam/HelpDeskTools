@@ -5,8 +5,8 @@
     <Setting Name="_DelayInMiliseconds" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">150000</Value>
     </Setting>
-    <Setting Name="_TempFile" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Temp\HD.bat</Value>
+    <Setting Name="_BatServices" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Temp\services.bat</Value>
     </Setting>
     <Setting Name="_Retries" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">20</Value>
