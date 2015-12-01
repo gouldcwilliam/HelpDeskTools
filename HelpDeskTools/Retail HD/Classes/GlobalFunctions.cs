@@ -194,7 +194,7 @@ namespace Retail_HD
             {
                 System.Windows.Forms.MessageBox.Show("Unable to launch DameWare Remote Control Center\nVerify that it is installed and using the default instalation path", "DameWare Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
-            System.Threading.Thread.Sleep(2500);
+           // System.Threading.Thread.Sleep(2500);
             Console.WriteLine("Launched DameWare on: " + computer);
         }
         public static void ConnectWithDW(Computer computer)

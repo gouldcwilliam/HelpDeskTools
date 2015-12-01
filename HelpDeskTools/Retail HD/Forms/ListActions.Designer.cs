@@ -64,6 +64,7 @@
 			this.rbCredit = new System.Windows.Forms.RadioButton();
 			this.rbSQL = new System.Windows.Forms.RadioButton();
 			this.ckbRIMulti = new System.Windows.Forms.CheckBox();
+			this.ckbTrickle = new System.Windows.Forms.CheckBox();
 			this.gbRegister.SuspendLayout();
 			this.gbProgram.SuspendLayout();
 			this.gbAction.SuspendLayout();
@@ -470,6 +471,16 @@
 			this.ckbRIMulti.Text = "RI and Multi version";
 			this.ckbRIMulti.UseVisualStyleBackColor = true;
 			// 
+			// ckbTrickle
+			// 
+			this.ckbTrickle.AutoSize = true;
+			this.ckbTrickle.Location = new System.Drawing.Point(175, 451);
+			this.ckbTrickle.Name = "ckbTrickle";
+			this.ckbTrickle.Size = new System.Drawing.Size(74, 17);
+			this.ckbTrickle.TabIndex = 22;
+			this.ckbTrickle.Text = "Fix Trickle";
+			this.ckbTrickle.UseVisualStyleBackColor = true;
+			// 
 			// ListActions
 			// 
 			this.AcceptButton = this.btnOK;
@@ -477,6 +488,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
 			this.ClientSize = new System.Drawing.Size(387, 527);
+			this.Controls.Add(this.ckbTrickle);
 			this.Controls.Add(this.ckbRIMulti);
 			this.Controls.Add(this.gbAction);
 			this.Controls.Add(this.gbServices);
@@ -555,5 +567,6 @@
         public System.Windows.Forms.RadioButton rbVerifone;
         public System.Windows.Forms.RadioButton rbCitrix;
 		private System.Windows.Forms.CheckBox ckbRIMulti;
+		private System.Windows.Forms.CheckBox ckbTrickle;
 	}
 }

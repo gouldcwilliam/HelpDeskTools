@@ -209,15 +209,32 @@ namespace Retail_HD.Forms
 					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read log"; }
 					else { ri = GlobalFunctions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
 
-					;
-					MessageBox.Show(string.Format("Multi up to date: {0} \nRedIron up to date: {1}", multi, ri),
-						"RedIron/Multi Version Check: " + computer, MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show(string.Format(computer + "\nMulti up to date: {0} \nRedIron up to date: {1}", multi, ri),
+						"RedIron/Multi Version Check: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+
+				if(ckbTrickle.Checked)
+				{
+					if (computer.ToUpper().Contains("SAP1"))
+					{
+						if (GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
+						{
+							string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "restart transnet");
+							Console.WriteLine("WINRS {0}", args);
+							GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
+							args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "restart sql");
+							Console.WriteLine("WINRS {0}", args);
+							GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
+							GlobalFunctions.BrowseComputer(computer, "trickle");
+						}
+					}
 				}
 
                 if (reboot)
                 {
                     string args = string.Format("-r:{0} SHUTDOWN /f /r /t 0", computer);
                     GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
+
                 }
 
                 System.Threading.Thread.Sleep(500);

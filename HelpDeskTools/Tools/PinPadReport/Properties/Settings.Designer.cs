@@ -50,7 +50,8 @@ namespace PinPadReport.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Store</th><th>Date</th></tr>")]
+        [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Store</th><th>Date</th><th>Detail" +
+            "s</th></tr>")]
         public string tableHead {
             get {
                 return ((string)(this["tableHead"]));
@@ -88,10 +89,20 @@ namespace PinPadReport.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\r\nSELECT \r\n\t[Calls].[store],\r\n\t[Calls].[date]\r\nFROM \r\n\t[Calls]\r\n\tINNER JOIN\r\n\t\t[T" +
-            "opics] AS [T] ON [T].[id] = [Calls].[topID]\r\nWHERE\r\n\t[Calls].[date] > DATEADD(da" +
-            "y,-1,GETDATE()) AND\r\n\t[T].[topic] = \'Pin Pad\'\r\nORDER BY\r\n\t[Calls].[store],[Calls" +
-            "].[date]")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+SELECT 
+	[Calls].[store],
+	[Calls].[date],
+	[Calls].[details]
+FROM 
+	[Calls]
+	INNER JOIN
+		[Topics] AS [T] ON [T].[id] = [Calls].[topID]
+WHERE
+	[Calls].[date] > DATEADD(day,-1,GETDATE()) AND
+	[T].[topic] = 'Pin Pad'
+ORDER BY
+	[Calls].[store],[Calls].[date]")]
         public string query_calls {
             get {
                 return ((string)(this["query_calls"]));
@@ -115,7 +126,7 @@ namespace PinPadReport.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td></tr>")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>")]
         public string row {
             get {
                 return ((string)(this["row"]));

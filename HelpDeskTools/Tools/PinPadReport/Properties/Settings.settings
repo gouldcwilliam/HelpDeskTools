@@ -21,7 +21,7 @@ padding: 5px;
     <Setting Name="tableHead" Type="System.String" Scope="User">
       <Value Profile="(Default)">&lt;/p&gt;
 &lt;body&gt;&lt;table style="width:100%"&gt;
-&lt;tr&gt;&lt;th&gt;Store&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;/tr&gt;</Value>
+&lt;tr&gt;&lt;th&gt;Store&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;Details&lt;/th&gt;&lt;/tr&gt;</Value>
     </Setting>
     <Setting Name="from" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -36,7 +36,8 @@ padding: 5px;
       <Value Profile="(Default)">
 SELECT 
 	[Calls].[store],
-	[Calls].[date]
+	[Calls].[date],
+	[Calls].[details]
 FROM 
 	[Calls]
 	INNER JOIN
@@ -51,7 +52,7 @@ ORDER BY
       <Value Profile="(Default)">Pin Pad Report</Value>
     </Setting>
     <Setting Name="row" Type="System.String" Scope="User">
-      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;/tr&gt;</Value>
+      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;/tr&gt;</Value>
     </Setting>
     <Setting Name="query_count" Type="System.String" Scope="User">
       <Value Profile="(Default)">

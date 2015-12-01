@@ -21,7 +21,7 @@ namespace PinPadReport
 
 			for (int i = 0; i < dt.Rows.Count; i++)
 			{
-				body += string.Format(Settings.Default.row, dt.Rows[i][0], dt.Rows[i][1]);
+				body += string.Format(Settings.Default.row, dt.Rows[i][0], dt.Rows[i][1], dt.Rows[i][2]);
 			}
 			
 			body += Settings.Default.footer;
