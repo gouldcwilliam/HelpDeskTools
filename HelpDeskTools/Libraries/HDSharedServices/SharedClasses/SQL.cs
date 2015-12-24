@@ -615,7 +615,7 @@ namespace Shared
 				Console.WriteLine(ex.Errors);
 				return new DataTable();
 			}
-			finally { adapter.Dispose(); ds.Dispose();  conn.Close(); }
+			finally { conn.Close(); }
 		}
 		static public DataTable Select(string selectSQL)
 		{

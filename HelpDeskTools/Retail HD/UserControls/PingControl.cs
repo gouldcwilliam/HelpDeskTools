@@ -65,12 +65,10 @@ namespace Retail_HD.UCs
 
 		public void Clear()
 		{
-			this.ckbFortinet.Checked = false;
-			this.ckbMim.Checked = false;
-			this.ckbMimGate.Checked = false;
-			this.ckbRegister.Checked = false;
-			this.ckbSensor.Checked = false;
-			this.ckbSensorGate.Checked = false;
+			foreach (CheckBox cb in gbPing.Controls.OfType<CheckBox>())
+			{
+				cb.Checked = false;
+			}
 		}
 	}
 }

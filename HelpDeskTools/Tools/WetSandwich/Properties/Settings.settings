@@ -9,7 +9,7 @@
       <Value Profile="(Default)">chad.gould@wwwinc.com</Value>
     </Setting>
     <Setting Name="subject" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Multi/RedIron Check</Value>
+      <Value Profile="(Default)">Multi/RedIron/Verifone Check</Value>
     </Setting>
     <Setting Name="header" Type="System.String" Scope="User">
       <Value Profile="(Default)">
@@ -30,13 +30,13 @@ padding: 5px;
 </Value>
     </Setting>
     <Setting Name="body" Type="System.String" Scope="User">
-      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;td&gt;{3}&lt;/td&gt;&lt;/tr&gt;
+      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;td&gt;{3}&lt;/td&gt;&lt;td&gt;{4}&lt;/td&gt;&lt;/tr&gt;
 </Value>
     </Setting>
     <Setting Name="tableHead" Type="System.String" Scope="User">
       <Value Profile="(Default)">&lt;/p&gt;
 &lt;body&gt;&lt;table style="width:100%"&gt;
-&lt;tr&gt;&lt;th&gt;Computer Name&lt;/th&gt;&lt;th&gt;Multi&lt;/th&gt;&lt;th&gt;RedIron&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;Computer Name&lt;/th&gt;&lt;th&gt;Multi&lt;/th&gt;&lt;th&gt;RedIron&lt;/th&gt;&lt;th&gt;Verifone&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/tr&gt;
 </Value>
     </Setting>
     <Setting Name="multiVersion" Type="System.String" Scope="User">
@@ -44,6 +44,9 @@ padding: 5px;
     </Setting>
     <Setting Name="redIronVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)">2.0.0.926</Value>
+    </Setting>
+    <Setting Name="vfVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4.3.7-20150824</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -43,7 +43,7 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Multi/RedIron Check")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Multi/RedIron/Verifone Check")]
         public string subject {
             get {
                 return ((string)(this["subject"]));
@@ -78,7 +78,7 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td></tr>\r\n")]
         public string body {
             get {
                 return ((string)(this["body"]));
@@ -91,7 +91,7 @@ namespace WetSandwich.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Computer Name</th><th>Multi</th><" +
-            "th>RedIron</th><th>Notes</th></tr>\r\n")]
+            "th>RedIron</th><th>Verifone</th><th>Notes</th></tr>\r\n")]
         public string tableHead {
             get {
                 return ((string)(this["tableHead"]));
@@ -122,6 +122,18 @@ namespace WetSandwich.Properties {
             }
             set {
                 this["redIronVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.3.7-20150824")]
+        public string vfVersion {
+            get {
+                return ((string)(this["vfVersion"]));
+            }
+            set {
+                this["vfVersion"] = value;
             }
         }
     }

@@ -261,14 +261,14 @@
 			// 
 			this.dgvStores.AllowUserToAddRows = false;
 			this.dgvStores.AllowUserToDeleteRows = false;
+			this.dgvStores.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
 			this.dgvStores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvStores.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.dgvStores.Location = new System.Drawing.Point(0, -182);
+			this.dgvStores.Location = new System.Drawing.Point(0, 114);
 			this.dgvStores.Name = "dgvStores";
 			this.dgvStores.ReadOnly = true;
 			this.dgvStores.RowHeadersVisible = false;
 			this.dgvStores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvStores.Size = new System.Drawing.Size(942, 561);
+			this.dgvStores.Size = new System.Drawing.Size(942, 239);
 			this.dgvStores.TabIndex = 11;
 			this.dgvStores.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
 			// 
@@ -381,7 +381,6 @@
 			this.btnClear.TabIndex = 14;
 			this.btnClear.Text = "&Clear >";
 			this.btnClear.UseVisualStyleBackColor = true;
-			//this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
 			// 
 			// btnSearch
 			// 
@@ -400,7 +399,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnClear;
-			this.ClientSize = new System.Drawing.Size(942, 379);
+			this.ClientSize = new System.Drawing.Size(942, 353);
 			this.Controls.Add(this.gbTop);
 			this.Controls.Add(this.dgvStores);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;

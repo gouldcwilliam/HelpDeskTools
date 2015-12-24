@@ -9,7 +9,7 @@ using WetSandwich.Properties;
 
 namespace WetSandwich
 {
-	class Program
+	class WetSandwich
 	{
 		static void Main(string[] args)
 		{
@@ -63,19 +63,39 @@ namespace WetSandwich
 				}
 			}
 
+			/*
+			C:\Program Files\VeriFone\MX915\UpdateFiles\logfiles
+
+			Before:
+			  <tblLog>
+				<Name>APP</Name>
+				<Value>3.0.3-20140620</Value>
+			  </tblLog>
+
+
+			After:
+			  <tblLog>
+				<Name>APP</Name>
+				<Value>4.3.7-20150824</Value>
+			  </tblLog>
+			*/
+
 			// Sort list alphabetically
 			searchResults.Sort((x, y) => x.Value.CompareTo(y.Value));
 
 			/* ============================================================================================================= */
 
-			string body = WetSandwich.Properties.Settings.Default.header;
-
+			string body = global::WetSandwich.Properties.Settings.Default.header;
+			body += "Multi Version: " + Settings.Default.multiVersion + "<br>";
+			body += "Rediron Version: " + Settings.Default.redIronVersion + "<br>";
+			body += "Verifone Version: " + Settings.Default.vfVersion + "<br>";
 			body += Settings.Default.tableHead;
 
 			ProgressBar progressBar;
 
-			//searchResults = new List<Result>();
-			//searchResults.Add(new Result("name", "whit1663sap2"));
+			searchResults = new List<Result>();
+			searchResults.Add(new Result("name", "whit1663sap2"));
+
 			// Progress bar
 			if (searchResults.Count() > 0)
 			{
@@ -99,14 +119,18 @@ namespace WetSandwich
 					else
 					{
 						string multi;
-						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read log"; }
+						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read multi log"; }
 						else { multi = Functions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
 
 						string ri;
-						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read log"; }
+						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log"; }
 						else { ri = Functions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
 
-						if( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, ""); }
+						string vf;
+						if(Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml",computer))) { vf = "Unable to read vf log"; }
+						else { vf = Functions.FindInLog(Properties.Settings.Default.vfVersion).ToString(); }
+
+						if( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || ri.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, ""); }
 					}
 				}
 
