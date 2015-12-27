@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>100</ApplicationRevision>
+    <ApplicationRevision>103</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
