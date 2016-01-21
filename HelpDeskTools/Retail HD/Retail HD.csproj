@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>103</ApplicationRevision>
+    <ApplicationRevision>104</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -171,6 +171,12 @@
     <Compile Include="Forms\Confirm.Designer.cs">
       <DependentUpon>Confirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EditStoreNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditStoreNote.Designer.cs">
+      <DependentUpon>EditStoreNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ExcelLoadTables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,12 @@
     </Compile>
     <Compile Include="Forms\ScottStartup.Designer.cs">
       <DependentUpon>ScottStartup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StoreNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StoreNotes.Designer.cs">
+      <DependentUpon>StoreNotes.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\VerifoneConfirm.cs">
       <SubType>Form</SubType>
@@ -328,6 +340,9 @@
     <EmbeddedResource Include="Forms\Confirm.resx">
       <DependentUpon>Confirm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditStoreNote.resx">
+      <DependentUpon>EditStoreNote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExcelLoadTables.resx">
       <DependentUpon>ExcelLoadTables.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScottStartup.resx">
       <DependentUpon>ScottStartup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StoreNotes.resx">
+      <DependentUpon>StoreNotes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VerifoneConfirm.resx">
       <DependentUpon>VerifoneConfirm.cs</DependentUpon>

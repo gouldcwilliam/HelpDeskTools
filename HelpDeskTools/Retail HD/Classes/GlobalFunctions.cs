@@ -299,14 +299,12 @@ namespace Retail_HD
 				v_Pinger(computer.name, computer.name);
 			}
 		}
-		
-		
-		
+
 		public static bool CopyTempLog(string pathToLog)
 		{
 			try
 			{
-				File.Copy(pathToLog, Shared.Settings.Default._TempPath + "temp.log", true);
+				File.Copy(pathToLog, @"C:\temp\tmp.log", true);
 				return true;
 			}
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
@@ -320,6 +318,7 @@ namespace Retail_HD
 			}
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
+
 
 	}
 

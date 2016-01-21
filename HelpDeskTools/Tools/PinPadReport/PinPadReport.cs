@@ -13,17 +13,20 @@ namespace PinPadReport
 		{
 			string body = Settings.Default.header;
 			body += "Calls for VeriFone reboots and/or power cycles from: ";
-			body += System.DateTime.Today.AddDays(-1.0).ToShortDateString();
+			body += System.DateTime.Today.AddDays(-7.0).ToShortDateString() + " - " + System.DateTime.Today.AddDays(-1.0).ToShortDateString();
 			body += "<br /><br />TOTAL CALLS: " + Shared.SQL.Select(Settings.Default.query_count).Rows[0][0].ToString();
 			body += Settings.Default.tableHead;
 
-			DataTable dt = Shared.SQL.Select(Settings.Default.query_calls);
 
-			for (int i = 0; i < dt.Rows.Count; i++)
+			DataTable dt;
+			for (int i = -7; i < 0; i++)
 			{
-				body += string.Format(Settings.Default.row, dt.Rows[i][0], dt.Rows[i][1], dt.Rows[i][2]);
+				dt = Shared.SQL.Select(Settings.Default.query_calls, new System.Data.SqlClient.SqlParameter("@D", i));
+				body += string.Format(Settings.Default.row, dt.Rows[0][0].ToString(), dt.Rows[0][1].ToString());
+				Console.WriteLine(dt.Rows[0][0].ToString() + " | " + dt.Rows[0][1].ToString());
 			}
-			
+
+
 			body += Settings.Default.footer;
 			
 

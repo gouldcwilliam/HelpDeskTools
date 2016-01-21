@@ -111,6 +111,7 @@ namespace Retail_HD
 		/// </summary>
 		public static System.Data.DataTable recentCalls = new System.Data.DataTable();
 
+		public static System.Data.DataTable notes = new System.Data.DataTable();
 
 
 		/************************************************************************************/
@@ -327,9 +328,9 @@ namespace Retail_HD
 		public static bool GetRecentCalls()
 		{
 			List<System.Data.SqlClient.SqlParameter> parameters = new List<System.Data.SqlClient.SqlParameter>();
-			parameters.Add(new System.Data.SqlClient.SqlParameter("@store", Info.store.ToString()));
+			parameters.Add(new System.Data.SqlClient.SqlParameter("@store", store.ToString()));
 
-            try { Info.recentCalls = Shared.SQL.Select(Shared.SQLSettings.Default._RecentCallsByStore, parameters); return true; }
+            try { recentCalls = Shared.SQL.Select(Shared.SQLSettings.Default._RecentCallsByStore, parameters); return true; }
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
 
@@ -373,6 +374,19 @@ namespace Retail_HD
 				technicians.Add(new Classes.Technician((int)dr["id"], dr["technician"].ToString(), dr["full_name"].ToString(), dr["initials"].ToString()));
 			}
 			return (technicians.Count > 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public static bool fillNotes()
+		{
+			List<System.Data.SqlClient.SqlParameter> parameters = new List<System.Data.SqlClient.SqlParameter>();
+			parameters.Add(new System.Data.SqlClient.SqlParameter("@store", store.ToString()));
+
+			try { notes = Shared.SQL.Select("Select * from [Notes] where store=@STORE order by resolved", parameters);return true; }
+			catch(Exception ex) { Console.WriteLine(ex.Message);return false; }
 		}
 	}
 }

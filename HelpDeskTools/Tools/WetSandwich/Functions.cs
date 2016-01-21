@@ -47,16 +47,6 @@ namespace WetSandwich
 			}
 		}
 
-		public static bool checkMultiVersion(string computerName, string dateFileFormat)
-		{
-			try
-			{
-				File.Copy(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computerName, dateFileFormat), @"C:\temp\tmp.log",true);
-				return File.ReadAllText(@"C:\temp\tmp.log")
-					.Contains(Properties.Settings.Default.multiVersion);
-			}
-			catch(Exception ex) { Console.WriteLine(ex.Message);return false; }
-		}
 
 		public static bool CopyTempLog(string pathToLog)
 		{
@@ -76,26 +66,6 @@ namespace WetSandwich
 			}
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
-
-		public static bool checkRIBrokerVersion(string computerName)
-		{
-			try
-			{
-				File.Copy(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computerName), @"C:\temp\tmp.log",true);
-				return File.ReadAllText(@"C:\temp\tmp.log")
-					.Contains(Properties.Settings.Default.redIronVersion);
-
-			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
-		}
-
-
-
-
-
-
-
-
 
 
 		/// <summary>

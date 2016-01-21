@@ -202,14 +202,18 @@ namespace Retail_HD.Forms
 				if (ckbRIMulti.Checked)
 				{
 					string multi;
-					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read log"; }
+					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read multi log"; }
 					else { multi = GlobalFunctions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
 
 					string ri;
-					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read log"; }
+					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log"; }
 					else { ri = GlobalFunctions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
 
-					MessageBox.Show(string.Format(computer + "\nMulti up to date: {0} \nRedIron up to date: {1}", multi, ri),
+					string vf;
+					if (GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer))) { vf = "Unable to read vf log"; }
+					else { vf = GlobalFunctions.FindInLog(Properties.Settings.Default.vfVersion).ToString(); }
+
+					MessageBox.Show(string.Format(computer + "\nMulti up to date: {0} \nRedIron up to date: {1} \nVerifone up to date: {2}", multi, ri, vf),
 						"RedIron/Multi Version Check: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 

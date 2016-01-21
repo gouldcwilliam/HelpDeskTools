@@ -29,5 +29,8 @@
     <Setting Name="redIronVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)">2.0.0.926</Value>
     </Setting>
+    <Setting Name="vfVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4.3.7-20150824</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

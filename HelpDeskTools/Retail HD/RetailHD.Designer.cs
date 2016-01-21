@@ -101,6 +101,11 @@
 			this.ts_Top_tsb_HistorySearch = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
 			this.ts_Top_tsb_NewIPs = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+			this.ts_Top_tsb_StoreNote = new System.Windows.Forms.ToolStripButton();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txtIncome = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -135,6 +140,7 @@
 			this.txtRM = new System.Windows.Forms.TextBox();
 			this.ServicesUC = new Retail_HD.UCs.ServicesControl();
 			this.PingUC = new Retail_HD.UCs.PingControl();
+			this.ts_Top_tsb_Refresh = new System.Windows.Forms.ToolStripButton();
 			this.grpStore.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
 			this.ss_Bottom_.SuspendLayout();
@@ -236,9 +242,9 @@
             this.ss_Bottom_ssl_UserCalls,
             this.toolStripStatusLabel6,
             this.ss_Bottom_ssl_TeamCalls});
-			this.ss_Bottom_.Location = new System.Drawing.Point(336, 448);
+			this.ss_Bottom_.Location = new System.Drawing.Point(338, 448);
 			this.ss_Bottom_.Name = "ss_Bottom_";
-			this.ss_Bottom_.Size = new System.Drawing.Size(502, 22);
+			this.ss_Bottom_.Size = new System.Drawing.Size(500, 22);
 			this.ss_Bottom_.SizingGrip = false;
 			this.ss_Bottom_.TabIndex = 8;
 			this.ss_Bottom_.Text = "statusStrip1";
@@ -295,7 +301,7 @@
 			this.ss_Bottom_ssl_UserCalls.Image = global::Retail_HD.GlobalResources.icon_list;
 			this.ss_Bottom_ssl_UserCalls.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.ss_Bottom_ssl_UserCalls.Name = "ss_Bottom_ssl_UserCalls";
-			this.ss_Bottom_ssl_UserCalls.Size = new System.Drawing.Size(74, 17);
+			this.ss_Bottom_ssl_UserCalls.Size = new System.Drawing.Size(73, 17);
 			this.ss_Bottom_ssl_UserCalls.Text = "Total Calls: 0";
 			// 
 			// toolStripStatusLabel6
@@ -307,7 +313,7 @@
 			// ss_Bottom_ssl_TeamCalls
 			// 
 			this.ss_Bottom_ssl_TeamCalls.Name = "ss_Bottom_ssl_TeamCalls";
-			this.ss_Bottom_ssl_TeamCalls.Size = new System.Drawing.Size(77, 17);
+			this.ss_Bottom_ssl_TeamCalls.Size = new System.Drawing.Size(76, 17);
 			this.ss_Bottom_ssl_TeamCalls.Text = "Team Calls: 0";
 			// 
 			// tt_Main
@@ -818,13 +824,19 @@
             this.ts_Top_tsb_Settings,
             this.toolStripSeparator6,
             this.ts_Top_tsb_TeamStatus,
+            this.ts_Top_tsb_Refresh,
             this.ts_Top_tsl_CurrentCall,
             this.toolStripSeparator5,
             this.ts_Top_tsb_StoreSearch,
             this.toolStripSeparator7,
             this.ts_Top_tsb_HistorySearch,
             this.toolStripSeparator8,
-            this.ts_Top_tsb_NewIPs});
+            this.ts_Top_tsb_NewIPs,
+            this.toolStripSeparator12,
+            this.toolStripSeparator11,
+            this.toolStripSeparator10,
+            this.toolStripSeparator9,
+            this.ts_Top_tsb_StoreNote});
 			this.ts_Top.Location = new System.Drawing.Point(0, 24);
 			this.ts_Top.Name = "ts_Top";
 			this.ts_Top.Size = new System.Drawing.Size(853, 22);
@@ -969,6 +981,36 @@
 			this.ts_Top_tsb_NewIPs.Text = "toolStripButton1";
 			this.ts_Top_tsb_NewIPs.ToolTipText = "Additional IPs";
 			this.ts_Top_tsb_NewIPs.Click += new System.EventHandler(this.NewIps_Click);
+			// 
+			// toolStripSeparator12
+			// 
+			this.toolStripSeparator12.Name = "toolStripSeparator12";
+			this.toolStripSeparator12.Size = new System.Drawing.Size(6, 22);
+			// 
+			// toolStripSeparator11
+			// 
+			this.toolStripSeparator11.Name = "toolStripSeparator11";
+			this.toolStripSeparator11.Size = new System.Drawing.Size(6, 22);
+			// 
+			// toolStripSeparator10
+			// 
+			this.toolStripSeparator10.Name = "toolStripSeparator10";
+			this.toolStripSeparator10.Size = new System.Drawing.Size(6, 22);
+			// 
+			// toolStripSeparator9
+			// 
+			this.toolStripSeparator9.Name = "toolStripSeparator9";
+			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 22);
+			// 
+			// ts_Top_tsb_StoreNote
+			// 
+			this.ts_Top_tsb_StoreNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.ts_Top_tsb_StoreNote.Image = global::Retail_HD.GlobalResources.ferp;
+			this.ts_Top_tsb_StoreNote.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.ts_Top_tsb_StoreNote.Name = "ts_Top_tsb_StoreNote";
+			this.ts_Top_tsb_StoreNote.Size = new System.Drawing.Size(24, 19);
+			this.ts_Top_tsb_StoreNote.Text = "toolStripButton1";
+			this.ts_Top_tsb_StoreNote.Click += new System.EventHandler(this.StoreNote_Click);
 			// 
 			// groupBox1
 			// 
@@ -1275,7 +1317,7 @@
             this.ms_Top_msi_FlushDNS,
             this.ms_Top_msi_OldBatMenu});
 			this.ms_Top_msi_Tools.Name = "ms_Top_msi_Tools";
-			this.ms_Top_msi_Tools.Size = new System.Drawing.Size(48, 20);
+			this.ms_Top_msi_Tools.Size = new System.Drawing.Size(47, 20);
 			this.ms_Top_msi_Tools.Text = "Tools";
 			// 
 			// ms_Top_msi_OldBatMenu
@@ -1333,6 +1375,17 @@
 			this.PingUC.TabIndex = 4;
 			this.PingUC.Visible = false;
 			this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
+			// 
+			// ts_Top_tsb_Refresh
+			// 
+			this.ts_Top_tsb_Refresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.ts_Top_tsb_Refresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.ts_Top_tsb_Refresh.Image = global::Retail_HD.GlobalResources.icon_repeat;
+			this.ts_Top_tsb_Refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.ts_Top_tsb_Refresh.Name = "ts_Top_tsb_Refresh";
+			this.ts_Top_tsb_Refresh.Size = new System.Drawing.Size(24, 19);
+			this.ts_Top_tsb_Refresh.Text = "toolStripButton1";
+			this.ts_Top_tsb_Refresh.Click += new System.EventHandler(this.Refresh_Click);
 			// 
 			// RetailHD
 			// 
@@ -1558,6 +1611,12 @@
         private System.Windows.Forms.ToolStripMenuItem ms_Top_msi_Tools;
 		private System.Windows.Forms.ToolStripButton ts_Top_tsb_NewIPs;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+		private System.Windows.Forms.ToolStripButton ts_Top_tsb_StoreNote;
+		private System.Windows.Forms.ToolStripButton ts_Top_tsb_Refresh;
 	}
 }
 

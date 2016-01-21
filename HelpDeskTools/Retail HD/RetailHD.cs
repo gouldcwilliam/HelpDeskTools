@@ -101,6 +101,7 @@ namespace Retail_HD
         Forms.Splash startup = new Forms.Splash();
 		Forms.IPs ips = new Forms.IPs();
 		Forms.EditCalls editCalls = new Forms.EditCalls();
+		Forms.StoreNotes storeNotes = new Forms.StoreNotes();
 		#endregion
 
 
@@ -1242,6 +1243,19 @@ namespace Retail_HD
 			ips.Show();
 		}
 
+		// Show the store note window
+		private void StoreNote_Click(object sender, EventArgs e)
+		{
+			if (storeNotes.Visible) { storeNotes.BringToFront(); }
+			else
+			{
+				storeNotes = new Forms.StoreNotes();
+				storeNotes.Show();
+				storeNotes.BringToFront();
+			}
+
+		}
+
 		#endregion
 
 
@@ -1686,6 +1700,22 @@ namespace Retail_HD
                 }
                 catch (Exception ex) { Console.WriteLine("Update Info: {0}\n => {1}", RecentCalls_dgv.Name, ex.Message); }
             }
+
+			if (Info.fillNotes())
+			{
+				//if (StoreSearch.Visible) { StoreSearch.BringToFront(); return; }
+				//StoreSearch = new Forms.StoreSearch();
+				//StoreSearch.Show();
+				if (storeNotes.Visible) { storeNotes.Close(); }
+				DataRow[] foundRows = Info.notes.Select("resolved='False'");
+				if (foundRows.Length>0)
+				{
+					storeNotes = new Forms.StoreNotes();
+					storeNotes.Show();
+					storeNotes.BringToFront();
+				}
+			}
+
             // Call the method to update call totals
             UpdateWrapUpTotal();
 
@@ -1785,6 +1815,9 @@ namespace Retail_HD
             }
 		}
 
-
+		private void Refresh_Click(object sender, EventArgs e)
+		{
+			UpdateInfo();
+		}
 	}
 }

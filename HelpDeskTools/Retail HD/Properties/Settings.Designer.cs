@@ -130,5 +130,17 @@ namespace Retail_HD.Properties {
                 this["redIronVersion"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.3.7-20150824")]
+        public string vfVersion {
+            get {
+                return ((string)(this["vfVersion"]));
+            }
+            set {
+                this["vfVersion"] = value;
+            }
+        }
     }
 }

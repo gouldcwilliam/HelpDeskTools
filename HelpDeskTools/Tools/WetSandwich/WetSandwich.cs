@@ -34,53 +34,11 @@ namespace WetSandwich
 				ObjectClasses.Computer,
 				ObjectAttribute.ComputerName);
 
-			// container for return values
-			List<Result> searchResults = new List<Result>();
-
-
 			LDAP.OU ou = LDAP.RetailOUs.All;
 
+			List<Result> searchResults = AD.SearchAD(ou.ComputerOU, ADSearchFilter, LDAP.ObjectAttribute.ComputerName);
+			Console.WriteLine(searchResults.Count());
 
-			string sStore = "";
-
-			List<LDAP.Result> tempResults = AD.SearchAD(ou.ComputerOU, ADSearchFilter, LDAP.ObjectAttribute.ComputerName);
-
-			if (tempResults != null)
-			{
-				if (tempResults.Count > 0)
-				{
-					for (int i = ou.Lower; i < ou.Upper + 1; i++)
-					{
-						sStore = i.ToString();
-
-						while (sStore.Length < 4) { sStore = "0" + sStore; }
-
-						foreach (LDAP.Result item in tempResults.FindAll(x => x.Value.Contains(sStore)))
-						{
-							searchResults.Add(item);
-						}
-					}
-				}
-			}
-
-			/*
-			C:\Program Files\VeriFone\MX915\UpdateFiles\logfiles
-
-			Before:
-			  <tblLog>
-				<Name>APP</Name>
-				<Value>3.0.3-20140620</Value>
-			  </tblLog>
-
-
-			After:
-			  <tblLog>
-				<Name>APP</Name>
-				<Value>4.3.7-20150824</Value>
-			  </tblLog>
-			*/
-
-			// Sort list alphabetically
 			searchResults.Sort((x, y) => x.Value.CompareTo(y.Value));
 
 			/* ============================================================================================================= */
@@ -93,8 +51,8 @@ namespace WetSandwich
 
 			ProgressBar progressBar;
 
-			searchResults = new List<Result>();
-			searchResults.Add(new Result("name", "whit1663sap2"));
+			//searchResults = new List<Result>();
+			//searchResults.Add(new Result("name", "whit1663sap2"));
 
 			// Progress bar
 			if (searchResults.Count() > 0)
