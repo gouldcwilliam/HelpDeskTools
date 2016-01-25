@@ -87,6 +87,7 @@
 			this.Name = "EditStoreNote";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Edit Store Note : ";
+			this.TopMost = true;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

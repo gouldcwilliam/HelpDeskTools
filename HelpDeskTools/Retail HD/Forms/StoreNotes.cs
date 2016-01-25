@@ -55,13 +55,10 @@ namespace Retail_HD.Forms
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			if (dgvNotes.SelectedRows.Count == 1)
-			{
-				editStoreNote = new EditStoreNote(false, 0, Info.store, "", false);
-				editStoreNote.ShowDialog();
-				Info.fillNotes();
-				dgvNotes.DataSource = Info.notes;
-			}
+			editStoreNote = new EditStoreNote(false, 0, Info.store, "", false);
+			editStoreNote.ShowDialog();
+			Info.fillNotes();
+			dgvNotes.DataSource = Info.notes;
 		}
 	}
 }

@@ -770,7 +770,7 @@ namespace Retail_HD
 			// makes you ready if this is called once wrap up is done
             if (e is WrapUpInvokeEventArgs && hasCallWrappedUp)
             {
-				if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+				if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK && Environment.UserName.ToUpper() != "WITTCHR")
 				//if (userPrefs.AutoReady && curState == UserState.WORK)
                 {
                     hasCallWrappedUp = false;
@@ -795,7 +795,7 @@ namespace Retail_HD
                 {
 					// only change to ready, if the user was in work (meaning normal call flow). 
 					// A dialed number will make you not ready, and then auto ready on the server-side if you were ready before
-					if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+					if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK && Environment.UserName.ToUpper() != "WITTCHR")
 					//if (userPrefs.AutoReady && curState == UserState.WORK)
                     {
                         hasCallWrappedUp = false;

@@ -94,6 +94,7 @@
 			this.ts_Top_tsb_Settings = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.ts_Top_tsb_TeamStatus = new System.Windows.Forms.ToolStripButton();
+			this.ts_Top_tsb_Refresh = new System.Windows.Forms.ToolStripButton();
 			this.ts_Top_tsl_CurrentCall = new System.Windows.Forms.ToolStripLabel();
 			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
 			this.ts_Top_tsb_StoreSearch = new System.Windows.Forms.ToolStripButton();
@@ -140,7 +141,6 @@
 			this.txtRM = new System.Windows.Forms.TextBox();
 			this.ServicesUC = new Retail_HD.UCs.ServicesControl();
 			this.PingUC = new Retail_HD.UCs.PingControl();
-			this.ts_Top_tsb_Refresh = new System.Windows.Forms.ToolStripButton();
 			this.grpStore.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
 			this.ss_Bottom_.SuspendLayout();
@@ -925,6 +925,17 @@
 			this.ts_Top_tsb_TeamStatus.ToolTipText = "Opens a window that shows currently logged in Agents and their status.";
 			this.ts_Top_tsb_TeamStatus.Click += new System.EventHandler(this.AgentStatusList_Click);
 			// 
+			// ts_Top_tsb_Refresh
+			// 
+			this.ts_Top_tsb_Refresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.ts_Top_tsb_Refresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.ts_Top_tsb_Refresh.Image = global::Retail_HD.GlobalResources.icon_repeat;
+			this.ts_Top_tsb_Refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.ts_Top_tsb_Refresh.Name = "ts_Top_tsb_Refresh";
+			this.ts_Top_tsb_Refresh.Size = new System.Drawing.Size(24, 19);
+			this.ts_Top_tsb_Refresh.Text = "toolStripButton1";
+			this.ts_Top_tsb_Refresh.Click += new System.EventHandler(this.Refresh_Click);
+			// 
 			// ts_Top_tsl_CurrentCall
 			// 
 			this.ts_Top_tsl_CurrentCall.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -1010,6 +1021,7 @@
 			this.ts_Top_tsb_StoreNote.Name = "ts_Top_tsb_StoreNote";
 			this.ts_Top_tsb_StoreNote.Size = new System.Drawing.Size(24, 19);
 			this.ts_Top_tsb_StoreNote.Text = "toolStripButton1";
+			this.ts_Top_tsb_StoreNote.ToolTipText = "Add a store note";
 			this.ts_Top_tsb_StoreNote.Click += new System.EventHandler(this.StoreNote_Click);
 			// 
 			// groupBox1
@@ -1375,17 +1387,6 @@
 			this.PingUC.TabIndex = 4;
 			this.PingUC.Visible = false;
 			this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
-			// 
-			// ts_Top_tsb_Refresh
-			// 
-			this.ts_Top_tsb_Refresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.ts_Top_tsb_Refresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_Refresh.Image = global::Retail_HD.GlobalResources.icon_repeat;
-			this.ts_Top_tsb_Refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.ts_Top_tsb_Refresh.Name = "ts_Top_tsb_Refresh";
-			this.ts_Top_tsb_Refresh.Size = new System.Drawing.Size(24, 19);
-			this.ts_Top_tsb_Refresh.Text = "toolStripButton1";
-			this.ts_Top_tsb_Refresh.Click += new System.EventHandler(this.Refresh_Click);
 			// 
 			// RetailHD
 			// 
