@@ -54,6 +54,9 @@ namespace WetSandwich
 			//searchResults = new List<Result>();
 			//searchResults.Add(new Result("name", "whit1663sap2"));
 
+			//searchResults = new List<Result>();
+			//searchResults.Add(new Result("", "dest0838sap2a"));
+
 			// Progress bar
 			if (searchResults.Count() > 0)
 			{
@@ -77,18 +80,23 @@ namespace WetSandwich
 					else
 					{
 						string multi;
-						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read multi log"; }
+						if (!Functions.CopyTempLog(Functions.getLatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
 						else { multi = Functions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
+						//Console.WriteLine(multi);
 
 						string ri;
-						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log"; }
+						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log";  }
 						else { ri = Functions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
+						//Console.WriteLine(ri);
 
 						string vf;
-						if(Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml",computer))) { vf = "Unable to read vf log"; }
-						else { vf = Functions.FindInLog(Properties.Settings.Default.vfVersion).ToString(); }
+						//if(Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml",computer))) { vf = "Unable to read vf log";  }
+						//else { vf = Functions.FindInLog(Properties.Settings.Default.vfVersion).ToString(); }
+						vf = Functions.vfLog(computer);
+							
+						//Console.WriteLine(vf);
 
-						if( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || ri.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, ""); }
+						if ( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || vf.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, ""); }
 					}
 				}
 
@@ -101,6 +109,7 @@ namespace WetSandwich
 			body += DateTime.Now.ToString();
 			/* ============================================================================================================= */
 
+			//Console.ReadKey();
 
 			Console.Write("\n * Sending email : ");
 

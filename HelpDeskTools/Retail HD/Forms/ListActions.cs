@@ -202,7 +202,7 @@ namespace Retail_HD.Forms
 				if (ckbRIMulti.Checked)
 				{
 					string multi;
-					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\multi_{1}.log", computer, dateString))) { multi = "Unable to read multi log"; }
+					if (!GlobalFunctions.CopyTempLog(getLatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
 					else { multi = GlobalFunctions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
 
 					string ri;
@@ -210,8 +210,9 @@ namespace Retail_HD.Forms
 					else { ri = GlobalFunctions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
 
 					string vf;
-					if (GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer))) { vf = "Unable to read vf log"; }
-					else { vf = GlobalFunctions.FindInLog(Properties.Settings.Default.vfVersion).ToString(); }
+					//if (GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer))) { vf = "Unable to read vf log"; }
+					//else { vf = GlobalFunctions.FindInLog(Properties.Settings.Default.vfVersion).ToString(); }
+					vf = vfLog(computer);
 
 					MessageBox.Show(string.Format(computer + "\nMulti up to date: {0} \nRedIron up to date: {1} \nVerifone up to date: {2}", multi, ri, vf),
 						"RedIron/Multi Version Check: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -306,6 +307,31 @@ namespace Retail_HD.Forms
 		{
 			gbProgram.Visible = ckbOpenProgram.Checked;
 		}
+
+		public static string vfLog(string computer)
+		{
+			try
+			{
+				if (!System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains(Properties.Settings.Default.vfVersion))
+				{
+					return System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Opening Comm Port").ToString();
+				}
+				else return "TRUE";
+			}
+			catch (Exception ex) { return "FALSE"; }
+		}
+
+		public static string getLatestMulti(string path)
+		{
+			try
+			{
+				System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
+				System.IO.FileInfo[] files = dir.GetFiles("multi_*.log").OrderByDescending(p => p.CreationTime).ToArray();
+				//Console.WriteLine(files[0]);
+				return files[0].FullName;
+            }
+			catch(Exception ex) { return ""; }
+        }
 
 	}
 }

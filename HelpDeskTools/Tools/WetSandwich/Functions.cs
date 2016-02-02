@@ -67,6 +67,30 @@ namespace WetSandwich
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
 
+		public static string vfLog(string computer)
+		{
+			try
+			{
+				if (!System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains(Properties.Settings.Default.vfVersion))
+				{
+					return System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Opening Comm Port").ToString();
+				}
+				else return "TRUE";
+			}
+			catch (Exception ex) { return "FALSE"; }
+		}
+
+		public static string getLatestMulti(string path)
+		{
+			try
+			{
+				System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
+				System.IO.FileInfo[] files = dir.GetFiles("multi_*.log").OrderByDescending(p => p.CreationTime).ToArray();
+				//Console.WriteLine(files[0]);
+				return files[0].FullName;
+			}
+			catch (Exception ex) { return ""; }
+		}
 
 		/// <summary>
 		/// Send mail using WWINC Domain settings

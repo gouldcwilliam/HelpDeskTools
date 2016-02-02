@@ -928,11 +928,16 @@ namespace Retail_HD
 
 				if (editCalls.Visible) { editCalls.BringToFront(); }
 				editCalls = new Forms.EditCalls(id, store, date, tech, category, topic, details, type, trax, url);
+				editCalls = new Forms.EditCalls(id);
+				editCalls.ButtonClicked += new EventHandler(editCalls_ButtonClicked);
 				editCalls.Show();
-				UpdateInfo();
 			}
 		}
 
+		void editCalls_ButtonClicked(object sender, EventArgs e)
+		{
+			UpdateInfo();
+		}
 
 		private void RecentCalls_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
 		{
@@ -944,7 +949,7 @@ namespace Retail_HD
 				if (r.Cells["Trax"].Value.ToString().Contains("True"))
 				{
 					r.DefaultCellStyle = red;
-					r.DefaultCellStyle.SelectionForeColor = Color.Red;
+					r.DefaultCellStyle.SelectionBackColor = Color.DarkRed;
 				}
 			}
 
@@ -1254,6 +1259,12 @@ namespace Retail_HD
 				storeNotes.BringToFront();
 			}
 
+		}
+
+
+		private void Refresh_Click(object sender, EventArgs e)
+		{
+			UpdateInfo();
 		}
 
 		#endregion
@@ -1815,9 +1826,5 @@ namespace Retail_HD
             }
 		}
 
-		private void Refresh_Click(object sender, EventArgs e)
-		{
-			UpdateInfo();
-		}
 	}
 }

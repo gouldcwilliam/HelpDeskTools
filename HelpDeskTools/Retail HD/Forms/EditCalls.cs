@@ -52,6 +52,31 @@ namespace Retail_HD.Forms
 			
 		}
 
+		public EditCalls(string id)
+		{
+			InitializeComponent();
+			origFont = txtDetails.Font;
+			gbTRAX.Visible = ckbTrax.Checked;
+			string sql = "select * from [Calls]" +
+				"inner join [Technicians] t on [Calls].[techID] = t.[id]" +
+				"inner join [Categories] c on [Calls].[catID] = c.[id]" +
+				"inner join [Topics] s on [Calls].[topID] = s.[id]" +
+				"where [Calls].id = @ID";
+
+			DataRow dr = Shared.SQL.Select(sql, new System.Data.SqlClient.SqlParameter("@ID", id)).Rows[0];
+			
+			ID = id;
+			txtStore.Text = dr["store"].ToString() ;
+			txtDate.Text = dr["date"].ToString();
+			txtTech.Text = dr["initials"].ToString();
+			Category = dr["category"].ToString();
+			Topic = dr["topic"].ToString();
+			txtDetails.Text = dr["details"].ToString();
+			cmbType.Text = dr["type"].ToString();
+			ckbTrax.Checked = (bool)dr["trax"];
+			txtTRAX.Text = dr["url"].ToString();
+		}
+
 		const string requiredText = "<Required>"; //constant so we know if it changed or not without having to hope we typed it in correctly.
 		Font origFont = new Font(FontFamily.GenericSansSerif, 8.25f, FontStyle.Regular);
 		Font requiredFont = new Font(FontFamily.GenericSansSerif, 8.0f, FontStyle.Italic | FontStyle.Bold);
@@ -61,6 +86,8 @@ namespace Retail_HD.Forms
 		// list categories and wrapups
 		private List<WrapUp.wrapUp> listWrapUps = new List<WrapUp.wrapUp>();
 
+		/*EVENTS*/
+		public event EventHandler ButtonClicked;
 
 		/*METHODS*/
 
@@ -132,6 +159,8 @@ namespace Retail_HD.Forms
 			}
 		}
 
+		/* HANDLERS */
+
 		private void EditCalls_Load(object sender, EventArgs e)
 		{
 			cmbCategory.Text = Category;
@@ -151,75 +180,6 @@ namespace Retail_HD.Forms
 
 			try { ckbTopics.SetItemCheckState(ckbTopics.Items.IndexOf(Topic), CheckState.Checked); }
 			catch (Exception ex) { Console.WriteLine("Edit Calls: Load: {0}", ex.Message);}
-		}
-
-		private void btnOK_Click(object sender, EventArgs e)
-		{
-			string details = txtDetails.Text;
-
-			if (!_checkCategory())
-			{
-				MessageBox.Show("Invalid sCategory!", "Edit Calls sCategory", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				return;
-			}
-
-            //if ((details == string.Empty || details.Contains("<Required>")) && _mandatoryIssue())
-            //{
-            //    MessageBox.Show("Empty Details!", "Edit Calls Solution", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
-
-            if ((details.Trim() == string.Empty || details.Trim() == requiredText) && _mandatoryIssue()) //just in case they are retarded, instead of checking that it contains the required Text, let's only check that it is equivalent
-            {
-                MessageBox.Show("Empty Details!", "Edit Calls Solution", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            else if (details.Contains(requiredText))
-            {
-                //remove the <Required> from it
-                details = details.Replace(requiredText, string.Empty);
-            }
-
-			if (ckbTopics.CheckedItems.Count == 0)
-			{
-				MessageBox.Show("No Topic Selected!", "Edit Calls Topic", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				return;
-			}
-
-            //if (txtDetails.sText.Trim().Length < 69 && ckbTopics.CheckedItems[0].ToString() == "General Question")
-            //{
-            //    MessageBox.Show("General Question Details Length Requirement not met", "Edit Calls Details", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
-
-            if (txtDetails.Text.Trim().Split(' ').Length < 15 && ckbTopics.CheckedItems[0].ToString() == "General Question")
-            {
-                MessageBox.Show("General Question Details Length Requirement not met.\nRequired minimum of 15 words.", "Wrap Up Details", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            //if (ckbTrax.Checked && txtTRAX.sText.Trim() == string.Empty)
-            //{
-            //    MessageBox.Show("Must include the TRAX URL", "Edit Calls Trax URL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
-
-            if (ckbTrax.Checked && (txtTRAX.Text.Trim() == string.Empty || !txtTRAX.Text.Contains("trax")))
-            {
-                MessageBox.Show("Must include a valid TRAX URL", "Wrap Up Trax URL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            
-
-			string url = txtTRAX.Text;
-			if (!ckbTrax.Checked) { url = string.Empty; }
-
-			if (!Shared.SQL.EditCalls_UpdateCall(ID, txtStore.Text, ckbTopics.CheckedItems[0].ToString(), txtDetails.Text, cmbType.Text, ckbTrax.Checked, url))
-			{
-				return;
-			}
-
-			Close();
 		}
 
 		private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -308,11 +268,6 @@ namespace Retail_HD.Forms
 			}
 		}
 
-		private void btnCancel_Click(object sender, EventArgs e)
-		{
-			Close();
-		}
-
 		private void cmbCategory_MouseClick(object sender, MouseEventArgs e)
 		{
 			cmbCategory.DroppedDown = true;
@@ -365,9 +320,64 @@ namespace Retail_HD.Forms
         }
 
 
+		private void btnOK_Click(object sender, EventArgs e)
+		{
+			string details = txtDetails.Text;
+
+			if (!_checkCategory())
+			{
+				MessageBox.Show("Invalid sCategory!", "Edit Calls sCategory", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+
+			if ((details.Trim() == string.Empty || details.Trim() == requiredText) && _mandatoryIssue()) //just in case they are retarded, instead of checking that it contains the required Text, let's only check that it is equivalent
+			{
+				MessageBox.Show("Empty Details!", "Edit Calls Solution", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+			else if (details.Contains(requiredText))
+			{
+				//remove the <Required> from it
+				details = details.Replace(requiredText, string.Empty);
+			}
+
+			if (ckbTopics.CheckedItems.Count == 0)
+			{
+				MessageBox.Show("No Topic Selected!", "Edit Calls Topic", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+
+			if (txtDetails.Text.Trim().Split(' ').Length < 15 && ckbTopics.CheckedItems[0].ToString() == "General Question")
+			{
+				MessageBox.Show("General Question Details Length Requirement not met.\nRequired minimum of 15 words.", "Wrap Up Details", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+
+			if (ckbTrax.Checked && (txtTRAX.Text.Trim() == string.Empty || !txtTRAX.Text.Contains("trax")))
+			{
+				MessageBox.Show("Must include a valid TRAX URL", "Wrap Up Trax URL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
 
 
+			string url = txtTRAX.Text;
+			if (!ckbTrax.Checked) { url = string.Empty; }
 
+			if (!Shared.SQL.EditCalls_UpdateCall(ID, txtStore.Text, ckbTopics.CheckedItems[0].ToString(), txtDetails.Text, cmbType.Text, ckbTrax.Checked, url))
+			{
+				return;
+			}
+
+			if(ButtonClicked!=null) { ButtonClicked(this, e); }
+
+			Close();
+		}
+
+		private void btnCancel_Click(object sender, EventArgs e)
+		{
+			Close();
+			if (ButtonClicked != null) { ButtonClicked(this, e); }
+		}
 
 	}
 }
