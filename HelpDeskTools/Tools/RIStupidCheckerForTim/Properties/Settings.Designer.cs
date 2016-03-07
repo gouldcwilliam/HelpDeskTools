@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WetSandwich.Properties {
+namespace RIStupidCheckerForTim.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -23,30 +23,53 @@ namespace WetSandwich.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("281 787 282 793 283 797 284 808 286 815 287 817 288 818 289 820 720 822 722 823 7" +
+            "34 825 737 827 738 829 741 830 743 831 745 832 746 833 747 835 752 837 763 838 7" +
+            "64 839 766 840 767 841 770 842 772 843 774 845 775  ")]
+        public string Stores {
+            get {
+                return ((string)(this["Stores"]));
+            }
+            set {
+                this["Stores"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("retailhelpdesk@wwwinc.com")]
         public string from {
             get {
                 return ((string)(this["from"]));
             }
+            set {
+                this["from"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("chad.gould@wwwinc.com")]
         public string to {
             get {
                 return ((string)(this["to"]));
             }
+            set {
+                this["to"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Multi/RedIron/Verifone Check")]
+        [global::System.Configuration.DefaultSettingValueAttribute("RI Broker Check")]
         public string subject {
             get {
                 return ((string)(this["subject"]));
+            }
+            set {
+                this["subject"] = value;
             }
         }
         
@@ -78,7 +101,7 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td></tr>\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>")]
         public string body {
             get {
                 return ((string)(this["body"]));
@@ -90,62 +113,14 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Computer Name</th><th>Multi</th><" +
-            "th>RedIron</th><th>Verifone</th><th>Notes</th></tr>\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Computer Name</th><th>.TXN</th><t" +
+            "h>.FAIL</th><th>Notes</th></tr>")]
         public string tableHead {
             get {
                 return ((string)(this["tableHead"]));
             }
             set {
                 this["tableHead"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.2.12.139")]
-        public string multiVersion {
-            get {
-                return ((string)(this["multiVersion"]));
-            }
-            set {
-                this["multiVersion"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2.0.0.926")]
-        public string redIronVersion {
-            get {
-                return ((string)(this["redIronVersion"]));
-            }
-            set {
-                this["redIronVersion"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.3.7-20150824")]
-        public string vfVersion {
-            get {
-                return ((string)(this["vfVersion"]));
-            }
-            set {
-                this["vfVersion"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("402,403,404,545,546")]
-        public string ignore {
-            get {
-                return ((string)(this["ignore"]));
-            }
-            set {
-                this["ignore"] = value;
             }
         }
     }

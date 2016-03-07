@@ -44,5 +44,11 @@
     <Setting Name="_BatEndpoint" Type="System.String" Scope="User">
       <Value Profile="(Default)">InstallEndpoint12.bat</Value>
     </Setting>
+    <Setting Name="_BatZip" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ziplogs.bat</Value>
+    </Setting>
+    <Setting Name="_PSZip" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zipper.ps1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

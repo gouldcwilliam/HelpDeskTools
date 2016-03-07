@@ -123,6 +123,8 @@ namespace Retail_HD
 			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock) ? "Updated local version of " + Shared.Settings.Default._BatUnlock : "Unable to update local version of " + Shared.Settings.Default._BatUnlock);
 			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.batInstallEndpoint12, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint) ? "Updated local version of " + Shared.Settings.Default._BatEndpoint : "Unable to update local version of " + Shared.Settings.Default._BatEndpoint);
 			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.args, Shared.Settings.Default._TempPath + "args.xml") ? "Updated local version of args.xml" : "Unable to update local version of args.xml");
+			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.Zip_Logs, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip) ? "Updated local version of " + Shared.Settings.Default._BatZip : "Unable to update local version of " + Shared.Settings.Default._BatZip);
+			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.Zipper, Shared.Settings.Default._TempPath + Shared.Settings.Default._PSZip) ? "Updated local version of " + Shared.Settings.Default._PSZip : "Unable to update local version of " + Shared.Settings.Default._PSZip);
 
             _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
 

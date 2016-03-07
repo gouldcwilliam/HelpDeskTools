@@ -19,7 +19,7 @@ namespace Retail_HD.Forms
 
 		private void IPs_Load(object sender, EventArgs e)
 		{
-			string sql = string.Format("SELECT [VLAN 10], [VLAN 20], [VLAN 30], [VLAN 40], [VLAN 50], [VLAN 60] FROM [ips] WHERE [Store #] = '{0}'", _store);
+			string sql = string.Format("SELECT [VLAN 10], [VLAN 20], [VLAN 30], [VLAN 40], [VLAN 50], [VLAN 60] FROM [IPs] WHERE [Store #] = '{0}'", _store);
 			System.Data.DataTable dt = Shared.SQL.Select(sql);
 			foreach (System.Data.DataRow dr in dt.Rows)
 			{

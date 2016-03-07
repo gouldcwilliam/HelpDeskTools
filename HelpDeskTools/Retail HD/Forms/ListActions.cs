@@ -202,7 +202,7 @@ namespace Retail_HD.Forms
 				if (ckbRIMulti.Checked)
 				{
 					string multi;
-					if (!GlobalFunctions.CopyTempLog(getLatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
+					if (!GlobalFunctions.CopyTempLog(getLatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer), "multi_*.log"))) { multi = "Unable to read multi log"; }
 					else { multi = GlobalFunctions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
 
 					string ri;
@@ -232,6 +232,24 @@ namespace Retail_HD.Forms
 							GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
 							GlobalFunctions.BrowseComputer(computer, "trickle");
 						}
+					}
+				}
+
+				if(ckbZip.Checked)
+				{
+					//string dest = string.Format(@"C:\temp\{0}\", computer);
+					//if (!System.IO.Directory.Exists(dest)) { System.IO.Directory.CreateDirectory(dest); }
+					//string multiPath = string.Format(@"\\{0}\c$\MerchantConnectMulti\",computer);
+					//foreach(string find in new string[] { "multi_*.log","*_.dg"})
+					//{
+					//	System.IO.FileInfo file = getLatestFile(multiPath + @"log\", find);
+					//	GlobalFunctions.CopyTempLog(file.FullName, dest + file.Name);
+					//}
+
+					if (GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip)&&(GlobalFunctions.CopyFileRemote(computer,Shared.Settings.Default._TempPath+Shared.Settings.Default._PSZip)))
+					{
+						GlobalFunctions.ExecuteCommand("WINRS", string.Format("-r:{0} {1}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip), true, false);
+						GlobalFunctions.BrowseComputer(computer, @"\temp");
 					}
 				}
 
@@ -314,20 +332,35 @@ namespace Retail_HD.Forms
 			{
 				if (!System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains(Properties.Settings.Default.vfVersion))
 				{
-					return System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Opening Comm Port").ToString();
+					if (System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Opening Comm Port") ||
+						System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Getting Version"))
+					{
+						return "True";
+					}
+					else { return "False"; }
 				}
-				else return "TRUE";
+				else return "True";
 			}
-			catch (Exception ex) { return "FALSE"; }
+			catch (Exception ex) { return "False"; }
 		}
-
-		public static string getLatestMulti(string path)
+		public static System.IO.FileInfo getLatestFile(string path, string find)
 		{
 			try
 			{
 				System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
-				System.IO.FileInfo[] files = dir.GetFiles("multi_*.log").OrderByDescending(p => p.CreationTime).ToArray();
-				//Console.WriteLine(files[0]);
+				System.IO.FileInfo[] files = dir.GetFiles(find).OrderByDescending(p => p.CreationTime).ToArray();
+				Console.WriteLine(files[0].FullName);
+				return files[0];
+			}
+			catch (Exception ex) { return null; }
+		}
+		public static string getLatestMulti(string path, string find)
+		{
+			try
+			{
+				System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
+				System.IO.FileInfo[] files = dir.GetFiles(find).OrderByDescending(p => p.CreationTime).ToArray();
+				Console.WriteLine(files[0].FullName);
 				return files[0].FullName;
             }
 			catch(Exception ex) { return ""; }

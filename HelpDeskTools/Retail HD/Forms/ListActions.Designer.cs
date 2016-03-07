@@ -65,6 +65,7 @@
 			this.rbSQL = new System.Windows.Forms.RadioButton();
 			this.ckbRIMulti = new System.Windows.Forms.CheckBox();
 			this.ckbTrickle = new System.Windows.Forms.CheckBox();
+			this.ckbZip = new System.Windows.Forms.CheckBox();
 			this.gbRegister.SuspendLayout();
 			this.gbProgram.SuspendLayout();
 			this.gbAction.SuspendLayout();
@@ -95,7 +96,7 @@
 			// btnOK
 			// 
 			this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnOK.Location = new System.Drawing.Point(219, 492);
+			this.btnOK.Location = new System.Drawing.Point(219, 530);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
 			this.btnOK.TabIndex = 12;
@@ -213,7 +214,7 @@
 			// 
 			this.ckbRestart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckbRestart.AutoSize = true;
-			this.ckbRestart.Location = new System.Drawing.Point(12, 495);
+			this.ckbRestart.Location = new System.Drawing.Point(12, 533);
 			this.ckbRestart.Name = "ckbRestart";
 			this.ckbRestart.Size = new System.Drawing.Size(61, 17);
 			this.ckbRestart.TabIndex = 11;
@@ -234,7 +235,7 @@
 			// 
 			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(300, 492);
+			this.btnCancel.Location = new System.Drawing.Point(300, 530);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 13;
@@ -481,13 +482,24 @@
 			this.ckbTrickle.Text = "Fix Trickle";
 			this.ckbTrickle.UseVisualStyleBackColor = true;
 			// 
+			// ckbZip
+			// 
+			this.ckbZip.AutoSize = true;
+			this.ckbZip.Location = new System.Drawing.Point(12, 472);
+			this.ckbZip.Name = "ckbZip";
+			this.ckbZip.Size = new System.Drawing.Size(106, 17);
+			this.ckbZip.TabIndex = 23;
+			this.ckbZip.Text = "Zip All The Logs!";
+			this.ckbZip.UseVisualStyleBackColor = true;
+			// 
 			// ListActions
 			// 
 			this.AcceptButton = this.btnOK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(387, 527);
+			this.ClientSize = new System.Drawing.Size(387, 565);
+			this.Controls.Add(this.ckbZip);
 			this.Controls.Add(this.ckbTrickle);
 			this.Controls.Add(this.ckbRIMulti);
 			this.Controls.Add(this.gbAction);
@@ -568,5 +580,6 @@
         public System.Windows.Forms.RadioButton rbCitrix;
 		private System.Windows.Forms.CheckBox ckbRIMulti;
 		private System.Windows.Forms.CheckBox ckbTrickle;
+		private System.Windows.Forms.CheckBox ckbZip;
 	}
 }

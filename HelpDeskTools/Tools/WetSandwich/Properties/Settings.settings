@@ -48,5 +48,8 @@ padding: 5px;
     <Setting Name="vfVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)">4.3.7-20150824</Value>
     </Setting>
+    <Setting Name="ignore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">402,403,404,545,546</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

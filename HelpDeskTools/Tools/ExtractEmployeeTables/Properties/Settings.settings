@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ExtractEmployeeTables.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="from" Type="System.String" Scope="User">
+      <Value Profile="(Default)">retailhelpdesk@wwwinc.com</Value>
+    </Setting>
+    <Setting Name="to" Type="System.String" Scope="User">
+      <Value Profile="(Default)">chad.gould@wwwinc.com</Value>
+    </Setting>
+    <Setting Name="subject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">All Store's Employee Table</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,8 @@
+
+function create-7zip([String] $aDirectory, [String] $aZipfile){
+    [string]$pathToZipExe = "C:\Temp\7za.exe";
+    [Array]$arguments = "a", "-tzip", "$aZipfile", "$aDirectory";
+    & $pathToZipExe $arguments;
+}
+
+create-7zip "C:\Temp\7zDump\*.*"  "C:\Temp\7zDump\CREDITLOGS.7z"

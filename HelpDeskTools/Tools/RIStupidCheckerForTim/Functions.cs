@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using LDAP;
 using System.IO;
 using System.Net.NetworkInformation;
-using System.Threading;
 using System.Net.Mail;
-using System.Web;
 
-namespace WetSandwich
+namespace RIStupidCheckerForTim
 {
 	class Functions
 	{
-
 		/// <summary>
 		/// Adds store to
 		/// </summary>
@@ -42,6 +40,152 @@ namespace WetSandwich
 			Console.WriteLine();
 			return value;
 		}
+
+		public static List<string> GetComputerList(string[] stores, List<Result> resultsToSearch)
+		{
+			List<string> returnList = new List<string>();
+			foreach(string store in stores)
+			{
+				foreach(Result computer in resultsToSearch.FindAll(x => x.Value.Contains("0" + store)))
+				{
+					returnList.Add(computer.Value);
+				}
+				
+			}
+			return returnList;
+		}
+
+		public static int CountFiles(string computer,string extension)
+		{
+			string Path = string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\Data\TransactionTrickle\",computer);
+			string txnPath = Path + @"Txn\";
+			string receiptPath = Path + @"Receipts\";
+			int found = 0;
+
+			for (int i = 0; i < 5; i++)
+			{
+				if (Directory.Exists(txnPath + i))
+				{
+					try
+					{
+						found = found + System.IO.Directory.GetFiles(txnPath+i, extension).Count();
+					}
+					catch(Exception e) {; }
+                }
+				if (Directory.Exists(receiptPath + i))
+				{
+					try
+					{
+						found = found + System.IO.Directory.GetFiles(receiptPath + i, extension).Count();
+                    }
+					catch(Exception e) {; }
+				}
+			}
+			return found;
+		}
+		public static void RenameFiles(string computer)
+		{
+			string Path = string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\Data\TransactionTrickle\", computer);
+			string txnPath = Path + @"Txn\";
+			string receiptPath = Path + @"Receipts\";
+			
+            for (int i = 0; i < 5; i++)
+			{
+				if(Directory.Exists(txnPath+i))
+				{
+					string[] files = Directory.GetFiles(txnPath + i, "*.fail");
+					foreach(string file in files)
+					{
+						//Console.WriteLine("Moving {0}", file);
+						File.Move(file, file.Replace(".fail", ""));
+					}
+				}
+				if(Directory.Exists(receiptPath+ i))
+				{
+					string[] files = Directory.GetFiles(receiptPath + i, "*.fail");
+					foreach (string file in files)
+					{
+						//Console.WriteLine("Moving {0}", file);
+						File.Move(file, file.Replace(".fail", ""));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Writes LDAP Result Llst to file where each Result value is on a new line
+		/// </summary>
+		/// <param name="ResultList">LDAP Result List</param>
+		/// <param name="FilePath">Path to write file</param>
+		/// <param name="FileName">Name of file to write to</param>
+		public async static void ListToFile(List<Result> ResultList, string FilePath, string FileName)
+		{
+			StringBuilder sb = new StringBuilder();
+
+			// Add each item to the string builder
+			foreach (Result Result in ResultList)
+			{
+				sb.Append(Result.Value);                // Append the value
+				sb.AppendLine(Environment.NewLine);     // and newline
+			}
+
+			// Create missing directory if needed
+			if (!Directory.Exists(FilePath)) { Directory.CreateDirectory(FilePath); }
+
+			// Append file name to file path
+			FilePath = string.Format(@"{0}\{1}", FilePath, FileName);
+
+			// Asynchronously writes string to file
+			using (StreamWriter outfile = new StreamWriter(FilePath, true))
+			{
+				await outfile.WriteAsync(sb.ToString());
+			}
+		}
+		/// <summary>
+		/// Writes LDAP Result Llst to file where each Result value is on a new line
+		/// Uses %TEMP\[ProcessID]\List.csv filepath/name
+		/// </summary>
+		/// <param name="ResultList">LDAP Result List</param>
+		public static void ListToFile(List<Result> ResultList)
+		{
+			// default file path is usually "C:\Users\[USERNAME]\AppData\Local\Temp\[ProcesName]-[ProcessID]\"
+			string filePath =
+				System.Environment.ExpandEnvironmentVariables("%TMP%") + @"\" +
+				System.Diagnostics.Process.GetCurrentProcess().ProcessName + @"-" +
+				System.Diagnostics.Process.GetCurrentProcess().Id.ToString();
+
+			// default file name is List.csv
+			string fileName = @"List.csv";
+			// execute with the default filepath/name
+			ListToFile(ResultList, filePath, fileName);
+		}
+
+
+
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="computer"></param>
+		/// <param name="TRXs"></param>
+		/// <returns></returns>
+		public static bool CountTRX(string computer, out int TRXs)
+		{
+			try
+			{
+				TRXs = System.IO.Directory.GetFiles(
+						string.Format(@"\\{0}\c$\trickle\", computer), "*.trx").Count();
+			}
+			catch (DirectoryNotFoundException) { TRXs = -1; return false; }
+			catch (Exception) { TRXs = -2; return false; }
+			return true;
+
+		}
+
+
+
+
 
 		/// <summary>
 		/// 
@@ -76,54 +220,9 @@ namespace WetSandwich
 		}
 
 
-		public static bool CopyTempLog(string pathToLog)
-		{
-			try
-			{
-                File.Copy(pathToLog, @"C:\temp\tmp.log", true);
-				return true;
-			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
-		}
 
-		public static bool FindInLog(string searchString)
-		{
-			try
-			{
-				return File.ReadAllText(@"C:\temp\tmp.log").Contains(searchString);
-			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
-		}
 
-		public static string vfLog(string computer)
-		{
-			try
-			{
-				if (!System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains(Properties.Settings.Default.vfVersion))
-				{
-					if(System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Opening Comm Port")||
-						System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Getting Version"))
-					{
-						return "True";
-					}
-					else { return "False"; }
-				}
-				else return "True";
-			}
-			catch (Exception ex) { return "False"; }
-		}
 
-		public static string getLatestMulti(string path)
-		{
-			try
-			{
-				System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
-				System.IO.FileInfo[] files = dir.GetFiles("multi_*.log").OrderByDescending(p => p.CreationTime).ToArray();
-				//Console.WriteLine(files[0]);
-				return files[0].FullName;
-			}
-			catch (Exception ex) { return ""; }
-		}
 
 		/// <summary>
 		/// Send mail using WWINC Domain settings

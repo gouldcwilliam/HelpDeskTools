@@ -1,0 +1,44 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RIStupidCheckerForTim.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Stores" Type="System.String" Scope="User">
+      <Value Profile="(Default)">281 787 282 793 283 797 284 808 286 815 287 817 288 818 289 820 720 822 722 823 734 825 737 827 738 829 741 830 743 831 745 832 746 833 747 835 752 837 763 838 764 839 766 840 767 841 770 842 772 843 774 845 775  </Value>
+    </Setting>
+    <Setting Name="from" Type="System.String" Scope="User">
+      <Value Profile="(Default)">retailhelpdesk@wwwinc.com</Value>
+    </Setting>
+    <Setting Name="to" Type="System.String" Scope="User">
+      <Value Profile="(Default)">chad.gould@wwwinc.com</Value>
+    </Setting>
+    <Setting Name="subject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RI Broker Check</Value>
+    </Setting>
+    <Setting Name="header" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;
+&lt;style&gt;
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+padding: 5px;
+}
+&lt;/style&gt;&lt;/head&gt;
+&lt;p&gt;</Value>
+    </Setting>
+    <Setting Name="footer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;
+</Value>
+    </Setting>
+    <Setting Name="body" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;td&gt;{3}&lt;/td&gt;&lt;/tr&gt;</Value>
+    </Setting>
+    <Setting Name="tableHead" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/p&gt;
+&lt;body&gt;&lt;table style="width:100%"&gt;
+&lt;tr&gt;&lt;th&gt;Computer Name&lt;/th&gt;&lt;th&gt;.TXN&lt;/th&gt;&lt;th&gt;.FAIL&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/tr&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -190,5 +190,29 @@ namespace Shared {
                 this["_BatEndpoint"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ziplogs.bat")]
+        public string _BatZip {
+            get {
+                return ((string)(this["_BatZip"]));
+            }
+            set {
+                this["_BatZip"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("zipper.ps1")]
+        public string _PSZip {
+            get {
+                return ((string)(this["_PSZip"]));
+            }
+            set {
+                this["_PSZip"] = value;
+            }
+        }
     }
 }

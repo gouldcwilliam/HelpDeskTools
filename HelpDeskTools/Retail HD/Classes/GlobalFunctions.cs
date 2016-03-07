@@ -309,6 +309,16 @@ namespace Retail_HD
 			}
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
+		public static bool CopyTempLog(string pathToLog, string destination)
+		{
+			try
+			{
+
+				File.Copy(pathToLog, destination, true);
+				return true;
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
 
 		public static bool FindInLog(string searchString)
 		{

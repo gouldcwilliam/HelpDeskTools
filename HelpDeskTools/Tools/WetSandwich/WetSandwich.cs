@@ -28,6 +28,12 @@ namespace WetSandwich
 			//Console.ReadKey();
 			//Environment.Exit(0);
 
+			List<string> exclusions = Functions.GetIgnoreList(args);
+
+			string[] exclude = Settings.Default.ignore.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+
+			exclusions.AddRange(Functions.GetIgnoreList(exclude));
+
 			// Filter results by Object category of Computer and Name and exclude
 			string ADSearchFilter =
 				string.Format("(&(objectCategory={0})(&({1}=*SAP*)(!({1}=*SAPQ*))))",
@@ -40,6 +46,12 @@ namespace WetSandwich
 			Console.WriteLine(searchResults.Count());
 
 			searchResults.Sort((x, y) => x.Value.CompareTo(y.Value));
+
+			// Removes exclusions
+			foreach (string excluded in exclusions)
+			{
+				searchResults.RemoveAll(x => x.Value.Contains(excluded));
+			}
 
 			/* ============================================================================================================= */
 

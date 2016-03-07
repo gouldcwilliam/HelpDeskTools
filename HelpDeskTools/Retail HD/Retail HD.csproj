@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>112</ApplicationRevision>
+    <ApplicationRevision>117</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -409,6 +409,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Batch\ZipLogs.bat" />
+    <None Include="Resources\Batch\Zipper.ps1" />
+    <None Include="Resources\Batch\Zip_Logs.bat" />
     <None Include="Resources\Icons\play.png" />
   </ItemGroup>
   <ItemGroup>
@@ -673,6 +676,7 @@
     </Content>
     <None Include="Resources\Funny\helpdesk-fire.jpg" />
     <None Include="Resources\Funny\BOS.png" />
+    <None Include="Resources\Batch\Zipper.txt" />
     <Content Include="Resources\Music\Contra_33.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
