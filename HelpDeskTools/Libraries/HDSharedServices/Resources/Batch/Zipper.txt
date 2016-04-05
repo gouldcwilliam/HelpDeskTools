@@ -5,4 +5,8 @@ function create-7zip([String] $aDirectory, [String] $aZipfile){
     & $pathToZipExe $arguments;
 }
 
-create-7zip "C:\Temp\7zDump\*.*"  "C:\Temp\7zDump\CREDITLOGS.7z"
+
+$Computer = Get-WmiObject -Class Win32_ComputerSystem
+$Nameage = "CreditLogs"
+
+create-7zip "C:\Temp\7zDump\*.*"  "C:\Temp\7zDump\$env:computername-$Nameage.7z"

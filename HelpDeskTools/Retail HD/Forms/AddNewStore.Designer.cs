@@ -814,7 +814,7 @@
             this.Controls.Add(this.gbName);
             this.Controls.Add(this.gbStore);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = global::Retail_HD.GlobalResources.icoMain;
+            this.Icon = global::Shared.GlobalResources.icoMain;
             this.Name = "AddNewStore";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add A New Store Entry";

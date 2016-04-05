@@ -150,7 +150,7 @@
             this.Controls.Add(this.ckbShowLoggedOut);
             this.Controls.Add(this.ckbEnableShowMe);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = global::Retail_HD.GlobalResources.icoMain;
+            this.Icon = global::Shared.GlobalResources.icoMain;
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(272, 280);
             this.Name = "EditSettings";

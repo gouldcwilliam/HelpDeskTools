@@ -89,7 +89,7 @@
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = global::Retail_HD.GlobalResources.icoMain;
+            this.Icon = global::Shared.GlobalResources.icoMain;
             this.MinimumSize = new System.Drawing.Size(967, 628);
             this.Name = "ExcelCompareData";
             this.Text = "Excel Import";

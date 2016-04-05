@@ -29,5 +29,15 @@
 		/// LDAP Property Value
 		/// </summary>
 		public string Value { get { return value; } }
+
+		/// <summary>
+		/// Gets the string value
+		/// </summary>
+		/// <param name="result">attribute value pair</param>
+		/// <returns></returns>
+		public static string GetValue(Result result)
+		{
+			return result.value;
+		}
 	}
 }

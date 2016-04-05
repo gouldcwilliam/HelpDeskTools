@@ -68,6 +68,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtractEmployeeTables", "To
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RIStupidCheckerForTim", "Tools\RIStupidCheckerForTim\RIStupidCheckerForTim.csproj", "{5D589789-487F-4392-9385-AEA1B6E12B66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunOnAllStores", "Tools\RunOnAllStores\RunOnAllStores.csproj", "{14B48EF5-0D6D-4DD7-B087-E27456F92BBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,10 @@ Global
 		{5D589789-487F-4392-9385-AEA1B6E12B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D589789-487F-4392-9385-AEA1B6E12B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D589789-487F-4392-9385-AEA1B6E12B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14B48EF5-0D6D-4DD7-B087-E27456F92BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14B48EF5-0D6D-4DD7-B087-E27456F92BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14B48EF5-0D6D-4DD7-B087-E27456F92BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14B48EF5-0D6D-4DD7-B087-E27456F92BBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,5 +179,6 @@ Global
 		{428CC281-C7A1-40F7-AE36-4ADF6EFE6CE7} = {6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}
 		{EAB4D927-7CB1-48F1-B9FF-19E5DC2286B6} = {6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}
 		{5D589789-487F-4392-9385-AEA1B6E12B66} = {6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}
+		{14B48EF5-0D6D-4DD7-B087-E27456F92BBD} = {6AEDCEEF-0285-4B55-8C2B-8E3DD9AC8EA8}
 	EndGlobalSection
 EndGlobal

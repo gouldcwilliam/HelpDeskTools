@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.IO;
 
 using CiscoFinesseNET;
+using Shared;
 
 
 namespace Retail_HD
@@ -75,15 +76,7 @@ namespace Retail_HD
 		{
 			get
 			{
-				List<Computer> retList = Info.computers.FindAll(x => x.selected == true);
-				if (retList.Count < 1)
-				{
-					if (Info.computers.Count == 1) { return Info.computers; }
-					Forms.Confirm confirm = new Forms.Confirm("Perform on all computers?", "No computers selected", true);
-					if (confirm.ShowDialog() == System.Windows.Forms.DialogResult.OK) { return Info.computers; }
-					return new List<Computer>();
-				}
-				else { return retList; }
+				return Info.selectedComputers;
 			}
 		}
 
@@ -117,14 +110,15 @@ namespace Retail_HD
 			PingUC.btnOK.Click += PingUC_OK_Click;
 			ServicesUC.btnOK.Click += ServicesUC_OK_Click;
 
-			Shared.Functions.v_CreateTempFolder();
-			Shared.Functions.v_InstallPsTools();
-			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.batServices, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices) ? "Updated local version of " + Shared.Settings.Default._BatServices : "Unable to update local version of " + Shared.Settings.Default._BatServices);
-			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock) ? "Updated local version of " + Shared.Settings.Default._BatUnlock : "Unable to update local version of " + Shared.Settings.Default._BatUnlock);
-			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.batInstallEndpoint12, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint) ? "Updated local version of " + Shared.Settings.Default._BatEndpoint : "Unable to update local version of " + Shared.Settings.Default._BatEndpoint);
-			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.args, Shared.Settings.Default._TempPath + "args.xml") ? "Updated local version of args.xml" : "Unable to update local version of args.xml");
-			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.Zip_Logs, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip) ? "Updated local version of " + Shared.Settings.Default._BatZip : "Unable to update local version of " + Shared.Settings.Default._BatZip);
-			Console.WriteLine(GlobalFunctions.WriteFile(GlobalResources.Zipper, Shared.Settings.Default._TempPath + Shared.Settings.Default._PSZip) ? "Updated local version of " + Shared.Settings.Default._PSZip : "Unable to update local version of " + Shared.Settings.Default._PSZip);
+			Shared.Functions.CreateTempFolder(true);
+			Shared.Functions.InstallPSTools();
+			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batServices, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices) ? "Updated local version of " + Shared.Settings.Default._BatServices : "Unable to update local version of " + Shared.Settings.Default._BatServices);
+			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock) ? "Updated local version of " + Shared.Settings.Default._BatUnlock : "Unable to update local version of " + Shared.Settings.Default._BatUnlock);
+			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batInstallEndpoint12, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint) ? "Updated local version of " + Shared.Settings.Default._BatEndpoint : "Unable to update local version of " + Shared.Settings.Default._BatEndpoint);
+			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.args, Shared.Settings.Default._TempPath + "args.xml") ? "Updated local version of args.xml" : "Unable to update local version of args.xml");
+			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.Zip_Logs, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip) ? "Updated local version of " + Shared.Settings.Default._BatZip : "Unable to update local version of " + Shared.Settings.Default._BatZip);
+			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.Zipper, Shared.Settings.Default._TempPath + Shared.Settings.Default._PSZip) ? "Updated local version of " + Shared.Settings.Default._PSZip : "Unable to update local version of " + Shared.Settings.Default._PSZip);
+			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batWSAdmin, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin) ? "Updated local version of " + Shared.Settings.Default._WSAdmin : "Unable to update local version of " + Shared.Settings.Default._WSAdmin);
 
             _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
 
@@ -579,12 +573,12 @@ namespace Retail_HD
             switch (availableState)
             {
                 case UserState.READY:
-                    if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_ChangeState.Image = GlobalResources.icon_play; }));
-                    else ts_Top_tsb_ChangeState.Image = GlobalResources.icon_play;
+                    if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_ChangeState.Image = Shared.GlobalResources.icon_play; }));
+                    else ts_Top_tsb_ChangeState.Image = Shared.GlobalResources.icon_play;
                     break;
                 case UserState.NOT_READY:
-                    if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_ChangeState.Image = GlobalResources.icon_stop; }));
-                    else ts_Top_tsb_ChangeState.Image = GlobalResources.icon_stop;
+                    if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_ChangeState.Image = Shared.GlobalResources.icon_stop; }));
+                    else ts_Top_tsb_ChangeState.Image = Shared.GlobalResources.icon_stop;
                     break;
                 default:
                     break;
@@ -660,7 +654,7 @@ namespace Retail_HD
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (Info.reg1 == string.Empty) { return; }
-			GlobalFunctions.ConnectWithDW(_computers);
+			Functions.ConnectWithDW(_computers);
 		}
 
 		/// <summary> Opens fmrInput for cashier number, writes, copies, and executes BAT file remotley to unlock user account.
@@ -686,7 +680,7 @@ namespace Retail_HD
 		private void Buttons_Browse_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
-			GlobalFunctions.BrowseComputer(_computers);
+			Functions.BrowseComputer(_computers);
 		}
 
 		/// <summary> Opens remote cmd prompt on your local machine
@@ -694,7 +688,7 @@ namespace Retail_HD
 		private void Buttons_RemoteCMD_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
-			GlobalFunctions.v_RemoteCMD(_computers);
+			Functions.RemoteCMD(_computers);
 		}
 
 		/// <summary> Opens local admin cmd prompt on remote machine
@@ -702,7 +696,7 @@ namespace Retail_HD
 		private void Buttons_LocalCMD_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
-			GlobalFunctions.v_LocalCMD(_computers);
+			Functions.LocalCMD(_computers);
 		}
 
 		/// <summary> Removes temp files responsible for repeat crashing of POS
@@ -885,7 +879,7 @@ namespace Retail_HD
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (Info.computers.Count() > 0)
 			{
-				GlobalFunctions.ExecuteCommand(@".\DelayedStartServices.exe", Info.reg1, true, "Delayed Services on " + Info.reg1, false);
+				Shared.Functions.ExecuteCommand(@".\DelayedStartServices.exe", Info.reg1, true, "Delayed Services on " + Info.reg1, false);
 			}
 		}
 
@@ -1065,7 +1059,7 @@ namespace Retail_HD
 		// Runs the external computer refresh program
 		private void RefreshComputers_Click(object sender, EventArgs e)
 		{
-			GlobalFunctions.UpdateComputersFromAD();
+			Functions.UpdateComputersFromAD();
 		}
 
 		// open form for new store entry
@@ -1097,7 +1091,7 @@ namespace Retail_HD
 
         private void FlushDNS_Click(object sender, EventArgs e)
         {
-			GlobalFunctions.ExecuteCommand("ipconfig", "/flushdns", true);
+			Shared.Functions.ExecuteCommand("ipconfig", "/flushdns", true);
         }
 
 		#endregion
@@ -1144,8 +1138,8 @@ namespace Retail_HD
 				Helper.DisconnectXMPP();
 
 				//change the button too
-				if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Logout.Image = GlobalResources.login; }));
-				else ts_Top_tsb_Logout.Image = GlobalResources.login;
+				if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Logout.Image = Shared.GlobalResources.login; }));
+				else ts_Top_tsb_Logout.Image = Shared.GlobalResources.login;
 			}
 			else if (curState == UserState.LOGOUT)
 			{
@@ -1161,8 +1155,8 @@ namespace Retail_HD
 					return;
 				}
 
-				if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Logout.Image = GlobalResources.logout; }));
-				else ts_Top_tsb_Logout.Image = GlobalResources.logout;
+				if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Logout.Image = Shared.GlobalResources.logout; }));
+				else ts_Top_tsb_Logout.Image = Shared.GlobalResources.logout;
 
 				v_CheckLoginConfig();
 				tickCount = 20; //1 seconds until refresh
@@ -1549,7 +1543,7 @@ namespace Retail_HD
 			}
             if (Environment.UserName.ToString().ToUpper() == "CHIVINSC")
             {
-                startup = new Forms.Splash(GlobalResources.Finger);
+                startup = new Forms.Splash(Shared.GlobalResources.Finger);
                 startup.Show();
             }
             Console.WriteLine(DateTime.Now);
@@ -1714,7 +1708,7 @@ namespace Retail_HD
                 catch (Exception ex) { Console.WriteLine("Update Info: {0}\n => {1}", RecentCalls_dgv.Name, ex.Message); }
             }
 
-			if (Info.fillNotes())
+			if (Info.FillNotes())
 			{
 				//if (StoreSearch.Visible) { StoreSearch.BringToFront(); return; }
 				//StoreSearch = new Forms.StoreSearch();
@@ -1828,5 +1822,15 @@ namespace Retail_HD
             }
 		}
 
+	}
+
+	public class WrapUpInvokeEventArgs : EventArgs
+	{
+		public bool isAutoInvoke { get; private set; }
+
+		public WrapUpInvokeEventArgs(bool autoInvoke)
+		{
+			isAutoInvoke = autoInvoke;
+		}
 	}
 }

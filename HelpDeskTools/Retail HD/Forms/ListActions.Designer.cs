@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListActions));
 			this.txtList = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnOK = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@
 			this.ckbDameware = new System.Windows.Forms.CheckBox();
 			this.ckbMulti = new System.Windows.Forms.CheckBox();
 			this.btnClear = new System.Windows.Forms.Button();
-			this.ckbInstallEndpoint = new System.Windows.Forms.CheckBox();
 			this.ckbDisableStartupRepair = new System.Windows.Forms.CheckBox();
 			this.ckbFastPrinter = new System.Windows.Forms.CheckBox();
 			this.gbAction = new System.Windows.Forms.GroupBox();
@@ -66,6 +66,7 @@
 			this.ckbRIMulti = new System.Windows.Forms.CheckBox();
 			this.ckbTrickle = new System.Windows.Forms.CheckBox();
 			this.ckbZip = new System.Windows.Forms.CheckBox();
+			this.ckbWSAdmin = new System.Windows.Forms.CheckBox();
 			this.gbRegister.SuspendLayout();
 			this.gbProgram.SuspendLayout();
 			this.gbAction.SuspendLayout();
@@ -308,16 +309,6 @@
 			this.btnClear.UseVisualStyleBackColor = true;
 			this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
 			// 
-			// ckbInstallEndpoint
-			// 
-			this.ckbInstallEndpoint.AutoSize = true;
-			this.ckbInstallEndpoint.Location = new System.Drawing.Point(12, 428);
-			this.ckbInstallEndpoint.Name = "ckbInstallEndpoint";
-			this.ckbInstallEndpoint.Size = new System.Drawing.Size(113, 17);
-			this.ckbInstallEndpoint.TabIndex = 16;
-			this.ckbInstallEndpoint.Text = "Install Endpoint 12";
-			this.ckbInstallEndpoint.UseVisualStyleBackColor = true;
-			// 
 			// ckbDisableStartupRepair
 			// 
 			this.ckbDisableStartupRepair.AutoSize = true;
@@ -492,6 +483,16 @@
 			this.ckbZip.Text = "Zip All The Logs!";
 			this.ckbZip.UseVisualStyleBackColor = true;
 			// 
+			// ckbWSAdmin
+			// 
+			this.ckbWSAdmin.AutoSize = true;
+			this.ckbWSAdmin.Location = new System.Drawing.Point(175, 474);
+			this.ckbWSAdmin.Name = "ckbWSAdmin";
+			this.ckbWSAdmin.Size = new System.Drawing.Size(105, 17);
+			this.ckbWSAdmin.TabIndex = 24;
+			this.ckbWSAdmin.Text = "WSAdmin Adjust";
+			this.ckbWSAdmin.UseVisualStyleBackColor = true;
+			// 
 			// ListActions
 			// 
 			this.AcceptButton = this.btnOK;
@@ -499,6 +500,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
 			this.ClientSize = new System.Drawing.Size(387, 565);
+			this.Controls.Add(this.ckbWSAdmin);
 			this.Controls.Add(this.ckbZip);
 			this.Controls.Add(this.ckbTrickle);
 			this.Controls.Add(this.ckbRIMulti);
@@ -506,7 +508,6 @@
 			this.Controls.Add(this.gbServices);
 			this.Controls.Add(this.ckbFastPrinter);
 			this.Controls.Add(this.ckbDisableStartupRepair);
-			this.Controls.Add(this.ckbInstallEndpoint);
 			this.Controls.Add(this.btnClear);
 			this.Controls.Add(this.gbProgram);
 			this.Controls.Add(this.ckbOpenProgram);
@@ -523,7 +524,7 @@
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.txtList);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(403, 513);
 			this.Name = "ListActions";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -565,7 +566,6 @@
 		private System.Windows.Forms.CheckBox ckbCMD;
 		private System.Windows.Forms.CheckBox ckbDameware;
 		public System.Windows.Forms.Button btnClear;
-		private System.Windows.Forms.CheckBox ckbInstallEndpoint;
 		private System.Windows.Forms.CheckBox ckbDisableStartupRepair;
 		private System.Windows.Forms.CheckBox ckbFastPrinter;
         public System.Windows.Forms.GroupBox gbAction;
@@ -581,5 +581,6 @@
 		private System.Windows.Forms.CheckBox ckbRIMulti;
 		private System.Windows.Forms.CheckBox ckbTrickle;
 		private System.Windows.Forms.CheckBox ckbZip;
+		private System.Windows.Forms.CheckBox ckbWSAdmin;
 	}
 }

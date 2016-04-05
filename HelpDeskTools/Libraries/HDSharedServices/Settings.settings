@@ -50,5 +50,8 @@
     <Setting Name="_PSZip" Type="System.String" Scope="User">
       <Value Profile="(Default)">zipper.ps1</Value>
     </Setting>
+    <Setting Name="_WSAdmin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">wsadmin.bat</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

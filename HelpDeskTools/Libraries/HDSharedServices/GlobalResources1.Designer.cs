@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Retail_HD {
+namespace Shared {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Retail_HD {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Retail_HD.GlobalResources", typeof(GlobalResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shared.GlobalResources", typeof(GlobalResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -203,6 +203,19 @@ namespace Retail_HD {
         public static string batUnlock {
             get {
                 return ResourceManager.GetString("batUnlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @ECHO OFF
+        ///
+        ///net localgroup administrators wwwint\wsadmin /delete
+        ///
+        ///net localgroup administrators wwwint\wsadminsretail /add.
+        /// </summary>
+        public static string batWSAdmin {
+            get {
+                return ResourceManager.GetString("batWSAdmin", resourceCulture);
             }
         }
         
@@ -1107,11 +1120,11 @@ namespace Retail_HD {
         ///
         ///:ZIPMCM
         ///C:\
-        ///CD TEMP
+        ///CD \TEMP
         ///CD 7zDUMP
         ///
         ///
-        ///IF EXIST %TMPPATH%MCMLOG [rest of string was truncated]&quot;;.
+        ///IF EXIST %TMPPATH%MCMLO [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Zip_Logs {
             get {
@@ -1127,7 +1140,11 @@ namespace Retail_HD {
         ///    &amp; $pathToZipExe $arguments;
         ///}
         ///
-        ///create-7zip &quot;C:\Temp\7zDump\*.*&quot;  &quot;C:\Temp\7zDump\CREDITLOGS.7z&quot;.
+        ///
+        ///$Computer = Get-WmiObject -Class Win32_ComputerSystem
+        ///$Nameage = &quot;CreditLogs&quot;
+        ///
+        ///create-7zip &quot;C:\Temp\7zDump\*.*&quot;  &quot;C:\Temp\7zDump\$env:computername-$Nameage.7z&quot;.
         /// </summary>
         public static string Zipper {
             get {

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using Shared;
 
 namespace Retail_HD.UCs
 {
 	public partial class ServicesControl : UserControl
 	{
+		/// <summary>
+		/// Hidden services control menu
+		/// </summary>
 		public ServicesControl()
 		{
 			InitializeComponent();
@@ -21,18 +21,13 @@ namespace Retail_HD.UCs
 		{
 			get
 			{
-				List<Computer> retList = Info.computers.FindAll(x => x.selected == true);
-				if (retList.Count < 1)
-				{
-					if (Info.computers.Count == 1) { return Info.computers; }
-					Forms.Confirm confirm = new Forms.Confirm("Perform on all computers?", "No computers selected", true);
-					if (confirm.ShowDialog() == System.Windows.Forms.DialogResult.OK) { return Info.computers; }
-					return new List<Computer>();
-				}
-				else { return retList; }
+				return Info.selectedComputers;
 			}
 		}
 
+		/// <summary>
+		/// clears the user control
+		/// </summary>
 		public void Clear()
 		{
             foreach (RadioButton rb in gbServices.Controls.OfType<RadioButton>())
@@ -63,19 +58,19 @@ namespace Retail_HD.UCs
             foreach (string computer in computers)
             {
                 if (!Shared.Functions.DnsLookup(computer)) { continue; }
-                if (!GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices)) { return; }
+                if (!Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices)) { return; }
                 if (service == "verifone") 
                 {
                     Forms.VerifoneConfirm sfv = new Forms.VerifoneConfirm(computer);
-					if (!GlobalFunctions.CopyArgsXML(computer)) { return; };
+					if (!Shared.Functions.CopyArgsXML(computer)) { return; };
 					string args = string.Format("-r:{0} {1} {2}",computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "restart verifone");
-					GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
+					Shared.Functions.ExecuteCommand("WINRS", args, true, false);
 					sfv.Show();
                 }
                 else
                 {
                     string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, action + " " + service);
-                    GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
+					Shared.Functions.ExecuteCommand("WINRS", args, true, false);
                 }
             }
 		}

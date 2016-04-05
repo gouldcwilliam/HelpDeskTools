@@ -106,7 +106,7 @@
 			this.Controls.Add(this.btnOK);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = global::Shared.GlobalResources.icoMain;
 			this.Name = "UsefulInfo";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Useful Info";

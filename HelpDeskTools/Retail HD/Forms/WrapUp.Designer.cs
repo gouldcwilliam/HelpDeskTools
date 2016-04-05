@@ -251,7 +251,7 @@
 			this.Controls.Add(this.gbCategory);
 			this.Controls.Add(this.gbStore);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = global::Shared.GlobalResources.icoMain;
 			this.MaximizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(453, 352);
 			this.Name = "WrapUp";

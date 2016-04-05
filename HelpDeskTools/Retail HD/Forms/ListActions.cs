@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Management;
 using System.Windows.Forms;
+
+using Shared;
 
 namespace Retail_HD.Forms
 {
 	public partial class ListActions : Form
 	{
         /// <summary>
-        /// 
+        /// Form for manipulating multiple stores with one off commands
         /// </summary>
 		public ListActions()
 		{
@@ -38,9 +34,7 @@ namespace Retail_HD.Forms
 		}
 
 
-        /// <summary>
-        /// returns the service name of selected radio button
-        /// </summary>
+
         private string _service
         {
             get
@@ -66,43 +60,25 @@ namespace Retail_HD.Forms
 
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
 		private void btnClear_Click(object sender, EventArgs e)
 		{
-            // clear all text
             foreach(TextBox tb in this.Controls.OfType<TextBox>()) { tb.Text = string.Empty; }
-            // clear all check boxes outside of group boxes
             foreach (CheckBox cb in this.Controls.OfType<CheckBox>()) { cb.Checked = false; }
-            // clear register# check boxes
             foreach (CheckBox cb in gbRegister.Controls.OfType<CheckBox>()) { cb.Checked = false; }
-            // clear all service radios
             foreach (RadioButton rb in gbServices.Controls.OfType<RadioButton>()) { rb.Checked = false; }
-            // clear all action radios
             foreach (RadioButton rb in gbAction.Controls.OfType<RadioButton>()) { rb.Checked = false; }
-            // clear all program checkboxes
             foreach (CheckBox cb in gbProgram.Controls.OfType<CheckBox>()) { cb.Checked = false; }
 		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
 			this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.Close();
 		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void btnOK_Click(object sender, EventArgs e)
         {
 			// exit if no store entered
@@ -120,6 +96,9 @@ namespace Retail_HD.Forms
 
             // only include specific computers list
             if (ckbRegister.Checked) { computers = SpecificRegister(computers); }
+
+			// check network
+			computers = VerifyNetwork(computers);
 
             // double check that a reboot is wanted
             bool reboot = false;
@@ -140,20 +119,20 @@ namespace Retail_HD.Forms
                 if (bservices)
                 {
 					string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, _action + " " + _service);
-					if (!GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
+					if (!Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
 					{
 						// failed to copy services.bat
 					}
 					else
 					{
-						if (_service == "verifone" && !GlobalFunctions.CopyArgsXML(computer))
+						if (_service == "verifone" && !Shared.Functions.CopyArgsXML(computer))
 						{
 							// failed to copy args.xml
 						}
 						else
 						{
 							Console.WriteLine("WINRS {0}", args);
-							GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
+							Shared.Functions.ExecuteCommand("WINRS", args, true, false);
 						}
 					}
 				}
@@ -161,57 +140,48 @@ namespace Retail_HD.Forms
 
                 if (ckbBrowser.Checked)
                 {
-                    GlobalFunctions.BrowseComputer(computer, txtSuffix.Text);
+                    Functions.BrowseComputer(computer, txtSuffix.Text);
                 }
 
                 if (ckbOpenProgram.Checked)
                 {
-                    if (ckbMulti.Checked) { GlobalFunctions.Multi(computer); }
-                    if (ckbDameware.Checked) { GlobalFunctions.ConnectWithDW(computer); }
-                    if (ckbCMD.Checked) { GlobalFunctions.v_LocalCMD(computer); }
+                    if (ckbMulti.Checked) { Functions.Multi(computer); }
+                    if (ckbDameware.Checked) { Functions.ConnectWithDW(computer); }
+                    if (ckbCMD.Checked) { Functions.LocalCMD(computer); }
                 }
 
                 if (ckbActivate.Checked)
                 {
-                    GlobalFunctions.ExecuteCommand("WINRS", String.Format("-r:{0} SLMGR.VBS /IPK FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4 && SLMGR /ATO", computer), true, false);
-                }
-
-                if (ckbInstallEndpoint.Checked)
-                {
-                    
-					GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint);
-                    GlobalFunctions.v_InstallSemantic(computer);
+					Shared.Functions.ExecuteCommand("WINRS", String.Format("-r:{0} SLMGR.VBS /IPK FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4 && SLMGR /ATO", computer), true, false);
                 }
 
                 if (ckbDisableStartupRepair.Checked)
                 {
-                    int retCode = GlobalFunctions.ExecuteCommand("WINRS", String.Format("-r:{0} ", computer) + "bcdedit /set {default} recoveryenabled no && bcdedit /set {default} bootstatuspolicy ignoreallfailures", true, true);
+                    int retCode = Shared.Functions.ExecuteCommand("WINRS", String.Format("-r:{0} ", computer) + "bcdedit /set {default} recoveryenabled no && bcdedit /set {default} bootstatuspolicy ignoreallfailures", true, true);
                 }
 
                 if (ckbFastPrinter.Checked)
                 {
                     string args = string.Format("-r:{0} TASKKILL /F /IM POSW.EXE", computer);
-                    GlobalFunctions.ExecuteCommand("WINRS", args, false, false);
+					Shared.Functions.ExecuteCommand("WINRS", args, false, false);
                     args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\EPSON\\BA-T500II Software\\BA500IIUTL\\BA500IIUTL.EXE\"", computer);
-                    GlobalFunctions.v_LocalCMD(computer);
-                    GlobalFunctions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
+					Functions.LocalCMD(computer);
+					Shared.Functions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
                     args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\OPOS\\Epson2\\SetupPOS.exe\"", computer);
-                    GlobalFunctions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
+					Shared.Functions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
                 }
 
 				if (ckbRIMulti.Checked)
 				{
 					string multi;
-					if (!GlobalFunctions.CopyTempLog(getLatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer), "multi_*.log"))) { multi = "Unable to read multi log"; }
-					else { multi = GlobalFunctions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
+					if (!Functions.CopyTempLog(getLatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer), "multi_*.log"))) { multi = "Unable to read multi log"; }
+					else { multi = Functions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
 
 					string ri;
-					if (!GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log"; }
-					else { ri = GlobalFunctions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
+					if (!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log"; }
+					else { ri = Functions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
 
 					string vf;
-					//if (GlobalFunctions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer))) { vf = "Unable to read vf log"; }
-					//else { vf = GlobalFunctions.FindInLog(Properties.Settings.Default.vfVersion).ToString(); }
 					vf = vfLog(computer);
 
 					MessageBox.Show(string.Format(computer + "\nMulti up to date: {0} \nRedIron up to date: {1} \nVerifone up to date: {2}", multi, ri, vf),
@@ -222,41 +192,40 @@ namespace Retail_HD.Forms
 				{
 					if (computer.ToUpper().Contains("SAP1"))
 					{
-						if (GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
+						if (Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
 						{
 							string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "restart transnet");
 							Console.WriteLine("WINRS {0}", args);
-							GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
+							Functions.ExecuteCommand("WINRS", args, true, false);
 							args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "restart sql");
 							Console.WriteLine("WINRS {0}", args);
-							GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
-							GlobalFunctions.BrowseComputer(computer, "trickle");
+							Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+							Functions.BrowseComputer(computer, "trickle");
 						}
 					}
 				}
 
 				if(ckbZip.Checked)
 				{
-					//string dest = string.Format(@"C:\temp\{0}\", computer);
-					//if (!System.IO.Directory.Exists(dest)) { System.IO.Directory.CreateDirectory(dest); }
-					//string multiPath = string.Format(@"\\{0}\c$\MerchantConnectMulti\",computer);
-					//foreach(string find in new string[] { "multi_*.log","*_.dg"})
-					//{
-					//	System.IO.FileInfo file = getLatestFile(multiPath + @"log\", find);
-					//	GlobalFunctions.CopyTempLog(file.FullName, dest + file.Name);
-					//}
-
-					if (GlobalFunctions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip)&&(GlobalFunctions.CopyFileRemote(computer,Shared.Settings.Default._TempPath+Shared.Settings.Default._PSZip)))
+					if (Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip)&&(Shared.Functions.CopyFileRemote(computer,Shared.Settings.Default._TempPath+Shared.Settings.Default._PSZip)))
 					{
-						GlobalFunctions.ExecuteCommand("WINRS", string.Format("-r:{0} {1}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip), true, false);
-						GlobalFunctions.BrowseComputer(computer, @"\temp");
+						Shared.Functions.ExecuteCommand("WINRS", string.Format("-r:{0} {1}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip), true, false);
+						Functions.BrowseComputer(computer, @"\temp");
+					}
+				}
+
+				if(ckbWSAdmin.Checked)
+				{ 
+					if(Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin))
+					{
+						Shared.Functions.ExecuteCommand("WINRS", string.Format("-r:{0} {1}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin), true, false);
 					}
 				}
 
                 if (reboot)
                 {
                     string args = string.Format("-r:{0} SHUTDOWN /f /r /t 0", computer);
-                    GlobalFunctions.ExecuteCommand("WINRS", args, true, false);
+					Shared.Functions.ExecuteCommand("WINRS", args, true, false);
 
                 }
 
@@ -269,11 +238,7 @@ namespace Retail_HD.Forms
 
 
 
-        /// <summary>
-        /// Removes unecessary registers from the computer list
-        /// </summary>
-        /// <param name="Computers"></param>
-        /// <returns></returns>
+
 		private List<string> SpecificRegister(List<string> Computers)
 		{
 			if (!ckb1.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb1.Text)); }
@@ -284,49 +249,47 @@ namespace Retail_HD.Forms
 			return Computers;
 		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+		private List<string> VerifyNetwork(List<string>Computers)
+		{
+			List<string> returnList = new List<string>();
+			foreach (string computer in Computers)
+			{
+				// test each computer's connection
+				if (Shared.Functions.CheckNetwork(computer)) { returnList.Add(computer); }
+				else { MessageBox.Show("Unable to reach " + computer, "Network Issue", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+			}
+			return returnList;
+		}
+
+
 		private void ckbService_CheckedChanged(object sender, EventArgs e)
 		{
 			gbAction.Visible = ckbService.Checked;
 			gbServices.Visible = ckbService.Checked;
 		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
 		private void ckbRegister_CheckedChanged(object sender, EventArgs e)
 		{
 			gbRegister.Visible = ckbRegister.Checked;
 		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
 		private void ckbBrowser_CheckedChanged(object sender, EventArgs e)
 		{
 			txtSuffix.Visible = ckbBrowser.Checked;
 			lblSuffix.Visible = ckbBrowser.Checked;
 		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
 		private void ckbOpenProgram_CheckedChanged(object sender, EventArgs e)
 		{
 			gbProgram.Visible = ckbOpenProgram.Checked;
 		}
 
-		public static string vfLog(string computer)
+
+		private static string vfLog(string computer)
 		{
 			try
 			{
@@ -343,7 +306,9 @@ namespace Retail_HD.Forms
 			}
 			catch (Exception ex) { return "False"; }
 		}
-		public static System.IO.FileInfo getLatestFile(string path, string find)
+
+
+		private static System.IO.FileInfo getLatestFile(string path, string find)
 		{
 			try
 			{
@@ -354,7 +319,9 @@ namespace Retail_HD.Forms
 			}
 			catch (Exception ex) { return null; }
 		}
-		public static string getLatestMulti(string path, string find)
+
+
+		private static string getLatestMulti(string path, string find)
 		{
 			try
 			{

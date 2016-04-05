@@ -293,7 +293,7 @@
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.ckbTrax);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = global::Shared.GlobalResources.icoMain;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(449, 389);

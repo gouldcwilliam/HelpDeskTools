@@ -4,7 +4,8 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.DirectoryServices.AccountManagement;
-
+using System.Diagnostics;
+using System.Net.NetworkInformation;
 using System.Data;
 using System.Data.OleDb;
 
@@ -509,6 +510,8 @@ namespace Shared
         #endregion
 
 
+
+
 		/// <summary> Search AD for user by phone number
 		/// </summary>
 		/// <param name="number"></param>
@@ -535,6 +538,8 @@ namespace Shared
                 return string.Empty;
             }
         }
+
+
 
 
 		/// <summary> Search for DNS entry by hostname
@@ -565,13 +570,15 @@ namespace Shared
 		}
 
 
+
+
 		/// <summary> Send an email
 		/// </summary>
 		/// <param name="to"></param>
 		/// <param name="body"></param>
 		/// <param name="subject"></param>
 		/// <returns></returns>
-		public static bool b_SendEmail(string to, string body, string subject)
+		public static bool SendEmail(string to, string body, string subject)
 		{
 			try
 			{
@@ -602,7 +609,7 @@ namespace Shared
 		/// <param name="subject"></param>
 		/// <param name="attachement"></param>
 		/// <returns></returns>
-		public static bool b_SendEmail(string to, string body, string subject, FileInfo attachement)
+		public static bool SendEmail(string to, string body, string subject, FileInfo attachement)
 		{
 			try
 			{
@@ -633,14 +640,14 @@ namespace Shared
 		/// <param name="body"></param>
 		/// <param name="subject"></param>
 		/// <returns></returns>
-		public static bool b_SendEmail(System.Collections.Specialized.StringCollection to, string body, string subject)
+		public static bool SendEmail(System.Collections.Specialized.StringCollection to, string body, string subject)
 		{
 			List<string> toL = new List<string>();
 			foreach ( string s in to)
 			{
 				toL.Add(s);
 			}
-			return b_SendEmail(toL, body, subject);
+			return SendEmail(toL, body, subject);
 		}
 		/// <summary> Send an email
 		/// </summary>
@@ -648,7 +655,7 @@ namespace Shared
 		/// <param name="body"></param>
 		/// <param name="subject"></param>
 		/// <returns></returns>
-		public static bool b_SendEmail(List<string> to, string body, string subject)
+		public static bool SendEmail(List<string> to, string body, string subject)
 		{
 			try
 			{
@@ -685,7 +692,7 @@ namespace Shared
 		/// <param name="subject"></param>
 		/// <param name="attachement"></param>
 		/// <returns></returns>
-		public static bool b_SendEmail(List<string> to, string body, string subject, List<FileInfo> attachement)
+		public static bool SendEmail(List<string> to, string body, string subject, List<FileInfo> attachement)
 		{
 			try
 			{
@@ -722,6 +729,466 @@ namespace Shared
 		}
 
 
+
+
+		/// <summary>
+		/// Launches an instance of another program/executable
+		/// </summary>
+		/// <param name="ExecutableFile">Name of program or path to EXE</param>
+		/// <param name="Arguments">Arguments given to the EXE</param>
+		/// <param name="Interactive">Show the program running</param>
+		/// <param name="Wait">Pause all other processing until process completes</param>
+		/// <returns></returns>
+		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive, bool Wait)
+		{
+			ProcessStartInfo startInfo = new ProcessStartInfo();
+			startInfo.FileName = ExecutableFile;
+			startInfo.Arguments = Arguments;
+			startInfo.CreateNoWindow = (!Interactive);
+			startInfo.UseShellExecute = Interactive;
+			Process process = Process.Start(startInfo);
+			if (Wait) { process.WaitForExit(); return process.ExitCode; }
+			return 0;
+		}
+		/// <summary>
+		/// Launches an instance of another program/executable
+		/// </summary>
+		/// <param name="ExecutableFile">Name of program or path to EXE</param>
+		/// <param name="Arguments">Arguments given to the EXE</param>
+		/// <param name="Interactive">Show the program running</param>
+		/// <param name="Title">Change the title of the program (only tested on batch files)</param>
+		/// <param name="Wait">Pause all other processing until process completes</param>
+		/// <returns></returns>
+		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive, string Title, bool Wait)
+		{
+			return ExecuteCommand("CMD", string.Format("/C TITLE {0} && {1} {2}", Title, ExecutableFile, Arguments), Interactive, Wait);
+		}
+		/// <summary>
+		/// Launches an instance of another program/executable
+		/// </summary>
+		/// <param name="ExecutableFile">Name of program or path to EXE</param>
+		/// <param name="Interactive">Show the program running</param>
+		/// <returns></returns>
+		public static int ExecuteCommand(string ExecutableFile, bool Interactive)
+		{
+			return ExecuteCommand(ExecutableFile, string.Empty, Interactive);
+		}
+		/// <summary>
+		/// Launches an instance of another program/executable
+		/// </summary>
+		/// <param name="ExecutableFile">Name of program or path to EXE</param>
+		/// <param name="Arguments">Arguments given to the EXE</param>
+		/// <param name="Interactive">Show the program running</param>
+		/// <returns></returns>
+		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive)
+		{
+			return ExecuteCommand(ExecutableFile, Arguments, Interactive, true);
+		}
+
+
+
+
+		/// <summary>
+		/// Runs my tool that updates our list of computers in SQL
+		/// </summary>
+		public static void UpdateComputersFromAD()
+		{
+			Process.Start(@".\UpdateComputerList.exe");
+		}
+
+
+
+
+		/// <summary>
+		/// Opens an explorer window on the remote machines C:
+		/// </summary>
+		/// <param name="Computer">Name of remote machine</param>
+		/// <param name="Suffix">Remote path to browse relative to C:</param>
+		public static void BrowseComputer(string Computer, string Suffix)
+		{
+			if (!Shared.Functions.DnsLookup(Computer)) { return; }
+			Suffix = Suffix.ToLower().Replace("c:", "");
+			if (Suffix != "" && Suffix.Substring(0, 1) != "\\") { Suffix = "\\" + Suffix; }
+			Process explore = Process.Start("EXPLORER", string.Format(@"\\{0}\c${1}", Computer, Suffix));
+		}
+		/// <summary>
+		/// Opens an explorer window on the remote machines C:
+		/// </summary>
+		/// <param name="Computer">Name of remote machine</param>
+		public static void BrowseComputer(string Computer)
+		{
+			BrowseComputer(Computer, "");
+		}
+		/// <summary>
+		/// Opens an explorer window on the remote machines C:
+		/// </summary>
+		/// <param name="Computers">List of Computers to browse</param>
+		public static void BrowseComputer(List<Computer> Computers)
+		{
+			foreach (Computer Computer in Computers)
+			{
+				BrowseComputer(Computer.name);
+			}
+		}
+		/// <summary>
+		/// Opens an explorer window on the remote machines C:
+		/// </summary>
+		/// <param name="Computers">List of strings to browse</param>
+		public static void BrowseComputer(List<string> Computers)
+		{
+			foreach (string computer in Computers)
+			{
+				BrowseComputer(computer);
+			}
+		}
+
+
+
+
+		/// <summary>
+		/// Use dameware mini remote to connect to specified computer(s)
+		/// </summary>
+		/// <param name="computer">name of computer</param>
+		public static void ConnectWithDW(string computer)
+		{
+			if (!Shared.Functions.DnsLookup(computer)) { return; }
+			if (File.Exists(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe"))
+			{
+				Process altiris = Process.Start(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
+			}
+			else if (File.Exists(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe"))
+			{
+				Process altiris = Process.Start(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
+			}
+			else
+			{
+				System.Windows.Forms.MessageBox.Show("Unable to launch DameWare Remote Control Center\nVerify that it is installed and using the default instalation path", "DameWare Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+			}
+			// System.Threading.Thread.Sleep(2500);
+			Console.WriteLine("Launched DameWare on: " + computer);
+		}
+		/// <summary>
+		/// Use dameware mini remote to connect to specified computer(s)
+		/// </summary>
+		/// <param name="computer">computer</param>
+		public static void ConnectWithDW(Computer computer)
+		{
+			ConnectWithDW(computer.name);
+		}
+		/// <summary>
+		/// Use dameware mini remote to connect to specified computer(s)
+		/// </summary>
+		/// <param name="SelectedComputers">List of computers</param>
+		public static void ConnectWithDW(List<Computer> SelectedComputers)
+		{
+			foreach (Computer computer in SelectedComputers)
+			{
+				ConnectWithDW(computer.name);
+			}
+		}
+
+
+
+
+		/// <summary>
+		/// Opens a command prompt to the remote computer
+		/// </summary>
+		/// <param name="SelectedComputers"></param>
+		public static void RemoteCMD(List<Computer> SelectedComputers)
+		{
+			foreach (Computer computer in SelectedComputers)
+			{
+				ProcessStartInfo startInfo = new ProcessStartInfo();
+				startInfo.FileName = "CMD";
+				startInfo.Arguments = string.Format("/C TITLE Remote CMD on: {0} && WINRS -d:C:\\ -r:{0} CMD", computer.name);
+				Process process = Process.Start(startInfo);
+			}
+		}
+
+
+
+
+		/// <summary>
+		/// Opens a cmd window on the remote machine
+		/// </summary>
+		/// <param name="computer">computer name as string</param>
+		public static void LocalCMD(string computer)
+		{
+			ProcessStartInfo startInfo = new ProcessStartInfo();
+			startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
+			startInfo.Arguments = string.Format(@"\\{0} -s -d -i CMD", computer);
+			Process process = Process.Start(startInfo);
+		}
+		/// <summary>
+		/// Opens a cmd window on the remote machine
+		/// </summary>
+		/// <param name="computer">computer object</param>
+		public static void LocalCMD(Computer computer)
+		{
+			LocalCMD(computer.name);
+		}
+		/// <summary>
+		/// Opens a cmd window on the remote machine(s)
+		/// </summary>
+		/// <param name="SelectedComputers">computer list</param>
+		public static void LocalCMD(List<Computer> SelectedComputers)
+		{
+			foreach (Computer computer in SelectedComputers)
+			{
+				LocalCMD(computer.name);
+			}
+		}
+
+
+
+
+		/// <summary>
+		/// Opens multi on remote machine
+		/// </summary>
+		/// <param name="computer"></param>
+		public static void Multi(string computer)
+		{
+			ProcessStartInfo startInfo = new ProcessStartInfo();
+			startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
+			startInfo.Arguments = string.Format(@"\\{0} -s -d -i \HELPDESK\multi.bat", computer);
+			Process process = Process.Start(startInfo);
+		}
+		/// <summary>
+		/// Opens multi on remote machine
+		/// </summary>
+		/// <param name="computer"></param>
+		public static void Multi(Computer computer)
+		{
+			Multi(computer.name);
+		}
+
+
+
+
+		/// <summary>
+		/// Opens cmd window with a constant ping to the specified computer/ip
+		/// </summary>
+		/// <param name="item"></param>
+		public static void Pinger(string item)
+		{
+			Pinger(item, string.Empty);
+		}
+		/// <summary>
+		/// Opens cmd window with a constant ping to the specified computer/ip
+		/// </summary>
+		/// <param name="item">computer/ip</param>
+		/// <param name="title">title of cmd window</param>
+		public static void Pinger(string item, string title)
+		{
+			ProcessStartInfo startInfo = new ProcessStartInfo();
+			startInfo.FileName = "CMD";
+			if (title == string.Empty)
+			{
+				startInfo.Arguments = string.Format("/C PING -t {0}", item);
+			}
+			else
+			{
+				startInfo.Arguments = string.Format("/C TITLE PING: {0} && PING -t {1}", title, item);
+			}
+			Process.Start(startInfo);
+		}
+		/// <summary>
+		/// Opens cmd window with a constant ping to the specified computers
+		/// </summary>
+		/// <param name="Computers"></param>
+		public static void Pinger(List<Computer> Computers)
+		{
+			foreach (Computer computer in Computers)
+			{
+				Pinger(computer.name, computer.name);
+			}
+		}
+
+
+
+
+		/// <summary>
+		/// Copies log file to local temp path
+		/// </summary>
+		/// <param name="pathToLog"></param>
+		/// <returns></returns>
+		public static bool CopyTempLog(string pathToLog)
+		{
+			try
+			{
+				File.Copy(pathToLog, Settings.Default._TempPath + "tmp.log", true);
+				return true;
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
+		/// <summary>
+		/// Copies log file to destination
+		/// </summary>
+		/// <param name="pathToLog"></param>
+		/// <param name="destination"></param>
+		/// <returns></returns>
+		public static bool CopyTempLog(string pathToLog, string destination)
+		{
+			try
+			{
+
+				File.Copy(pathToLog, destination, true);
+				return true;
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
+
+
+
+
+		/// <summary>
+		/// Search tmp log for given string
+		/// </summary>
+		/// <param name="searchString"></param>
+		/// <returns></returns>
+		public static bool FindInLog(string searchString)
+		{
+			try
+			{
+				return File.ReadAllText(Settings.Default._TempPath + "tmp.log").Contains(searchString);
+			}
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+		}
+
+
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="ComputerName"></param>
+		/// <returns></returns>
+		public static bool CopyArgsXML(string ComputerName)
+		{
+			try
+			{
+				string Destination = string.Format(@"\\{0}\C$\Program Files\VeriFone\MX915\vfQueryUpdate\args.xml", ComputerName);
+				Console.WriteLine(Destination);
+				System.IO.File.Copy(Shared.Settings.Default._TempPath + "args.xml", Destination, true);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				return false;
+			}
+			return true;
+		}
+
+
+
+
+		/// <summary>
+		/// Writes a string to a file
+		/// </summary>
+		/// <param name="Contents">Text to put in file</param>
+		/// <param name="FileLocation">Location to write file to</param>
+		/// <returns></returns>
+		public static bool WriteFile(string Contents, string FileLocation)
+		{
+			try { File.WriteAllText(FileLocation, Contents); }
+			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+			return true;
+		}
+
+
+
+
+		/// <summary>
+		/// Copies a local file to the same directory on a remote machine
+		/// </summary>
+		/// <param name="ComputerName">Name of remote machine</param>
+		/// <param name="FileLocation">Location of file to copy</param>
+		/// <returns></returns>
+		public static bool CopyFileRemote(string ComputerName, string FileLocation, bool verbose=true)
+		{
+			try
+			{
+				string Destination = string.Format(@"\\{0}\C$\{1}", ComputerName, FileLocation.Substring(3));
+				if (verbose) { Console.WriteLine(Destination); }
+				File.Copy(FileLocation, Destination, true);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				return false;
+			}
+			return true;
+		}
+
+
+
+
+		/// <summary>
+		/// Adds store to list of ignored ignores
+		/// </summary>
+		/// <param name="ignores"></param>
+		/// <returns></returns>
+		public static List<string> GetIgnoreList(string[] ignores)
+		{
+			List<string> value = new List<string>();
+			if (ignores.Length == 0) { return value; }
+
+			Console.Write("Stores to ignore: ");
+			for (int i = 0; i < ignores.Length; i++)
+			{
+				string add = string.Empty;
+				int store = 0;
+
+				if (int.TryParse(ignores[i].Trim(), out store))
+				{
+					add = store.ToString() + "SAP";
+					if (add.Length < 7) { add = "0" + add; }
+					Console.Write(add + " ");
+					value.Add(add);
+				}
+			}
+			Console.WriteLine();
+			return value;
+		}
+
+
+
+
+		/// <summary>
+		/// Test network connection to remote machine
+		/// </summary>
+		/// <param name="computer"></param>
+		/// <returns></returns>
+		public static bool CheckNetwork(string computer)
+		{
+			try
+			{
+				int echo = 0;
+				for (int i = 0; i < 6; i++)
+				{
+
+					Ping ping = new Ping();
+					byte[] buffer = new byte[32];
+					int timeout = 1000;
+					PingOptions options = new PingOptions();
+					PingReply reply = ping.Send(computer, timeout, buffer, options);
+					if (reply.Status == IPStatus.Success)
+					{
+						echo++;
+					}
+				}
+				if (echo >= 3) { return true; }
+				return false;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+
+
+
 		/// <summary> Returns true if text property contains only numbers
 		/// </summary>
 		/// <param name="textBox"></param>
@@ -740,6 +1207,8 @@ namespace Shared
 		{
 			return Int32.TryParse(textBox.Text, out number);
 		}
+
+
 
 
 		/// <summary> Tests if char is numeric
@@ -780,6 +1249,8 @@ namespace Shared
 		}
 
         
+
+
 		/// <summary> FUNCTION FOR EXPORT TO EXCEL
 		/// </summary>
 		/// <param name="dataTable"></param>
@@ -883,6 +1354,9 @@ namespace Shared
 
 		}
 
+
+
+
 		/// <summary> FUNCTION FOR FORMATTING EXCEL CELLS
 		/// </summary>
 		/// <param name="range"></param>
@@ -900,7 +1374,12 @@ namespace Shared
 		}
 
 
-		public static void v_InstallPsTools()
+
+
+		/// <summary>
+		/// Places PSTools into the windows path
+		/// </summary>
+		public static void InstallPSTools()
 		{
 			try
 			{
@@ -921,53 +1400,24 @@ namespace Shared
 			}
 			catch (Exception) { }
 		}
-		public static void v_Install_DelayedStartServices()
-		{
-			try
-			{
-				File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\DelayedStartServices\DelayedStartServices.exe",
-						Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\DelayedStartServices.exe",
-						true);
-			}
-			catch (Exception) { Console.WriteLine("Failed copying DelayedStartServices"); }
-		}
-        public static void v_RemoveDelayedStartServices()
-        {
-            string f = Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\DelayedStartServices.exe";
-            try
-            {
-                   if(File.Exists(f)) { File.Delete(f);}
-            }
-            catch (Exception) { Console.WriteLine("Failed while removeing DelayedStartServices");;}
-        }
-		public static void v_CreateTempFolder()
+
+
+
+
+		/// <summary>
+		/// Creates the Temp Path
+		/// </summary>
+		public static void CreateTempFolder(bool verbose = false)
 		{
 			if (!Directory.Exists(Shared.Settings.Default._TempPath))
 			{
-				Console.WriteLine("Creating temporary directory: " + Shared.Settings.Default._TempPath);
+				if (verbose) { Console.WriteLine("Creating temporary directory: " + Shared.Settings.Default._TempPath); }
 				Directory.CreateDirectory(Shared.Settings.Default._TempPath);
 			}
-			else { Console.WriteLine("Found temporary directory: " + Shared.Settings.Default._TempPath); }
+			else if(verbose) { Console.WriteLine("Found temporary directory: " + Shared.Settings.Default._TempPath); }
 		}
 
-		public static bool PlaceCerts(string Computer)
-		{
-			try
-			{
-				string Cert1 = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\global.cer";
-				string Cert2 = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\verisign-root.cer";
-				string Destination1 = string.Format(@"\\{0}\C$\Temp\global.cer", Computer);
-				string Destination2 = string.Format(@"\\{0}\C$\Temp\verisign-root.cer", Computer);
-				File.Copy(Cert1, Destination1, true);
-				File.Copy(Cert2, Destination2, true);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				return false;
-			}
-			return true;
-		}
+
 
 
 		/// <summary> QUERIES THE EXCEL FILE
@@ -1008,6 +1458,9 @@ namespace Shared
 			}
 		}
 
+
+
+
 		/// <summary> IMPORTS THE TABLES NAMES OF THE GIVEN FILE
 		/// </summary>
 		/// <param name="fileName"></param>
@@ -1042,6 +1495,9 @@ namespace Shared
 				if (t.Rows.Count == 0) { t.Dispose(); }
 			}
 		}
+
+
+
 
 		/// <summary> IMPORTS THE COLUMNS OF THE GIVEN FILE
 		/// </summary>

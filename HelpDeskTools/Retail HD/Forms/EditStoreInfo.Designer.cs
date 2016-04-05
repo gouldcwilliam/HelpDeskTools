@@ -431,7 +431,7 @@
             this.Controls.Add(this.gbEmail);
             this.Controls.Add(this.grpPhone);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = global::Retail_HD.GlobalResources.icoMain;
+            this.Icon = global::Shared.GlobalResources.icoMain;
             this.Name = "EditStoreInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EditStoreInfo";

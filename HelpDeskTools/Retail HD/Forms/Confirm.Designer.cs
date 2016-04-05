@@ -85,7 +85,7 @@
 			this.Controls.Add(this.btnOK);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = global::Shared.GlobalResources.icoMain;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(289, 139);

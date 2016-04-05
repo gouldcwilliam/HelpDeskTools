@@ -298,7 +298,7 @@
 			// ss_Bottom_ssl_UserCalls
 			// 
 			this.ss_Bottom_ssl_UserCalls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.ss_Bottom_ssl_UserCalls.Image = global::Retail_HD.GlobalResources.icon_list;
+			this.ss_Bottom_ssl_UserCalls.Image = global::Shared.GlobalResources.icon_list;
 			this.ss_Bottom_ssl_UserCalls.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.ss_Bottom_ssl_UserCalls.Name = "ss_Bottom_ssl_UserCalls";
 			this.ss_Bottom_ssl_UserCalls.Size = new System.Drawing.Size(73, 17);
@@ -322,7 +322,7 @@
 			// 
 			// Restart
 			// 
-			this.Restart.Image = global::Retail_HD.GlobalResources.icon_power;
+			this.Restart.Image = global::Shared.GlobalResources.icon_power;
 			this.Restart.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.Restart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.Restart.Location = new System.Drawing.Point(12, 383);
@@ -336,7 +336,7 @@
 			// 
 			// LocalCMD
 			// 
-			this.LocalCMD.Image = global::Retail_HD.GlobalResources.icon_terminal_3;
+			this.LocalCMD.Image = global::Shared.GlobalResources.icon_terminal_3;
 			this.LocalCMD.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.LocalCMD.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.LocalCMD.Location = new System.Drawing.Point(12, 208);
@@ -350,7 +350,7 @@
 			// 
 			// PCAnywhere
 			// 
-			this.PCAnywhere.Image = global::Retail_HD.GlobalResources.icon_watch;
+			this.PCAnywhere.Image = global::Shared.GlobalResources.icon_watch;
 			this.PCAnywhere.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.PCAnywhere.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.PCAnywhere.Location = new System.Drawing.Point(12, 92);
@@ -364,7 +364,7 @@
 			// 
 			// Unlock
 			// 
-			this.Unlock.Image = global::Retail_HD.GlobalResources.icon_key_2;
+			this.Unlock.Image = global::Shared.GlobalResources.icon_key_2;
 			this.Unlock.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.Unlock.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.Unlock.Location = new System.Drawing.Point(12, 121);
@@ -378,7 +378,7 @@
 			// 
 			// Browse
 			// 
-			this.Browse.Image = global::Retail_HD.GlobalResources.icon_folder;
+			this.Browse.Image = global::Shared.GlobalResources.icon_folder;
 			this.Browse.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.Browse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.Browse.Location = new System.Drawing.Point(12, 150);
@@ -392,7 +392,7 @@
 			// 
 			// RemoteCMD
 			// 
-			this.RemoteCMD.Image = global::Retail_HD.GlobalResources.icon_terminal;
+			this.RemoteCMD.Image = global::Shared.GlobalResources.icon_terminal;
 			this.RemoteCMD.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.RemoteCMD.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.RemoteCMD.Location = new System.Drawing.Point(12, 179);
@@ -406,7 +406,7 @@
 			// 
 			// ListActions
 			// 
-			this.ListActions.Image = global::Retail_HD.GlobalResources.icon_split;
+			this.ListActions.Image = global::Shared.GlobalResources.icon_split;
 			this.ListActions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.ListActions.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.ListActions.Location = new System.Drawing.Point(12, 237);
@@ -420,7 +420,7 @@
 			// 
 			// KillPOS
 			// 
-			this.KillPOS.Image = global::Retail_HD.GlobalResources.icon_spam;
+			this.KillPOS.Image = global::Shared.GlobalResources.icon_spam;
 			this.KillPOS.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.KillPOS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.KillPOS.Location = new System.Drawing.Point(12, 266);
@@ -434,7 +434,7 @@
 			// 
 			// Services
 			// 
-			this.Services.Image = global::Retail_HD.GlobalResources.icon_in;
+			this.Services.Image = global::Shared.GlobalResources.icon_in;
 			this.Services.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.Services.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.Services.Location = new System.Drawing.Point(12, 295);
@@ -448,7 +448,7 @@
 			// 
 			// Ping
 			// 
-			this.Ping.Image = global::Retail_HD.GlobalResources.icon_transfer;
+			this.Ping.Image = global::Shared.GlobalResources.icon_transfer;
 			this.Ping.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.Ping.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.Ping.Location = new System.Drawing.Point(12, 324);
@@ -462,7 +462,7 @@
 			// 
 			// WrapUp
 			// 
-			this.WrapUp.Image = global::Retail_HD.GlobalResources.icon_paragraph_center_2;
+			this.WrapUp.Image = global::Shared.GlobalResources.icon_paragraph_center_2;
 			this.WrapUp.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.WrapUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.WrapUp.Location = new System.Drawing.Point(12, 353);
@@ -796,7 +796,7 @@
 			// 
 			// btnDelayed
 			// 
-			this.btnDelayed.Image = global::Retail_HD.GlobalResources.icon_spinner_3;
+			this.btnDelayed.Image = global::Shared.GlobalResources.icon_spinner_3;
 			this.btnDelayed.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnDelayed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.btnDelayed.Location = new System.Drawing.Point(12, 413);
@@ -853,7 +853,7 @@
 			// ts_Top_tsb_Logout
 			// 
 			this.ts_Top_tsb_Logout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_Logout.Image = global::Retail_HD.GlobalResources.logout;
+			this.ts_Top_tsb_Logout.Image = global::Shared.GlobalResources.logout;
 			this.ts_Top_tsb_Logout.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_Logout.Name = "ts_Top_tsb_Logout";
 			this.ts_Top_tsb_Logout.Size = new System.Drawing.Size(24, 19);
@@ -869,7 +869,7 @@
 			// ts_Top_tsb_ChangeState
 			// 
 			this.ts_Top_tsb_ChangeState.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_ChangeState.Image = global::Retail_HD.GlobalResources.icon_play;
+			this.ts_Top_tsb_ChangeState.Image = global::Shared.GlobalResources.icon_play;
 			this.ts_Top_tsb_ChangeState.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_ChangeState.Name = "ts_Top_tsb_ChangeState";
 			this.ts_Top_tsb_ChangeState.Size = new System.Drawing.Size(24, 19);
@@ -885,7 +885,7 @@
 			// ts_Top_tsb_CallStore
 			// 
 			this.ts_Top_tsb_CallStore.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_CallStore.Image = global::Retail_HD.GlobalResources.mobile_phone;
+			this.ts_Top_tsb_CallStore.Image = global::Shared.GlobalResources.mobile_phone;
 			this.ts_Top_tsb_CallStore.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_CallStore.Name = "ts_Top_tsb_CallStore";
 			this.ts_Top_tsb_CallStore.Size = new System.Drawing.Size(24, 19);
@@ -901,7 +901,7 @@
 			// ts_Top_tsb_Settings
 			// 
 			this.ts_Top_tsb_Settings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_Settings.Image = global::Retail_HD.GlobalResources.settings_icon;
+			this.ts_Top_tsb_Settings.Image = global::Shared.GlobalResources.settings_icon;
 			this.ts_Top_tsb_Settings.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_Settings.Name = "ts_Top_tsb_Settings";
 			this.ts_Top_tsb_Settings.Size = new System.Drawing.Size(24, 19);
@@ -917,7 +917,7 @@
 			// ts_Top_tsb_TeamStatus
 			// 
 			this.ts_Top_tsb_TeamStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_TeamStatus.Image = global::Retail_HD.GlobalResources.agents;
+			this.ts_Top_tsb_TeamStatus.Image = global::Shared.GlobalResources.agents;
 			this.ts_Top_tsb_TeamStatus.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_TeamStatus.Name = "ts_Top_tsb_TeamStatus";
 			this.ts_Top_tsb_TeamStatus.Size = new System.Drawing.Size(24, 19);
@@ -929,7 +929,7 @@
 			// 
 			this.ts_Top_tsb_Refresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
 			this.ts_Top_tsb_Refresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_Refresh.Image = global::Retail_HD.GlobalResources.icon_repeat;
+			this.ts_Top_tsb_Refresh.Image = global::Shared.GlobalResources.icon_repeat;
 			this.ts_Top_tsb_Refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_Refresh.Name = "ts_Top_tsb_Refresh";
 			this.ts_Top_tsb_Refresh.Size = new System.Drawing.Size(24, 19);
@@ -953,7 +953,7 @@
 			// ts_Top_tsb_StoreSearch
 			// 
 			this.ts_Top_tsb_StoreSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_StoreSearch.Image = global::Retail_HD.GlobalResources.magnifying;
+			this.ts_Top_tsb_StoreSearch.Image = global::Shared.GlobalResources.magnifying;
 			this.ts_Top_tsb_StoreSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_StoreSearch.Name = "ts_Top_tsb_StoreSearch";
 			this.ts_Top_tsb_StoreSearch.Size = new System.Drawing.Size(24, 19);
@@ -969,7 +969,7 @@
 			// ts_Top_tsb_HistorySearch
 			// 
 			this.ts_Top_tsb_HistorySearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_HistorySearch.Image = global::Retail_HD.GlobalResources.sundial;
+			this.ts_Top_tsb_HistorySearch.Image = global::Shared.GlobalResources.sundial;
 			this.ts_Top_tsb_HistorySearch.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_HistorySearch.Name = "ts_Top_tsb_HistorySearch";
 			this.ts_Top_tsb_HistorySearch.Size = new System.Drawing.Size(24, 19);
@@ -985,7 +985,7 @@
 			// ts_Top_tsb_NewIPs
 			// 
 			this.ts_Top_tsb_NewIPs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_NewIPs.Image = global::Retail_HD.GlobalResources.icon_marquee_plus;
+			this.ts_Top_tsb_NewIPs.Image = global::Shared.GlobalResources.icon_marquee_plus;
 			this.ts_Top_tsb_NewIPs.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_NewIPs.Name = "ts_Top_tsb_NewIPs";
 			this.ts_Top_tsb_NewIPs.Size = new System.Drawing.Size(24, 19);
@@ -1016,7 +1016,7 @@
 			// ts_Top_tsb_StoreNote
 			// 
 			this.ts_Top_tsb_StoreNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ts_Top_tsb_StoreNote.Image = global::Retail_HD.GlobalResources.ferp;
+			this.ts_Top_tsb_StoreNote.Image = global::Shared.GlobalResources.ferp;
 			this.ts_Top_tsb_StoreNote.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ts_Top_tsb_StoreNote.Name = "ts_Top_tsb_StoreNote";
 			this.ts_Top_tsb_StoreNote.Size = new System.Drawing.Size(24, 19);
@@ -1235,7 +1235,7 @@
 			// 
 			// ms_Top_msi_Settings
 			// 
-			this.ms_Top_msi_Settings.Image = global::Retail_HD.GlobalResources.icon_settings_3;
+			this.ms_Top_msi_Settings.Image = global::Shared.GlobalResources.icon_settings_3;
 			this.ms_Top_msi_Settings.Name = "ms_Top_msi_Settings";
 			this.ms_Top_msi_Settings.Size = new System.Drawing.Size(191, 22);
 			this.ms_Top_msi_Settings.Text = "Settings";
@@ -1289,7 +1289,7 @@
 			// 
 			// ms_Top_msi_WhatTheJunk
 			// 
-			this.ms_Top_msi_WhatTheJunk.Image = global::Retail_HD.GlobalResources.icon_paper_roll;
+			this.ms_Top_msi_WhatTheJunk.Image = global::Shared.GlobalResources.icon_paper_roll;
 			this.ms_Top_msi_WhatTheJunk.Name = "ms_Top_msi_WhatTheJunk";
 			this.ms_Top_msi_WhatTheJunk.Size = new System.Drawing.Size(159, 22);
 			this.ms_Top_msi_WhatTheJunk.Text = "Bug/Suggestion";
@@ -1436,7 +1436,7 @@
 			this.Controls.Add(this.clbComputers);
 			this.Controls.Add(this.RecentCalls_dgv);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = global::Shared.GlobalResources.icoMain;
 			this.MainMenuStrip = this.ms_Top;
 			this.MinimumSize = new System.Drawing.Size(869, 509);
 			this.Name = "RetailHD";

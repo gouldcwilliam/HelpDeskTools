@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
+
+using Shared;
 
 namespace Retail_HD
 {
@@ -94,6 +97,40 @@ namespace Retail_HD
 		/// Store's computers
 		/// </summary>
 		public static List<Computer> computers = new List<Computer>();
+		public static List<Computer> selectedComputers
+		{
+			get
+			{
+				// blank return list
+				List<Computer> returnList = new List<Computer>();
+				// set list to all selected computers
+				List<Computer> selectedList = Info.computers.FindAll(x => x.selected == true);
+
+				// if no computers are selected
+				if (selectedList.Count == 0)
+				{
+					// single computer
+					if (Info.computers.Count == 1) { selectedList = Info.computers; }
+					else
+					{
+						// confirmation form for multiple registers
+						Forms.Confirm confirm = new Forms.Confirm("Perform on all computers?", "No computers selected", true);
+						// all computers if ok is clicked
+						if (confirm.ShowDialog() == System.Windows.Forms.DialogResult.OK) { selectedList = Info.computers; }
+						// no computers
+						else { selectedList = new List<Computer>(); }
+					}
+				}
+
+				foreach(Computer computer in selectedList)
+				{
+					// test each computer's connection
+					if (Shared.Functions.CheckNetwork(computer)) { returnList.Add(computer); }
+					else { MessageBox.Show("Unable to reach " + computer, "Network Issue", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+				}
+				return returnList;
+			}
+		}
 		/// <summary>
 		/// Wrap up categories
 		/// </summary>
@@ -380,7 +417,7 @@ namespace Retail_HD
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public static bool fillNotes()
+		public static bool FillNotes()
 		{
 			List<System.Data.SqlClient.SqlParameter> parameters = new List<System.Data.SqlClient.SqlParameter>();
 			parameters.Add(new System.Data.SqlClient.SqlParameter("@store", store.ToString()));

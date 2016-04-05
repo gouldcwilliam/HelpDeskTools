@@ -48,7 +48,7 @@ namespace Retail_HD.Forms
 					dgvNotes.SelectedRows[0].Cells["note"].Value.ToString(),
 					(bool)dgvNotes.SelectedRows[0].Cells["resolved"].Value);
 				editStoreNote.ShowDialog();
-				Info.fillNotes();
+				Info.FillNotes();
 				dgvNotes.DataSource = Info.notes;
 			}
 		}
@@ -57,7 +57,7 @@ namespace Retail_HD.Forms
 		{
 			editStoreNote = new EditStoreNote(false, 0, Info.store, "", false);
 			editStoreNote.ShowDialog();
-			Info.fillNotes();
+			Info.FillNotes();
 			dgvNotes.DataSource = Info.notes;
 		}
 	}

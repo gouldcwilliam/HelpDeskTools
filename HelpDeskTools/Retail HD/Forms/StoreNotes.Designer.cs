@@ -50,15 +50,16 @@
 			this.dgvNotes.RowHeadersVisible = false;
 			this.dgvNotes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvNotes.Size = new System.Drawing.Size(502, 215);
-			this.dgvNotes.TabIndex = 0;
+			this.dgvNotes.TabIndex = 3;
 			// 
 			// btnOK
 			// 
 			this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOK.Location = new System.Drawing.Point(12, 238);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(87, 27);
-			this.btnOK.TabIndex = 2;
+			this.btnOK.TabIndex = 0;
 			this.btnOK.Text = "OK";
 			this.btnOK.UseVisualStyleBackColor = true;
 			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -70,7 +71,7 @@
 			this.btnEdit.Location = new System.Drawing.Point(334, 238);
 			this.btnEdit.Name = "btnEdit";
 			this.btnEdit.Size = new System.Drawing.Size(87, 27);
-			this.btnEdit.TabIndex = 3;
+			this.btnEdit.TabIndex = 1;
 			this.btnEdit.Text = "Edit";
 			this.btnEdit.UseVisualStyleBackColor = true;
 			this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -82,7 +83,7 @@
 			this.btnAdd.Location = new System.Drawing.Point(427, 238);
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(87, 27);
-			this.btnAdd.TabIndex = 4;
+			this.btnAdd.TabIndex = 2;
 			this.btnAdd.Text = "Add";
 			this.btnAdd.UseVisualStyleBackColor = true;
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);

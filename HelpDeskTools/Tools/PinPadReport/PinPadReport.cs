@@ -30,8 +30,7 @@ namespace PinPadReport
 			body += Settings.Default.footer;
 
 
-			Console.WriteLine("Mail Sent: {0}", Shared.Functions.b_SendEmail(Settings.Default.to, body, Settings.Default.subject));
-			Console.ReadKey();
+			Console.WriteLine("Mail Sent: {0}", Shared.Functions.SendEmail(Settings.Default.to, body, Settings.Default.subject));
 		}
 	}
 }

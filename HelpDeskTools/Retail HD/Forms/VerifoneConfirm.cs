@@ -23,7 +23,7 @@ namespace Retail_HD.Forms
         private bool copyArgsXML(string Computer)
         {
             string tempFile = @"C:\temp\args.xml";
-            try { System.IO.File.WriteAllText(tempFile, GlobalResources.args.ToString()); }
+            try { System.IO.File.WriteAllText(tempFile, Shared.GlobalResources.args.ToString()); }
             catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
             try
             {
@@ -52,7 +52,7 @@ namespace Retail_HD.Forms
         private void button2_Click(object sender, EventArgs e)
         {
 			string args2 = string.Format("-r:{0} {1} {2}", _Computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "start credit");
-            GlobalFunctions.ExecuteCommand("WINRS", args2, true, false);
+			Shared.Functions.ExecuteCommand("WINRS", args2, true, false);
             this.Close();
         }
     }

@@ -36,7 +36,7 @@ namespace Bit9Report
 
             List<string> to = new List<string>();
 
-            Shared.Functions.b_SendEmail(Settings.Default.to, body, "Bit9 Daily Report");
+            Shared.Functions.SendEmail(Settings.Default.to, body, "Bit9 Daily Report");
         }
     }
 }

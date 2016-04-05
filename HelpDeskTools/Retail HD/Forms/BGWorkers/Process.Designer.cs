@@ -108,7 +108,7 @@
 			this.Controls.Add(this.btnOK);
 			this.Controls.Add(this.btnCancel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = global::Shared.GlobalResources.icoMain;
 			this.MaximizeBox = false;
 			this.Name = "Process";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

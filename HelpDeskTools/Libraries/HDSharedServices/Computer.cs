@@ -4,22 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Retail_HD
+namespace Shared
 {
+	/// <summary>
+	/// String bool object
+	/// </summary>
 	public class Computer
 	{
-		public Computer(string name)
-		{
-			this.name = name;
-			this.selected = false;
-		}
-		public Computer(string name, bool selected)
+		/// <summary>
+		/// Creates new computer object
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="selected"></param>
+		public Computer(string name, bool selected = false)
 		{
 			this.name = name;
 			this.selected = selected;
 		}
 
+		/// <summary>
+		/// name of computer
+		/// </summary>
 		public string name { get; set; }
+		/// <summary>
+		/// bool of selected
+		/// </summary>
 		public bool selected { get; set; }
 
 		/// <summary>

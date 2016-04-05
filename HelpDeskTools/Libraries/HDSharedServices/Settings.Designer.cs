@@ -214,5 +214,17 @@ namespace Shared {
                 this["_PSZip"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("wsadmin.bat")]
+        public string _WSAdmin {
+            get {
+                return ((string)(this["_WSAdmin"]));
+            }
+            set {
+                this["_WSAdmin"] = value;
+            }
+        }
     }
 }

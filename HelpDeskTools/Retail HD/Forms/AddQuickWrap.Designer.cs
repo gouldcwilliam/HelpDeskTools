@@ -146,7 +146,7 @@
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnOK);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = global::Shared.GlobalResources.icoMain;
 			this.MaximizeBox = false;
 			this.Name = "AddQuickWrap";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

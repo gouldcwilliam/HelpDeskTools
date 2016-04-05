@@ -390,7 +390,7 @@
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.dgvResults);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.Icon = global::Retail_HD.GlobalResources.icoMain;
+			this.Icon = global::Shared.GlobalResources.icoMain;
 			this.Name = "HistorySearch";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "History";

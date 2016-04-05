@@ -21,7 +21,7 @@ namespace EmailReport
 	
 			body += Settings.Default.footer;
 
-			Shared.Functions.b_SendEmail(Settings.Default.to, body, Settings.Default.subject);
+			Shared.Functions.SendEmail(Settings.Default.to, body, Settings.Default.subject);
 		}
 	}
 }

@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Windows;
-using System.IO;
+using Shared;
 
 namespace Retail_HD.Forms.BGWorkers
 {
@@ -42,7 +33,7 @@ namespace Retail_HD.Forms.BGWorkers
 				worker.ReportProgress(0, "Killing POS on: " + computer.name);
 				if (worker.CancellationPending) { e.Cancel = true; return; };
 				string args = string.Format("-r:{0} TASKKILL /F /IM POSW.EXE", computer.name);
-				error = GlobalFunctions.ExecuteCommand("WINRS", args, false);
+				error = Shared.Functions.ExecuteCommand("WINRS", args, false);
 			}
 			if (error > 0) { e.Result = "Failed to Kill POS"; }
 			else { e.Result = "Killed POS Successfully"; }
