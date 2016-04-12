@@ -95,19 +95,28 @@ namespace WetSandwich
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 		}
 
+		public static bool multiLog()
+		{
+			foreach(string version in Properties.Settings.Default._multiVersions)
+			{
+				if (FindInLog(version)) { return true; }
+			}
+			return false;
+		}
+
 		public static string vfLog(string computer)
 		{
 			try
 			{
-				if (!System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains(Properties.Settings.Default.vfVersion))
+				string logFile = string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer);
+				string logFileText = System.IO.File.ReadAllText(logFile);
+
+				foreach (string version in Properties.Settings.Default._vfVersions)
 				{
-					if(System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error"))
-					{
-						return "True";
-					}
-					else { return "False"; }
+					if (logFileText.Contains(version)) { return "True"; }
 				}
-				else return "True";
+				if(logFileText.Contains("Error")) { return "True"; }
+				return "False";
 			}
 			catch (Exception ex) { return "False"; }
 		}
