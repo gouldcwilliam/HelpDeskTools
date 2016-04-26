@@ -10,18 +10,32 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// Form to add additional phone to a store
+    /// </summary>
     public partial class AdditionalPhone : Form
     {
-
+        /// <summary>
+        /// <seealso cref="AdditionalPhone"/>
+        /// </summary>
         public AdditionalPhone()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// <seealso cref="AdditionalPhone"/>
+        /// </summary>
+        /// <param name="storeNumber"></param>
         public AdditionalPhone(string storeNumber)
         {
             InitializeComponent();
             txtStore.Text = storeNumber;
         }
+        /// <summary>
+        /// <seealso cref="AdditionalPhone"/>
+        /// </summary>
+        /// <param name="storeNumber"></param>
+        /// <param name="phoneNumber"></param>
 		public AdditionalPhone(string storeNumber, string phoneNumber)
 		{
 			InitializeComponent();

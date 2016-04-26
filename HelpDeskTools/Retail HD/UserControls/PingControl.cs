@@ -6,8 +6,14 @@ using Shared;
 
 namespace Retail_HD.UCs
 {
+    /// <summary>
+    /// Usercontrol for the ping submenu
+    /// </summary>
 	public partial class PingControl : UserControl
 	{
+        /// <summary>
+        /// <see cref="PingControl"/>
+        /// </summary>
 		public PingControl()
 		{
 			InitializeComponent();
@@ -34,7 +40,7 @@ namespace Retail_HD.UCs
 			{
 				if (Info.OneSelected()&& Info.computers.Count > 0)
 				{
-					Functions.Pinger(Info.computers.FindAll(x => x.selected == true));
+					Functions.Pinger(Info.selectedComputers);
 				}
 				else
 				{
@@ -57,7 +63,9 @@ namespace Retail_HD.UCs
 				Functions.Pinger(Info.cctv, Info.store + "CCTV");
             }
 		}
-
+        /// <summary>
+        /// clears the check boxes
+        /// </summary>
 		public void Clear()
 		{
 			foreach (CheckBox cb in gbPing.Controls.OfType<CheckBox>())

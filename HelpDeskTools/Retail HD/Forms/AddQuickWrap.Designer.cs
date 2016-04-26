@@ -1,5 +1,8 @@
 ﻿namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// New wrap up
+    /// </summary>
     partial class AddQuickWrap
     {
         /// <summary>

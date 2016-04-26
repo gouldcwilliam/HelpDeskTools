@@ -3,8 +3,15 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    // TODO - add ALL of the store information fields
+    /// <summary>
+    /// <see cref="EditStoreInfo"/>
+    /// </summary>
 	public partial class EditStoreInfo : Form
 	{
+        /// <summary>
+        /// Edits the store's information
+        /// </summary>
 		public EditStoreInfo()
 		{
 			InitializeComponent();

@@ -8,10 +8,14 @@ using Shared;
 
 namespace Retail_HD.Forms
 {
-	public partial class ListActions : Form
+    // TODO - implement action log window instead of a popup message.
+    /// <summary>
+    /// form for performing random/multi step fixes to many registers
+    /// </summary>
+    public partial class ListActions : Form
 	{
         /// <summary>
-        /// Form for manipulating multiple stores with one off commands
+        /// <see cref="ListActions"/>
         /// </summary>
 		public ListActions()
 		{
@@ -78,6 +82,7 @@ namespace Retail_HD.Forms
 			this.Close();
 		}
 
+        // TODO - remove steps for copying bat file
 
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -97,9 +102,7 @@ namespace Retail_HD.Forms
             // only include specific computers list
             if (ckbRegister.Checked) { computers = SpecificRegister(computers); }
 
-			// check network
-			computers = VerifyNetwork(computers);
-
+			
             // double check that a reboot is wanted
             bool reboot = false;
             if (ckbRestart.Checked) { reboot = (MessageBox.Show("Are you sure you want to reboot?", "System Reboot", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK); }
@@ -119,6 +122,7 @@ namespace Retail_HD.Forms
                 if (bservices)
                 {
 					string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, _action + " " + _service);
+
 					if (!Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
 					{
 						// failed to copy services.bat
@@ -171,6 +175,7 @@ namespace Retail_HD.Forms
 					Shared.Functions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
                 }
 
+                // TODO - make each multi/ri check run async
 				if (ckbRIMulti.Checked)
 				{
 					string multi;
@@ -231,8 +236,7 @@ namespace Retail_HD.Forms
 
                 System.Threading.Thread.Sleep(500);
             }
-            //TODO implement action log window instead of a popup message.
-            //MessageBox.Show(actionList, "Completed", MessageBoxButtons.OK);
+
         }
 
 
@@ -241,25 +245,12 @@ namespace Retail_HD.Forms
 
 		private List<string> SpecificRegister(List<string> Computers)
 		{
-			if (!ckb1.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb1.Text)); }
-			if (!ckb2.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb2.Text)); }
-			if (!ckb3.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb3.Text)); }
-			if (!ckb4.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP" + ckb4.Text)); }
+			if (!ckb1.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP1")); }
+			if (!ckb2.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP2")); }
+			if (!ckb3.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP3")); }
+			if (!ckb4.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP4")); }
 
 			return Computers;
-		}
-
-
-		private List<string> VerifyNetwork(List<string>Computers)
-		{
-			List<string> returnList = new List<string>();
-			foreach (string computer in Computers)
-			{
-				// test each computer's connection
-				if (Shared.Functions.CheckNetwork(computer)) { returnList.Add(computer); }
-				else { MessageBox.Show("Unable to reach " + computer, "Network Issue", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-			}
-			return returnList;
 		}
 
 
@@ -298,13 +289,13 @@ namespace Retail_HD.Forms
 					if (System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Opening Comm Port") ||
 						System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer)).Contains("Error Getting Version"))
 					{
-						return "True";
+						return "Error";
 					}
 					else { return "False"; }
 				}
 				else return "True";
 			}
-			catch (Exception ex) { return "False"; }
+			catch (Exception ) { return "Error"; }
 		}
 
 
@@ -317,7 +308,7 @@ namespace Retail_HD.Forms
 				Console.WriteLine(files[0].FullName);
 				return files[0];
 			}
-			catch (Exception ex) { return null; }
+			catch (Exception) { return null; }
 		}
 
 
@@ -330,7 +321,7 @@ namespace Retail_HD.Forms
 				Console.WriteLine(files[0].FullName);
 				return files[0].FullName;
             }
-			catch(Exception ex) { return ""; }
+			catch(Exception) { return ""; }
         }
 
 	}

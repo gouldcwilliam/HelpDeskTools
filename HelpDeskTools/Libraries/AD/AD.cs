@@ -16,6 +16,7 @@ public static class AD
 	/// <param name="Entry">Directory Entry (OU search root)</param>
 	/// <param name="Filter">LDAP query to narrow results</param>
 	/// <param name="Properties">LDAP property name to include in results</param>
+    /// <param name="useOneLevel">Search subdirectories</param>
 	/// <returns>List of LDAP property values</returns>
 	public static List<Result> SearchAD(DirectoryEntry Entry, string Filter, string[] Properties, bool useOneLevel=true)
 	{
@@ -60,6 +61,12 @@ public static class AD
         catch (Exception ex) { Console.WriteLine(ex.Message); return null; } //changed to null for error checking
 	}
 
+    /// <summary>
+    /// Search AD OU with filter and return first result
+    /// </summary>
+    /// <param name="Entry">OU to search</param>
+    /// <param name="Filter">Search parameters</param>
+    /// <returns></returns>
     public static SearchResult SearchADOneResult(string Entry, string Filter)
     {
         DirectoryEntry entry = new DirectoryEntry(Entry);
@@ -114,6 +121,7 @@ public static class AD
 	/// </summary>
 	/// <param name="OU">String containing directory entry (OU)</param>
 	/// <param name="Filter">LDAP query to narrow results</param>
+    /// <param name="useOneLevel">Non recursive search</param>
 	/// <returns>List of LDAP property values</returns>
     public static List<Result> SearchAD(string OU, string Filter, bool useOneLevel = true)
     {

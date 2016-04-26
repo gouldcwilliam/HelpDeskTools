@@ -111,8 +111,14 @@
 		#endregion
 
 		private System.Windows.Forms.DataGridView dgvNotes;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnOK;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnEdit;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnAdd;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 	}
 }

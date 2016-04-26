@@ -118,7 +118,7 @@ namespace WetSandwich
 				if(logFileText.Contains("Error")) { return "True"; }
 				return "False";
 			}
-			catch (Exception ex) { return "False"; }
+			catch (Exception) { return "False"; }
 		}
 
 		public static string getLatestMulti(string path)
@@ -130,7 +130,7 @@ namespace WetSandwich
 				//Console.WriteLine(files[0]);
 				return files[0].FullName;
 			}
-			catch (Exception ex) { return ""; }
+			catch (Exception) { return ""; }
 		}
 
 		/// <summary>

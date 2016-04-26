@@ -10,9 +10,15 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
-
+    /// <summary>
+    /// Form for call wrap up information
+    /// </summary>
 	public partial class WrapUp : Form
 	{
+
+        /// <summary>
+        /// <see cref="WrapUp"/>
+        /// </summary>
         public WrapUp()
 		{
 			InitializeComponent();
@@ -23,10 +29,17 @@ namespace Retail_HD.Forms
 
 
 		/// <summary>
-		/// contains Category string wrapup Text and bool if Mandatory
+		/// Object container for wrap up
 		/// </summary>
 		public class wrapUp
 		{
+            /// <summary>
+            /// <see cref="wrapUp"/>
+            /// </summary>
+            /// <param name="sCategory"></param>
+            /// <param name="sText"></param>
+            /// <param name="bMandatory"></param>
+            /// <param name="bRequireLength"></param>
 			public wrapUp(string sCategory, string sText, bool bMandatory, bool bRequireLength)
 			{
 				Category = sCategory;
@@ -34,12 +47,12 @@ namespace Retail_HD.Forms
 				Mandatory = bMandatory;
 				Length = bRequireLength;
 			}
-			/// <summary>
-			/// Container for each wrapups properties
-			/// </summary>
-			/// <param name="sCategory"></param>
-			/// <param name="sText"></param>
-			/// <param name="bMandatory"></param>
+            /// <summary>
+            /// <see cref="wrapUp"/>
+            /// </summary>
+            /// <param name="bCategory"></param>
+            /// <param name="bText"></param>
+            /// <param name="bMandatory"></param>
 			public wrapUp(string bCategory, string bText, bool bMandatory)
 			{
 				Category = bCategory;
@@ -47,14 +60,38 @@ namespace Retail_HD.Forms
 				Mandatory = bMandatory;
 			}
 
+            /// <summary>
+            /// 
+            /// </summary>
 			public string Category { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
 			public string Text { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
 			public bool Mandatory { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
 			public bool Length = false;
 		}
 
-		/*PROERTIES*/
-		const string requiredText = "<Required>"; //constant so we know if it changed or not without having to hope we typed it in correctly.
+        /*PROPERTIES*/
+
+        bool _isCallWrappedUp = false;
+        /// <summary>
+        /// Public get of wrapped up value
+        /// </summary>
+        public bool isCallWrappedUp
+        {
+            get
+            {
+                return _isCallWrappedUp;
+            }
+        }
+        const string requiredText = "<Required>"; //constant so we know if it changed or not without having to hope we typed it in correctly.
 		Font origFont = new Font(FontFamily.GenericSansSerif, 8.25f, FontStyle.Regular);
 		Font requiredFont = new Font(FontFamily.GenericSansSerif, 8.0f, FontStyle.Italic | FontStyle.Bold);
 		// list categories and wrapups
@@ -172,39 +209,43 @@ namespace Retail_HD.Forms
 
 		private void frmWrapUp_FormClosing(object sender, FormClosingEventArgs e)
 		{
-            if (this.DialogResult == System.Windows.Forms.DialogResult.None)
+            if (DialogResult != DialogResult.OK)
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
             }
 		}
 
+        private void WrapUp_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (DialogResult != DialogResult.OK)
+            {
+                DialogResult = DialogResult.Cancel;
+            }
+        }
 
-		/*BUTTONS*/
 
-		/// <summary>
-		/// what to do when OK clicked
-		/// </summary>
-		private void btnOK_Click(object sender, EventArgs e)
+        /*BUTTONS*/
+
+        /// <summary>
+        /// what to do when OK clicked
+        /// </summary>
+        private void btnOK_Click(object sender, EventArgs e)
 		{
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
 			string details = txtDetails.Text;
 			if (ckbTopics.CheckedItems.Count == 0)
 			{
                 MessageBox.Show("You must select a category!", "Wrap Up Category", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				this.DialogResult = System.Windows.Forms.DialogResult.None;
 				return;
 			}
 			if (!_checkCategory())
 			{
 				MessageBox.Show("Invalid Category!", "Wrap Up Category", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
 				return;
 			}
 
             if ((details.Trim() == string.Empty || details.Trim() == requiredText) && _mandatoryIssue()) //just in case they are retarded, instead of checking that it contains the required Text, let's only check that it is equivalent
             {
                 MessageBox.Show("Empty Details!", "Wrap Up Solution", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
                 return;
             }
             else if (details.Contains(requiredText))
@@ -216,21 +257,18 @@ namespace Retail_HD.Forms
 			if (ckbTopics.CheckedItems.Count == 0)
 			{
 				MessageBox.Show("No Topic Selected!", "Wrap Up Topic", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
 				return;
 			}
 
             if (txtDetails.Text.Trim().Split(' ').Length < 15 && ckbTopics.CheckedItems[0].ToString() == "General Question") 
             {
                 MessageBox.Show("General Question Details Length Requirement not met.\nRequired minimum of 15 words.", "Wrap Up Details", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
                 return;
             }
 
 			if (ckbTrax.Checked && (txtTRAX.Text.Trim() == string.Empty || !txtTRAX.Text.Contains("trax")))
 			{
 				MessageBox.Show("Must include a valid TRAX URL", "Wrap Up Trax URL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
 				return;
 			}
 
@@ -240,9 +278,11 @@ namespace Retail_HD.Forms
 
 			if (!Shared.SQL.WrapUp_InsertCall(txtStore.Text, details, cmbCategory.Text, ckbTopics.CheckedItems[0].ToString(),  cmbType.Text, Environment.UserName.ToUpper(), ckbTrax.Checked, url))
 			{
-                this.DialogResult = System.Windows.Forms.DialogResult.None;
 				return;
 			}
+
+            DialogResult = DialogResult.OK;
+            _isCallWrappedUp = true; Close();
 		}
 
 		/// <summary>
@@ -251,6 +291,7 @@ namespace Retail_HD.Forms
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            _isCallWrappedUp = false; Close();
 		}
 
 
@@ -411,6 +452,7 @@ namespace Retail_HD.Forms
                 txtDetails.Font = origFont;
             }
         }
-	}
+
+    }
 
 }

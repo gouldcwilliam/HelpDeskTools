@@ -7,10 +7,13 @@ using Shared;
 
 namespace Retail_HD.UCs
 {
+    /// <summary>
+    /// User control for the services sub menu
+    /// </summary>
 	public partial class ServicesControl : UserControl
 	{
 		/// <summary>
-		/// Hidden services control menu
+		/// <see cref=" ServicesControl"/>
 		/// </summary>
 		public ServicesControl()
 		{
@@ -40,6 +43,8 @@ namespace Retail_HD.UCs
             }
         }
 
+        // TODO - remove steps for copying bat file
+
 		private void btnOK_Click(object sender, EventArgs e)
 		{
             string service = string.Empty;
@@ -57,7 +62,6 @@ namespace Retail_HD.UCs
 
             foreach (string computer in computers)
             {
-                if (!Shared.Functions.DnsLookup(computer)) { continue; }
                 if (!Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices)) { return; }
                 if (service == "verifone") 
                 {

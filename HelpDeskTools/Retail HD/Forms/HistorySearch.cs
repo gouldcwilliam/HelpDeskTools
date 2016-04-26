@@ -9,8 +9,14 @@ using Retail_HD.Classes;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// search call history
+    /// </summary>
 	public partial class HistorySearch : Form
 	{
+        /// <summary>
+        /// <see cref="HistorySearch"/>
+        /// </summary>
 		public HistorySearch()
 		{
 			InitializeComponent();

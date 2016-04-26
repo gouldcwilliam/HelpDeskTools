@@ -1,6 +1,8 @@
 ﻿namespace Retail_HD.Forms
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 	partial class EditSettings
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,8 +30,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditSettings));
             this.ckbEnableShowMe = new System.Windows.Forms.CheckBox();
-            this.ckbShowLoggedOut = new System.Windows.Forms.CheckBox();
             this.ckbEnableAutoReady = new System.Windows.Forms.CheckBox();
             this.ckbEnableAgentLogin = new System.Windows.Forms.CheckBox();
             this.btnPhoneSettings = new System.Windows.Forms.Button();
@@ -50,18 +52,6 @@
             this.ckbEnableShowMe.Text = "Show me in Agent Status?";
             this.ckbEnableShowMe.UseVisualStyleBackColor = true;
             this.ckbEnableShowMe.CheckedChanged += new System.EventHandler(this.SettingChanged);
-            // 
-            // ckbShowLoggedOut
-            // 
-            this.ckbShowLoggedOut.AutoSize = true;
-            this.ckbShowLoggedOut.Location = new System.Drawing.Point(11, 81);
-            this.ckbShowLoggedOut.Name = "ckbShowLoggedOut";
-            this.ckbShowLoggedOut.Size = new System.Drawing.Size(223, 17);
-            this.ckbShowLoggedOut.TabIndex = 8;
-            this.ckbShowLoggedOut.Text = "Show Logged Out Users in Agent Status?";
-            this.ckbShowLoggedOut.UseVisualStyleBackColor = true;
-            this.ckbShowLoggedOut.Visible = false;
-            this.ckbShowLoggedOut.CheckedChanged += new System.EventHandler(this.SettingChanged);
             // 
             // ckbEnableAutoReady
             // 
@@ -147,10 +137,9 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.ckbEnableAgentLogin);
             this.Controls.Add(this.ckbEnableAutoReady);
-            this.Controls.Add(this.ckbShowLoggedOut);
             this.Controls.Add(this.ckbEnableShowMe);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = global::Shared.GlobalResources.icoMain;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(272, 280);
             this.Name = "EditSettings";
@@ -165,7 +154,6 @@
 		#endregion
 
         private System.Windows.Forms.CheckBox ckbEnableShowMe;
-        private System.Windows.Forms.CheckBox ckbShowLoggedOut;
         private System.Windows.Forms.CheckBox ckbEnableAutoReady;
 		private System.Windows.Forms.CheckBox ckbEnableAgentLogin;
         private System.Windows.Forms.Button btnPhoneSettings;

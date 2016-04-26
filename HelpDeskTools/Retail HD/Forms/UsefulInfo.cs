@@ -14,9 +14,14 @@ using System.IO;
 
 namespace Retail_HD.Forms
 {
-	
+	/// <summary>
+    /// Form that shows useful information separated by tabs
+    /// </summary>
 	public partial class UsefulInfo : Form
 	{
+        /// <summary>
+        /// <see cref="UsefulInfo"/>
+        /// </summary>
 		public UsefulInfo()
 		{
 			InitializeComponent();

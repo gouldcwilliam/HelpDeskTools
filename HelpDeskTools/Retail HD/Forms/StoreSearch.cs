@@ -5,10 +5,15 @@ using System.Data.SqlClient;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// <see cref="StoreSearch"/>
+    /// </summary>
 	public partial class StoreSearch : Form
 	{
 		private string _store = string.Empty;
-
+        /// <summary>
+        /// Search for a store by various fields
+        /// </summary>
 		public StoreSearch()
 		{
 			InitializeComponent();
@@ -33,14 +38,7 @@ namespace Retail_HD.Forms
 			p = new SqlParameter("@PHONE", System.Data.SqlDbType.VarChar); p.Value = Shared.SQL.DBNullIfEmpty(txtPhone.Text.Trim()); pList.Add(p);
 			p = new SqlParameter("@IP", System.Data.SqlDbType.VarChar); p.Value = Shared.SQL.DBNullIfEmpty(txtIP.Text.Trim()); pList.Add(p);
 
-			//System.Data.DataTable dt = Shared.SQL.Select(Shared.SQLSettings.Default._StoreSearch, pList);
-
-			//foreach (System.Data.DataRow dr in dt.Rows)
-			//{
-			//	Console.WriteLine(dr[0]);
-			//}
-			//dgvStores.DataSource = dt;
-
+			
 			dgvStores.DataSource = Shared.SQL.Select(Shared.SQLSettings.Default._StoreSearch, pList);
 		}
 

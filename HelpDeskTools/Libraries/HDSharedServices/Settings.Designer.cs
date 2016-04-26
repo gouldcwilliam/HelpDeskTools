@@ -13,11 +13,15 @@ namespace Shared {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static Settings Default {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return defaultInstance;
             }
@@ -26,7 +30,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("\\\\wwwint\\roc\\IS-Share\\Helpdesk\\Retail Helpdesk")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _NetworkShare {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_NetworkShare"]));
             }
@@ -38,7 +44,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("\\\\wwwint\\roc\\techtmp\\bergman\\Toolsmenu.bat")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _OldMenuPath {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_OldMenuPath"]));
             }
@@ -49,92 +57,10 @@ namespace Shared {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool _SettingsUpgradeCompleted {
-            get {
-                return ((bool)(this["_SettingsUpgradeCompleted"]));
-            }
-            set {
-                this["_SettingsUpgradeCompleted"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool _PeoplesoftUpgrade {
-            get {
-                return ((bool)(this["_PeoplesoftUpgrade"]));
-            }
-            set {
-                this["_PeoplesoftUpgrade"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool _PeoplesoftPopupThreadRunning {
-            get {
-                return ((bool)(this["_PeoplesoftPopupThreadRunning"]));
-            }
-            set {
-                this["_PeoplesoftPopupThreadRunning"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string _PeoplesoftUsername {
-            get {
-                return ((string)(this["_PeoplesoftUsername"]));
-            }
-            set {
-                this["_PeoplesoftUsername"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string _PeoplesoftPassword {
-            get {
-                return ((string)(this["_PeoplesoftPassword"]));
-            }
-            set {
-                this["_PeoplesoftPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool _ApplicationRetail {
-            get {
-                return ((bool)(this["_ApplicationRetail"]));
-            }
-            set {
-                this["_ApplicationRetail"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2015-03-01")]
-        public global::System.DateTime _MostRecentLogSent {
-            get {
-                return ((global::System.DateTime)(this["_MostRecentLogSent"]));
-            }
-            set {
-                this["_MostRecentLogSent"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("unlock.bat")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _BatUnlock {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_BatUnlock"]));
             }
@@ -146,7 +72,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("services.bat")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _BatServices {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_BatServices"]));
             }
@@ -158,7 +86,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\VeriFone\\MX915\\vfQueryUpdate\\args.xml")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _ArgsXMLpath {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_ArgsXMLpath"]));
             }
@@ -170,7 +100,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _TempPath {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_TempPath"]));
             }
@@ -182,7 +114,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("InstallEndpoint12.bat")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _BatEndpoint {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_BatEndpoint"]));
             }
@@ -194,7 +128,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ziplogs.bat")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _BatZip {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_BatZip"]));
             }
@@ -206,7 +142,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("zipper.ps1")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _PSZip {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_PSZip"]));
             }
@@ -218,7 +156,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("wsadmin.bat")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _WSAdmin {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_WSAdmin"]));
             }

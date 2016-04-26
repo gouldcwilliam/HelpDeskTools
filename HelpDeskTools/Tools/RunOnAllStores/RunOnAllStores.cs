@@ -71,13 +71,15 @@ namespace RunOnAllStores
 				computers.RemoveAll(x => x.Contains(excluded));
 			}
 
-			/* Testing stuff */
-			//computers.Clear(); computers.AddRange(new string[] { "durh5015sap1", "durh5015sap1a", "indi0791sap1" ,"SAND2029SAP1A", "WILL0796SAP1A"});
-            Console.WriteLine();
-			Console.WriteLine(
-				"Filter: {0}\n" +
-				"Computers: {1} | Executable: {2} | Arguments: {3}\n",
-				ADSearchFilter, computers.Count, executable, arguments);
+            /* Testing stuff */
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                Console.WriteLine();
+                Console.WriteLine(
+                    "Filter: {0}\n" +
+                    "Computers: {1} | Executable: {2} | Arguments: {3}\n",
+                    ADSearchFilter, computers.Count, executable, arguments);
+            }
 
 			/* ============================================================================================================= */
 

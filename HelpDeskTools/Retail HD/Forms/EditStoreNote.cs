@@ -3,12 +3,26 @@ using System.Collections.Generic;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// <see cref="EditStoreNote"/>
+    /// </summary>
 	public partial class EditStoreNote : Form
 	{
+        /// <summary>
+        /// Edit the store's notes
+        /// </summary>
 		public EditStoreNote()
 		{
 			InitializeComponent();
 		}
+        /// <summary>
+        /// <see cref="EditStoreNote"/>
+        /// </summary>
+        /// <param name="Edit"></param>
+        /// <param name="ID"></param>
+        /// <param name="Store"></param>
+        /// <param name="note"></param>
+        /// <param name="resolved"></param>
 		public EditStoreNote(bool Edit, int ID, int Store, string note, bool resolved)
 		{
 			InitializeComponent();

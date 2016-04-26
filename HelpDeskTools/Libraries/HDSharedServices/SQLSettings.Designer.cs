@@ -460,5 +460,45 @@ DECLARE @IP VARCHAR(50)")]
                 this["_StoreInfoPhone"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT 
+	Technicians.full_name AS Name, 
+	Technicians.technician AS [login], 
+	Technicians.id as ID, 
+	CurrentStatus, 
+	TimeStatusChanged, 
+	Information1, 
+	Information2 
+FROM 
+	AgentStatus 
+	INNER JOIN 
+		Technicians ON 
+			AgentStatus.TechnicianID = Technicians.id
+WHERE
+	[CurrentStatus] != 'LOGOUT' AND
+	[technician] != '{0}'
+")]
+        public string _AgentStatus {
+            get {
+                return ((string)(this["_AgentStatus"]));
+            }
+            set {
+                this["_AgentStatus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Setting {
+            get {
+                return ((string)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
+            }
+        }
     }
 }

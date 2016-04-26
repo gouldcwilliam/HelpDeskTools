@@ -10,8 +10,15 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    // TODO - this needs a revamp
+    /// <summary>
+    /// Bug reporting form
+    /// </summary>
 	public partial class ReportIssue : Form
 	{
+        /// <summary>
+        /// <see cref="ReportIssue"/>
+        /// </summary>
 		public ReportIssue()
 		{
 			InitializeComponent();

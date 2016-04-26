@@ -10,13 +10,22 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// New store form
+    /// </summary>
 	public partial class AddNewStore : Form
 	{
+        /// <summary>
+        /// Form to add a new store
+        /// </summary>
 		public AddNewStore()
 		{
 			InitializeComponent();
 		}
-
+        /// <summary>
+        /// <seealso cref="AddNewStore"/>
+        /// </summary>
+        /// <param name="store"></param>
 		public AddNewStore(string store)
 		{
 			InitializeComponent();

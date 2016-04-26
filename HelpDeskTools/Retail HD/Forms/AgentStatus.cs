@@ -12,16 +12,24 @@ using CiscoFinesseNET;
 
 namespace Retail_HD.Forms
 {
-    public partial class frmAgentStatus : Form
+    // TODO - needs a cleaner UI
+
+    /// <summary>
+    /// Agent status form
+    /// </summary>
+    public partial class AgentStatus : Form
     {
         Timer _t = new Timer();
-		BindingList<AgentStatus> agents = new BindingList<AgentStatus>();
+		BindingList<Classes.AgentStatus> agents = new BindingList<Classes.AgentStatus>();
         const string ButtonText = "Change Status: {0}"; //parameter is for Status
         const string NoChangeText = "Unavailable"; //display if status change is not possible
         CiscoFinesseNET.UserState availableState = CiscoFinesseNET.UserState.READY;
         bool AllowLogout = false;
 
-        public frmAgentStatus()
+        /// <summary>
+        /// <seealso cref="AgentStatus"/>
+        /// </summary>
+        public AgentStatus()
         {
             InitializeComponent();
 
@@ -54,92 +62,36 @@ namespace Retail_HD.Forms
             UpdateInfo();
         }
 
-        private string MakeQuery(bool showMe, bool showOffline)
+        private string MakeQuery(bool showMe)
         {
-            //SELECT Technicians.full_name AS Name, Technicians.technician AS login, Technicians.id as ID, CurrentStatus, TimeStatusChanged, Information1, Information2 FROM AgentStatus INNER JOIN Technicians ON AgentStatus.TechnicianID = Technicians.id WHERE Technicians.technician <> 'kiddjo' AND CurrentStatus <> 'LOGOUT';
-            string baseQuery = "SELECT Technicians.full_name AS Name, Technicians.technician AS login, Technicians.id as ID, CurrentStatus, TimeStatusChanged, Information1, Information2 FROM AgentStatus INNER JOIN Technicians ON AgentStatus.TechnicianID = Technicians.id";
-            string excludeMe = string.Format("Technicians.technician <> '{0}'", System.Environment.UserName);
-            string excludeOffline = "CurrentStatus <> 'LOGOUT'";
-
-            if (showMe && showOffline)
-            {
-                return baseQuery + ";"; //i like semicolons
-            }
-            else if (!showMe && showOffline)
-            {
-                return string.Format("{0} WHERE {1};", baseQuery, excludeMe);
-            }
-            else if (!showOffline && showMe)
-            {
-                return string.Format("{0} WHERE {1};", baseQuery, excludeOffline);
-            }
-            else
-            {
-                return string.Format("{0} WHERE {1} AND {2};", baseQuery, excludeOffline, excludeMe);
-            }
+            string tech = Environment.UserName.ToUpper();
+            if(showMe) { tech = ""; }
+            return string.Format(Shared.SQLSettings.Default._AgentStatus, tech);
         }
 
         private void UpdateInfo()
         {
             agents.Clear();
-			string query = MakeQuery(Properties.Settings.Default._ShowMeInAgentStatus, Properties.Settings.Default._ShowLoggedOutUsers);
-			//query = MakeQuery(Config.PerUser.Load().ShownInAgentStatus, Config.PerUser.Load().ShowLoggedOutUsers);
+            dgvAgents.DataSource= Shared.SQL.Select(MakeQuery(Properties.Settings.Default._ShowMeInAgentStatus));
 
-            //if (Settings.Default._ShowLoggedOutUsers) query = "SELECT Technicians.full_name AS Name, Technicians.technician AS login, Technicians.id as ID, CurrentStatus, TimeStatusChanged, Information1, Information2 FROM AgentStatus INNER JOIN Technicians ON AgentStatus.TechnicianID = Technicians.id;";
-            //else query = "SELECT Technicians.full_name AS Name, Technicians.technician AS login, Technicians.id as ID, CurrentStatus, TimeStatusChanged, Information1, Information2 FROM AgentStatus INNER JOIN Technicians ON AgentStatus.TechnicianID = Technicians.id WHERE CurrentStatus <> 'LOGOUT';";
-
-            System.Data.DataTable dt = Shared.SQL.Select(query);
-            //update the List of Agents here
-            agents.Clear();
-            foreach (DataRow _r in dt.Rows)
+            try
             {
-                CiscoFinesseNET.AgentStatus _a = new CiscoFinesseNET.AgentStatus();
-                _a.AgentID = int.Parse(_r["ID"].ToString());
-                _a.AgentName = _r["Name"].ToString();
-                _a.CurrentStatus = (CiscoFinesseNET.UserState)Enum.Parse(typeof(CiscoFinesseNET.UserState), _r["CurrentStatus"].ToString());
-                _a.Information1 = _r["Information1"].ToString();
-                _a.Information2 = _r["Information2"].ToString();
-                _a.LoginName = _r["login"].ToString();
-                _a.TimeStatusChanged = DateTime.Parse(_r["TimeStatusChanged"].ToString());
-
-                //make sure this agent isn't already in the list, if they are update them, otherwise add
-
-                agents.Add(_a);
+                dgvAgents.Columns["login"].Visible = false;
+                dgvAgents.Columns["ID"].Visible = false;
+                dgvAgents.Columns["Information2"].Visible = false;
+                if (!(dgvAgents.ContextMenuStrip != null)) //because if you check for equivilence to null, you get a null reference exception... LOL
+                {
+                    if ((CiscoFinesseNET.Helper.loggedInUser.role & CiscoFinesseNET.Role.Supervisor) == CiscoFinesseNET.Role.Supervisor)
+                    {
+                        dgvAgents.ContextMenuStrip = cmsAdmin;
+                    }
+                    else
+                    {
+                        dgvAgents.ContextMenuStrip = cmsUser;
+                    }
+                }
             }
-
-            if (agents.Count < 1) //no agents logged in, or no one besides you is logged in
-            {
-                AgentStatus _a = new AgentStatus();
-                _a.AgentName = "No one logged in.";
-                _a.AgentID = 0;
-                _a.CurrentStatus = CiscoFinesseNET.UserState.UNKNOWN;
-                _a.Information1 = "";
-                _a.Information2 = "";
-                _a.LoginName = "";
-                _a.TimeStatusChanged = DateTime.Now;
-                agents.Add(_a);
-            }
-            
-            //if we are not showing the currently logged in user, find and remove them from the list now
-
-            BuildDGV();
-
-            if (agents[0].AgentName == "No one logged in." && dgvAgents.Columns.Count > 2)
-            {
-                //remove the status column....
-                dgvAgents.Columns.Remove("Current Status");
-                dgvAgents.Columns.Remove("Information");
-                dgvAgents.Columns["Name"].HeaderText = " ";
-
-                //disable context menu
-                dgvAgents.ContextMenuStrip = null;
-            }
-
-            if (dgvAgents.Rows.Count < 1)
-            {
-                dgvAgents.DataSource = agents;
-            }
-            //dgvAgents.Refresh();
+            catch (Exception) {; }
         }
 
         private void frmAgentStatus_FormClosing(object sender, FormClosingEventArgs e)
@@ -147,64 +99,29 @@ namespace Retail_HD.Forms
             _t.Stop();
         }
 
-        private void BuildDGV()
-        {
-            //check if this has already been done
-            if (dgvAgents.Columns.Count > 1) return;
-            else if (dgvAgents.Columns.Count == 1) dgvAgents.Columns.RemoveAt(0); //gets rid of the extra name column
 
-            if (!(dgvAgents.ContextMenuStrip != null)) //because if you check for equivilence to null, you get a null reference exception... LOL
-            {
-                if ((CiscoFinesseNET.Helper.loggedInUser.role & CiscoFinesseNET.Role.Supervisor) == CiscoFinesseNET.Role.Supervisor)
-                {
-                    dgvAgents.ContextMenuStrip = cmsAdmin;
-                }
-                else
-                {
-                    dgvAgents.ContextMenuStrip = cmsUser;
-                }
-            }
-
-            dgvAgents.AutoGenerateColumns = false;
-            dgvAgents.Columns.Add("Name", "Name");
-            dgvAgents.Columns.Add("Current Status", "Current Status");
-            dgvAgents.Columns.Add("Information", "Information");
-
-            dgvAgents.Columns["Name"].FillWeight = 18.0f;
-            dgvAgents.Columns["Information"].FillWeight = 30.0f;
-
-            dgvAgents.Columns["Name"].DataPropertyName = "AgentName";
-            dgvAgents.Columns["Information"].DataPropertyName = "Information1";
-
-            if ((CiscoFinesseNET.Helper.loggedInUser.role & CiscoFinesseNET.Role.Supervisor) == CiscoFinesseNET.Role.Supervisor)
-            {
-                dgvAgents.Columns["Current Status"].FillWeight = 30.0f;
-                dgvAgents.Columns["Current Status"].DataPropertyName = "statusSince";
-            }
-            else
-            {
-                dgvAgents.Columns["Current Status"].FillWeight = 18.0f;
-                dgvAgents.Columns["Current Status"].DataPropertyName = "CurrentStatus";
-            }
-
-            //dgvAgents.AutoResizeColumns();
-        }
 
         private void btnChangeStatus_Click(object sender, EventArgs e)
         {
             //need basically the same code from the main page here
-            DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
-
+            Classes.AgentStatus _s = new Classes.AgentStatus();
+            //figure out which agent is being opened, and adjust the change status button to accurately reflect that
+            if (dgvAgents.SelectedRows.Count > 0)
+            {
+                _s = new Classes.AgentStatus(dgvAgents.SelectedRows[0]);
+            }
             CiscoFinesseNET.Helper.ChangeOtherUserState(availableState, _s.LoginName.ToLower());
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             //this... will probably work?
-            DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
-
+            Classes.AgentStatus _s = new Classes.AgentStatus();
+            //figure out which agent is being opened, and adjust the change status button to accurately reflect that
+            if (dgvAgents.SelectedRows.Count > 0)
+            {
+                _s = new Classes.AgentStatus(dgvAgents.SelectedRows[0]);
+            }
             if (_s.CurrentStatus == CiscoFinesseNET.UserState.READY)
             {
                 //change to not ready first
@@ -218,10 +135,12 @@ namespace Retail_HD.Forms
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             _t.Stop(); //prevents that stupid refresh bullshit
-
+            Classes.AgentStatus _s = new Classes.AgentStatus();
             //figure out which agent is being opened, and adjust the change status button to accurately reflect that
-            DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
+            if(dgvAgents.SelectedRows.Count>0)
+            {
+                _s = new Classes.AgentStatus(dgvAgents.SelectedRows[0]);
+            }
             if (_s.LoginName.ToLower() == System.Environment.UserName.ToLower() || !isNumeric(_s.Information2))
             {
                 btnCallUser.Enabled = false;
@@ -267,9 +186,12 @@ namespace Retail_HD.Forms
         private void CallUser_Click(object sender, EventArgs e)
         {
             //call the currently selected user
-            DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
-
+            Classes.AgentStatus _s = new Classes.AgentStatus();
+            //figure out which agent is being opened, and adjust the change status button to accurately reflect that
+            if (dgvAgents.SelectedRows.Count > 0)
+            {
+                _s = new Classes.AgentStatus(dgvAgents.SelectedRows[0]);
+            }
             //unless it's you, you can't call you silly!
             if (_s.LoginName.ToLower() == System.Environment.UserName.ToLower())
             {
@@ -303,9 +225,12 @@ namespace Retail_HD.Forms
         {
             _t.Stop();
 
-            DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
-
+            Classes.AgentStatus _s = new Classes.AgentStatus();
+            //figure out which agent is being opened, and adjust the change status button to accurately reflect that
+            if (dgvAgents.SelectedRows.Count > 0)
+            {
+                _s = new Classes.AgentStatus(dgvAgents.SelectedRows[0]);
+            }
             if (_s.LoginName.ToLower() == System.Environment.UserName.ToLower() || !isNumeric(_s.Information2))
             {
                 btnCallUser.Enabled = false;

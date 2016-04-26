@@ -31,11 +31,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\Retail HD\Latest\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Shared.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint.Client, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -52,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Computer.cs" />
+    <Compile Include="SharedClasses\Computer.cs" />
     <Compile Include="Configs\PerUser.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="GlobalResources1.Designer.cs">
@@ -67,7 +68,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SharedClasses\SQL.cs" />
-    <Compile Include="SharedClasses\UserDetails.cs" />
     <Compile Include="SQLSettings.Designer.cs">
       <DependentUpon>SQLSettings.settings</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -75,6 +75,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Funny\wat-help.jpg" />
     <Content Include="Resources\Music\Contra_33.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -197,10 +198,6 @@
     <ProjectReference Include="..\AD\AD.csproj">
       <Project>{f9643ea4-49cf-4fa2-b2fb-771abb20cbf6}</Project>
       <Name>AD</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CiscoFinesseNET\CiscoFinesseNET.csproj">
-      <Project>{3e9001a4-fd82-4b28-81c4-9720c607c62a}</Project>
-      <Name>CiscoFinesseNET</Name>
     </ProjectReference>
     <ProjectReference Include="..\LDAP\LDAP.csproj">
       <Project>{5a5601e8-c1b8-43ab-961b-3deb1bc5b06e}</Project>

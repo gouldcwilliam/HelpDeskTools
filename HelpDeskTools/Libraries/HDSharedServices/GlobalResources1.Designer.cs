@@ -87,9 +87,9 @@ namespace Shared {
         ///  &lt;tblArgs&gt;
         ///    &lt;Argument&gt;ip [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string args {
+        public static string argsXML {
             get {
-                return ResourceManager.GetString("args", resourceCulture);
+                return ResourceManager.GetString("argsXML", resourceCulture);
             }
         }
         
@@ -211,7 +211,9 @@ namespace Shared {
         ///
         ///net localgroup administrators wwwint\wsadmin /delete
         ///
-        ///net localgroup administrators wwwint\wsadminsretail /add.
+        ///net localgroup administrators wwwint\wsadminsretail /add
+        ///
+        ///ping -n 6 127.0.0.1 &gt; NUL.
         /// </summary>
         public static string batWSAdmin {
             get {
@@ -1095,6 +1097,16 @@ namespace Shared {
         public static System.Drawing.Bitmap sundial {
             get {
                 object obj = ResourceManager.GetObject("sundial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap wat_help {
+            get {
+                object obj = ResourceManager.GetObject("wat_help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -101,7 +101,13 @@
         #endregion
 
 		private System.Windows.Forms.TextBox txtMessage;
+
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnOK;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnCancel;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

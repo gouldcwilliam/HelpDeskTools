@@ -3,11 +3,14 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// form for displaying messages and obtaining DialogResults
+    /// </summary>
     public partial class Confirm : Form
     {
 		/*	INSTANTIATE	*/
 		/// <summary>
-		/// form for displaying messages and obtaining DialogResults
+		/// <see cref="Confirm"/>
 		/// </summary>
 		/// <param name="Message">Text displayed in body</param>
         public Confirm(string Message)
@@ -15,20 +18,22 @@ namespace Retail_HD.Forms
             InitializeComponent();
 			this.txtMessage.Text = Message;
         }
-		/// <summary>
-		/// form for displaying messages and obtaining DialogResults
-		/// </summary>
-		/// <param name="ShowCancel">visibility of cancel button</param>
-		public Confirm(string Message, bool ShowCancel)
+        /// <summary>
+        /// <see cref="Confirm"/>
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="ShowCancel"></param>
+        public Confirm(string Message, bool ShowCancel)
 		{
 			InitializeComponent();
 			this.txtMessage.Text = Message;
 			this.btnCancel.Visible = ShowCancel;
 		}
 		/// <summary>
-		/// form for displaying messages and obtaining DialogResults
-		/// </summary>
-		/// <param name="Title">window's title</param>
+        /// <see cref="Confirm"/>
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Title"></param>
 		public Confirm(string Message, string Title)
 		{
 			InitializeComponent();

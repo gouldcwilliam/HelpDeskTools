@@ -13,22 +13,19 @@
 		/// <param name="Value">Value of LDAP attribute</param>
 		public Result(string Attribute, string Value)
 		{
-			attribute = Attribute;
-			value = Value;
+			this.Attribute = Attribute;
+			this.Value = Value;
 		}
-
-		private string attribute { get; set; }
-		private string value { get; set; }
 
 		/// <summary>
 		/// Gets or sets the name of the LDAP Property
 		/// </summary>
-		public string Attribute { get { return attribute; } }
+		public string Attribute { get; set; }
 
 		/// <summary>
 		/// LDAP Property Value
 		/// </summary>
-		public string Value { get { return value; } }
+		public string Value { get; set; }
 
 		/// <summary>
 		/// Gets the string value
@@ -37,7 +34,25 @@
 		/// <returns></returns>
 		public static string GetValue(Result result)
 		{
-			return result.value;
+			return result.Value;
 		}
-	}
+
+        /// <summary>
+        /// Allows casting a Result as a string
+        /// </summary>
+        /// <param name="result">Attribute/Value pair object</param>
+        public static implicit operator string(Result result)
+        {
+            return result.Value;
+        }
+
+        /// <summary>
+        /// Allows casting strings as a Result
+        /// </summary>
+        /// <param name="resultValue">Result.Value as string</param>
+        public static implicit operator Result(string resultValue)
+        {
+            return new Result(string.Empty, resultValue);
+        }
+    }
 }

@@ -16,422 +16,14 @@ namespace Shared
 	/// </summary>
 	public static class Functions
     {
-        #region Variables for global/peoplesoft functionality
-        const string FINDBirthdate = "<span  class='PSEDITBOX_DISPONLY' id='W_PERS_INFO_WRK_W_PERS_INFO'>";
-        const string FINDName = "<span  class='PALEVEL0SECONDARY' id='PSOPRDEFN_OPRDEFNDESC'>";
-        const string Shoebox_LoginURI = Shoebox_BaseURI + "/psp/PSPRDWS/?cmd=login&languageCd=ENG";
-        const string Shoebox_LogoutURI = Shoebox_BaseURI + "/psp/PSPRDWS/EMPLOYEE/HRMS/?cmd=logout";
-        const string Shoebox_BaseURI = "http://rocpsp02";
-        const string Shoebox_UserLookup = Shoebox_BaseURI + "/psc/PSPRDWS/EMPLOYEE/HRMS/c/W_SETUP_HRMS.W_USERMAINT.GBL";
-        const string Shoebox_MISC = Shoebox_BaseURI + "/psc/PSPRDWS/EMPLOYEE/HRMS/c/W_SETUP_HRMS.W_USERMAINT.GBL?FolderPath=PORTAL_ROOT_OBJECT.PT_PEOPLETOOLS.PT_SECURITY.PT_USER_PROFILES.W_USERMAINT&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder&PortalActualURL=http%3a%2f%2frocpsp02%2fpsc%2fPSPRDWS%2fEMPLOYEE%2fHRMS%2fc%2fW_SETUP_HRMS.W_USERMAINT.GBL&PortalContentURL=http%3a%2f%2frocpsp02%2fpsc%2fPSPRDWS%2fEMPLOYEE%2fHRMS%2fc%2fW_SETUP_HRMS.W_USERMAINT.GBL&PortalContentProvider=HRMS&PortalCRefLabel=User%20Profile%20HelpDesk-WWW&PortalRegistryName=EMPLOYEE&PortalServletURI=http%3a%2f%2frocpsp02%2fpsp%2fPSPRDWS%2f&PortalURI=http%3a%2f%2frocpsp02%2fpsc%2fPSPRDWS%2f&PortalHostNode=HRMS&NoCrumbs=yes&PortalKeyStruct=yes";
-        static CookieContainer cookieJar = new CookieContainer();
-        #endregion
-
-        #region Functions for global/peoplesoft functionality
-        public static void ClearCookies()
-        {
-            cookieJar = new CookieContainer();
-        }
-
-        public static string LoginToPeoplesoft(string username, string password)
-        {
-            //logs in using the specified username and password
-            HttpWebRequest request = null;
-
-            try
-            {
-                request = WebRequest.Create(Shoebox_LoginURI) as HttpWebRequest;
-                request.CookieContainer = cookieJar;
-                request.Method = "POST";
-                request.UserAgent = "Helpdesk Tools (IE compatible)";
-
-                using (Stream stream = request.GetRequestStream())
-                {
-                    string postData = string.Format("timezoneOffset=300&userid={0}&pwd={1}", username, password);
-
-                    char[] reqData = postData.ToCharArray();
-                    byte[] byteStream = Encoding.UTF8.GetBytes(reqData);
-
-                    request.ContentType = "application/x-www-form-urlencoded";
-                    stream.Write(byteStream, 0, byteStream.Length);
-                }
-
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
-                    using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-                    {
-                        return sr.ReadToEnd();
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                if (ex is WebException)
-                {
-                    string a = "";
-
-                    using (StreamReader sr = new StreamReader((ex as WebException).Response.GetResponseStream()))
-                    {
-                        a = sr.ReadToEnd();
-                    }
-
-                    if (a != string.Empty) ;
-                }
-                throw;
-            }
-        }
+        #region AD functions
 
         /// <summary>
-        /// Search Peoplesoft for user info by employee number
+        /// Resets AD password
         /// </summary>
-        /// <param name="empNumber"></param>
+        /// <param name="username">sAMAccountName</param>
+        /// <param name="newPassword">Yep</param>
         /// <returns></returns>
-        public static string LookupUser(string empNumber)
-        {
-            HttpWebRequest request = null;
-
-            try
-            {
-                request = WebRequest.Create(Shoebox_MISC) as HttpWebRequest;
-                request.CookieContainer = cookieJar;
-                request.Method = "GET";
-                request.UserAgent = "Helpdesk Tools (IE compatible)";
-                request.Referer = "http://rocpsp02/psp/PSPRDWS/EMPLOYEE/HRMS/c/W_SETUP_HRMS.W_USERMAINT.GBL?FolderPath=PORTAL_ROOT_OBJECT.PT_PEOPLETOOLS.PT_SECURITY.PT_USER_PROFILES.W_USERMAINT&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder";
-
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
-                }
-                //looks up the user by employee number
-                request = WebRequest.Create(Shoebox_UserLookup) as HttpWebRequest;
-                request.CookieContainer = cookieJar;
-                request.Method = "POST";
-                request.UserAgent = "Helpdesk Tools (IE compatible)";
-                request.Referer = "http://rocpsp02/psc/PSPRDWS/EMPLOYEE/HRMS/c/W_SETUP_HRMS.W_USERMAINT.GBL?FolderPath=PORTAL_ROOT_OBJECT.PT_PEOPLETOOLS.PT_SECURITY.PT_USER_PROFILES.W_USERMAINT&IsFolder=false&IgnoreParamTempl=FolderPath%2cIsFolder&PortalActualURL=http%3a%2f%2frocpsp02%2fpsc%2fPSPRDWS%2fEMPLOYEE%2fHRMS%2fc%2fW_SETUP_HRMS.W_USERMAINT.GBL&PortalContentURL=http%3a%2f%2frocpsp02%2fpsc%2fPSPRDWS%2fEMPLOYEE%2fHRMS%2fc%2fW_SETUP_HRMS.W_USERMAINT.GBL&PortalContentProvider=HRMS&PortalCRefLabel=User%20Profile%20HelpDesk-WWW&PortalRegistryName=EMPLOYEE&PortalServletURI=http%3a%2f%2frocpsp02%2fpsp%2fPSPRDWS%2f&PortalURI=http%3a%2f%2frocpsp02%2fpsc%2fPSPRDWS%2f&PortalHostNode=HRMS&NoCrumbs=yes&PortalKeyStruct=yes";
-
-                using (Stream stream = request.GetRequestStream())
-                {
-                    //string postData = string.Format("timezoneOffset=300&userid={0}&pwd={1}", username, password);
-                    string postData = string.Format("ICAJAX=1&ICNAVTYPEDROPDOWN=1&ICType=Panel&ICElementNum=0&ICStateNum=1&ICAction=%23KEY%0D%0A&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=W_OPRDEFN_SRCH_OPRID&ICSaveWarningFilter=0&ICChanged=-1&ICResubmit=0&ICSID=54T1dU88y%2BwmeGp7QsC5UyhVZ7ml5Qj9HgLjoHbwmEc%3D&ICActionPrompt=false&ICFind=&ICAddCount=&ICAPPCLSDATA=&#ICKeySelect=0&W_OPRDEFN_SRCH_OPRID$op=1&W_OPRDEFN_SRCH_OPRID={0}", empNumber);
-
-                    char[] reqData = postData.ToCharArray();
-                    byte[] byteStream = Encoding.UTF8.GetBytes(reqData);
-
-                    request.ContentType = "application/x-www-form-urlencoded";
-                    stream.Write(byteStream, 0, byteStream.Length);
-                }
-
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
-                    using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-                    {
-                        return sr.ReadToEnd();
-                    }
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public static string LogoutPeoplesoft()
-        {
-
-            HttpWebRequest request = null;
-
-            try
-            {
-                //http://rocpsp02/psp/PSPRDWS/EMPLOYEE/HRMS/?cmd=logout
-
-                request = WebRequest.Create(Shoebox_LogoutURI) as HttpWebRequest;
-                request.CookieContainer = cookieJar;
-                request.Method = "GET";
-                request.UserAgent = "Helpdesk Tools (IE compatible)";
-
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
-                    using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-                    {
-                        return sr.ReadToEnd();
-                    }
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public static UserDetails FindNameBirthdate(string lookupDetails)
-        {
-            //for testing *REMOVE*
-            //ResetPeoplesoftPassword(lookupDetails);
-            // /testing
-            try
-            {
-
-                UserDetails retVal = new UserDetails();
-
-                if (lookupDetails.ToLower().Contains("no matching values were found"))
-                {
-                    retVal.name = "No matching employees.";
-                    retVal.birthday = string.Empty;
-                    return retVal;
-                }
-
-                retVal.name = lookupDetails.Split(new string[] { FINDName }, StringSplitOptions.RemoveEmptyEntries)[1].Split(new string[] { "</span>" }, StringSplitOptions.RemoveEmptyEntries)[0];
-                retVal.birthday = lookupDetails.Split(new string[] { FINDBirthdate }, StringSplitOptions.RemoveEmptyEntries)[1].Split(new string[] { "</span>" }, StringSplitOptions.RemoveEmptyEntries)[0];
-
-                return retVal;
-            }
-            catch
-            {
-                System.Windows.Forms.MessageBox.Show("Your search was either too vauge, or returned no results", "Search Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                return new UserDetails("No matching employees.", "");
-            }
-        }
-
-        public static bool ResetPeoplesoftPassword(string lookupDetails)
-        {
-            //find out if this account is locked out or not
-            bool isLockedOut = (lookupDetails.Split(new string[] { "<input type='hidden' name='PSOPRDEFN_ACCTLOCK$chk' id='PSOPRDEFN_ACCTLOCK$chk' value=\"" }, StringSplitOptions.RemoveEmptyEntries)[1].Split(new string[] { "\"" }, StringSplitOptions.RemoveEmptyEntries)[0] == "1") ? true : false;
-
-            if (isLockedOut)
-            {
-                HttpWebRequest request = null;
-
-                try
-                {
-                    //http://rocpsp02/psp/PSPRDWS/EMPLOYEE/HRMS/?cmd=logout
-
-                    request = WebRequest.Create(Shoebox_UserLookup) as HttpWebRequest;
-                    request.CookieContainer = cookieJar;
-                    request.Method = "POST";
-                    request.Timeout = 5000;
-                    request.UserAgent = "Helpdesk Tools (IE compatible)";
-
-                    using (Stream stream = request.GetRequestStream())
-                    {
-                        //string postData = string.Format("timezoneOffset=300&userid={0}&pwd={1}", username, password);
-                        //ICAJAX=1&ICNAVTYPEDROPDOWN=1&ICType=Panel&ICElementNum=0&ICStateNum=3&ICAction=%23ICSave&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=&ICSaveWarningFilter=0&ICChanged=0&ICResubmit=0&ICSID=6idQTGACipFWyHiioVcNLJCHz%2FbWTpt6V8DMHsML9%2FA%3D&ICActionPrompt=false&ICFind=&ICAddCount=&ICAPPCLSDATA=&PSOPRDEFN_ACCTLOCK$chk=0
-                        string postData = string.Format("ICAJAX=1&ICNAVTYPEDROPDOWN=1&ICType=Panel&ICElementNum=0&ICStateNum=1&ICAction=%23KEY%0D%0A&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=W_OPRDEFN_SRCH_OPRID&ICSaveWarningFilter=0&ICChanged=-1&ICResubmit=0&ICSID=54T1dU88y%2BwmeGp7QsC5UyhVZ7ml5Qj9HgLjoHbwmEc%3D&ICActionPrompt=false&ICFind=&ICAddCount=&ICAPPCLSDATA=&#ICKeySelect=0&W_OPRDEFN_SRCH_OPRID$op=1&W_OPRDEFN_SRCH_OPRID={0}", "");
-
-                        char[] reqData = postData.ToCharArray();
-                        byte[] byteStream = Encoding.UTF8.GetBytes(reqData);
-
-                        request.ContentType = "application/x-www-form-urlencoded";
-                        stream.Write(byteStream, 0, byteStream.Length);
-                    }
-
-                    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                    {
-                    }
-                }
-                catch
-                {
-                    throw;
-                }
-            }
-
-            return true;
-        }
-
-        private static List<LDAP.Result> results = null;
-
-        public static string LookupUserAD(string empNumber)
-        {
-            try
-            {
-                empNumber = DropLeadingZeros(empNumber);
-                string ldapquery = "LDAP://DC=wwwint,DC=corp";
-                string strFilter = "(&(objectCategory=user)((employeeNumber={0})))";
-                List<LDAP.Result> result = AD.SearchAD(ldapquery, string.Format(strFilter, empNumber), false);
-                results = result;
-
-                //survey says.... find me the info!!!!
-                return result.Find(e => e.Attribute.ToLower() == "sAMAccountName".ToLower()).Value;
-            }
-            catch
-            {
-                return "Not Found";
-            }
-        }
-
-        public static string LookupUserDepartmentAD(string empNumber)
-        {
-            try
-            {
-                empNumber = DropLeadingZeros(empNumber);
-
-                if (results != null)
-                {
-                    if (results.Find(e => e.Attribute.ToLower() == "employeeNumber".ToLower()).Value == empNumber)
-                    {
-                        return results.Find(e => e.Attribute.ToLower() == "department".ToLower()).Value;
-                    }
-                }
-
-                //if we make it this far, we need to look up the user
-                string ldapquery = "LDAP://DC=wwwint,DC=corp";
-                string strFilter = "(&(objectCategory=user)((employeeNumber={0})))";
-                List<LDAP.Result> result = AD.SearchAD(ldapquery, string.Format(strFilter, empNumber), false);
-                results = result;
-
-                return result.Find(e => e.Attribute.ToLower() == "department".ToLower()).Value;
-            }
-            catch
-            {
-                return string.Empty;
-            }
-        }
-
-        public static string LookupUserJobTitleAD(string empNumber)
-        {
-            try
-            {
-                empNumber = DropLeadingZeros(empNumber);
-
-                if (results != null)
-                {
-                    if (results.Find(e => e.Attribute.ToLower() == "employeeNumber".ToLower()).Value == empNumber)
-                    {
-                        return results.Find(e => e.Attribute.ToLower() == "title".ToLower()).Value;
-                    }
-                }
-
-                //if we make it this far, we need to look up the user
-                string ldapquery = "LDAP://DC=wwwint,DC=corp";
-                string strFilter = "(&(objectCategory=user)((employeeNumber={0})))";
-                List<LDAP.Result> result = AD.SearchAD(ldapquery, string.Format(strFilter, empNumber), false);
-                results = result;
-
-                return result.Find(e => e.Attribute.ToLower() == "title".ToLower()).Value;
-            }
-            catch
-            {
-                return string.Empty;
-            }
-        }
-
-        public static string LookupUserSupervisorAD(string empNumber)
-        {
-            try
-            {
-                string man = string.Empty;
-
-                //find out the CN of the manager
-                string[] test = null;
-
-                int CNloc = 0;
-
-                empNumber = DropLeadingZeros(empNumber);
-
-                if (results != null)
-                {
-                    if (results.Find(e => e.Attribute.ToLower() == "employeeNumber".ToLower()).Value == empNumber)
-                    {
-                        //manager
-                        man = results.Find(e => e.Attribute.ToLower() == "manager".ToLower()).Value;
-
-                        //find out the CN of the manager
-                        test = man.Split('=');
-
-                        CNloc = 0;
-
-                        foreach (string s in test)
-                        {
-                            if (s.Contains("CN"))
-                            {
-                                CNloc++;
-                                break;
-                            }
-                            else CNloc++;
-                        }
-
-                        System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex(@"(?<!\\),");
-                        test = reg.Split(test[CNloc]);
-
-                        return string.Format("{0}{1}", test[0].Split('\\')[0], test[0].Split('\\')[1]);
-                    }
-                }
-
-                //if we make it this far, we need to look up the user
-                string ldapquery = "LDAP://DC=wwwint,DC=corp";
-                string strFilter = "(&(objectCategory=user)((employeeNumber={0})))";
-                List<LDAP.Result> result = AD.SearchAD(ldapquery, string.Format(strFilter, empNumber), false);
-                results = result;
-
-                //get manager
-                man = results.Find(e => e.Attribute.ToLower() == "manager".ToLower()).Value;
-
-                //find out the CN of the manager
-                test = man.Split('=');
-
-                CNloc = 0;
-
-                foreach (string s in test)
-                {
-                    if (s.Contains("CN"))
-                    {
-                        CNloc++;
-                        break;
-                    }
-                    else CNloc++;
-                }
-
-                System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"(?<!\\),");
-                test = regex.Split(test[CNloc]);
-
-                return string.Format("{0}{1}", test[0].Split('\\')[0], test[0].Split('\\')[1]);
-            }
-            catch
-            {
-                return string.Empty;
-            }
-        }
-
-        public static System.Drawing.Bitmap GetADImage(string empNumber)
-        {
-            try
-            {
-                empNumber = DropLeadingZeros(empNumber);
-                string ldapquery = "LDAP://DC=wwwint,DC=corp";
-                string strFilter = "(&(objectCategory=user)((employeeNumber={0})))";
-                System.DirectoryServices.SearchResult result = AD.SearchADOneResult(ldapquery, string.Format(strFilter, empNumber));
-
-                byte[] bytes = result.Properties["jpegPhoto"][0] as byte[];
-                System.ComponentModel.TypeConverter tc = System.ComponentModel.TypeDescriptor.GetConverter(typeof(System.Drawing.Bitmap));
-                System.Drawing.Bitmap bm = (System.Drawing.Bitmap)tc.ConvertFrom(bytes);
-
-                return bm;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        public static string DropLeadingZeros(string empNum)
-        {
-            char[] split = empNum.ToCharArray();
-            int indexOfFirstNonZero = 0;
-
-            foreach (char testitem in split)
-            {
-                if (isNumeric(testitem))
-                {
-                    if (int.Parse(testitem.ToString()) == 0)
-                    {
-                        indexOfFirstNonZero++;
-                    }
-                    else break;
-                }
-                else break;
-            }
-
-            return empNum.Substring(indexOfFirstNonZero);
-        }
-
         public static bool ResetUserPWDAD(string username, string newPassword)
         {
             try
@@ -453,6 +45,11 @@ namespace Shared
             return true;
         }
 
+        /// <summary>
+        /// Determine lockout status
+        /// </summary>
+        /// <param name="username">sAMAccountName</param>
+        /// <returns></returns>
         public static bool IsUserLockedout(string username)
         {
             try
@@ -471,6 +68,11 @@ namespace Shared
             }
         }
 
+        /// <summary>
+        /// Determine if account is disabled
+        /// </summary>
+        /// <param name="username">sAMAccountName</param>
+        /// <returns></returns>
         public static bool IsUserDisabled(string username)
         {
             try
@@ -489,6 +91,11 @@ namespace Shared
             }
         }
 
+        /// <summary>
+        /// Unlock a locked AD account
+        /// </summary>
+        /// <param name="username">sAMAccountName</param>
+        /// <returns></returns>
         public static bool UnlockUserPWDAD(string username)
         {
             try
@@ -507,12 +114,8 @@ namespace Shared
             }
             return true;
         }
-        #endregion
-
-
-
-
-		/// <summary> Search AD for user by phone number
+        
+        /// <summary> Search AD for user by phone number
 		/// </summary>
 		/// <param name="number"></param>
 		/// <returns>username as a string</returns>
@@ -539,46 +142,22 @@ namespace Shared
             }
         }
 
-
-
-
-		/// <summary> Search for DNS entry by hostname
-		/// </summary>
-		/// <param name="hostname"></param>
-		/// <returns></returns>
-        public static bool DnsLookup(string hostname)
-		{
-			System.Net.IPHostEntry host;
-			try
-			{
-				host = System.Net.Dns.GetHostEntry(hostname);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				Console.WriteLine("Exception caught during DNS lookup\nThe computer is not online");
-				System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Exception", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-				return false;
-			}
-			if (host == null || host.AddressList.GetLength(0) == 0)
-			{
-				Console.WriteLine("No addresses availible for the hostname");
-				System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Failed", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-				return false;
-			}
-			return true;
-		}
+        #endregion
 
 
 
 
-		/// <summary> Send an email
-		/// </summary>
-		/// <param name="to"></param>
-		/// <param name="body"></param>
-		/// <param name="subject"></param>
-		/// <returns></returns>
-		public static bool SendEmail(string to, string body, string subject)
+
+
+
+
+        /// <summary> Send an email
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="body"></param>
+        /// <param name="subject"></param>
+        /// <returns></returns>
+        public static bool SendEmail(string to, string body, string subject)
 		{
 			try
 			{
@@ -798,15 +377,88 @@ namespace Shared
 
 
 
+        /// <summary>
+        /// Updates local versions of bat files
+        /// </summary>
+        /// <param name="verbose"></param>
+        public static bool UpdateLocalBatFiles(bool verbose=true)
+        {
+            System.Collections.Specialized.StringDictionary batFiles = new System.Collections.Specialized.StringDictionary();
 
-		/// <summary>
-		/// Opens an explorer window on the remote machines C:
-		/// </summary>
-		/// <param name="Computer">Name of remote machine</param>
-		/// <param name="Suffix">Remote path to browse relative to C:</param>
-		public static void BrowseComputer(string Computer, string Suffix)
+            batFiles.Add(Settings.Default._BatServices, GlobalResources.batServices);
+            batFiles.Add(Settings.Default._BatUnlock, GlobalResources.batUnlock);
+            batFiles.Add("args.xml", GlobalResources.argsXML);
+            batFiles.Add(Settings.Default._BatZip, GlobalResources.Zip_Logs);
+            batFiles.Add(Settings.Default._PSZip, GlobalResources.Zipper);
+            batFiles.Add(Settings.Default._WSAdmin, GlobalResources.batWSAdmin);
+
+            foreach (System.Collections.DictionaryEntry de in batFiles)
+            {
+                StreamReader sr = new StreamReader(Settings.Default._TempPath + de.Key);
+                try
+                {
+                    if (sr.ReadToEnd() != (string)de.Value)
+                    {
+                        WriteFile((string)de.Value, Settings.Default._TempPath + de.Key);
+                        if (verbose) { Console.WriteLine("Updated local file: {0}", de.Key); }
+                    }
+                    else { if (verbose) { Console.WriteLine("Currently up to date: {0}", de.Key); } }
+                }
+                catch (Exception) { return false; }
+               
+            }
+            return true;
+        }
+        /// <summary>
+        /// Updates local versions of bat files
+        /// </summary>
+        /// <param name="Computer">remote computer name</param>
+        /// <param name="verbose"></param>
+        public static bool UpdateLocalBatFiles(string Computer,bool verbose = true)
+        {
+            System.Collections.Specialized.StringDictionary batFiles = new System.Collections.Specialized.StringDictionary();
+
+            batFiles.Add(Settings.Default._BatServices, GlobalResources.batServices);
+            batFiles.Add(Settings.Default._BatUnlock, GlobalResources.batUnlock);
+            batFiles.Add("args.xml", GlobalResources.argsXML);
+            batFiles.Add(Settings.Default._BatZip, GlobalResources.Zip_Logs);
+            batFiles.Add(Settings.Default._PSZip, GlobalResources.Zipper);
+            batFiles.Add(Settings.Default._WSAdmin, GlobalResources.batWSAdmin);
+
+            foreach (System.Collections.DictionaryEntry de in batFiles)
+            {
+                string path = Settings.Default._TempPath.Replace("C:", "");
+                path = string.Format(@"\\{0}\c${1}\{2}", Computer, path,de.Key);
+                if (File.Exists(path))
+                {
+                    StreamReader sr = new StreamReader(path);
+                    try
+                    {
+                        if (sr.ReadToEnd() != (string)de.Value)
+                        {
+                            if(!WriteFile((string)de.Value, path)) { return false; }
+                            if (verbose) { Console.WriteLine("Updated local file: {0}", de.Key); }
+                        }
+                        else { if (verbose) { Console.WriteLine("Currently up to date: {0}", de.Key); } }
+                    }
+                    catch (Exception) { return false; }
+                }
+                else
+                {
+                    if(!WriteFile((string)de.Value, path)) { return false; }
+                }
+
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Opens an explorer window on the remote machines C:
+        /// </summary>
+        /// <param name="Computer">Name of remote machine</param>
+        /// <param name="Suffix">Remote path to browse relative to C:</param>
+        public static void BrowseComputer(string Computer, string Suffix)
 		{
-			if (!Shared.Functions.DnsLookup(Computer)) { return; }
 			Suffix = Suffix.ToLower().Replace("c:", "");
 			if (Suffix != "" && Suffix.Substring(0, 1) != "\\") { Suffix = "\\" + Suffix; }
 			Process explore = Process.Start("EXPLORER", string.Format(@"\\{0}\c${1}", Computer, Suffix));
@@ -851,7 +503,6 @@ namespace Shared
 		/// <param name="computer">name of computer</param>
 		public static void ConnectWithDW(string computer)
 		{
-			if (!Shared.Functions.DnsLookup(computer)) { return; }
 			if (File.Exists(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe"))
 			{
 				Process altiris = Process.Start(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
@@ -968,21 +619,13 @@ namespace Shared
 		/// <summary>
 		/// Opens cmd window with a constant ping to the specified computer/ip
 		/// </summary>
-		/// <param name="item"></param>
-		public static void Pinger(string item)
-		{
-			Pinger(item, string.Empty);
-		}
-		/// <summary>
-		/// Opens cmd window with a constant ping to the specified computer/ip
-		/// </summary>
 		/// <param name="item">computer/ip</param>
 		/// <param name="title">title of cmd window</param>
-		public static void Pinger(string item, string title)
+		public static void Pinger(string item, string title="")
 		{
 			ProcessStartInfo startInfo = new ProcessStartInfo();
 			startInfo.FileName = "CMD";
-			if (title == string.Empty)
+			if (title.Trim() == string.Empty)
 			{
 				startInfo.Arguments = string.Format("/C PING -t {0}", item);
 			}
@@ -998,9 +641,16 @@ namespace Shared
 		/// <param name="Computers"></param>
 		public static void Pinger(List<Computer> Computers)
 		{
-			foreach (Computer computer in Computers)
+			foreach (string computer in Computers)
 			{
-				Pinger(computer.name, computer.name);
+                if (DnsLookup(computer)) { Pinger(computer, computer); }
+                else
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = "CMD";
+                    startInfo.Arguments = string.Format("/C ECHO No DNS entry for {0} && PAUSE", computer);
+                    Process.Start(startInfo);
+                }
 			}
 		}
 
@@ -1045,35 +695,40 @@ namespace Shared
 		/// Search tmp log for given string
 		/// </summary>
 		/// <param name="searchString"></param>
+        /// <param name="verbose">turn off console messages</param>
 		/// <returns></returns>
-		public static bool FindInLog(string searchString)
+		public static bool FindInLog(string searchString, bool verbose=true)
 		{
 			try
 			{
 				return File.ReadAllText(Settings.Default._TempPath + "tmp.log").Contains(searchString);
 			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+			catch (Exception ex) {
+                if (verbose) Console.WriteLine(ex.Message);
+                return false;
+            }
 		}
 
 
 
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="ComputerName"></param>
-		/// <returns></returns>
-		public static bool CopyArgsXML(string ComputerName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ComputerName"></param>
+        /// <param name="verbose">turn off console messages</param>
+        /// <returns></returns>
+        public static bool CopyArgsXML(string ComputerName, bool verbose = true)
 		{
 			try
 			{
 				string Destination = string.Format(@"\\{0}\C$\Program Files\VeriFone\MX915\vfQueryUpdate\args.xml", ComputerName);
-				Console.WriteLine(Destination);
+                if (verbose) Console.WriteLine(Destination);
 				System.IO.File.Copy(Shared.Settings.Default._TempPath + "args.xml", Destination, true);
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex.Message);
+                if (verbose) Console.WriteLine(ex.Message);
 				return false;
 			}
 			return true;
@@ -1098,13 +753,14 @@ namespace Shared
 
 
 
-		/// <summary>
-		/// Copies a local file to the same directory on a remote machine
-		/// </summary>
-		/// <param name="ComputerName">Name of remote machine</param>
-		/// <param name="FileLocation">Location of file to copy</param>
-		/// <returns></returns>
-		public static bool CopyFileRemote(string ComputerName, string FileLocation, bool verbose=true)
+        /// <summary>
+        /// Copies a local file to the same directory on a remote machine
+        /// </summary>
+        /// <param name="ComputerName">Name of remote machine</param>
+        /// <param name="FileLocation">Location of file to copy</param>
+        /// <param name="verbose">turn off console messages</param>
+        /// <returns></returns>
+        public static bool CopyFileRemote(string ComputerName, string FileLocation, bool verbose=true)
 		{
 			try
 			{
@@ -1186,14 +842,41 @@ namespace Shared
 			}
 		}
 
+        
+        /// <summary> Search for DNS entry by hostname
+        /// </summary>
+        /// <param name="hostname"></param>
+        /// <returns></returns>
+        public static bool DnsLookup(string hostname)
+        {
+            System.Net.IPHostEntry host;
+            try
+            {
+                host = System.Net.Dns.GetHostEntry(hostname);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Exception caught during DNS lookup\nThe computer is not online");
+                System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Exception", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                return false;
+            }
+            if (host == null || host.AddressList.GetLength(0) == 0)
+            {
+                Console.WriteLine("No addresses availible for the hostname");
+                System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Failed", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
 
 
 
-		/// <summary> Returns true if text property contains only numbers
-		/// </summary>
-		/// <param name="textBox"></param>
-		/// <returns></returns>
-		public static bool isTxtBoxNumeric(System.Windows.Forms.TextBox textBox)
+        /// <summary> Returns true if text property contains only numbers
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <returns></returns>
+        public static bool isTxtBoxNumeric(System.Windows.Forms.TextBox textBox)
 		{
 			int number = -1;
 			return Int32.TryParse(textBox.Text, out number);
@@ -1248,16 +931,40 @@ namespace Shared
 			return int.TryParse(input, out result);
 		}
 
-        
 
 
-		/// <summary> FUNCTION FOR EXPORT TO EXCEL
-		/// </summary>
-		/// <param name="dataTable"></param>
-		/// <param name="worksheetName"></param>
-		/// <param name="saveAsLocation"></param>
-		/// <returns></returns>
-		public static bool Excel_WriteDataTableToFile(System.Data.DataTable dataTable, string worksheetName, string saveAsLocation, string ReportType)
+
+        /// <summary>
+        /// Gets datetime from string input
+        /// </summary>
+        /// <param name="_input">datetime as string</param>
+        /// <returns></returns>
+        public static DateTime GenerateDateFromString(string _input)
+        {
+            //int.Parse(Helper.loggedInUser.stateChangeTime.Substring(0,4))
+            //2014-10-21T05:05:05.309Z
+            int year = int.Parse(_input.Substring(0, 4));
+            int month = int.Parse(_input.Substring(5, 2));
+            int day = int.Parse(_input.Substring(8, 2));
+            int hour = int.Parse(_input.Substring(11, 2));
+            int minute = int.Parse(_input.Substring(14, 2));
+            int second = int.Parse(_input.Substring(17, 2));
+            int milisecond = int.Parse(_input.Substring(20, 3));
+
+            return new DateTime(year, month, day, hour, minute, second, milisecond, DateTimeKind.Utc).ToLocalTime();
+        }
+
+
+
+
+        /// <summary> FUNCTION FOR EXPORT TO EXCEL
+        /// </summary>
+        /// <param name="dataTable">data to put into file</param>
+        /// <param name="worksheetName">name of worksheet</param>
+        /// <param name="saveAsLocation">file path to save</param>
+        /// <param name="ReportType">does nothing</param>
+        /// <returns></returns>
+        public static bool Excel_WriteDataTableToFile(System.Data.DataTable dataTable, string worksheetName, string saveAsLocation, string ReportType)
 		{
 			Microsoft.Office.Interop.Excel.Application excel;
 			Microsoft.Office.Interop.Excel.Workbook excelworkBook;
@@ -1376,38 +1083,33 @@ namespace Shared
 
 
 
-		/// <summary>
-		/// Places PSTools into the windows path
-		/// </summary>
-		public static void InstallPSTools()
+        /// <summary>
+        /// Places PSTools into the windows path
+        /// <param name="verbose">turn off console messages</param>
+        /// </summary>
+        public static void InstallPSTools(bool verbose = true)
 		{
 			try
 			{
 				if (!File.Exists(Shared.Settings.Default._TempPath + "PsExec.exe"))
 				{
-					Console.WriteLine(@"PsExec not found, copying to: {0}", Shared.Settings.Default._TempPath + "PsExec.exe");
+                    if (verbose) { Console.WriteLine(@"PsExec not found, copying to: {0}", Shared.Settings.Default._TempPath + "PsExec.exe"); }
 					File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
 						Shared.Settings.Default._TempPath + "PsExec.exe",
 						true);
 				}
-				//if (!File.Exists(Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe"))
-				//{
-				//	Console.WriteLine(@"PsExec not found, copying to: {0}\System32\", Environment.ExpandEnvironmentVariables("%WINDIR%"));
-				//	File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
-				//		Environment.ExpandEnvironmentVariables("%WINDIR%") + @"\System32\PsExec.exe",
-				//		true);
-				//}
 			}
-			catch (Exception) { }
+			catch (Exception ex) { if (verbose) { Console.WriteLine(ex.Message); } }
 		}
 
 
 
 
-		/// <summary>
-		/// Creates the Temp Path
-		/// </summary>
-		public static void CreateTempFolder(bool verbose = false)
+        /// <summary>
+        /// Creates the Temp Path
+        /// <param name="verbose">turn off console messages</param>
+        /// </summary>
+        public static void CreateTempFolder(bool verbose = false)
 		{
 			if (!Directory.Exists(Shared.Settings.Default._TempPath))
 			{
@@ -1464,7 +1166,6 @@ namespace Shared
 		/// <summary> IMPORTS THE TABLES NAMES OF THE GIVEN FILE
 		/// </summary>
 		/// <param name="fileName"></param>
-		/// <param name="xQuery"></param>
 		/// <returns></returns>
 		public static DataTable Excel_GetTables(string fileName)
 		{

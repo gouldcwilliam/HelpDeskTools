@@ -25,18 +25,6 @@ namespace Retail_HD.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool _ShowLoggedOutUsers {
-            get {
-                return ((bool)(this["_ShowLoggedOutUsers"]));
-            }
-            set {
-                this["_ShowLoggedOutUsers"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool _ShowMeInAgentStatus {
             get {
@@ -109,7 +97,7 @@ namespace Retail_HD.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.2.12.139")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.2.12.161")]
         public string multiVersion {
             get {
                 return ((string)(this["multiVersion"]));
@@ -133,13 +121,25 @@ namespace Retail_HD.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.3.7-20150824")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.4.5-20151127")]
         public string vfVersion {
             get {
                 return ((string)(this["vfVersion"]));
             }
             set {
                 this["vfVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool _DisableCiscoDebug {
+            get {
+                return ((bool)(this["_DisableCiscoDebug"]));
+            }
+            set {
+                this["_DisableCiscoDebug"] = value;
             }
         }
     }

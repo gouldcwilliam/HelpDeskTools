@@ -1,6 +1,8 @@
 ﻿namespace Retail_HD.Forms
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 	partial class ListActions
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -546,7 +548,9 @@
 
 		private System.Windows.Forms.TextBox txtList;
 		private System.Windows.Forms.Label label1;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnOK;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 		private System.Windows.Forms.CheckBox ckbBrowser;
 		private System.Windows.Forms.TextBox txtSuffix;
 		private System.Windows.Forms.Label lblSuffix;
@@ -559,25 +563,49 @@
 		private System.Windows.Forms.CheckBox ckbRegister;
 		private System.Windows.Forms.CheckBox ckbRestart;
 		private System.Windows.Forms.CheckBox ckbActivate;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnCancel;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 		private System.Windows.Forms.CheckBox ckbOpenProgram;
 		private System.Windows.Forms.GroupBox gbProgram;
 		private System.Windows.Forms.CheckBox ckbMulti;
 		private System.Windows.Forms.CheckBox ckbCMD;
 		private System.Windows.Forms.CheckBox ckbDameware;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnClear;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 		private System.Windows.Forms.CheckBox ckbDisableStartupRepair;
 		private System.Windows.Forms.CheckBox ckbFastPrinter;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.GroupBox gbAction;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbStart;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbRestart;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbStop;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.GroupBox gbServices;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbTransnet;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbCredit;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbSQL;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbVerifone;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbCitrix;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 		private System.Windows.Forms.CheckBox ckbRIMulti;
 		private System.Windows.Forms.CheckBox ckbTrickle;
 		private System.Windows.Forms.CheckBox ckbZip;

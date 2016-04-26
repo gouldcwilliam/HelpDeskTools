@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// Generic user input form
+    /// </summary>
 	public partial class UserInput : Form
 	{
 		/// <summary> Gather user input
@@ -56,6 +59,9 @@ namespace Retail_HD.Forms
 				this.Text = value;
 			}
 		}
+        /// <summary>
+        /// input from user
+        /// </summary>
 		public string _UserInput
 		{
 			get

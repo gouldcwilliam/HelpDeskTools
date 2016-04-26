@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>121</ApplicationRevision>
+    <ApplicationRevision>137</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -53,14 +53,14 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\Retail HD\Latest\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Retail HD.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Artua-Mac-Intranet.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>1CB69570E6B19142D4C094E7C1D4A5B33DCF8E57</ManifestCertificateThumbprint>
@@ -88,7 +88,17 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CiscoFinesseNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CiscoFinesseNET.dll</HintPath>
+    </Reference>
+    <Reference Include="Matrix">
+      <HintPath>..\packages\MatriX.1.6.0.0\lib\net45\Matrix.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -103,7 +113,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AgentStatus.cs" />
     <Compile Include="Classes\Category.cs" />
+    <Compile Include="Classes\CiscoSettings.cs" />
     <Compile Include="Classes\Info.cs" />
     <Compile Include="Classes\Technician.cs" />
     <Compile Include="Classes\Topic.cs" />
@@ -134,17 +146,17 @@
     <Compile Include="Forms\BGWorkers\CashierUnlock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CiscoLogin.cs">
+    <Compile Include="Forms\CiscoSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CiscoLogin.Designer.cs">
-      <DependentUpon>CiscoLogin.cs</DependentUpon>
+    <Compile Include="Forms\CiscoSettings.Designer.cs">
+      <DependentUpon>CiscoSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CodeEntry.cs">
+    <Compile Include="Forms\KonamiCodeEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CodeEntry.Designer.cs">
-      <DependentUpon>CodeEntry.cs</DependentUpon>
+    <Compile Include="Forms\KonamiCodeEntry.Designer.cs">
+      <DependentUpon>KonamiCodeEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditCalls.cs">
       <SubType>Form</SubType>
@@ -316,11 +328,11 @@
     <EmbeddedResource Include="Forms\BGWorkers\ExcelExport.resx">
       <DependentUpon>ExcelExport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CiscoLogin.resx">
-      <DependentUpon>CiscoLogin.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CiscoSettings.resx">
+      <DependentUpon>CiscoSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CodeEntry.resx">
-      <DependentUpon>CodeEntry.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\KonamiCodeEntry.resx">
+      <DependentUpon>KonamiCodeEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditCalls.resx">
       <DependentUpon>EditCalls.cs</DependentUpon>
@@ -423,10 +435,6 @@
       <Project>{84b74dd0-3b52-456f-a742-3b57fa31e664}</Project>
       <Name>Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\CiscoFinesseNET\CiscoFinesseNET.csproj">
-      <Project>{3e9001a4-fd82-4b28-81c4-9720c607c62a}</Project>
-      <Name>CiscoFinesseNET</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Libraries\LDAP\LDAP.csproj">
       <Project>{5a5601e8-c1b8-43ab-961b-3deb1bc5b06e}</Project>
       <Name>LDAP</Name>
@@ -456,7 +464,9 @@
       <Name>UpdateComputerList</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Artua-Mac-Intranet.ico" />
+  </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
