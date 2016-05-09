@@ -28,11 +28,11 @@ namespace WetSandwich
 			//Console.ReadKey();
 			//Environment.Exit(0);
 
-			List<string> exclusions = Functions.GetIgnoreList(args);
+			List<string> exclusions = Shared.Functions.GetIgnoreList(args);
 
 			string[] exclude = Settings.Default.ignore.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
-			exclusions.AddRange(Functions.GetIgnoreList(exclude));
+			exclusions.AddRange(Shared.Functions.GetIgnoreList(exclude));
 
 			// Filter results by Object category of Computer and Name and exclude
 			string ADSearchFilter =
@@ -92,7 +92,7 @@ namespace WetSandwich
 					progressBar.Update(i);
 
 					string computer = searchResults[i].Value;
-					if (!Functions.CheckNetwork(computer))
+					if (!Shared.Functions.CheckNetwork(computer))
 					{
 						//body += string.Format(Settings.Default.body, computer, "N/A", "N/A", "Connection Unavailable");
 						continue;
@@ -100,19 +100,17 @@ namespace WetSandwich
 					else
 					{
 						string multi;
-						if (!Functions.CopyTempLog(Functions.getLatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
-						else { multi = Functions.multiLog().ToString(); }
+						if (!Shared.Functions.CopyTempLog(Shared.Functions.LatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
+						else { multi = Shared.Functions.MultiLog(Settings.Default._multiVersions).ToString(); }
 						Console.WriteLine(multi);
 
 						string ri;
-						if(!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log";  }
-						else { ri = Functions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
+						if(!Shared.Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log";  }
+						else { ri = Shared.Functions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
 						Console.WriteLine(ri);
 
 						string vf;
-						//if(Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml",computer))) { vf = "Unable to read vf log";  }
-						//else { vf = Functions.FindInLog(Properties.Settings.Default.vfVersion).ToString(); }
-						vf = Functions.vfLog(computer);
+                        vf = Shared.Functions.VFLog(computer, Properties.Settings.Default._vfVersions);
 
 						Console.WriteLine(vf);
 
@@ -136,7 +134,7 @@ namespace WetSandwich
 
 			Console.Write("\n * Sending email : ");
 
-			if (Functions.SendMail(Settings.Default.from, Settings.Default.to, Settings.Default.subject, body, true))
+			if (Shared.Functions.SendMail(Settings.Default.from, Settings.Default.to, Settings.Default.subject, body, true))
 			{
 				Console.ForegroundColor = ConsoleColor.Green;
 				Console.Write("Sent");

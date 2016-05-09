@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>137</ApplicationRevision>
+    <ApplicationRevision>143</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -117,6 +117,7 @@
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\CiscoSettings.cs" />
     <Compile Include="Classes\Info.cs" />
+    <Compile Include="Classes\LogCheck.cs" />
     <Compile Include="Classes\Technician.cs" />
     <Compile Include="Classes\Topic.cs" />
     <Compile Include="Forms\AdditionalPhone.cs">

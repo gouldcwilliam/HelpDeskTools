@@ -8,13 +8,15 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Data;
 using System.Data.OleDb;
+using System.Linq;
+using System.Net.Mail;
 
 
 namespace Shared
 {
-	/// <summary> Globaly Shared Functions
-	/// </summary>
-	public static class Functions
+    /// <summary> Globaly Shared Functions
+    /// </summary>
+    public static class Functions
     {
         #region AD functions
 
@@ -114,11 +116,11 @@ namespace Shared
             }
             return true;
         }
-        
+
         /// <summary> Search AD for user by phone number
-		/// </summary>
-		/// <param name="number"></param>
-		/// <returns>username as a string</returns>
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns>username as a string</returns>
         public static string ADUserLookupByNumber(string number)
         {
             try
@@ -158,222 +160,317 @@ namespace Shared
         /// <param name="subject"></param>
         /// <returns></returns>
         public static bool SendEmail(string to, string body, string subject)
-		{
-			try
-			{
-				string from = Environment.UserName.ToString() + "@wwwinc.com";
-				//System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
-				System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
-				_msg.From = new System.Net.Mail.MailAddress(from);
-				_msg.Subject = subject;
-				_msg.Body = body;
-				_msg.To.Add(to);
-				_msg.IsBodyHtml = true;
+        {
+            try
+            {
+                string from = Environment.UserName.ToString() + "@wwwinc.com";
+                //System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
+                System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
+                _msg.From = new System.Net.Mail.MailAddress(from);
+                _msg.Subject = subject;
+                _msg.Body = body;
+                _msg.To.Add(to);
+                _msg.IsBodyHtml = true;
 
-				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
-				client.UseDefaultCredentials = true;
-				client.Send(_msg);
-			}
-			catch (Exception)
-			{
-				return false;
-			}
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
+                client.UseDefaultCredentials = true;
+                client.Send(_msg);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
-			return true;
-		}
-		/// <summary> Send an email
-		/// </summary>
-		/// <param name="to"></param>
-		/// <param name="body"></param>
-		/// <param name="subject"></param>
-		/// <param name="attachement"></param>
-		/// <returns></returns>
-		public static bool SendEmail(string to, string body, string subject, FileInfo attachement)
-		{
-			try
-			{
-				string from = Environment.UserName.ToString() + "@wwwinc.com";
-				//System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
-				System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
-				_msg.From = new System.Net.Mail.MailAddress(from);
-				_msg.Subject = subject;
-				_msg.Body = body;
-				_msg.To.Add(to);
-				_msg.Attachments.Add(new System.Net.Mail.Attachment(attachement.Open(FileMode.Open, FileAccess.Read, FileShare.Read), attachement.Name));
-				_msg.IsBodyHtml = true;
+            return true;
+        }
+        /// <summary> Send an email
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="body"></param>
+        /// <param name="subject"></param>
+        /// <param name="attachement"></param>
+        /// <returns></returns>
+        public static bool SendEmail(string to, string body, string subject, FileInfo attachement)
+        {
+            try
+            {
+                string from = Environment.UserName.ToString() + "@wwwinc.com";
+                //System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
+                System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
+                _msg.From = new System.Net.Mail.MailAddress(from);
+                _msg.Subject = subject;
+                _msg.Body = body;
+                _msg.To.Add(to);
+                _msg.Attachments.Add(new System.Net.Mail.Attachment(attachement.Open(FileMode.Open, FileAccess.Read, FileShare.Read), attachement.Name));
+                _msg.IsBodyHtml = true;
 
-				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
-				client.UseDefaultCredentials = true;
-				client.Send(_msg);
-			}
-			catch (Exception)
-			{
-				return false;
-			}
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
+                client.UseDefaultCredentials = true;
+                client.Send(_msg);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
-			return true;
-		}
-		/// <summary> Send an email
-		/// </summary>
-		/// <param name="to"></param>
-		/// <param name="body"></param>
-		/// <param name="subject"></param>
-		/// <returns></returns>
-		public static bool SendEmail(System.Collections.Specialized.StringCollection to, string body, string subject)
-		{
-			List<string> toL = new List<string>();
-			foreach ( string s in to)
-			{
-				toL.Add(s);
-			}
-			return SendEmail(toL, body, subject);
-		}
-		/// <summary> Send an email
-		/// </summary>
-		/// <param name="to"></param>
-		/// <param name="body"></param>
-		/// <param name="subject"></param>
-		/// <returns></returns>
-		public static bool SendEmail(List<string> to, string body, string subject)
-		{
-			try
-			{
-				string from = Environment.UserName.ToString() + "@wwwinc.com";
-				//System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
-				System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
-				_msg.From = new System.Net.Mail.MailAddress(from);
-				_msg.Subject = subject;
-				_msg.Body = body;
-				//_msg.To.Add(to);
+            return true;
+        }
+        /// <summary> Send an email
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="body"></param>
+        /// <param name="subject"></param>
+        /// <returns></returns>
+        public static bool SendEmail(System.Collections.Specialized.StringCollection to, string body, string subject)
+        {
+            List<string> toL = new List<string>();
+            foreach (string s in to)
+            {
+                toL.Add(s);
+            }
+            return SendEmail(toL, body, subject);
+        }
+        /// <summary> Send an email
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="body"></param>
+        /// <param name="subject"></param>
+        /// <returns></returns>
+        public static bool SendEmail(List<string> to, string body, string subject)
+        {
+            try
+            {
+                string from = Environment.UserName.ToString() + "@wwwinc.com";
+                //System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
+                System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
+                _msg.From = new System.Net.Mail.MailAddress(from);
+                _msg.Subject = subject;
+                _msg.Body = body;
+                //_msg.To.Add(to);
 
-				foreach (string _to in to)
-				{
-					_msg.To.Add(_to);
-				}
+                foreach (string _to in to)
+                {
+                    _msg.To.Add(_to);
+                }
 
-				_msg.IsBodyHtml = true;
+                _msg.IsBodyHtml = true;
 
-				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
-				client.UseDefaultCredentials = true;
-				client.Send(_msg);
-			}
-			catch (Exception)
-			{
-				return false;
-			}
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
+                client.UseDefaultCredentials = true;
+                client.Send(_msg);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
-			return true;
-		}
-		/// <summary> Sends an email
-		/// </summary>
-		/// <param name="to"></param>
-		/// <param name="body"></param>
-		/// <param name="subject"></param>
-		/// <param name="attachement"></param>
-		/// <returns></returns>
-		public static bool SendEmail(List<string> to, string body, string subject, List<FileInfo> attachement)
-		{
-			try
-			{
-				string from = Environment.UserName.ToString() + "@wwwinc.com";
-				//System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
-				System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
-				_msg.From = new System.Net.Mail.MailAddress(from);
-				_msg.Subject = subject;
-				_msg.Body = body;
-				//_msg.To.Add(to);
+            return true;
+        }
+        /// <summary> Sends an email
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="body"></param>
+        /// <param name="subject"></param>
+        /// <param name="attachement"></param>
+        /// <returns></returns>
+        public static bool SendEmail(List<string> to, string body, string subject, List<FileInfo> attachement)
+        {
+            try
+            {
+                string from = Environment.UserName.ToString() + "@wwwinc.com";
+                //System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage(from, to, subject, body);
+                System.Net.Mail.MailMessage _msg = new System.Net.Mail.MailMessage();
+                _msg.From = new System.Net.Mail.MailAddress(from);
+                _msg.Subject = subject;
+                _msg.Body = body;
+                //_msg.To.Add(to);
 
-				foreach (string _to in to)
-				{
-					_msg.To.Add(_to);
-				}
+                foreach (string _to in to)
+                {
+                    _msg.To.Add(_to);
+                }
 
-				//_msg.Attachments.Add(new System.Net.Mail.Attachment(attachement.Open(FileMode.Open, FileAccess.Read, FileShare.Read), attachement.Name));
-				foreach (FileInfo _file in attachement)
-				{
-					_msg.Attachments.Add(new System.Net.Mail.Attachment(_file.Open(FileMode.Open, FileAccess.Read, FileShare.Read), _file.Name));
-				}
-				_msg.IsBodyHtml = true;
+                //_msg.Attachments.Add(new System.Net.Mail.Attachment(attachement.Open(FileMode.Open, FileAccess.Read, FileShare.Read), attachement.Name));
+                foreach (FileInfo _file in attachement)
+                {
+                    _msg.Attachments.Add(new System.Net.Mail.Attachment(_file.Open(FileMode.Open, FileAccess.Read, FileShare.Read), _file.Name));
+                }
+                _msg.IsBodyHtml = true;
 
-				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
-				client.UseDefaultCredentials = true;
-				client.Send(_msg);
-			}
-			catch (Exception)
-			{
-				return false;
-			}
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
+                client.UseDefaultCredentials = true;
+                client.Send(_msg);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
-			return true;
-		}
-
-
+            return true;
+        }
 
 
-		/// <summary>
-		/// Launches an instance of another program/executable
-		/// </summary>
-		/// <param name="ExecutableFile">Name of program or path to EXE</param>
-		/// <param name="Arguments">Arguments given to the EXE</param>
-		/// <param name="Interactive">Show the program running</param>
-		/// <param name="Wait">Pause all other processing until process completes</param>
-		/// <returns></returns>
-		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive, bool Wait)
-		{
-			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.FileName = ExecutableFile;
-			startInfo.Arguments = Arguments;
-			startInfo.CreateNoWindow = (!Interactive);
-			startInfo.UseShellExecute = Interactive;
-			Process process = Process.Start(startInfo);
-			if (Wait) { process.WaitForExit(); return process.ExitCode; }
-			return 0;
-		}
-		/// <summary>
-		/// Launches an instance of another program/executable
-		/// </summary>
-		/// <param name="ExecutableFile">Name of program or path to EXE</param>
-		/// <param name="Arguments">Arguments given to the EXE</param>
-		/// <param name="Interactive">Show the program running</param>
-		/// <param name="Title">Change the title of the program (only tested on batch files)</param>
-		/// <param name="Wait">Pause all other processing until process completes</param>
-		/// <returns></returns>
-		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive, string Title, bool Wait)
-		{
-			return ExecuteCommand("CMD", string.Format("/C TITLE {0} && {1} {2}", Title, ExecutableFile, Arguments), Interactive, Wait);
-		}
-		/// <summary>
-		/// Launches an instance of another program/executable
-		/// </summary>
-		/// <param name="ExecutableFile">Name of program or path to EXE</param>
-		/// <param name="Interactive">Show the program running</param>
-		/// <returns></returns>
-		public static int ExecuteCommand(string ExecutableFile, bool Interactive)
-		{
-			return ExecuteCommand(ExecutableFile, string.Empty, Interactive);
-		}
-		/// <summary>
-		/// Launches an instance of another program/executable
-		/// </summary>
-		/// <param name="ExecutableFile">Name of program or path to EXE</param>
-		/// <param name="Arguments">Arguments given to the EXE</param>
-		/// <param name="Interactive">Show the program running</param>
-		/// <returns></returns>
-		public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive)
-		{
-			return ExecuteCommand(ExecutableFile, Arguments, Interactive, true);
-		}
+        /// <summary>
+        /// Send mail using WWINC Domain settings
+        /// </summary>
+        /// <param name="From">Sender</param>
+        /// <param name="To">Receiver</param>
+        /// <param name="Subject">Subject of message</param>
+        /// <param name="Body">Body of message</param>
+        /// <param name="Attachments">List of files to attach</param>
+        /// <param name="HTML">Boolean to enable HTML in body</param>
+        /// <returns>on success</returns>
+        public static bool SendMail(string From, string To, string Subject, string Body, string[] Attachments, bool HTML)
+        {
+            // new mail message container
+            MailMessage message = new MailMessage(From, To);
+            // add subject line
+            message.Subject = Subject;
+            // add body
+            message.Body = Body;
+            // use HTML in body
+            message.IsBodyHtml = HTML;
+            //
+            message.ReplyToList.Add("ITRetailHelpdeskDL@wwwinc.com");
+            // add attachments
+            foreach (string path in Attachments)
+            {
+                if (File.Exists(path))
+                {
+                    message.Attachments.Add(new Attachment(path));
+                }
+            }
+            // our domain specific settings
+            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("wwwsmtp.wwwint.corp", 25);
+            // use network credentials
+            client.UseDefaultCredentials = true;
+
+
+            try { client.Send(message); }
+            catch { return false; }
+            return true;
+        }
+        /// <summary>
+        /// Send mail using WWINC Domain settings
+        /// </summary>
+        /// <param name="From">Sender</param>
+        /// <param name="To">Receiver</param>
+        /// <param name="Subject">Subject of message</param>
+        /// <param name="Body">Body of message</param>
+        /// <param name="Attachments">List of files to attach</param>
+        /// <returns></returns>
+        public static bool SendMail(string From, string To, string Subject, string Body, string[] Attachments)
+        {
+            return SendMail(From, To, Subject, Body, Attachments, false);
+        }
+        /// <summary>
+        /// Send mail using WWINC Domain settings
+        /// </summary>
+        /// <param name="From">Sender</param>
+        /// <param name="To">Receiver</param>
+        /// <param name="Subject">Subject of message</param>
+        /// <param name="Body">Body of message</param>
+        /// <param name="HTML">Boolean to enable HTML in body</param>
+        /// <returns>on success</returns>
+        public static bool SendMail(string From, string To, string Subject, string Body, bool HTML)
+        {
+            return SendMail(From, To, Subject, Body, new string[] { }, HTML);
+        }
+        /// <summary>
+        /// Send mail using WWINC Domain settings
+        /// </summary>
+        /// <param name="From">Sender</param>
+        /// <param name="To">Receiver</param>
+        /// <param name="Subject">Subject of message</param>
+        /// <param name="Body">Body of message</param>
+        /// <param name="Attachment">file to attach</param>
+        /// <returns>on success</returns>
+        public static bool SendMail(string From, string To, string Subject, string Body, string Attachment)
+        {
+            return SendMail(From, To, Subject, Body, new string[] { Attachment }, false);
+        }
+        /// <summary>
+        /// Send mail using WWINC Domain settings
+        /// </summary>
+        /// <param name="From">Sender</param>
+        /// <param name="To">Receiver</param>
+        /// <param name="Subject">Subject of message</param>
+        /// <param name="Body">Body of message</param>
+        /// <returns>on success</returns>
+        public static bool SendMail(string From, string To, string Subject, string Body)
+        {
+            return SendMail(From, To, Subject, Body, new string[] { }, false);
+        }
 
 
 
 
-		/// <summary>
-		/// Runs my tool that updates our list of computers in SQL
-		/// </summary>
-		public static void UpdateComputersFromAD()
-		{
-			Process.Start(@".\UpdateComputerList.exe");
-		}
+
+
+        /// <summary>
+        /// Launches an instance of another program/executable
+        /// </summary>
+        /// <param name="ExecutableFile">Name of program or path to EXE</param>
+        /// <param name="Arguments">Arguments given to the EXE</param>
+        /// <param name="Interactive">Show the program running</param>
+        /// <param name="Wait">Pause all other processing until process completes</param>
+        /// <returns></returns>
+        public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive, bool Wait)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = ExecutableFile;
+            startInfo.Arguments = Arguments;
+            startInfo.CreateNoWindow = (!Interactive);
+            startInfo.UseShellExecute = Interactive;
+            Process process = Process.Start(startInfo);
+            if (Wait) { process.WaitForExit(); return process.ExitCode; }
+            return 0;
+        }
+        /// <summary>
+        /// Launches an instance of another program/executable
+        /// </summary>
+        /// <param name="ExecutableFile">Name of program or path to EXE</param>
+        /// <param name="Arguments">Arguments given to the EXE</param>
+        /// <param name="Interactive">Show the program running</param>
+        /// <param name="Title">Change the title of the program (only tested on batch files)</param>
+        /// <param name="Wait">Pause all other processing until process completes</param>
+        /// <returns></returns>
+        public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive, string Title, bool Wait)
+        {
+            return ExecuteCommand("CMD", string.Format("/C TITLE {0} && {1} {2}", Title, ExecutableFile, Arguments), Interactive, Wait);
+        }
+        /// <summary>
+        /// Launches an instance of another program/executable
+        /// </summary>
+        /// <param name="ExecutableFile">Name of program or path to EXE</param>
+        /// <param name="Interactive">Show the program running</param>
+        /// <returns></returns>
+        public static int ExecuteCommand(string ExecutableFile, bool Interactive)
+        {
+            return ExecuteCommand(ExecutableFile, string.Empty, Interactive);
+        }
+        /// <summary>
+        /// Launches an instance of another program/executable
+        /// </summary>
+        /// <param name="ExecutableFile">Name of program or path to EXE</param>
+        /// <param name="Arguments">Arguments given to the EXE</param>
+        /// <param name="Interactive">Show the program running</param>
+        /// <returns></returns>
+        public static int ExecuteCommand(string ExecutableFile, string Arguments, bool Interactive)
+        {
+            return ExecuteCommand(ExecutableFile, Arguments, Interactive, true);
+        }
+
+
+
+
+        /// <summary>
+        /// Runs my tool that updates our list of computers in SQL
+        /// </summary>
+        public static void UpdateComputersFromAD()
+        {
+            Process.Start(@".\UpdateComputerList.exe");
+        }
 
 
 
@@ -381,7 +478,7 @@ namespace Shared
         /// Updates local versions of bat files
         /// </summary>
         /// <param name="verbose"></param>
-        public static bool UpdateLocalBatFiles(bool verbose=true)
+        public static bool UpdateLocalBatFiles(bool verbose = true)
         {
             System.Collections.Specialized.StringDictionary batFiles = new System.Collections.Specialized.StringDictionary();
 
@@ -405,7 +502,7 @@ namespace Shared
                     else { if (verbose) { Console.WriteLine("Currently up to date: {0}", de.Key); } }
                 }
                 catch (Exception) { return false; }
-               
+
             }
             return true;
         }
@@ -414,7 +511,7 @@ namespace Shared
         /// </summary>
         /// <param name="Computer">remote computer name</param>
         /// <param name="verbose"></param>
-        public static bool UpdateLocalBatFiles(string Computer,bool verbose = true)
+        public static bool UpdateLocalBatFiles(string Computer, bool verbose = true)
         {
             System.Collections.Specialized.StringDictionary batFiles = new System.Collections.Specialized.StringDictionary();
 
@@ -428,7 +525,7 @@ namespace Shared
             foreach (System.Collections.DictionaryEntry de in batFiles)
             {
                 string path = Settings.Default._TempPath.Replace("C:", "");
-                path = string.Format(@"\\{0}\c${1}\{2}", Computer, path,de.Key);
+                path = string.Format(@"\\{0}\c${1}\{2}", Computer, path, de.Key);
                 if (File.Exists(path))
                 {
                     StreamReader sr = new StreamReader(path);
@@ -436,7 +533,7 @@ namespace Shared
                     {
                         if (sr.ReadToEnd() != (string)de.Value)
                         {
-                            if(!WriteFile((string)de.Value, path)) { return false; }
+                            if (!WriteFile((string)de.Value, path)) { return false; }
                             if (verbose) { Console.WriteLine("Updated local file: {0}", de.Key); }
                         }
                         else { if (verbose) { Console.WriteLine("Currently up to date: {0}", de.Key); } }
@@ -445,7 +542,7 @@ namespace Shared
                 }
                 else
                 {
-                    if(!WriteFile((string)de.Value, path)) { return false; }
+                    if (!WriteFile((string)de.Value, path)) { return false; }
                 }
 
             }
@@ -458,191 +555,191 @@ namespace Shared
         /// <param name="Computer">Name of remote machine</param>
         /// <param name="Suffix">Remote path to browse relative to C:</param>
         public static void BrowseComputer(string Computer, string Suffix)
-		{
-			Suffix = Suffix.ToLower().Replace("c:", "");
-			if (Suffix != "" && Suffix.Substring(0, 1) != "\\") { Suffix = "\\" + Suffix; }
-			Process explore = Process.Start("EXPLORER", string.Format(@"\\{0}\c${1}", Computer, Suffix));
-		}
-		/// <summary>
-		/// Opens an explorer window on the remote machines C:
-		/// </summary>
-		/// <param name="Computer">Name of remote machine</param>
-		public static void BrowseComputer(string Computer)
-		{
-			BrowseComputer(Computer, "");
-		}
-		/// <summary>
-		/// Opens an explorer window on the remote machines C:
-		/// </summary>
-		/// <param name="Computers">List of Computers to browse</param>
-		public static void BrowseComputer(List<Computer> Computers)
-		{
-			foreach (Computer Computer in Computers)
-			{
-				BrowseComputer(Computer.name);
-			}
-		}
-		/// <summary>
-		/// Opens an explorer window on the remote machines C:
-		/// </summary>
-		/// <param name="Computers">List of strings to browse</param>
-		public static void BrowseComputer(List<string> Computers)
-		{
-			foreach (string computer in Computers)
-			{
-				BrowseComputer(computer);
-			}
-		}
+        {
+            Suffix = Suffix.ToLower().Replace("c:", "");
+            if (Suffix != "" && Suffix.Substring(0, 1) != "\\") { Suffix = "\\" + Suffix; }
+            Process explore = Process.Start("EXPLORER", string.Format(@"\\{0}\c${1}", Computer, Suffix));
+        }
+        /// <summary>
+        /// Opens an explorer window on the remote machines C:
+        /// </summary>
+        /// <param name="Computer">Name of remote machine</param>
+        public static void BrowseComputer(string Computer)
+        {
+            BrowseComputer(Computer, "");
+        }
+        /// <summary>
+        /// Opens an explorer window on the remote machines C:
+        /// </summary>
+        /// <param name="Computers">List of Computers to browse</param>
+        public static void BrowseComputer(List<Computer> Computers)
+        {
+            foreach (Computer Computer in Computers)
+            {
+                BrowseComputer(Computer.name);
+            }
+        }
+        /// <summary>
+        /// Opens an explorer window on the remote machines C:
+        /// </summary>
+        /// <param name="Computers">List of strings to browse</param>
+        public static void BrowseComputer(List<string> Computers)
+        {
+            foreach (string computer in Computers)
+            {
+                BrowseComputer(computer);
+            }
+        }
 
 
 
 
-		/// <summary>
-		/// Use dameware mini remote to connect to specified computer(s)
-		/// </summary>
-		/// <param name="computer">name of computer</param>
-		public static void ConnectWithDW(string computer)
-		{
-			if (File.Exists(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe"))
-			{
-				Process altiris = Process.Start(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
-			}
-			else if (File.Exists(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe"))
-			{
-				Process altiris = Process.Start(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
-			}
-			else
-			{
-				System.Windows.Forms.MessageBox.Show("Unable to launch DameWare Remote Control Center\nVerify that it is installed and using the default instalation path", "DameWare Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-			}
-			// System.Threading.Thread.Sleep(2500);
-			Console.WriteLine("Launched DameWare on: " + computer);
-		}
-		/// <summary>
-		/// Use dameware mini remote to connect to specified computer(s)
-		/// </summary>
-		/// <param name="computer">computer</param>
-		public static void ConnectWithDW(Computer computer)
-		{
-			ConnectWithDW(computer.name);
-		}
-		/// <summary>
-		/// Use dameware mini remote to connect to specified computer(s)
-		/// </summary>
-		/// <param name="SelectedComputers">List of computers</param>
-		public static void ConnectWithDW(List<Computer> SelectedComputers)
-		{
-			foreach (Computer computer in SelectedComputers)
-			{
-				ConnectWithDW(computer.name);
-			}
-		}
+        /// <summary>
+        /// Use dameware mini remote to connect to specified computer(s)
+        /// </summary>
+        /// <param name="computer">name of computer</param>
+        public static void ConnectWithDW(string computer)
+        {
+            if (File.Exists(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe"))
+            {
+                Process altiris = Process.Start(@"C:\Program Files (x86)\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
+            }
+            else if (File.Exists(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe"))
+            {
+                Process altiris = Process.Start(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Unable to launch DameWare Remote Control Center\nVerify that it is installed and using the default instalation path", "DameWare Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            }
+            // System.Threading.Thread.Sleep(2500);
+            Console.WriteLine("Launched DameWare on: " + computer);
+        }
+        /// <summary>
+        /// Use dameware mini remote to connect to specified computer(s)
+        /// </summary>
+        /// <param name="computer">computer</param>
+        public static void ConnectWithDW(Computer computer)
+        {
+            ConnectWithDW(computer.name);
+        }
+        /// <summary>
+        /// Use dameware mini remote to connect to specified computer(s)
+        /// </summary>
+        /// <param name="SelectedComputers">List of computers</param>
+        public static void ConnectWithDW(List<Computer> SelectedComputers)
+        {
+            foreach (Computer computer in SelectedComputers)
+            {
+                ConnectWithDW(computer.name);
+            }
+        }
 
 
 
 
-		/// <summary>
-		/// Opens a command prompt to the remote computer
-		/// </summary>
-		/// <param name="SelectedComputers"></param>
-		public static void RemoteCMD(List<Computer> SelectedComputers)
-		{
-			foreach (Computer computer in SelectedComputers)
-			{
-				ProcessStartInfo startInfo = new ProcessStartInfo();
-				startInfo.FileName = "CMD";
-				startInfo.Arguments = string.Format("/C TITLE Remote CMD on: {0} && WINRS -d:C:\\ -r:{0} CMD", computer.name);
-				Process process = Process.Start(startInfo);
-			}
-		}
+        /// <summary>
+        /// Opens a command prompt to the remote computer
+        /// </summary>
+        /// <param name="SelectedComputers"></param>
+        public static void RemoteCMD(List<Computer> SelectedComputers)
+        {
+            foreach (Computer computer in SelectedComputers)
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "CMD";
+                startInfo.Arguments = string.Format("/C TITLE Remote CMD on: {0} && WINRS -d:C:\\ -r:{0} CMD", computer.name);
+                Process process = Process.Start(startInfo);
+            }
+        }
 
 
 
 
-		/// <summary>
-		/// Opens a cmd window on the remote machine
-		/// </summary>
-		/// <param name="computer">computer name as string</param>
-		public static void LocalCMD(string computer)
-		{
-			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
-			startInfo.Arguments = string.Format(@"\\{0} -s -d -i CMD", computer);
-			Process process = Process.Start(startInfo);
-		}
-		/// <summary>
-		/// Opens a cmd window on the remote machine
-		/// </summary>
-		/// <param name="computer">computer object</param>
-		public static void LocalCMD(Computer computer)
-		{
-			LocalCMD(computer.name);
-		}
-		/// <summary>
-		/// Opens a cmd window on the remote machine(s)
-		/// </summary>
-		/// <param name="SelectedComputers">computer list</param>
-		public static void LocalCMD(List<Computer> SelectedComputers)
-		{
-			foreach (Computer computer in SelectedComputers)
-			{
-				LocalCMD(computer.name);
-			}
-		}
+        /// <summary>
+        /// Opens a cmd window on the remote machine
+        /// </summary>
+        /// <param name="computer">computer name as string</param>
+        public static void LocalCMD(string computer)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
+            startInfo.Arguments = string.Format(@"\\{0} -s -d -i CMD", computer);
+            Process process = Process.Start(startInfo);
+        }
+        /// <summary>
+        /// Opens a cmd window on the remote machine
+        /// </summary>
+        /// <param name="computer">computer object</param>
+        public static void LocalCMD(Computer computer)
+        {
+            LocalCMD(computer.name);
+        }
+        /// <summary>
+        /// Opens a cmd window on the remote machine(s)
+        /// </summary>
+        /// <param name="SelectedComputers">computer list</param>
+        public static void LocalCMD(List<Computer> SelectedComputers)
+        {
+            foreach (Computer computer in SelectedComputers)
+            {
+                LocalCMD(computer.name);
+            }
+        }
 
 
 
 
-		/// <summary>
-		/// Opens multi on remote machine
-		/// </summary>
-		/// <param name="computer"></param>
-		public static void Multi(string computer)
-		{
-			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
-			startInfo.Arguments = string.Format(@"\\{0} -s -d -i \HELPDESK\multi.bat", computer);
-			Process process = Process.Start(startInfo);
-		}
-		/// <summary>
-		/// Opens multi on remote machine
-		/// </summary>
-		/// <param name="computer"></param>
-		public static void Multi(Computer computer)
-		{
-			Multi(computer.name);
-		}
+        /// <summary>
+        /// Opens multi on remote machine
+        /// </summary>
+        /// <param name="computer"></param>
+        public static void Multi(string computer)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = Shared.Settings.Default._TempPath + "PSEXEC";
+            startInfo.Arguments = string.Format(@"\\{0} -s -d -i \HELPDESK\multi.bat", computer);
+            Process process = Process.Start(startInfo);
+        }
+        /// <summary>
+        /// Opens multi on remote machine
+        /// </summary>
+        /// <param name="computer"></param>
+        public static void Multi(Computer computer)
+        {
+            Multi(computer.name);
+        }
 
 
 
 
-		/// <summary>
-		/// Opens cmd window with a constant ping to the specified computer/ip
-		/// </summary>
-		/// <param name="item">computer/ip</param>
-		/// <param name="title">title of cmd window</param>
-		public static void Pinger(string item, string title="")
-		{
-			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.FileName = "CMD";
-			if (title.Trim() == string.Empty)
-			{
-				startInfo.Arguments = string.Format("/C PING -t {0}", item);
-			}
-			else
-			{
-				startInfo.Arguments = string.Format("/C TITLE PING: {0} && PING -t {1}", title, item);
-			}
-			Process.Start(startInfo);
-		}
-		/// <summary>
-		/// Opens cmd window with a constant ping to the specified computers
-		/// </summary>
-		/// <param name="Computers"></param>
-		public static void Pinger(List<Computer> Computers)
-		{
-			foreach (string computer in Computers)
-			{
+        /// <summary>
+        /// Opens cmd window with a constant ping to the specified computer/ip
+        /// </summary>
+        /// <param name="item">computer/ip</param>
+        /// <param name="title">title of cmd window</param>
+        public static void Pinger(string item, string title = "")
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "CMD";
+            if (title.Trim() == string.Empty)
+            {
+                startInfo.Arguments = string.Format("/C PING -t {0}", item);
+            }
+            else
+            {
+                startInfo.Arguments = string.Format("/C TITLE PING: {0} && PING -t {1}", title, item);
+            }
+            Process.Start(startInfo);
+        }
+        /// <summary>
+        /// Opens cmd window with a constant ping to the specified computers
+        /// </summary>
+        /// <param name="Computers"></param>
+        public static void Pinger(List<Computer> Computers)
+        {
+            foreach (string computer in Computers)
+            {
                 if (DnsLookup(computer)) { Pinger(computer, computer); }
                 else
                 {
@@ -651,65 +748,191 @@ namespace Shared
                     startInfo.Arguments = string.Format("/C ECHO No DNS entry for {0} && PAUSE", computer);
                     Process.Start(startInfo);
                 }
-			}
-		}
+            }
+        }
 
 
 
 
-		/// <summary>
-		/// Copies log file to local temp path
-		/// </summary>
-		/// <param name="pathToLog"></param>
-		/// <returns></returns>
-		public static bool CopyTempLog(string pathToLog)
-		{
-			try
-			{
-				File.Copy(pathToLog, Settings.Default._TempPath + "tmp.log", true);
-				return true;
-			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
-		}
-		/// <summary>
-		/// Copies log file to destination
-		/// </summary>
-		/// <param name="pathToLog"></param>
-		/// <param name="destination"></param>
-		/// <returns></returns>
-		public static bool CopyTempLog(string pathToLog, string destination)
-		{
-			try
-			{
+        /// <summary>
+        /// Copies log file to local temp path
+        /// </summary>
+        /// <param name="pathToLog"></param>
+        /// <returns></returns>
+        public static bool CopyTempLog(string pathToLog)
+        {
+            try
+            {
+                File.Copy(pathToLog, Settings.Default._TempPath + "tmp.log", true);
+                return true;
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+        }
+        /// <summary>
+        /// Copies log file to destination
+        /// </summary>
+        /// <param name="pathToLog"></param>
+        /// <param name="destination"></param>
+        /// <returns></returns>
+        public static bool CopyTempLog(string pathToLog, string destination)
+        {
+            try
+            {
 
-				File.Copy(pathToLog, destination, true);
-				return true;
-			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
-		}
-
-
+                File.Copy(pathToLog, destination, true);
+                return true;
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+        }
 
 
-		/// <summary>
-		/// Search tmp log for given string
-		/// </summary>
-		/// <param name="searchString"></param>
+
+
+        /// <summary>
+        /// Search tmp log for given string
+        /// </summary>
+        /// <param name="version"></param>
         /// <param name="verbose">turn off console messages</param>
-		/// <returns></returns>
-		public static bool FindInLog(string searchString, bool verbose=true)
-		{
-			try
-			{
-				return File.ReadAllText(Settings.Default._TempPath + "tmp.log").Contains(searchString);
-			}
-			catch (Exception ex) {
+        /// <returns></returns>
+        public static bool FindInLog(string version, bool verbose = true)
+        {
+            try
+            {
+                return File.ReadAllText(Settings.Default._TempPath + "tmp.log").Contains(version);
+            }
+            catch (Exception ex)
+            {
                 if (verbose) Console.WriteLine(ex.Message);
                 return false;
             }
-		}
+        }
+        /// <summary>
+        /// Search log for a given string
+        /// </summary>
+        /// <param name="version">version to search for</param>
+        /// <param name="logLocation">path to log file</param>
+        /// <param name="verbose">show debug info</param>
+        /// <returns></returns>
+        public static bool FindInLog(string version, string logLocation, bool verbose = true)
+        {
+            try
+            {
+                return File.ReadAllText(logLocation).Contains(version);
+            }
+            catch (Exception ex)
+            {
+                if (verbose) Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
 
 
+        /// <summary>
+        /// Get the latest file in the path searching with the find
+        /// </summary>
+        /// <param name="path">where to look</param>
+        /// <param name="find">filename to find</param>
+        /// <returns></returns>
+        public static string LatestFile(string path, string find)
+        {
+            try
+            {
+                System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
+                System.IO.FileInfo[] files = dir.GetFiles(find).OrderByDescending(p => p.CreationTime).ToArray();
+                Console.WriteLine(files[0].FullName);
+                return files[0].FullName;
+            }
+            catch (Exception) { return ""; }
+        }
+        /// <summary>
+        /// Get the latest multi file
+        /// </summary>
+        /// <param name="path">where to look</param>
+        /// <returns></returns>
+        public static string LatestMulti(string path)
+        {
+            try
+            {
+                System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
+                System.IO.FileInfo[] files = dir.GetFiles("multi_*.log").OrderByDescending(p => p.CreationTime).ToArray();
+                Console.WriteLine(files[0].FullName);
+                return files[0].FullName;
+            }
+            catch (Exception) { return ""; }
+        }
+
+
+
+
+        /// <summary>
+        /// Search multi log for the specified versions
+        /// </summary>
+        /// <param name="versions"></param>
+        /// <returns></returns>
+        public static bool MultiLog(System.Collections.Specialized.StringCollection versions, bool verbose = true)
+        {
+            try
+            {
+                string logFileAsString = File.ReadAllText(Settings.Default._TempPath + "tmp.log");
+                foreach (string version in versions)
+                {
+                    if (logFileAsString.Contains(version)) { return true; }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                if (verbose) Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Find in Verifone Log
+        /// </summary>
+        /// <param name="computer">name of computer to search</param>
+        /// <param name="version">verifone version to find</param>
+        /// <returns></returns>
+        public static string VFLog(string computer, string version)
+        {
+            try
+            {
+                string logFileAsString = File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer));
+                if (!logFileAsString.Contains(version))
+                {
+                    if (logFileAsString.Contains("Error"))
+                    {
+                        return "Error";
+                    }
+                    else { return "False"; }
+                }
+                else return "True";
+            }
+            catch (Exception) { return "Error"; }
+        }
+        /// <summary>
+        /// Find in Verifone Log
+        /// </summary>
+        /// <param name="computer">name of computer to search</param>
+        /// <param name="versions">list of versions to check for</param>
+        /// <returns></returns>
+        public static string VFLog(string computer, System.Collections.Specialized.StringCollection versions)
+        {
+            try
+            {
+                string logFileAsString = File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer));
+                foreach(string version in versions)
+                {
+                    if (logFileAsString.Contains(version)) { return "True"; }
+                }
+                if (logFileAsString.Contains("Error")) { return "Error"; }
+                return "False";
+
+            }
+            catch (Exception) { return "Error"; }
+        }
 
 
         /// <summary>

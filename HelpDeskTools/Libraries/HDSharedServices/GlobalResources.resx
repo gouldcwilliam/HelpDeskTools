@@ -6303,4 +6303,16 @@
   <data name="wat_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Funny\wat-help.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Cry_Baby_Cry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Funny\Cry-Baby-Cry.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Barber" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Funny\Barber.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Barber2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Funny\Barber2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="taylor_swift2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Funny\taylor-swift2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

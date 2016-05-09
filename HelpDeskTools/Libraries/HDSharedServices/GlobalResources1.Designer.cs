@@ -94,6 +94,26 @@ namespace Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Barber {
+            get {
+                object obj = ResourceManager.GetObject("Barber", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Barber2 {
+            get {
+                object obj = ResourceManager.GetObject("Barber2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @ECHO OFF
         ///REM
         ///:importCertRoot
@@ -238,6 +258,16 @@ namespace Shared {
             get {
                 object obj = ResourceManager.GetObject("Contra_33", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Cry_Baby_Cry {
+            get {
+                object obj = ResourceManager.GetObject("Cry_Baby_Cry", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1097,6 +1127,16 @@ namespace Shared {
         public static System.Drawing.Bitmap sundial {
             get {
                 object obj = ResourceManager.GetObject("sundial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap taylor_swift2 {
+            get {
+                object obj = ResourceManager.GetObject("taylor_swift2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

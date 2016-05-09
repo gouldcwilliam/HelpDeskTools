@@ -719,7 +719,7 @@
             this.gbMpId.Size = new System.Drawing.Size(58, 30);
             this.gbMpId.TabIndex = 58;
             this.gbMpId.TabStop = false;
-            this.gbMpId.Text = "MP ID";
+            this.gbMpId.Text = "GTT ID";
             // 
             // txtTZ
             // 

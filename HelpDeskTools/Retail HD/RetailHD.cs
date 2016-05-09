@@ -69,7 +69,6 @@ namespace Retail_HD
 
         bool _AgentLoginEnabled = false;
         bool _NetworkEnabled { get; set; }
-        bool hasRun = false;
 
 
         List<Computer> _computers
@@ -382,54 +381,20 @@ namespace Retail_HD
                 {
                     ts_Top.Invoke(new MethodInvoker(delegate
                     {
-                        //if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
-                        ////if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
-                        //                     {
-                        //                         ts_Top_tsl_Override.Visible = true;
-                        //                     }
-                        //                     else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
-                        ////else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
-                        //                     {
-                        //                         ts_Top_tsl_Override.Visible = false;
-                        //                     }
-
                         if (ts_Top_tsl_CurrentCall.Visible)
                         {
                             if (ts_Top_tsl_CurrentCall.ForeColor == SystemColors.HotTrack) ts_Top_tsl_CurrentCall.ForeColor = Color.Red;
                             else ts_Top_tsl_CurrentCall.ForeColor = SystemColors.HotTrack;
                         }
-
-                        //if (ts_Top_tsl_Override.Visible)
-                        //{
-                        //    if (ts_Top_tsl_Override.ForeColor == Color.Red) ts_Top_tsl_Override.ForeColor = Color.Purple;
-                        //    else ts_Top_tsl_Override.ForeColor = Color.Red;
-                        //}
                     }));
                 }
                 else
                 {
-                    //if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
-                    ////if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
-                    //               {
-                    //                   ts_Top_tsl_Override.Visible = true;
-                    //               }
-                    //               else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
-                    ////else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
-                    //               {
-                    //                   ts_Top_tsl_Override.Visible = false;
-                    //               }
-
                     if (ts_Top_tsl_CurrentCall.Visible)
                     {
                         if (ts_Top_tsl_CurrentCall.ForeColor == SystemColors.HotTrack) ts_Top_tsl_CurrentCall.ForeColor = Color.Red;
                         else ts_Top_tsl_CurrentCall.ForeColor = SystemColors.HotTrack;
                     }
-
-                    //if (ts_Top_tsl_Override.Visible)
-                    //{
-                    //    if (ts_Top_tsl_Override.ForeColor == Color.Red) ts_Top_tsl_Override.ForeColor = Color.Purple;
-                    //    else ts_Top_tsl_Override.ForeColor = Color.Red;
-                    //}
                 }
             }
 
@@ -1514,12 +1479,7 @@ namespace Retail_HD
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Main_FormShown(object sender, EventArgs e)
-        {
-            if (_NetworkEnabled) { UpdateWrapUpTotal(); }
-            if (Properties.Settings.Default._DrawingSize != null)
-            {
-                Size = Properties.Settings.Default._DrawingSize;
-            }
+        { 
 
         }
 
@@ -1529,26 +1489,45 @@ namespace Retail_HD
         /// <param name="e"></param>
         private void Main_Load(object sender, EventArgs e)
         {
-            //restore the position of the form
-            if (!hasRun)
+            // Set start size
+            if (Properties.Settings.Default._DrawingSize != null)
+            {
+                Size = Properties.Settings.Default._DrawingSize;
+            }
+
+            // Set start position
+            if (Properties.Settings.Default._DrawingLocation != null)
             {
                 Location = Properties.Settings.Default._DrawingLocation;
-                if (!isOnScreen(this))
-                {
-                    //set the location to a default
-                    Location = new Point(200, 200);
-                }
+            }
 
-                hasRun = true;
-            }
-            if (Environment.UserName.ToString().ToUpper() == "GENAUTER")
+            if (_NetworkEnabled) { UpdateWrapUpTotal(); }
+
+            //Console.WriteLine(Environment.UserName.ToString().ToUpper());
+
+            if (!System.Diagnostics.Debugger.IsAttached)
             {
-                startup = new Forms.Splash(Shared.GlobalResources.Finger);
-                startup.ShowDialog();
-            }
-            else
-            {
-                startup = new Forms.Splash(Shared.GlobalResources.wat_help);
+                switch (Environment.UserName.ToString().ToUpper())
+                {
+                    case ("GENAUTER"):
+                        startup = new Forms.Splash(Shared.GlobalResources.Finger);
+                        break;
+                    case ("BERGMAJA"):
+                    case ("NEDDMI"):
+                        startup = new Forms.Splash(Shared.GlobalResources.Cry_Baby_Cry);
+                        break;
+                    case ("PERSINER"):
+                    case ("SHUTICAN"):
+                        startup = new Forms.Splash(Shared.GlobalResources.Barber);
+                        break;
+                    case ("WITTCHR"):
+                        startup = new Forms.Splash(Shared.GlobalResources.taylor_swift2);
+                        break;
+                    default:
+                        startup = new Forms.Splash(Shared.GlobalResources.wat_help);
+                        break;
+
+                }
                 startup.ShowDialog();
             }
             Console.WriteLine(DateTime.Now);
