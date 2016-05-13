@@ -25,6 +25,18 @@ namespace Retail_HD.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _ShowLoggedOutUsers {
+            get {
+                return ((bool)(this["_ShowLoggedOutUsers"]));
+            }
+            set {
+                this["_ShowLoggedOutUsers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool _ShowMeInAgentStatus {
             get {

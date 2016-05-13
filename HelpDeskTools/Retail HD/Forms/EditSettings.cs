@@ -29,6 +29,7 @@ namespace Retail_HD.Forms
 			InitializeComponent();
 
 			
+			this.ckbShowLoggedOut.Checked = Properties.Settings.Default._ShowLoggedOutUsers;
 			this.ckbEnableShowMe.Checked = Properties.Settings.Default._ShowMeInAgentStatus;
 			this.ckbEnableAutoReady.Checked = Properties.Settings.Default._EnableAutoReady;
             if (Environment.UserName.ToUpper() == "WITTCHR")
@@ -44,6 +45,7 @@ namespace Retail_HD.Forms
 		private void vSaveChanges()
 		{
 
+            Properties.Settings.Default._ShowLoggedOutUsers = this.ckbShowLoggedOut.Checked;
             Properties.Settings.Default._ShowMeInAgentStatus = this.ckbEnableShowMe.Checked;
             Properties.Settings.Default._EnableAutoReady = this.ckbEnableAutoReady.Checked;
 			Properties.Settings.Default._LoginEnabled = this.ckbEnableAgentLogin.Checked;
@@ -92,6 +94,8 @@ namespace Retail_HD.Forms
             //set to false, so if nothing has changed, it is still false
             hasSettingsChanged = false;
             //check if any settings is different
+ 			if (this.ckbShowLoggedOut.Checked == Properties.Settings.Default._ShowLoggedOutUsers) hasSettingsChanged = true;
+			//if (this.ckbShowLoggedOut.Checked == userPrefs.ShowLoggedOutUsers) hasSettingsChanged = true;
 			if (this.ckbEnableShowMe.Checked == Properties.Settings.Default._ShowMeInAgentStatus) hasSettingsChanged = true;
 			//if (this.ckbEnableShowMe.Checked == userPrefs.ShownInAgentStatus) hasSettingsChanged = true;
 			if (this.ckbEnableAutoReady.Checked == Properties.Settings.Default._EnableAutoReady) hasSettingsChanged = true;

@@ -13,11 +13,15 @@ namespace Shared {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public sealed partial class SQLSettings : global::System.Configuration.ApplicationSettingsBase {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         
         private static SQLSettings defaultInstance = ((SQLSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new SQLSettings())));
         
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static SQLSettings Default {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return defaultInstance;
             }
@@ -26,7 +30,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("rochdclogp01")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _ServerName {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_ServerName"]));
             }
@@ -38,7 +44,9 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("RetailHD")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _Database {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_Database"]));
             }
@@ -74,7 +82,9 @@ order by
 	[Calls].[date] desc
 
 ")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _RecentCallsByStore {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_RecentCallsByStore"]));
             }
@@ -86,7 +96,9 @@ order by
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("SELECT \r\n\t[computer] \r\nFROM \r\n\t[Computers] \r\nWHERE \r\n\t[store] = @store")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _ComputersByStore {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_ComputersByStore"]));
             }
@@ -100,7 +112,9 @@ order by
         [global::System.Configuration.DefaultSettingValueAttribute("select \r\n\t[category], \r\n\t[topic], \r\n\t[mandatory] \r\nfrom \r\n\t[Topics] \r\n\tleft join " +
             "\r\n\t\t[Categories] \r\n\ton \r\n\t\t[Topics].[catID] = [Categories].[id]\r\nwhere\r\n\t[active" +
             "] = \'TRUE\'")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _CategoriesWithTopics {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_CategoriesWithTopics"]));
             }
@@ -132,7 +146,9 @@ values (
 	@url
 	)
 ")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _LogCall {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_LogCall"]));
             }
@@ -147,7 +163,9 @@ values (
             "on\r\n\t\t[Calls].[techID] = [Technicians].[id]\r\nwhere\r\n\t[date] > dbo.StartOfDay() a" +
             "nd\r\n\tlower([Technicians].[technician]) = lower(@TECH) and\r\n\tlower([type]) = \'in\'" +
             "\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _UserCallCount {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_UserCallCount"]));
             }
@@ -171,7 +189,9 @@ set
 where 
 	[Calls].[id] = @id
 ")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _UpdateWrapUp {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_UpdateWrapUp"]));
             }
@@ -185,7 +205,9 @@ where
         [global::System.Configuration.DefaultSettingValueAttribute("Insert into [Topics] ([topic], [catID], [active], [mandatory])\r\nvalues\r\n\t(@topic," +
             "\r\n\t(select [Categories].[id] from [Categories] where [category] = @category),\r\n\t" +
             "\'true\',\r\n\t@mandatory)\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _AddCallTopic {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_AddCallTopic"]));
             }
@@ -198,7 +220,9 @@ where
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("SELECT \r\n\tp.[store]\r\nFROM \r\n\t[Phones] p\r\n\tINNER JOIN [Stores] s on p.store=s.stor" +
             "e\r\nWHERE \r\n\tp.[phone] LIKE @PHONE and s.[open]=1\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _StoreByPhone {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_StoreByPhone"]));
             }
@@ -212,7 +236,9 @@ where
         [global::System.Configuration.DefaultSettingValueAttribute("select\r\n\tcount([techID]) [Total]\r\nfrom\r\n\t[Calls]\r\n\tleft join \r\n\t\t[Technicians]\r\n\t" +
             "on\r\n\t\t[Calls].[techID] = [Technicians].[id]\r\nwhere\r\n\t[date] > dbo.StartOfDay() a" +
             "nd\r\n\tlower([type]) = \'in\'")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _TeamCallCount {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_TeamCallCount"]));
             }
@@ -227,7 +253,9 @@ where
             "2 DATE\r\nDECLARE @CATEGORY VARCHAR(50)\r\nDECLARE @TOPIC VARCHAR(50)\r\nDECLARE @TECH" +
             " VARCHAR(50)\r\nDECLARE @DETAILS VARCHAR(2000)\r\nDECLARE @TRAX BIT\r\nDECLARE @URL VA" +
             "RCHAR(2000)\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _HistoryDeclare {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_HistoryDeclare"]));
             }
@@ -278,7 +306,9 @@ ORDER BY
 	[date]
 DESC 
 ")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _HistorySearch {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_HistorySearch"]));
             }
@@ -328,7 +358,9 @@ ORDER BY
 	[date]
 DESC 
 ")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _HistorySearchRange {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_HistorySearchRange"]));
             }
@@ -341,7 +373,9 @@ DESC
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("SELECT TOP 1\r\n* FROM\r\n\t[Stores] as S\r\n\tfull join \r\n\t\t[Phones] as P\r\n\ton [S].[stor" +
             "e] = [P].[store]\r\nWHERE\r\n\t[S].[store] = @store\r\nORDER BY\r\n\t[P].[line]\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _StoreInfo {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_StoreInfo"]));
             }
@@ -371,7 +405,9 @@ ORDER BY
 	[Calls].[id]
 DESC
 ")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _LastCategory {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_LastCategory"]));
             }
@@ -383,7 +419,9 @@ DESC
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("GlobalHD")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _DatabaseGlobal {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_DatabaseGlobal"]));
             }
@@ -407,7 +445,9 @@ DECLARE @STATE VARCHAR(50)
 DECLARE @ZIP VARCHAR(50)
 DECLARE @PHONE VARCHAR(50)
 DECLARE @IP VARCHAR(50)")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _StoreSearchDeclare {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_StoreSearchDeclare"]));
             }
@@ -438,7 +478,9 @@ DECLARE @IP VARCHAR(50)")]
             "T([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[gate2]) LIKE \'%\'+@IP+\'%\' OR\r\n\t\tCONCAT([1st],\'.\'" +
             ",[2nd],\'.\',[3rd],\'.\',[gate3]) LIKE \'%\'+@IP+\'%\' OR\r\n\t\tCONCAT([1st],\'.\',[2nd],\'.\'," +
             "[3rd],\'.\',[gate4]) LIKE \'%\'+@IP+\'%\'\r\n\t)\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _StoreSearch {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_StoreSearch"]));
             }
@@ -452,52 +494,14 @@ DECLARE @IP VARCHAR(50)")]
         [global::System.Configuration.DefaultSettingValueAttribute("\r\nUPDATE \r\n\t[Phones] \r\nSET \r\n\t[phone] = @phone\r\nWHERE \r\n\t[store] = @store \r\nAND [" +
             "line]=\'1\'\r\n\r\nIF @@ROWCOUNT = 0\r\nBEGIN\r\n\tINSERT INTO \r\n\t\t[Phones] ([phone], [stor" +
             "e])\r\n\tVALUES\r\n\t\t(@phone, @store)\r\nEND\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _StoreInfoPhone {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_StoreInfoPhone"]));
             }
             set {
                 this["_StoreInfoPhone"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT 
-	Technicians.full_name AS Name, 
-	Technicians.technician AS [login], 
-	Technicians.id as ID, 
-	CurrentStatus, 
-	TimeStatusChanged, 
-	Information1, 
-	Information2 
-FROM 
-	AgentStatus 
-	INNER JOIN 
-		Technicians ON 
-			AgentStatus.TechnicianID = Technicians.id
-WHERE
-	[CurrentStatus] != 'LOGOUT' AND
-	[technician] != '{0}'
-")]
-        public string _AgentStatus {
-            get {
-                return ((string)(this["_AgentStatus"]));
-            }
-            set {
-                this["_AgentStatus"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
-            get {
-                return ((string)(this["Setting"]));
-            }
-            set {
-                this["Setting"] = value;
             }
         }
     }
