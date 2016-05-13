@@ -881,7 +881,7 @@ namespace Retail_HD
 
         private void CodeEntry_Click(object sender, EventArgs e)
         {
-            KonamiCodeEntry codeEntryForm = new KonamiCodeEntry();
+            Forms.KonamiCodeEntry codeEntryForm = new Forms.KonamiCodeEntry();
             if (codeEntryForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string adjustedPath = string.Empty;
