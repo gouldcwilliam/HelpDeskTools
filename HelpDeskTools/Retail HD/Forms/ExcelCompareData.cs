@@ -16,13 +16,11 @@ namespace Retail_HD.Forms
 	/// </summary>
 	public partial class ExcelCompareData : Form
 	{
-		// TODO  - Gather the information to be compared
-
         private BindingList<combinedResults> blCombined = new BindingList<combinedResults>();
 
         /// <summary> Form showing data from an excel file query
 		/// </summary>
-		/// <param name="file">File name to query</param>
+		/// <param name="dtExcel">File name to query</param>
 		public ExcelCompareData(DataTable dtExcel)
 		{
 			InitializeComponent();

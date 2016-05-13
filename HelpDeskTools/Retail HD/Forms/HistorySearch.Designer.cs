@@ -1,6 +1,8 @@
 ﻿namespace Retail_HD.Forms
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 	partial class HistorySearch
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -419,7 +421,9 @@
 
 		#endregion
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.DataGridView dgvResults;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox10;
 		private System.Windows.Forms.TextBox txtURL;

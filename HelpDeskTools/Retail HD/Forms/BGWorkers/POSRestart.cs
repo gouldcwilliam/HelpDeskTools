@@ -5,8 +5,15 @@ using Shared;
 
 namespace Retail_HD.Forms.BGWorkers
 {
+    /// <summary>
+    /// restarts computer
+    /// </summary>
 	public class Restart : Process
 	{
+        /// <summary>
+        /// <see cref="Restart"/>
+        /// </summary>
+        /// <param name="computers"></param>
 		public Restart(List<Computer> computers)
 		{
 			new Process();

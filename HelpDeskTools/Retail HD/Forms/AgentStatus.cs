@@ -12,16 +12,24 @@ using CiscoFinesseNET;
 
 namespace Retail_HD.Forms
 {
-    public partial class frmAgentStatus : Form
+    // TODO - needs a cleaner UI
+
+    /// <summary>
+    /// Agent status form
+    /// </summary>
+    public partial class AgentStatus : Form
     {
         Timer _t = new Timer();
-		BindingList<AgentStatus> agents = new BindingList<AgentStatus>();
+		BindingList<Classes.AgentStatus> agents = new BindingList<Classes.AgentStatus>();
         const string ButtonText = "Change Status: {0}"; //parameter is for Status
         const string NoChangeText = "Unavailable"; //display if status change is not possible
         CiscoFinesseNET.UserState availableState = CiscoFinesseNET.UserState.READY;
         bool AllowLogout = false;
 
-        public frmAgentStatus()
+        /// <summary>
+        /// <seealso cref="AgentStatus"/>
+        /// </summary>
+        public AgentStatus()
         {
             InitializeComponent();
 
@@ -93,7 +101,7 @@ namespace Retail_HD.Forms
             agents.Clear();
             foreach (DataRow _r in dt.Rows)
             {
-                CiscoFinesseNET.AgentStatus _a = new CiscoFinesseNET.AgentStatus();
+                Classes.AgentStatus _a = new Classes.AgentStatus();
                 _a.AgentID = int.Parse(_r["ID"].ToString());
                 _a.AgentName = _r["Name"].ToString();
                 _a.CurrentStatus = (CiscoFinesseNET.UserState)Enum.Parse(typeof(CiscoFinesseNET.UserState), _r["CurrentStatus"].ToString());
@@ -109,7 +117,7 @@ namespace Retail_HD.Forms
 
             if (agents.Count < 1) //no agents logged in, or no one besides you is logged in
             {
-                AgentStatus _a = new AgentStatus();
+                Classes.AgentStatus _a = new Classes.AgentStatus();
                 _a.AgentName = "No one logged in.";
                 _a.AgentID = 0;
                 _a.CurrentStatus = CiscoFinesseNET.UserState.UNKNOWN;
@@ -194,7 +202,7 @@ namespace Retail_HD.Forms
         {
             //need basically the same code from the main page here
             DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
+            Classes.AgentStatus _s = _c[0].DataBoundItem as Classes.AgentStatus;
 
             CiscoFinesseNET.Helper.ChangeOtherUserState(availableState, _s.LoginName.ToLower());
         }
@@ -203,7 +211,7 @@ namespace Retail_HD.Forms
         {
             //this... will probably work?
             DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
+            Classes.AgentStatus _s = _c[0].DataBoundItem as Classes.AgentStatus;
 
             if (_s.CurrentStatus == CiscoFinesseNET.UserState.READY)
             {
@@ -221,7 +229,7 @@ namespace Retail_HD.Forms
 
             //figure out which agent is being opened, and adjust the change status button to accurately reflect that
             DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
+            Classes.AgentStatus _s = _c[0].DataBoundItem as Classes.AgentStatus;
             if (_s.LoginName.ToLower() == System.Environment.UserName.ToLower() || !isNumeric(_s.Information2))
             {
                 btnCallUser.Enabled = false;
@@ -268,7 +276,7 @@ namespace Retail_HD.Forms
         {
             //call the currently selected user
             DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
+            Classes.AgentStatus _s = _c[0].DataBoundItem as Classes.AgentStatus;
 
             //unless it's you, you can't call you silly!
             if (_s.LoginName.ToLower() == System.Environment.UserName.ToLower())
@@ -304,7 +312,7 @@ namespace Retail_HD.Forms
             _t.Stop();
 
             DataGridViewSelectedRowCollection _c = dgvAgents.SelectedRows;
-            AgentStatus _s = _c[0].DataBoundItem as AgentStatus;
+            Classes.AgentStatus _s = _c[0].DataBoundItem as Classes.AgentStatus;
 
             if (_s.LoginName.ToLower() == System.Environment.UserName.ToLower() || !isNumeric(_s.Information2))
             {

@@ -2,8 +2,16 @@
 
 namespace Retail_HD.Forms.BGWorkers
 {
+    /// <summary>
+    /// unlock cashier
+    /// </summary>
 	public class Unlock : Process
 	{
+        /// <summary>
+        /// <see cref="Unlock"/>
+        /// </summary>
+        /// <param name="ComputerName"></param>
+        /// <param name="CashierNumber"></param>
 		public Unlock(string ComputerName, string CashierNumber)
 		{
 			new Process();
@@ -26,6 +34,7 @@ namespace Retail_HD.Forms.BGWorkers
 		string _computerName { get; set; }
 		string _cashierNumber { get; set; }
 
+        // TODO - remove steps for copying bat files
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;

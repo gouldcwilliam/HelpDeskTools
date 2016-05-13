@@ -46,6 +46,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Bit9Report.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Bit9Report.Bit9Report</StartupObject>

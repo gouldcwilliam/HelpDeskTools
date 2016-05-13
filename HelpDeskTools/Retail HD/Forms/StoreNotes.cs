@@ -10,9 +10,15 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// form for persistant naggy store notes
+    /// </summary>
 	public partial class StoreNotes : Form
 	{
-		public StoreNotes()
+        /// <summary>
+        /// <see cref="StoreNotes"/>
+        /// </summary>
+        public StoreNotes()
 		{
 			InitializeComponent();
 			Text = Text + ": " + Info.store;

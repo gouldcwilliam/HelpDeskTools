@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// <see cref="EditCalls"/>
+    /// </summary>
 	public partial class EditCalls : Form
 	{
 		/// <summary>
@@ -52,6 +55,10 @@ namespace Retail_HD.Forms
 			
 		}
 
+        /// <summary>
+        /// <see cref="EditCalls"/>
+        /// </summary>
+        /// <param name="id"></param>
 		public EditCalls(string id)
 		{
 			InitializeComponent();
@@ -87,6 +94,9 @@ namespace Retail_HD.Forms
 		private List<WrapUp.wrapUp> listWrapUps = new List<WrapUp.wrapUp>();
 
 		/*EVENTS*/
+        /// <summary>
+        /// event to update main form after button is clicked
+        /// </summary>
 		public event EventHandler ButtonClicked;
 
 		/*METHODS*/
@@ -376,7 +386,6 @@ namespace Retail_HD.Forms
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
 			Close();
-			if (ButtonClicked != null) { ButtonClicked(this, e); }
 		}
 
 	}

@@ -48,6 +48,8 @@ namespace DelayedStartServices
 			int sec = (Settings.Default._DelayInMiliseconds / 1000) % 60;
 
 
+
+            // TODO - Remove steps for copying bat file
 			for (int attempt = 1; attempt < Settings.Default._Retries + 1; attempt++)
 			{
 				// if last itteration success exit5

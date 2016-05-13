@@ -24,13 +24,16 @@
       <Value Profile="(Default)">\\wwwint\roc\techtmp\bergman\Toolsmenu.bat</Value>
     </Setting>
     <Setting Name="multiVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4.2.12.139</Value>
+      <Value Profile="(Default)">4.2.12.161</Value>
     </Setting>
     <Setting Name="redIronVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)">2.0.0.926</Value>
     </Setting>
     <Setting Name="vfVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4.3.7-20150824</Value>
+      <Value Profile="(Default)">4.4.5-20151127</Value>
+    </Setting>
+    <Setting Name="_DisableCiscoDebug" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

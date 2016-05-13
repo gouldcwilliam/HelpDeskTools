@@ -6,46 +6,105 @@ using Shared;
 
 namespace Retail_HD
 {
+    /// <summary>
+    /// Store information object
+    /// </summary>
 	public static class Info
 	{
+        /// <summary>
+        /// first octet
+        /// </summary>
 		public static string _first { get; set; }
+        /// <summary>
+        /// second octet
+        /// </summary>
         public static string _second { get; set; }
+        /// <summary>
+        /// third octet
+        /// </summary>
         public static string _third { get; set; }
-
+        /// <summary>
+        /// POS' lan 4th octet
+        /// </summary>
         private static string _lan1 { get; set; }
+        /// <summary>
+        /// POS' gateway 4th octet
+        /// </summary>
         private static string _gate1 { get; set; }
+        /// <summary>
+        /// Traffic counter lan 4th octet
+        /// </summary>
         private static string _lan2 { get; set; }
+        /// <summary>
+        /// Traffic counter gateway 4th octet
+        /// </summary>
         private static string _gate2 { get; set; }
+        /// <summary>
+        /// Unused lan 4th octet
+        /// </summary>
         private static string _lan3 { get; set; }
+        /// <summary>
+        /// Unused gateway 4th octet
+        /// </summary>
         private static string _gate3 { get; set; }
+        /// <summary>
+        /// Handheld lan 4th octet
+        /// </summary>
         private static string _lan4 { get; set; }
+        /// <summary>
+        /// Handheld gateway 4th octet
+        /// </summary>
         private static string _gate4 { get; set; }
+        /// <summary>
+        /// CCTV's 4th octet - should be on the same lan as the traffic counter
+        /// </summary>
         private static string _cctv { get; set; }
 
+        /// <summary>
+        /// ip string
+        /// </summary>
 		public static string mim 
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan4); }
         }
+        /// <summary>
+        /// ip string
+        /// </summary>
         public static string mim_gate
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate4); }
         }
+        /// <summary>
+        /// ip string
+        /// </summary>
         public static string pos
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan1); }
         }
+        /// <summary>
+        /// ip string
+        /// </summary>
         public static string pos_gate
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate1); }
         }
+        /// <summary>
+        /// ip string
+        /// </summary>
         public static string sensor
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan2); }
         }
+        /// <summary>
+        /// ip string
+        /// </summary>
         public static string sensor_gate
         {
             get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate2); }
         }
+        /// <summary>
+        /// ip string
+        /// </summary>
 		public static string cctv
 		{
 			get
@@ -60,10 +119,17 @@ namespace Retail_HD
 			}
 		}
 
-
+        /// <summary>
+        /// store number
+        /// </summary>
 		public static int store { get; set; }
+        /// <summary>
+        /// cashier number
+        /// </summary>
 		public static string cashier { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string email
 		{
 			get
@@ -72,37 +138,102 @@ namespace Retail_HD
 				else { return "Store" + store.ToString() + "@wwwinc.com"; }
 			}
 		}
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string address{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string city{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string dm { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public static string rm { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string manager{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string MP{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string name{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string phone{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string state{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string type{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string TZ{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string zip{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string income{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string rank { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string BAMS { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string SVS { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string TID1 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string TID2 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 		public static string TID3 { get; set; }
-		public static string TID4 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string TID4 { get; set; }
+        /// <summary>
+        /// set to false when call ends
+        /// </summary>
+        public static bool isCallWrappedUp { get; set; }
 
 		/// <summary>
 		/// Store's computers
 		/// </summary>
 		public static List<Computer> computers = new List<Computer>();
+        /// <summary>
+        /// Selected computers
+        /// </summary>
 		public static List<Computer> selectedComputers
 		{
 			get
 			{
-				// blank return list
-				List<Computer> returnList = new List<Computer>();
 				// set list to all selected computers
 				List<Computer> selectedList = Info.computers.FindAll(x => x.selected == true);
 
@@ -122,13 +253,8 @@ namespace Retail_HD
 					}
 				}
 
-				foreach(Computer computer in selectedList)
-				{
-					// test each computer's connection
-					if (Shared.Functions.CheckNetwork(computer)) { returnList.Add(computer); }
-					else { MessageBox.Show("Unable to reach " + computer, "Network Issue", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-				}
-				return returnList;
+				
+				return selectedList;
 			}
 		}
 		/// <summary>
@@ -147,7 +273,9 @@ namespace Retail_HD
 		/// Store's call history
 		/// </summary>
 		public static System.Data.DataTable recentCalls = new System.Data.DataTable();
-
+        /// <summary>
+        /// Stores persistant notes
+        /// </summary>
 		public static System.Data.DataTable notes = new System.Data.DataTable();
 
 
@@ -197,6 +325,8 @@ namespace Retail_HD
 			TID2 = string.Empty;
 			TID3 = string.Empty;
 			TID4 = string.Empty;
+
+            isCallWrappedUp = false;
 
 			categories = new List<Classes.Category>();
 		}

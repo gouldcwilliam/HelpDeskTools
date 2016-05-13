@@ -91,6 +91,8 @@
 
 		private System.Windows.Forms.Button btnOK;
 		private System.Windows.Forms.Button btnCancel;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.TextBox txtIssueSuggestion;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 	}
 }

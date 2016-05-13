@@ -211,17 +211,41 @@
 
 		#endregion
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.GroupBox gbServices;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.GroupBox gbAction;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.RadioButton rbSQL;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.RadioButton rbCredit;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.RadioButton rbStart;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.RadioButton rbRestart;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.RadioButton rbStop;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnOK;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.RadioButton rbCitrix;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbVerifone;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.RadioButton rbTransnet;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.RadioButton rbDameware;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 	}
 }

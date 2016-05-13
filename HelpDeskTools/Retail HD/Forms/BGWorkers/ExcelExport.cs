@@ -13,15 +13,26 @@ using System.IO;
 
 namespace Retail_HD.Forms.BGWorkers
 {
+    /// <summary>
+    /// form to export excel files
+    /// </summary>
 	public class Exporting : Process
 	{
 		private DataTable _dt = new System.Data.DataTable();
 		private string _saveLocation = string.Empty;
 
+        /// <summary>
+        /// <see cref="Exporting"/>
+        /// </summary>
 		public Exporting()
 		{
 		}
 
+        /// <summary>
+        /// <see cref="Exporting"/>
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <param name="saveLocation"></param>
 		public Exporting(System.Data.DataTable dataTable, string saveLocation)
 		{
 			new Process();

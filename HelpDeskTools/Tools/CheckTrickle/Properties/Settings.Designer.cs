@@ -13,11 +13,15 @@ namespace CheckTrickle.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static Settings Default {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return defaultInstance;
             }
@@ -26,7 +30,9 @@ namespace CheckTrickle.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("retailhelpdesk@wwwinc.com")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string from {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["from"]));
             }
@@ -35,7 +41,9 @@ namespace CheckTrickle.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("retailhelpdesk@wwwinc.com")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string to {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["to"]));
             }
@@ -44,7 +52,9 @@ namespace CheckTrickle.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Tickle Report")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string subject {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["subject"]));
             }
@@ -53,7 +63,9 @@ namespace CheckTrickle.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public int limit {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((int)(this["limit"]));
             }
@@ -62,7 +74,9 @@ namespace CheckTrickle.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string ignore {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["ignore"]));
             }
@@ -73,7 +87,9 @@ namespace CheckTrickle.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("\r\n<!DOCTYPE html><html><head>\r\n<style>\r\ntable, th, td {\r\nborder: 1px solid black;" +
             "\r\nborder-collapse: collapse;\r\n}\r\nth, td {\r\npadding: 5px;\r\n}\r\n</style></head>\r\n<p" +
             ">")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string header {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["header"]));
             }
@@ -82,7 +98,9 @@ namespace CheckTrickle.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("</table></body></html>\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string footer {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["footer"]));
             }
@@ -91,7 +109,9 @@ namespace CheckTrickle.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string body {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["body"]));
             }
@@ -101,7 +121,9 @@ namespace CheckTrickle.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Computer Name</th><th>Message</th" +
             "><th>Notes</th></tr>\r\n")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string tableHead {
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["tableHead"]));
             }

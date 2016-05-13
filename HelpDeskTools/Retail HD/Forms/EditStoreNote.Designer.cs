@@ -1,6 +1,8 @@
 ﻿namespace Retail_HD.Forms
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 	partial class EditStoreNote
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -95,8 +97,12 @@
 
 		#endregion
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnCancel;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnOK;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 		private System.Windows.Forms.TextBox txtNote;
 		private System.Windows.Forms.CheckBox ckbResolved;
 	}

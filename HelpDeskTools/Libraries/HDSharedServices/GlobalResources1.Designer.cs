@@ -87,9 +87,29 @@ namespace Shared {
         ///  &lt;tblArgs&gt;
         ///    &lt;Argument&gt;ip [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string args {
+        public static string argsXML {
             get {
-                return ResourceManager.GetString("args", resourceCulture);
+                return ResourceManager.GetString("argsXML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Barber {
+            get {
+                object obj = ResourceManager.GetObject("Barber", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Barber2 {
+            get {
+                object obj = ResourceManager.GetObject("Barber2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -211,7 +231,9 @@ namespace Shared {
         ///
         ///net localgroup administrators wwwint\wsadmin /delete
         ///
-        ///net localgroup administrators wwwint\wsadminsretail /add.
+        ///net localgroup administrators wwwint\wsadminsretail /add
+        ///
+        ///ping -n 6 127.0.0.1 &gt; NUL.
         /// </summary>
         public static string batWSAdmin {
             get {
@@ -236,6 +258,16 @@ namespace Shared {
             get {
                 object obj = ResourceManager.GetObject("Contra_33", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Cry_Baby_Cry {
+            get {
+                object obj = ResourceManager.GetObject("Cry_Baby_Cry", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1095,6 +1127,26 @@ namespace Shared {
         public static System.Drawing.Bitmap sundial {
             get {
                 object obj = ResourceManager.GetObject("sundial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap taylor_swift2 {
+            get {
+                object obj = ResourceManager.GetObject("taylor_swift2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap wat_help {
+            get {
+                object obj = ResourceManager.GetObject("wat_help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

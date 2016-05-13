@@ -70,7 +70,7 @@ namespace RIStupidCheckerForTim
 					{
 						found = found + System.IO.Directory.GetFiles(txnPath+i, extension).Count();
 					}
-					catch(Exception e) {; }
+					catch(Exception) {; }
                 }
 				if (Directory.Exists(receiptPath + i))
 				{
@@ -78,7 +78,7 @@ namespace RIStupidCheckerForTim
 					{
 						found = found + System.IO.Directory.GetFiles(receiptPath + i, extension).Count();
                     }
-					catch(Exception e) {; }
+					catch(Exception) {; }
 				}
 			}
 			return found;

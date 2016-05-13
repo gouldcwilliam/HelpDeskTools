@@ -3,12 +3,22 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// meraki ip's form
+    /// </summary>
 	public partial class IPs : Form
 	{
+        /// <summary>
+        /// <see cref="IPs"/>
+        /// </summary>
 		public IPs()
 		{
 			InitializeComponent();
 		}
+        /// <summary>
+        /// <see cref="IPs"/>
+        /// </summary>
+        /// <param name="store"></param>
 		public IPs(string store)
 		{
 			InitializeComponent();

@@ -1,6 +1,8 @@
 ﻿namespace Retail_HD.UCs
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 	partial class PingControl
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -154,14 +156,30 @@
 		#endregion
 
 		private System.Windows.Forms.GroupBox gbPing;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.CheckBox ckbRegister;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.CheckBox ckbFortinet;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.CheckBox ckbMimGate;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.CheckBox ckbMim;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.CheckBox ckbSensor;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.CheckBox ckbSensorGate;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 		public System.Windows.Forms.Button btnOK;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.CheckBox ckbCCTV;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 	}
 }

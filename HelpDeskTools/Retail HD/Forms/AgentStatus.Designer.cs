@@ -1,6 +1,6 @@
 ﻿namespace Retail_HD.Forms
 {
-    partial class frmAgentStatus
+    partial class AgentStatus
     {
         /// <summary>
         /// Required designer variable.
@@ -119,14 +119,14 @@
             this.btnCallUserUser.Text = "Call User";
             this.btnCallUserUser.Click += new System.EventHandler(this.CallUser_Click);
             // 
-            // frmAgentStatus
+            // AgentStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(353, 329);
             this.Controls.Add(this.dgvAgents);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Name = "frmAgentStatus";
+            this.Name = "AgentStatus";
             this.Text = "Agent Status";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAgentStatus_FormClosing);
             this.Load += new System.EventHandler(this.frmAgentStatus_Load);

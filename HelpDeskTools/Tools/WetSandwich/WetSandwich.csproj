@@ -49,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\WetSandwich.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>EEE69AA0BAA982005B0CA30FFE4204C4D0E8C384</ManifestCertificateThumbprint>
@@ -74,7 +75,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Functions.cs" />
     <Compile Include="WetSandwich.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -95,6 +95,10 @@
     <ProjectReference Include="..\..\Libraries\AD\AD.csproj">
       <Project>{f9643ea4-49cf-4fa2-b2fb-771abb20cbf6}</Project>
       <Name>AD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\HDSharedServices\Shared.csproj">
+      <Project>{84b74dd0-3b52-456f-a742-3b57fa31e664}</Project>
+      <Name>Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\LDAP\LDAP.csproj">
       <Project>{5a5601e8-c1b8-43ab-961b-3deb1bc5b06e}</Project>

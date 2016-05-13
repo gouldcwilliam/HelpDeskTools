@@ -4,8 +4,15 @@ using Shared;
 
 namespace Retail_HD.Forms.BGWorkers
 {
+    /// <summary>
+    /// kills the pos
+    /// </summary>
 	public class KillPOS : Process
 	{
+        /// <summary>
+        /// <see cref="KillPOS"/>
+        /// </summary>
+        /// <param name="computers"></param>
 		public KillPOS(List<Computer> computers)
 		{
 			new Process();

@@ -5,6 +5,10 @@ namespace Retail_HD.Forms
 {
 	public partial class AddQuickWrap : Form
     {
+        /// <summary>
+        /// Add new wrap up
+        /// </summary>
+        /// <param name="items"></param>
         public AddQuickWrap(ComboBox.ObjectCollection items)
         {
             InitializeComponent();

@@ -11,25 +11,34 @@ using Shared;
 
 namespace Retail_HD.Forms
 {
+    // TODO - merge this with the CiscoSettings form
+    /// <summary>
+    /// <see cref="EditSettings"/>
+    /// </summary>
 	public partial class EditSettings : Form
 	{
         private bool hasSettingsChanged = false;
         private bool isLoading = false;
-		//private Shared.Config.PerUser userPrefs = Shared.Config.PerUser.Load();
-		public EditSettings()
+
+        /// <summary>
+        /// Form containing the user's settings
+        /// </summary>
+        public EditSettings()
 		{
             isLoading = true;
 			InitializeComponent();
 
 			
 			this.ckbShowLoggedOut.Checked = Properties.Settings.Default._ShowLoggedOutUsers;
-			//this.ckbShowLoggedOut.Checked = userPrefs.ShowLoggedOutUsers;
 			this.ckbEnableShowMe.Checked = Properties.Settings.Default._ShowMeInAgentStatus;
-			//this.ckbEnableShowMe.Checked = userPrefs.ShownInAgentStatus;
 			this.ckbEnableAutoReady.Checked = Properties.Settings.Default._EnableAutoReady;
-			//this.ckbEnableAutoReady.Checked = userPrefs.AutoReady;
+            if (Environment.UserName.ToUpper() == "WITTCHR")
+            {
+                this.ckbEnableAutoReady.Visible = false;
+                Properties.Settings.Default._EnableAutoReady = false;
+                Properties.Settings.Default.Save();
+            }
 			this.ckbEnableAgentLogin.Checked = Properties.Settings.Default._LoginEnabled;
-			//this.ckbEnableAgentLogin.Checked = userPrefs.AutoLogin;
             isLoading = false;
 		}
 
@@ -66,8 +75,8 @@ namespace Retail_HD.Forms
 
         private void btnPhoneSettings_Click(object sender, EventArgs e)
         {
-            Forms.frmCiscoLogin loginSettings = new Forms.frmCiscoLogin("");
-            //frmCiscoLogin loginSettings = new frmCiscoLogin("");
+            Forms.CiscoSettings loginSettings = new Forms.CiscoSettings("");
+            //CiscoSettings loginSettings = new CiscoSettings("");
             loginSettings.ShowDialog();
         }
 

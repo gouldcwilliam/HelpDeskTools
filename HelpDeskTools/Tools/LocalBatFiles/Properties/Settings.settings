@@ -1,0 +1,44 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LocalBatFiles.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="_IgnoreList" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;1455&lt;/string&gt;
+  &lt;string&gt;1557&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="_EmailHeader" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;
+&lt;style&gt;
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+padding: 5px;
+}
+&lt;/style&gt;&lt;/head&gt;
+&lt;p&gt;</Value>
+    </Setting>
+    <Setting Name="_EmailTableHead" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/p&gt;
+&lt;body&gt;&lt;table style="width:100%"&gt;
+&lt;tr&gt;&lt;th&gt;Computer Name&lt;/th&gt;&lt;th&gt;Message&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/tr&gt;</Value>
+    </Setting>
+    <Setting Name="_EmailTableRow" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;tr&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;/tr&gt;</Value>
+    </Setting>
+    <Setting Name="_EmailFooter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</Value>
+    </Setting>
+    <Setting Name="_To" Type="System.String" Scope="User">
+      <Value Profile="(Default)">chad.gould@wwwinc.com</Value>
+    </Setting>
+    <Setting Name="_Subject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Bat File Updates</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

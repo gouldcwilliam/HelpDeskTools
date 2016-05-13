@@ -17,30 +17,82 @@ namespace Retail_HD
 	/// </summary>
 	public partial class RetailHD : Form
     {
-		//
-        #region Phone Variables
+
+		/// <summary> The main form
+		/// </summary>
+		public RetailHD()
+		{
+
+			InitializeComponent();
+			Initialize_Buttons_ToolTips();
+			Initialize_MainHandlers();
+
+            PingUC.btnOK.Click += PingUC_OK_Click;
+			ServicesUC.btnOK.Click += ServicesUC_OK_Click;
+
+			Shared.Functions.CreateTempFolder(true);
+			Shared.Functions.InstallPSTools();
+            Shared.Functions.UpdateLocalBatFiles();
+
+            _NetworkEnabled = Shared.Functions.CheckNetwork(Shared.SQLSettings.Default._ServerName);
+
+
+
+
+            _t.Interval = 1000; //1 second between manual refreshes, this is in case the XMPP isn't returned as expected
+			_t.Tick += _t_Tick;
+
+
+			// Prompts for Finesse login
+
+			string msg = "Would you like to log into the Cisco Finesse Server?";
+			Forms.Confirm ConfirmAgentLogin = new Forms.Confirm(msg);
+			ConfirmAgentLogin.TopMost = true;
+			ConfirmAgentLogin.btnOK.Text = "Yes";
+			ConfirmAgentLogin.btnCancel.Text = "No";
+			//if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
+			if (DialogResult.OK != ConfirmAgentLogin.ShowDialog())
+			{
+                //phone stuff
+
+                _AgentLoginEnabled = false;
+				ts_Top_tsb_Logout.Enabled = false;
+				ts_Top_tsb_ChangeState.Enabled = false;
+				ts_Top_tsb_CallStore.Enabled = false;
+				ts_Top_tsb_TeamStatus.Enabled = false;
+			}
+			else
+			{
+                Helper.SetConsoleDiag(Properties.Settings.Default._DisableCiscoDebug);
+                Helper.OnUpdatedInformation += Helper_OnUpdatedInformation;
+                _AgentLoginEnabled = true;
+				v_CheckLoginConfig();
+			}
+
+		}
+
+
+
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region Variables / Objects
 
         const string _pStore = "Previous: {0}";
-        
         int tickCount = 0;
         int tickCountNagger = 0;
         string previousStore = string.Empty;
-        bool isWrapUpOpen = false;
         string _curNum = string.Empty;
-		string currentStoreNumber
-		{
-			get
-			{
-				return _curNum;
-			}
-			set
-			{
-				if (value.Length == 4) { _curNum = string.Format("Store {0}", value); }
-				else { _curNum = string.Format("{0}", value); }
-			}
-		}
-
-        bool hasCallWrappedUp = false;
+        string currentStoreNumber
+        {
+            get
+            {
+                return _curNum;
+            }
+            set
+            {
+                if (value.Length == 4) { _curNum = string.Format("Store {0}", value); }
+                else { _curNum = string.Format("{0}", value); }
+            }
+        }
         UserState _cState;
         UserState curState
         {
@@ -59,105 +111,51 @@ namespace Retail_HD
         TimeSpan _timeSinceStateChange = new TimeSpan(0, 0, 0);
         CiscoFinesseNET.UserState availableState = UserState.READY;
         int fUpCount = 0;
-		
-		//
-		#endregion
-
-
-		//
-		#region Variables
-		
-		bool _AgentLoginEnabled = false;
+        bool _AgentLoginEnabled = false;
         bool _NetworkEnabled { get; set; }
-		bool hasRun = false;
+        /// <summary>
+        /// if the call has been wrapped up
+        /// </summary>
+        bool _isWrapUpOpen
+        {
+            get
+            {
+                return wrapUp.Visible;
+            }
+        }
+        List<Computer> _computers
+        {
+            get
+            {
+                return Info.selectedComputers;
+            }
+        }
 
-
-		List<Computer> _computers
-		{
-			get
-			{
-				return Info.selectedComputers;
-			}
-		}
-
-		Forms.frmAgentStatus agentStatus = new Forms.frmAgentStatus();
-		Forms.ReportIssue ReportIssue = new Forms.ReportIssue();
-		Forms.WrapUp wrapUp = new Forms.WrapUp();
-		Forms.Confirm nagger = new Forms.Confirm("You are in work, change to READY?", "Change Status?");
-		Forms.UsefulInfo UsefulInfo = new Forms.UsefulInfo();
-		Forms.StoreSearch StoreSearch = new Forms.StoreSearch();
-		Forms.ListActions ListAction = new Forms.ListActions();
-		Forms.HistorySearch HistorySearch = new Forms.HistorySearch();
-		Forms.EditSettings EditSettings = new Forms.EditSettings();
-		Forms.AddNewStore AddNewStore = new Forms.AddNewStore();
+        Forms.AgentStatus agentStatus = new Forms.AgentStatus();
+        Forms.ReportIssue ReportIssue = new Forms.ReportIssue();
+        Forms.WrapUp wrapUp = new Forms.WrapUp();
+        Forms.Confirm nagger = new Forms.Confirm("You are in work, change to READY?", "Change Status?");
+        Forms.UsefulInfo UsefulInfo = new Forms.UsefulInfo();
+        Forms.StoreSearch StoreSearch = new Forms.StoreSearch();
+        Forms.ListActions ListAction = new Forms.ListActions();
+        Forms.HistorySearch HistorySearch = new Forms.HistorySearch();
+        Forms.EditSettings EditSettings = new Forms.EditSettings();
+        Forms.AddNewStore AddNewStore = new Forms.AddNewStore();
         Forms.AdditionalPhone AdditionalPhone = new Forms.AdditionalPhone();
         Forms.Splash startup = new Forms.Splash();
-		Forms.IPs ips = new Forms.IPs();
-		Forms.EditCalls editCalls = new Forms.EditCalls();
-		Forms.StoreNotes storeNotes = new Forms.StoreNotes();
-		#endregion
+        Forms.IPs ips = new Forms.IPs();
+        Forms.EditCalls editCalls = new Forms.EditCalls();
+        Forms.StoreNotes storeNotes = new Forms.StoreNotes();
+        #endregion
 
 
-		/// <summary> The main form
-		/// </summary>
-		public RetailHD()
-		{
-
-			InitializeComponent();
-			Initialize_Buttons_ToolTips();
-			Initialize_MainHandlers();
-
-			PingUC.btnOK.Click += PingUC_OK_Click;
-			ServicesUC.btnOK.Click += ServicesUC_OK_Click;
-
-			Shared.Functions.CreateTempFolder(true);
-			Shared.Functions.InstallPSTools();
-			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batServices, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices) ? "Updated local version of " + Shared.Settings.Default._BatServices : "Unable to update local version of " + Shared.Settings.Default._BatServices);
-			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock) ? "Updated local version of " + Shared.Settings.Default._BatUnlock : "Unable to update local version of " + Shared.Settings.Default._BatUnlock);
-			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batInstallEndpoint12, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint) ? "Updated local version of " + Shared.Settings.Default._BatEndpoint : "Unable to update local version of " + Shared.Settings.Default._BatEndpoint);
-			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.args, Shared.Settings.Default._TempPath + "args.xml") ? "Updated local version of args.xml" : "Unable to update local version of args.xml");
-			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.Zip_Logs, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip) ? "Updated local version of " + Shared.Settings.Default._BatZip : "Unable to update local version of " + Shared.Settings.Default._BatZip);
-			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.Zipper, Shared.Settings.Default._TempPath + Shared.Settings.Default._PSZip) ? "Updated local version of " + Shared.Settings.Default._PSZip : "Unable to update local version of " + Shared.Settings.Default._PSZip);
-			Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batWSAdmin, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin) ? "Updated local version of " + Shared.Settings.Default._WSAdmin : "Unable to update local version of " + Shared.Settings.Default._WSAdmin);
-
-            _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
-
-			//phone stuff
-			Helper.OnUpdatedInformation += Helper_OnUpdatedInformation;
-
-			_t.Interval = 1000; //1 second between manual refreshes, this is in case the XMPP isn't returned as expected
-			_t.Tick += _t_Tick;
 
 
-			// Prompts for Finesse login
-
-			string msg = "Would you like to log into the Cisco Finesse Server?";
-			Forms.Confirm ConfirmAgentLogin = new Forms.Confirm(msg);
-			ConfirmAgentLogin.TopMost = true;
-			ConfirmAgentLogin.btnOK.Text = "Yes";
-			ConfirmAgentLogin.btnCancel.Text = "No";
-			//if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
-			if (DialogResult.OK != ConfirmAgentLogin.ShowDialog())
-			{
-				_AgentLoginEnabled = false;
-				ts_Top_tsb_Logout.Enabled = false;
-				ts_Top_tsb_ChangeState.Enabled = false;
-				ts_Top_tsb_CallStore.Enabled = false;
-				ts_Top_tsb_TeamStatus.Enabled = false;
-			}
-			else
-			{
-				_AgentLoginEnabled = true;
-				v_CheckLoginConfig();
-			}
-
-		}
-
-		//
-		#region HANDLER INITIALIZATIONS
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region HANDLER INITIALIZATIONS
 
 
-		private void Initialize_Buttons_ToolTips()
+        private void Initialize_Buttons_ToolTips()
 		{
 			tt_Main.SetToolTip(PCAnywhere, "Remotely connect to computer(s) using Dameware Mini Remote\nPress F1");
 			tt_Main.SetToolTip(Unlock, "Unlocks the Cashier Number entered\nPress F2");
@@ -173,9 +171,6 @@ namespace Retail_HD
             tt_Main.SetToolTip(btnDelayed, "Tagets register 1 and attempts to start SQL and Express a defined number of times with a delay in between attemps\nUsed when a register is improperly shutdown and the rebuilding RAID is preventing service autostart\nPress F12");
 		}
 
-		/// <summary>
-		/// Sets the common handlers for controls
-		/// </summary>
 		private void Initialize_MainHandlers()
 		{
 			// Set handlers for all the buttons
@@ -214,17 +209,18 @@ namespace Retail_HD
 			{
 				tssl.Click += Main_Click;
 			}
+
+
 		}
 
-
-		#endregion
-
+        #endregion
 
 
-		//
-		#region HELPER FUNCTIONS - common methods used throughout form
 
-		private bool isOnScreen(Form _form)
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region HELPER FUNCTIONS - common methods used throughout form
+
+        private bool isOnScreen(Form _form)
 		{
 			Screen[] screens = Screen.AllScreens;
 
@@ -242,31 +238,17 @@ namespace Retail_HD
 		}
 
 
-		DateTime GenerateDateFromString(string _input)
-		{
-			//int.Parse(Helper.loggedInUser.stateChangeTime.Substring(0,4))
-			//2014-10-21T05:05:05.309Z
-			int year = int.Parse(_input.Substring(0, 4));
-			int month = int.Parse(_input.Substring(5, 2));
-			int day = int.Parse(_input.Substring(8, 2));
-			int hour = int.Parse(_input.Substring(11, 2));
-			int minute = int.Parse(_input.Substring(14, 2));
-			int second = int.Parse(_input.Substring(17, 2));
-			int milisecond = int.Parse(_input.Substring(20, 3));
-
-			return new DateTime(year, month, day, hour, minute, second, milisecond, DateTimeKind.Utc).ToLocalTime();
-		}
 
 
-		#endregion
+        #endregion
 
 
 
-		// 
-		#region FINESSE HELPER FUNCTIONS - finesse methods used throughout form
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region FINESSE HELPER FUNCTIONS - finesse methods used throughout form
 
 
-		private void v_CheckLoginConfig()
+        private void v_CheckLoginConfig()
 		{
 			if (fUpCount > 2)
 			{
@@ -276,8 +258,8 @@ namespace Retail_HD
 			if (!Helper.CheckConfiguration())
 			{
 				//instantiate modal login dialog box here
-				//frmCiscoLogin loginForm = new frmCiscoLogin();
-				Forms.frmCiscoLogin loginForm = new Forms.frmCiscoLogin();
+				//CiscoSettings loginForm = new CiscoSettings();
+				Forms.CiscoSettings loginForm = new Forms.CiscoSettings();
                 if (loginForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     //login user
@@ -348,7 +330,6 @@ namespace Retail_HD
 			Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, curState.ToString(), "");
 		}
 
-
         void _t_Tick(object sender, EventArgs e)
         {
             tickCountNagger++;
@@ -361,6 +342,11 @@ namespace Retail_HD
 					{
 						if (curState == UserState.WORK)
 						{
+                            if(Properties.Settings.Default._EnableAutoReady)
+                            {
+                                tickCountNagger = 0;
+                                CiscoFinesseNET.Helper.ChangeUserState(UserState.READY);
+                            }
 							//if (MessageBox.Show(this, "You are still in WORK and not able to take calls!\nChange status to READY now?", "Change Status?", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
 							if (nagger.ShowDialog() == DialogResult.OK)
 							{
@@ -382,54 +368,20 @@ namespace Retail_HD
                 {
                     ts_Top.Invoke(new MethodInvoker(delegate
                         {
-							//if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
-							////if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
-       //                     {
-       //                         ts_Top_tsl_Override.Visible = true;
-       //                     }
-       //                     else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
-							////else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
-       //                     {
-       //                         ts_Top_tsl_Override.Visible = false;
-       //                     }
-
                             if (ts_Top_tsl_CurrentCall.Visible)
                             {
                                 if (ts_Top_tsl_CurrentCall.ForeColor == SystemColors.HotTrack) ts_Top_tsl_CurrentCall.ForeColor = Color.Red;
                                 else ts_Top_tsl_CurrentCall.ForeColor = SystemColors.HotTrack;
                             }
-
-                            //if (ts_Top_tsl_Override.Visible)
-                            //{
-                            //    if (ts_Top_tsl_Override.ForeColor == Color.Red) ts_Top_tsl_Override.ForeColor = Color.Purple;
-                            //    else ts_Top_tsl_Override.ForeColor = Color.Red;
-                            //}
                         }));
                 }
                 else
                 {
-					//if (!Properties.Settings.Default._EnableAutoReady && !ts_Top_tsl_Override.Visible)
-					////if (!userPrefs.AutoReady && !ts_Top_tsl_Override.Visible)
-     //               {
-     //                   ts_Top_tsl_Override.Visible = true;
-     //               }
-     //               else if (Properties.Settings.Default._EnableAutoReady && ts_Top_tsl_Override.Visible)
-					////else if (userPrefs.AutoReady && ts_Top_tsl_Override.Visible)
-     //               {
-     //                   ts_Top_tsl_Override.Visible = false;
-     //               }
-
                     if (ts_Top_tsl_CurrentCall.Visible)
                     {
                         if (ts_Top_tsl_CurrentCall.ForeColor == SystemColors.HotTrack) ts_Top_tsl_CurrentCall.ForeColor = Color.Red;
                         else ts_Top_tsl_CurrentCall.ForeColor = SystemColors.HotTrack;
                     }
-
-                    //if (ts_Top_tsl_Override.Visible)
-                    //{
-                    //    if (ts_Top_tsl_Override.ForeColor == Color.Red) ts_Top_tsl_Override.ForeColor = Color.Purple;
-                    //    else ts_Top_tsl_Override.ForeColor = Color.Red;
-                    //}
                 }
             }
 
@@ -449,10 +401,9 @@ namespace Retail_HD
             }
         }
 
-
         private void StupidOverrideForChad()
         {
-            hasCallWrappedUp = false;
+            //Info.isCallWrappedUp = false;
             int count = 0;
             while (curState == UserState.WORK && count < 20) //will refresh every 0.1 second until currentstate is no longer work, or until 20 iterations have run
             {
@@ -462,7 +413,6 @@ namespace Retail_HD
             }
         }
 
-		// handles updates from finesse server
         void Helper_OnUpdatedInformation(object sender, UpdatedInformationEventArgs e)
         {
             bool useStoreInformation = false;
@@ -472,42 +422,47 @@ namespace Retail_HD
                 curState = Helper.loggedInUser.state;
                 try
                 {
+                    // Set the agent status status strip
                     if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.Text = curState.ToString().Replace('_', ' '); }));
                     else ss_Bottom_ssl_State.Text = curState.ToString().Replace('_', ' ');
+                    // Enable change state tool strip button
+                    if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_ChangeState.Enabled = true; }));
+                    else ts_Top_tsb_ChangeState.Enabled = true;
                 }
                 catch (ObjectDisposedException)
                 {
-                    //fuck you objectdisposedexception
+                    ;
                 }
 
+                // If the state changed
                 if (curState != prevState)
                 {
                     _timeSinceStateChange = new TimeSpan(0, 0, 0);
-
-                    if (prevState == UserState.WORK || prevState == UserState.READY) hasCallWrappedUp = false;
+                    // If last state was work or ready then set Info.isCallWrappedUp to false
+                    if (prevState == UserState.WORK || prevState == UserState.READY) { Info.isCallWrappedUp = false; }
                 }
-				if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ts_Top_tsb_ChangeState.Enabled = true; }));
-				else ts_Top_tsb_ChangeState.Enabled = true;
+                
+				
+
                 switch (curState)
                 {
                     case UserState.READY:
-                        hasCallWrappedUp = false;
+                        Info.isCallWrappedUp = false;
                         useStoreInformation = false;
                         availableState = SetAvailableState(UserState.NOT_READY);
                         if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Green; }));
                         else ss_Bottom_ssl_State.ForeColor = Color.Green;
-
                         CurrentCall(false);
-                        //this.tslblStatus.ForeColor = Color.Green;
                         break;
+
                     case UserState.NOT_READY:
                         useStoreInformation = false;
                         availableState = SetAvailableState(UserState.READY);
                         if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Red; }));
                         else ss_Bottom_ssl_State.ForeColor = Color.Red;
                         CurrentCall(false);
-                        //this.tslblStatus.ForeColor = Color.Red;
                         break;
+
                     case UserState.LOGOUT:
                         useStoreInformation = false;
                         availableState = SetAvailableState(UserState.UNKNOWN);
@@ -517,10 +472,11 @@ namespace Retail_HD
 						else { ts_Top_tsb_ChangeState.Enabled = false; }
 						CurrentCall(false);
                         break;
+
                     case UserState.RESERVED:
                         useStoreInformation = true;
                         availableState = SetAvailableState(UserState.UNKNOWN);
-                        if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Purple; }));
+                        if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Purple; }));
                         else ss_Bottom_ssl_State.ForeColor = Color.Purple;
                         FindStoreByPhone(e);
                         CurrentCall(true);
@@ -528,32 +484,27 @@ namespace Retail_HD
                     case UserState.TALKING:
                         useStoreInformation = true;
                         availableState = SetAvailableState(UserState.UNKNOWN);
-                        if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Blue; }));
+                        if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Blue; }));
                         else ss_Bottom_ssl_State.ForeColor = Color.Blue;
-
                         CurrentCall(true);
-                        //this.tslblStatus.ForeColor = Color.Blue;
                         break;
                     case UserState.WORK:
                         if (prevState != UserState.WORK) tickCountNagger = 0; //set counter to 0 when entering work status
                         useStoreInformation = false;
                         availableState = SetAvailableState(UserState.READY);
-                        if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Orange; ss_Bottom_ssl_PreviousCall.Text = previousStore; }));
+                        if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Orange; ss_Bottom_ssl_PreviousCall.Text = previousStore; }));
                         else { ss_Bottom_ssl_State.ForeColor = Color.Orange; ss_Bottom_ssl_PreviousCall.Text = previousStore; }
-                        //open call wrap up
                         CurrentCall(false);
-                        if (!wrapUp.Visible)
+                        if (!wrapUp.Visible && !Info.isCallWrappedUp) //wrapup not open and call not wrapped up
                         {
-                            isWrapUpOpen = true;
 							Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, curState.ToString(), (useStoreInformation) ? currentStoreNumber : "");
                             if (this.InvokeRequired) this.Invoke(new MethodInvoker(delegate { Buttons_WrapUp_Click(this, new WrapUpInvokeEventArgs(true)); }));
                             else Buttons_WrapUp_Click(this, new WrapUpInvokeEventArgs(true));
-
                             return;
                         }
                         break;
                     default:
-                        if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Black; }));
+                        if (ss_Bottom_.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_State.ForeColor = Color.Black; }));
                         else ss_Bottom_ssl_State.ForeColor = Color.Black;
                         availableState = SetAvailableState(UserState.UNKNOWN);
                         CurrentCall(false);
@@ -567,7 +518,6 @@ namespace Retail_HD
             }
         }
 
-		// change the state change tool strip button's icon based on current state
         private UserState SetAvailableState(UserState availableState)
         {
             switch (availableState)
@@ -587,7 +537,6 @@ namespace Retail_HD
             return availableState;
         }
 
-		// fills the store number by phone number if possible
         private void FindStoreByPhone(UpdatedInformationEventArgs e)
         {
             Helper.GetDialogs(); //make sure dialogs are refreshed first
@@ -639,27 +588,22 @@ namespace Retail_HD
 
 
 
-		#endregion
+        #endregion
 
 
 
-		// 
-		#region ACTION BUTTONS FOR FIXING COMMON REGISTER ISSUES - register fixing methods
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region BUTTONS - register fixing methods
 
-		// 
+        // 
 
-		/// <summary> connect to remote desktop
-		/// </summary>
-		private void Buttons_PCAnywhere_Click(object sender, EventArgs e)
+        private void Buttons_Dameware_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (Info.reg1 == string.Empty) { return; }
 			Functions.ConnectWithDW(_computers);
 		}
 
-		/// <summary> Opens fmrInput for cashier number, writes, copies, and executes BAT file remotley to unlock user account.
-		/// Has a status bar and gives progress reports of background process
-		/// </summary>
 		private void Buttons_Unlock_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
@@ -675,32 +619,24 @@ namespace Retail_HD
 			}
 		}
 
-		/// <summary> Browse c: drive of selected retList
-		/// </summary>
 		private void Buttons_Browse_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			Functions.BrowseComputer(_computers);
 		}
 
-		/// <summary> Opens remote cmd prompt on your local machine
-		/// </summary>
 		private void Buttons_RemoteCMD_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			Functions.RemoteCMD(_computers);
 		}
 
-		/// <summary> Opens local admin cmd prompt on remote machine
-		/// </summary>
 		private void Buttons_LocalCMD_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			Functions.LocalCMD(_computers);
 		}
 
-		/// <summary> Removes temp files responsible for repeat crashing of POS
-		/// </summary>
 		private void Buttons_ListAction_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
@@ -709,8 +645,6 @@ namespace Retail_HD
 			ListAction.Show();
 		}
 
-		/// <summary> Kill the POS software
-		/// </summary>
 		private void Buttons_KillPOS_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
@@ -722,8 +656,6 @@ namespace Retail_HD
 			}
 		}
 
-		/// <summary> shows the user control menu for services
-		/// </summary>
 		private void Buttons_Services_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false;
@@ -738,8 +670,6 @@ namespace Retail_HD
 			}
 		}
 
-		/// <summary> shows the user control menu for ping
-		/// </summary>
 		private void Buttons_Ping_Click(object sender, EventArgs e)
 		{
 			ServicesUC.Visible = false;
@@ -759,106 +689,55 @@ namespace Retail_HD
 			}
 		}
 
-		/// <summary> Call wrap up form
-		/// </summary>
 		private void Buttons_WrapUp_Click(object sender, EventArgs e)
 		{
-			// makes you ready if this is called once wrap up is done
-            if (e is WrapUpInvokeEventArgs && hasCallWrappedUp)
+            PingUC.Visible = false; ServicesUC.Visible = false;
+
+            //makes you ready if this is called once wrap up is done
+            //if (e is WrapUpInvokeEventArgs && Info.isCallWrappedUp)
+            //{
+            //    if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+            //    {
+            //        //Info.isCallWrappedUp = false;
+            //        if(Helper.ChangeUserState(UserState.READY)) { Info.isCallWrappedUp = false; }
+            //        StupidOverrideForChad();
+            //    }
+            //}
+
+            
+            if (!wrapUp.Visible) // If window is not open
             {
-				if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK && Environment.UserName.ToUpper() != "WITTCHR")
-				//if (userPrefs.AutoReady && curState == UserState.WORK)
+                if (!Info.isCallWrappedUp) // and not wrapped up
                 {
-                    hasCallWrappedUp = false;
-                    Helper.ChangeUserState(UserState.READY); 
-                    StupidOverrideForChad();
+                    if (txtStore.Text == string.Empty
+                        || txtStore.Text.Length > 4
+                        || txtStore.Text.Length < 3) { txtStore.Text = "9999"; }
+                    if (!Shared.Functions.isTxtBoxNumeric(txtStore)) { return; }
+
+                    wrapUp = new Forms.WrapUp();
+                    Point startLocation = new Point(this.Location.X + (this.Width / 3), this.Location.Y + (this.Height / 2));
+                    wrapUp.Location = startLocation;
+
+                    
+                    if (!bgwWrapUp.IsBusy) { wrapUp.Show(); bgwWrapUp.RunWorkerAsync(); }
                 }
-            }
-			// If window is not open and call not wrapped up
-            else if (!wrapUp.Visible && !hasCallWrappedUp)
-            {
-                PingUC.Visible = false; ServicesUC.Visible = false;
-                if (txtStore.Text == string.Empty
-					|| txtStore.Text.Length > 4
-					|| txtStore.Text.Length < 3) { txtStore.Text = "9999"; }
-                if (!Shared.Functions.isTxtBoxNumeric(txtStore)) { return; }
-
-                wrapUp = new Forms.WrapUp();
-                Point startLocation = new Point(this.Location.X + (this.Width / 3), this.Location.Y + (this.Height / 2));
-                wrapUp.Location = startLocation;
-
-                if (wrapUp.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                else if(Info.isCallWrappedUp) // wrap up completed
                 {
-					// only change to ready, if the user was in work (meaning normal call flow). 
-					// A dialed number will make you not ready, and then auto ready on the server-side if you were ready before
-					if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK && Environment.UserName.ToUpper() != "WITTCHR")
-					//if (userPrefs.AutoReady && curState == UserState.WORK)
+                    if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK)
                     {
-                        hasCallWrappedUp = false;
+                        //Info.isCallWrappedUp = false;
                         Helper.ChangeUserState(UserState.READY);
                         StupidOverrideForChad();
                     }
+                    else if (curState == UserState.READY && prevState == UserState.READY)
+                    {
+                        Info.isCallWrappedUp = false;
+                    }
                 }
-                else if ((curState != UserState.READY) && (curState != UserState.NOT_READY))
-				//else if ((curState != UserState.READY && curState != UserState.NOT_READY))
-                {
-					if (MessageBox.Show("Call not wrapped up! Bypass wrapup?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
-					{
-						isWrapUpOpen = false;
-						hasCallWrappedUp = true;
-						return;
-					}
-					else
-					{
-						isWrapUpOpen = false;
-						hasCallWrappedUp = false;
-						return;
-					}
-                }
-                else if (curState == UserState.READY || curState == UserState.NOT_READY)
-                {
-                    isWrapUpOpen = false;
-                    hasCallWrappedUp = false;
-                    ClearInfo();
-                    UpdateInfo();
-                    return;
-                }
-                else
-                {
-                    //recall this function
-                    Buttons_WrapUp_Click(this, new WrapUpInvokeEventArgs(false));
-                    isWrapUpOpen = false;
-                    hasCallWrappedUp = false;
-                    return;
-                }
-
-                isWrapUpOpen = false;
-                tickCount = 19; //2 seconds to refresh, in case you go from work -> reserved as sometimes there is no notification sent
                 
-                //only set haswrapped up to true, if they were in the normal call flow and wrapped up during the call
-                if(curState == UserState.RESERVED || curState==UserState.TALKING || curState== UserState.WORK) hasCallWrappedUp = true;
-
-                ClearInfo();
-                UpdateInfo();
             }
-			
 		}
 
-		/// <summary> Opens History window
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void Buttons_History_Click(object sender, EventArgs e)
-		{
-			PingUC.Visible = false; ServicesUC.Visible = false;
-			if (HistorySearch.Visible) { HistorySearch.BringToFront(); return; }
-			
-			HistorySearch = new Forms.HistorySearch();
-            HistorySearch.Show();
-		}
-
-		/// <summary> Restart the Computer
-		/// </summary>
 		private void Buttons_Restart_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
@@ -870,10 +749,6 @@ namespace Retail_HD
 			}
 		}
 
-		/// <summary> runs the delayed SQL start
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
 		private void Buttons_Delayed_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
@@ -883,15 +758,11 @@ namespace Retail_HD
 			}
 		}
 
-		/// <summary> ping menu actions
-		/// </summary>
 		private void PingUC_OK_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false;
 		}
 
-		/// <summary> service menu actions
-		/// </summary>
 		private void ServicesUC_OK_Click(object sender, EventArgs e)
 		{
             ServicesUC.Visible = false;
@@ -900,14 +771,14 @@ namespace Retail_HD
 
 
 
-		#endregion
+        #endregion
 
 
 
-		//
-		#region RECENT CALLS DATA GRID - call history methods/handlers
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region RECENT CALLS DATA GRID - call history methods/handlers
 
-		private void RecentCalls_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void RecentCalls_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
 			if (RecentCalls_dgv.Rows.Count > 0)
 			{
@@ -951,34 +822,36 @@ namespace Retail_HD
 
 		}
 
-		#endregion
+        #endregion
 
 
 
-		// 
-		#region STORE INFORMATION - store's information methods/handlers
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region STORE INFORMATION - store's information methods/handlers
 
 
 
 
-		// handles when store number Text box Text has changed
-		private void txtStore_TextChanged(object sender, EventArgs e)
+        // handles when store number Text box Text has changed
+        private void txtStore_TextChanged(object sender, EventArgs e)
 		{
             if (!_NetworkEnabled) { return; }
 			Info.Clear();
 			int store;
-			
-			if (txtStore.Text.Length > 2 && txtStore.Text.Length < 5
-				&& Shared.Functions.isTxtBoxNumeric(txtStore, out store))
-			{
-				if (store != Info.store) { Info.store = store; }
-				UpdateInfo();
-			}
-			else
-			{
-				Info.store = 9999;
-				ClearInfo();
-			}
+
+            if (Shared.Functions.isTxtBoxNumeric(txtStore, out store))
+            {
+                if (store != Info.store) { Info.store = store; }
+                if (txtStore.Text.Length > 2 && txtStore.Text.Length < 5)
+                {
+                    
+                    UpdateInfo();
+                }
+                else
+                {
+                    ClearInfo();
+                }
+            }
             ServicesUC.Visible = false;
             PingUC.Visible = false;
 		}
@@ -992,85 +865,58 @@ namespace Retail_HD
 
 
 
-		#endregion
+        #endregion
 
 
 
-		// 
-		#region MENU STRIP TOP - menu strip methods/handlers
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region MENU STRIP TOP - menu strip methods/handlers
 
-		// when menu file->settings is clicked
-		private void Settings_Click(object sender, EventArgs e)
+        private void Settings_Click(object sender, EventArgs e)
 		{
 			if (EditSettings.Visible) { EditSettings.BringToFront(); return; }
 			EditSettings = new Forms.EditSettings();
             EditSettings.Show();
 		}
 
-		// when menu help->what the junk is clicked
-		private void IssueReport_Click(object sender, EventArgs e)
+        private void CodeEntry_Click(object sender, EventArgs e)
+        {
+            Forms.KonamiCodeEntry codeEntryForm = new Forms.KonamiCodeEntry();
+            if (codeEntryForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string adjustedPath = string.Empty;
+                string[] pathParts = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName.Split('\\');
+                for (int i = 0; i < pathParts.Length - 1; i++)
+                {
+                    adjustedPath += pathParts[i] + "\\";
+                }
+                var absolute_path = Path.Combine(adjustedPath, @"Resources\Music\Contra_33.mp3");
+                System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo("wmplayer", "\"" + absolute_path + "\"");
+                info.CreateNoWindow = true;
+                info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+
+                System.Diagnostics.Process.Start(info);
+            }
+        }
+
+        private void AdditionalPhone_Click(object sender, EventArgs e)
+        {
+            if (AdditionalPhone.Visible) { AdditionalPhone.BringToFront(); return; }
+            AdditionalPhone = new Forms.AdditionalPhone(Info.store.ToString(), currentStoreNumber);
+            AdditionalPhone.Show();
+        }
+
+        private void IssueReport_Click(object sender, EventArgs e)
 		{
 			if (ReportIssue.Visible) { ReportIssue.BringToFront(); return; }
 			ReportIssue = new Forms.ReportIssue();
 			ReportIssue.Show();
 		}
 
-		// when menu info is clicked
-		private void Info_Click(object sender, EventArgs e)
-		{
-			if (UsefulInfo.Visible) { UsefulInfo.BringToFront(); return; }
-			UsefulInfo = new Forms.UsefulInfo();
-			UsefulInfo.Show();
-		}
-	
-		// Opens new bat menu when clicked
-		private void OldBatMenu_Click(object sender, EventArgs e)
-		{
-			//GlobalFunctions.i_ExecuteCommand(Settings.Default._OldMenuPath, true);
-			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-			startInfo.FileName = Properties.Settings.Default._OldMenuPath;
-			startInfo.CreateNoWindow = true;
-			startInfo.UseShellExecute = true;
-			System.Diagnostics.Process process = System.Diagnostics.Process.Start(startInfo);
-			//process.WaitForExit();
-		}
-
-		// Opens Konami code entry form
-		private void CodeEntry_Click(object sender, EventArgs e)
-		{
-			frmCodeEntry codeEntryForm = new frmCodeEntry();
-			if (codeEntryForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				string adjustedPath = string.Empty;
-				string[] pathParts = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName.Split('\\');
-				for (int i = 0; i < pathParts.Length - 1; i++)
-				{
-					adjustedPath += pathParts[i] + "\\";
-				}
-				var absolute_path = Path.Combine(adjustedPath, @"Resources\Music\Contra_33.mp3");
-				System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo("wmplayer", "\"" + absolute_path + "\"");
-				info.CreateNoWindow = true;
-				info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-
-				System.Diagnostics.Process.Start(info);
-			}
-		}
-
-		// Runs the external computer refresh program
 		private void RefreshComputers_Click(object sender, EventArgs e)
 		{
 			Functions.UpdateComputersFromAD();
 		}
-
-		// open form for new store entry
-		private void AddStore_Click(object sender, EventArgs e)
-		{
-			if (AddNewStore.Visible) { AddNewStore.BringToFront(); return; }
-			AddNewStore = new Forms.AddNewStore();
-            AddNewStore.ShowDialog();
-            UpdateInfo();
-		}
-
 
         private void ImportExcel_Click(object sender, EventArgs e)
         {
@@ -1082,28 +928,99 @@ namespace Retail_HD
 			}
         }
 
-        private void AdditionalPhone_Click(object sender, EventArgs e)
-        {
-            if (AdditionalPhone.Visible) { AdditionalPhone.BringToFront(); return; }
-            AdditionalPhone = new Forms.AdditionalPhone(Info.store.ToString(), currentStoreNumber);
-            AdditionalPhone.Show();
-        }
-
         private void FlushDNS_Click(object sender, EventArgs e)
         {
 			Shared.Functions.ExecuteCommand("ipconfig", "/flushdns", true);
         }
 
-		#endregion
+		private void OldBatMenu_Click(object sender, EventArgs e)
+		{
+			//GlobalFunctions.i_ExecuteCommand(Settings.Default._OldMenuPath, true);
+			System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+			startInfo.FileName = Properties.Settings.Default._OldMenuPath;
+			startInfo.CreateNoWindow = true;
+			startInfo.UseShellExecute = true;
+			System.Diagnostics.Process process = System.Diagnostics.Process.Start(startInfo);
+			//process.WaitForExit();
+		}
+
+		private void Info_Click(object sender, EventArgs e)
+		{
+			if (UsefulInfo.Visible) { UsefulInfo.BringToFront(); return; }
+			UsefulInfo = new Forms.UsefulInfo();
+			UsefulInfo.Show();
+		}
+	
+		private void AddStore_Click(object sender, EventArgs e)
+		{
+			if (AddNewStore.Visible) { AddNewStore.BringToFront(); return; }
+			AddNewStore = new Forms.AddNewStore();
+            AddNewStore.ShowDialog();
+            UpdateInfo();
+		}
+
+        #endregion
 
 
 
-		//
-		#region TOOL STRIP TOP - tool strip methods
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region TOOL STRIP TOP - tool strip methods
 
+        private void Login_Click(object sender, EventArgs e)
+        {
+            if (!_AgentLoginEnabled) { return; }
+            PingUC.Visible = false; ServicesUC.Visible = false;
 
-		// changes the queue state
-		private void ChangeState_Click(object sender, EventArgs e)
+            if (curState == UserState.READY)
+            {
+                //go not ready first
+                Helper.ChangeUserState(UserState.NOT_READY);
+                System.Threading.Thread.Sleep(new TimeSpan(0, 0, 1));
+                Helper.ChangeUserState(UserState.LOGOUT);
+            }
+            else if (curState == UserState.NOT_READY)
+            {
+                Helper.ChangeUserState(UserState.LOGOUT);
+                _t.Stop();
+                Helper.DisconnectXMPP();
+
+                //change the button too
+                if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Logout.Image = Shared.GlobalResources.login; }));
+                else ts_Top_tsb_Logout.Image = Shared.GlobalResources.login;
+            }
+            else if (curState == UserState.LOGOUT)
+            {
+                //process login and change the Text to read logout
+                curState = Helper.LoginUser();
+
+                if (curState == UserState.UNKNOWN || curState == UserState.LOGOUT)
+                {
+                    //at least one of the settings was wrong
+                    MessageBox.Show("At least one of the settings for Cisco is incorrect, please correct and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Helper.InvalidateSettings();
+                    v_CheckLoginConfig();
+                    return;
+                }
+
+                if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Logout.Image = Shared.GlobalResources.logout; }));
+                else ts_Top_tsb_Logout.Image = Shared.GlobalResources.logout;
+
+                v_CheckLoginConfig();
+                tickCount = 20; //1 seconds until refresh
+
+                if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_Time.Text = "00:00:00"; }));
+                else ss_Bottom_ssl_Time.Text = "00:00:00";
+
+                return;
+            }
+            else
+            {
+                MessageBox.Show("You are not in a state that allows Logout/Login.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void ChangeState_Click(object sender, EventArgs e)
 		{
 			if (!_AgentLoginEnabled) { return; }
 			PingUC.Visible = false; ServicesUC.Visible = false;
@@ -1118,103 +1035,47 @@ namespace Retail_HD
 			}
 		}
 
-		// log in/out of the queue
-		private void Login_Click(object sender, EventArgs e)
-		{
-			if (!_AgentLoginEnabled) { return; }
-			PingUC.Visible = false; ServicesUC.Visible = false;
+        private void CallStore_Click(object sender, EventArgs e)
+        {
+            if (!_AgentLoginEnabled) { return; }
+            PingUC.Visible = false; ServicesUC.Visible = false;
 
-			if (curState == UserState.READY)
-			{
-				//go not ready first
-				Helper.ChangeUserState(UserState.NOT_READY);
-				System.Threading.Thread.Sleep(new TimeSpan(0, 0, 1));
-				Helper.ChangeUserState(UserState.LOGOUT);
-			}
-			else if (curState == UserState.NOT_READY)
-			{
-				Helper.ChangeUserState(UserState.LOGOUT);
-				_t.Stop();
-				Helper.DisconnectXMPP();
+            if (txtPhone.Text != "(555) 555-5555" && txtPhone.Text != string.Empty && txtPhone.Text.Length > 6 && (curState == UserState.READY || curState == UserState.WORK || curState == UserState.HOLD || curState == UserState.NOT_READY))
+            {
+                //we can make da call
+                string number2call = string.Empty;
+                char[] _tmp = txtPhone.Text.ToCharArray();
 
-				//change the button too
-				if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Logout.Image = Shared.GlobalResources.login; }));
-				else ts_Top_tsb_Logout.Image = Shared.GlobalResources.login;
-			}
-			else if (curState == UserState.LOGOUT)
-			{
-				//process login and change the Text to read logout
-				curState = Helper.LoginUser();
+                foreach (char _c in _tmp) //get rid of dashes, slashes, and periods and other junk
+                {
+                    if (Shared.Functions.isNumeric(_c)) number2call += _c.ToString();
+                }
 
-				if (curState == UserState.UNKNOWN || curState == UserState.LOGOUT)
-				{
-					//at least one of the settings was wrong
-					MessageBox.Show("At least one of the settings for Cisco is incorrect, please correct and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					Helper.InvalidateSettings();
-					v_CheckLoginConfig();
-					return;
-				}
+                number2call = "81" + number2call;
 
-				if (ts_Top.InvokeRequired) ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Logout.Image = Shared.GlobalResources.logout; }));
-				else ts_Top_tsb_Logout.Image = Shared.GlobalResources.logout;
+                Helper.MakeCall(number2call);
+            }
+            else
+            {
+                MessageBox.Show("Either you are not in a valid state to make a phone call, or there is no store selected. Please correct and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-				v_CheckLoginConfig();
-				tickCount = 20; //1 seconds until refresh
+        // Settings_Click()
 
-				if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_Time.Text = "00:00:00"; }));
-				else ss_Bottom_ssl_Time.Text = "00:00:00";
-
-				return;
-			}
-			else
-			{
-				MessageBox.Show("You are not in a state that allows Logout/Login.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-		}
-
-		// shows status of other team members
-		private void AgentStatusList_Click(object sender, EventArgs e)
+        private void AgentStatusList_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 
 			if (!agentStatus.Visible && _AgentLoginEnabled)
 			{
-				agentStatus = new Forms.frmAgentStatus();
+				agentStatus = new Forms.AgentStatus();
 				agentStatus.Show();
 			}
 			else
 			{ agentStatus.BringToFront(); }
 		}
 
-		// call the current store
-		private void CallStore_Click(object sender, EventArgs e)
-		{
-			if (!_AgentLoginEnabled) { return; }
-			PingUC.Visible = false; ServicesUC.Visible = false;
-
-			if (txtPhone.Text != "(555) 555-5555" && txtPhone.Text != string.Empty && txtPhone.Text.Length > 6 && (curState == UserState.READY || curState == UserState.WORK || curState == UserState.HOLD || curState == UserState.NOT_READY))
-			{
-				//we can make da call
-				string number2call = string.Empty;
-				char[] _tmp = txtPhone.Text.ToCharArray();
-
-				foreach (char _c in _tmp) //get rid of dashes, slashes, and periods and other junk
-				{
-					if (Shared.Functions.isNumeric(_c)) number2call += _c.ToString();
-				}
-
-				number2call = "81" + number2call;
-
-				Helper.MakeCall(number2call);
-			}
-			else
-			{
-				MessageBox.Show("Either you are not in a valid state to make a phone call, or there is no store selected. Please correct and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		// Opens the store search form
 		private void StoreSearch_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
@@ -1224,8 +1085,7 @@ namespace Retail_HD
 			bw.RunWorkerAsync();
 		}
 
-		// Opens the history search form
-		private void HistorySearch_Click(object sender, EventArgs e)
+        private void HistorySearch_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
 			if (HistorySearch.Visible) { HistorySearch.BringToFront(); return; }
@@ -1234,7 +1094,6 @@ namespace Retail_HD
 			HistorySearch.Show();
 		}
 
-		// Show the new VLAN IPs for the meraki install
 		private void NewIps_Click(object sender, EventArgs e)
 		{
 			PingUC.Visible = false; ServicesUC.Visible = false;
@@ -1244,7 +1103,6 @@ namespace Retail_HD
 			ips.Show();
 		}
 
-		// Show the store note window
 		private void StoreNote_Click(object sender, EventArgs e)
 		{
 			if (storeNotes.Visible) { storeNotes.BringToFront(); }
@@ -1257,22 +1115,21 @@ namespace Retail_HD
 
 		}
 
-
 		private void Refresh_Click(object sender, EventArgs e)
 		{
 			UpdateInfo();
 		}
 
-		#endregion
+        #endregion
 
 
 
-		// 
-		#region MAIN FORM EVENTS - methods/handlers for whole form
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region MAIN FORM EVENTS - methods/handlers for whole form
 
-		/// <summary> key press event handlers for all objects in frmMain
-		/// </summary>
-		private void Main_KeyDown(object sender, KeyEventArgs e)
+        /// <summary> key press event handlers for all objects in frmMain
+        /// </summary>
+        private void Main_KeyDown(object sender, KeyEventArgs e)
 		{
             bool breakIf = false;
             if (txtStore.Focused)
@@ -1379,7 +1236,7 @@ namespace Retail_HD
 					PingUC.Visible = false;
 					break;
 				case Keys.F1:
-					Buttons_PCAnywhere_Click(sender, null);
+					Buttons_Dameware_Click(sender, null);
 					break;
 				case Keys.F2:
 					Buttons_Unlock_Click(sender, null);
@@ -1489,9 +1346,6 @@ namespace Retail_HD
 				Shared.SQL.b_UpdateAgentInformation(System.Environment.UserName, UserState.LOGOUT.ToString(), "");
                 Helper.DisconnectXMPP();
 			}
-			//if log file is larger than 500kb, email it in
-			//call up the log sender app and close this
-
 			// Save Settings
 			//userPrefs.FormStart = Location;
 			Properties.Settings.Default._DrawingLocation = Location;
@@ -1503,7 +1357,7 @@ namespace Retail_HD
 			}
 			else
 			{
-				Properties.Settings.Default._DrawingSize = RestoreBounds.Size;
+                Properties.Settings.Default._DrawingSize = RestoreBounds.Size;
 				//userPrefs.FormSize = RestoreBounds.Size;
 			}
 			Properties.Settings.Default.Save();
@@ -1530,7 +1384,7 @@ namespace Retail_HD
 		private void Main_Load(object sender, EventArgs e)
 		{
 			//restore the position of the form
-			if (!hasRun)
+			if (Properties.Settings.Default._DrawingLocation !=null)
 			{
 				Location = Properties.Settings.Default._DrawingLocation;
 				if (!isOnScreen(this))
@@ -1538,8 +1392,6 @@ namespace Retail_HD
 					//set the location to a default
 					Location = new Point(200, 200);
 				}
-
-				hasRun = true;
 			}
             if (Environment.UserName.ToString().ToUpper() == "CHIVINSC")
             {
@@ -1547,11 +1399,6 @@ namespace Retail_HD
                 startup.Show();
             }
             Console.WriteLine(DateTime.Now);
-            //else
-            //{
-            //    startup = new Forms.Splash(GlobalResources.glen_tassi);
-            //    startup.Show();
-            //}
 		}
 
 		/// <summary>
@@ -1596,52 +1443,46 @@ namespace Retail_HD
 			UpdateInfo();
 		}
 
-		#endregion
+        #endregion
 
 
 
-		//
-		#region FORM DATA METHODS -  methods/handlers for form data
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region FORM DATA METHODS -  methods/handlers for form data
 
 
-		// Clear all the form information fields
-		private void ClearInfo()
+        private void ClearInfo()
 		{
-			// Clear the store information
-			txtAddress.Text = string.Empty;
-			txtCity.Text = string.Empty;
-			txtDM.Text = string.Empty;
-            txtRM.Text = string.Empty;
-			txtEmail.Text = string.Empty;
-			txtIP.Text = string.Empty;
-			txtManager.Text = string.Empty;
-			txtMpId.Text = string.Empty;
-			txtName.Text = string.Empty;
-			txtPhone.Text = string.Empty;
-			txtState.Text = string.Empty;
-			txtType.Text = string.Empty;
-			txtTZ.Text = string.Empty;
-			txtZip.Text = string.Empty;
-            txtRank.Text = string.Empty;
-            txtIncome.Text = string.Empty;
-			txtBAMS.Text = string.Empty;
-			txtSVS.Text = string.Empty;
-			txtTID1.Text = string.Empty;
-			txtTID2.Text = string.Empty;
-			txtTID3.Text = string.Empty;
-			txtTID4.Text = string.Empty;
-			clbComputers.Items.Clear();
-			RecentCalls_dgv.DataBindings.Clear();
-			Info.computers.Clear();
+            // clear all the text fields except for the Store #
+            foreach(GroupBox gb in this.Controls.OfType<GroupBox>())
+            {
+                foreach(TextBox tb in gb.Controls.OfType<TextBox>())
+                {
+                    if (gb.Name != "grpStore") {
+                        tb.Text = string.Empty;
+                        //if (tb.InvokeRequired) txtStore.Invoke(new MethodInvoker(delegate { tb.Text = string.Empty; }));
+                        //else tb.Text = string.Empty;
+                    }
+                }
+            }
+            clbComputers.Items.Clear();
+            //if (clbComputers.InvokeRequired) clbComputers.Invoke(new MethodInvoker(delegate { clbComputers.Items.Clear(); }));
+            //else clbComputers.Items.Clear();
+            RecentCalls_dgv.DataBindings.Clear();
+            //if (RecentCalls_dgv.InvokeRequired) clbComputers.Invoke(new MethodInvoker(delegate { RecentCalls_dgv.DataBindings.Clear(); }));
+            //else RecentCalls_dgv.DataBindings.Clear();
+
+            Info.computers.Clear();
 		}
 
-		// Update all the form information from the store information gathered from SQL
         private void UpdateInfo()
         {
             if (!_NetworkEnabled) { return; }
             ClearInfo();
             if (Info.GetStoreInfo())
             {
+                if (txtAddress.InvokeRequired) txtAddress.Invoke(new MethodInvoker(delegate { txtAddress.Text = Info.address; }));
+                else txtAddress.Text = Info.address;
                 txtAddress.Text = Info.address;
                 txtCity.Text = Info.city;
                 txtDM.Text = Info.dm;
@@ -1677,7 +1518,6 @@ namespace Retail_HD
                     }
                     else { txtPhone.Text = Info.phone; }
                 }
-                //PingUC.ckbCCTV.Enabled = (Info.cctv != string.Empty);
                 PingUC.ckbCCTV.Enabled = (Info.cctv != string.Empty);
             }
             // Fill the computer list
@@ -1710,9 +1550,6 @@ namespace Retail_HD
 
 			if (Info.FillNotes())
 			{
-				//if (StoreSearch.Visible) { StoreSearch.BringToFront(); return; }
-				//StoreSearch = new Forms.StoreSearch();
-				//StoreSearch.Show();
 				if (storeNotes.Visible) { storeNotes.Close(); }
 				DataRow[] foundRows = Info.notes.Select("resolved='False'");
 				if (foundRows.Length>0)
@@ -1722,13 +1559,9 @@ namespace Retail_HD
 					storeNotes.BringToFront();
 				}
 			}
-
-            // Call the method to update call totals
             UpdateWrapUpTotal();
-
         }
 
-		// Update the team's and user's total calls
 		private void UpdateWrapUpTotal()
 		{
 			try
@@ -1746,7 +1579,6 @@ namespace Retail_HD
 			}
 		}
 
-		// displays the current caller
 		private void CurrentCall(bool isShown)
 		{
 			//set the label to the correct text
@@ -1761,14 +1593,12 @@ namespace Retail_HD
 
 		}
 
-		// Methods when the ping user control changes visibility
 		private void Ping_UC_VisibleChanged(object sender, EventArgs e)
 		{
 			PingUC.Clear();
             //if (PingUC.Visible) { PingUC.Focus(); }
 		}
 
-		// Methods when the services user control changes visibility
 		private void Services_UC_VisibleChanged(object sender, EventArgs e)
 		{
 			ServicesUC.Clear();
@@ -1776,21 +1606,23 @@ namespace Retail_HD
 		}
 
 
-		#endregion
+        #endregion
 
 
-		//
-		#region BACKGROUND WORKER
+
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        #region BACKGROUND WORKER
 
 
-		private void bw_DoWork(object sender, DoWorkEventArgs e)
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
 		{
-			if (txtStore.Text == string.Empty) {
-				if (txtStore.InvokeRequired) txtStore.Invoke(new MethodInvoker(delegate { txtStore.Text = "9999"; }));
-				else txtStore.Text = "9999";
-			}
-			if (Info.store == 0) { Info.store = 9999; }
-			while (StoreSearch.Visible)
+            if (txtStore.Text == string.Empty)
+            {
+                if (txtStore.InvokeRequired) txtStore.Invoke(new MethodInvoker(delegate { txtStore.Text = "9999"; }));
+                else txtStore.Text = "9999";
+            }
+            if (Info.store == 0) { Info.store = 9999; }
+            while (StoreSearch.Visible)
 			{
 				if(txtStore.Text != Info.store.ToString())
 				{
@@ -1809,25 +1641,106 @@ namespace Retail_HD
 			UpdateInfo();
 		}
 
-
-		#endregion
-
-
-		// Test methods
-		private void Test()
+        private void bgwWrapUp_DoWork(object sender, DoWorkEventArgs e)
         {
-            foreach(TextBox tb in Retail_HD.RetailHD.ActiveForm.Controls.OfType<TextBox>())
+            while (wrapUp.Visible)
             {
-                Console.WriteLine(tb.Name);
+                //Info.isCallWrappedUp = wrapUp.isCallWrappedUp;
+                System.Threading.Thread.Sleep(500);
+                tickCountNagger = 0;
             }
+            Info.isCallWrappedUp = wrapUp.isCallWrappedUp;
+            Console.WriteLine(Info.isCallWrappedUp);
+
+            if (Info.isCallWrappedUp)
+            {
+                if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+                {
+                    Helper.ChangeUserState(UserState.READY);
+                    StupidOverrideForChad();
+                }
+            }
+            else if ((curState != UserState.READY) && (curState != UserState.NOT_READY) && (!Info.isCallWrappedUp))
+            {
+                if (MessageBox.Show("Call not wrapped up! Bypass wrapup?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    Info.isCallWrappedUp = true;
+                    //return;
+                }
+                return;
+                //else
+                //{
+                //    Info.isCallWrappedUp = false;
+                //    return;
+                //}
+            }
+            else if (curState == UserState.READY || curState == UserState.NOT_READY)
+            {
+                //Info.isCallWrappedUp = false;
+                //if (ts_Top.InvokeRequired) { ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Refresh.PerformClick(); })); }
+                //else { ts_Top_tsb_Refresh.PerformClick(); }
+                return;
+            }
+            else
+            {
+                if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK)
+                {
+                    Helper.ChangeUserState(UserState.READY);
+                    StupidOverrideForChad();
+                }
+                //recall this function
+                //Buttons_WrapUp_Click(this, new WrapUpInvokeEventArgs(false));
+                return;
+            }
+            tickCount = 19; //2 seconds to refresh, in case you go from work -> reserved as sometimes there is no notification sent
+
+            //only set haswrapped up to true, if they were in the normal call flow and wrapped up during the call
+            if (curState == UserState.RESERVED || curState == UserState.TALKING || curState == UserState.WORK)
+            {
+                Info.isCallWrappedUp = true;
+            }
+
+            if (ts_Top.InvokeRequired) { ts_Top.Invoke(new MethodInvoker(delegate { ts_Top_tsb_Refresh.PerformClick(); })); }
+            else { ts_Top_tsb_Refresh.PerformClick(); }
+        }
+
+
+        private void bgwWrapUp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Info.isCallWrappedUp = wrapUp.isCallWrappedUp;
+        }
+
+
+
+
+        #endregion
+
+
+
+        // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Test methods
+        private void Test()
+        {
+            Console.WriteLine(Info.isCallWrappedUp);
+            //agentStatus.ShowDialog();
 		}
 
-	}
+    }
 
+
+    /// <summary>
+    /// Event Args . .. 
+    /// </summary>
 	public class WrapUpInvokeEventArgs : EventArgs
 	{
+        /// <summary>
+        /// 
+        /// </summary>
 		public bool isAutoInvoke { get; private set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="autoInvoke"></param>
 		public WrapUpInvokeEventArgs(bool autoInvoke)
 		{
 			isAutoInvoke = autoInvoke;

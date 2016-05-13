@@ -53,13 +53,12 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\Retail HD\Latest\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Release\CheckTrickle.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
     <DebugSymbols>true</DebugSymbols>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>

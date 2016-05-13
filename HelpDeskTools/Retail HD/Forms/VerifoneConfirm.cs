@@ -10,8 +10,15 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// Launches part 2 of verifone reboot when ok is clicked
+    /// </summary>
     public partial class VerifoneConfirm : Form
     {
+        /// <summary>
+        /// <see cref="VerifoneConfirm"/>
+        /// </summary>
+        /// <param name="Computer"></param>
         public VerifoneConfirm(string Computer)
         {
             InitializeComponent();
@@ -22,8 +29,8 @@ namespace Retail_HD.Forms
 
         private bool copyArgsXML(string Computer)
         {
-            string tempFile = @"C:\temp\args.xml";
-            try { System.IO.File.WriteAllText(tempFile, Shared.GlobalResources.args.ToString()); }
+            string tempFile = Shared.Settings.Default._TempPath + "args.xml";
+            try { System.IO.File.WriteAllText(tempFile, Shared.GlobalResources.argsXML.ToString()); }
             catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
             try
             {

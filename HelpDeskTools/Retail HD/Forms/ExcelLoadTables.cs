@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace Retail_HD.Forms
 {
+    /// <summary>
+    /// <see cref="ExcelLoadTables"/>
+    /// </summary>
 	public partial class ExcelLoadTables : Form
 	{
 		/// <summary> Loads and allows user to select tables from the excel file's schema

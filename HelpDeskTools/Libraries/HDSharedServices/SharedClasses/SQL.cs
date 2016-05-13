@@ -5,9 +5,14 @@ using System.Data.SqlClient;
 
 namespace Shared
 {
-
+    /// <summary>
+    /// SQL functions library class
+    /// </summary>
 	public static class SQL
 	{
+        /// <summary>
+        /// SQL server connection string
+        /// </summary>
         public static string connString = string.Format("server={0};database={1};Integrated Security={2}", 
             SQLSettings.Default._ServerName, 
             SQLSettings.Default._Database,
@@ -46,16 +51,18 @@ namespace Shared
 
 		/* INSERT */
 
-		/// <summary>
-		/// Inserts the call wrap up into the database
-		/// </summary>
-		/// <param name="store">store number</param>
-		/// <param name="problem">reason for call</param>
-		/// <param name="solution">resolution</param>
-		/// <param name="Category"></param>
-		/// <param name="type">incoming or outgoing</param>
-		/// <param name="technician">name of tech</param>
-		/// <returns>success/fail</returns>
+        /// <summary>
+        /// Used when a call is wrapped up
+        /// </summary>
+        /// <param name="store"></param>
+        /// <param name="details"></param>
+        /// <param name="category"></param>
+        /// <param name="topic"></param>
+        /// <param name="type"></param>
+        /// <param name="technician"></param>
+        /// <param name="trax"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
 		static public bool WrapUp_InsertCall(
 			string store, 
 			string details,
@@ -84,8 +91,9 @@ namespace Shared
 		/// <summary>
 		/// Insert Category and wrapup Text into the wrapup table
 		/// </summary>
-		/// <param name="Category">solution Category</param>
+		/// <param name="category">solution Category</param>
 		/// <param name="topic">Text for wrap up</param>
+        /// <param name="mandatory">if a topic is required</param>
 		/// <returns>true for success</returns>
         static public bool AddQuickWrap_Insert(string category, string topic, bool mandatory)
         {
@@ -98,30 +106,43 @@ namespace Shared
             return Insert(SQLSettings.Default._AddCallTopic, paramList);
         }
 
-		/// <summary>
-		/// Add new store entry into the SQL database
-		/// </summary>
-		/// <param name="Store"></param>
-		/// <param name="TZ"></param>
-		/// <param name="MPID"></param>
-		/// <param name="Manager"></param>
-		/// <param name="DM"></param>
-		/// <param name="Mall"></param>
-		/// <param name="Name"></param>
-		/// <param name="Type"></param>
-		/// <param name="Address"></param>
-		/// <param name="City"></param>
-		/// <param name="State"></param>
-		/// <param name="Zip"></param>
-		/// <param name="Email"></param>
-		/// <param name="Phone"></param>
-		/// <param name="PosGate"></param>
-		/// <param name="Pos"></param>
-		/// <param name="MimGate"></param>
-		/// <param name="Mim"></param>
-		/// <param name="SensorGate"></param>
-		/// <param name="Sensor"></param>
-		/// <returns></returns>
+
+        // TODO - needs to include TID's, BAMS, SVS, etc
+        /// <summary>
+        /// Add new store entry into the SQL database
+        /// </summary>
+        /// <param name="Store"></param>
+        /// <param name="TZ"></param>
+        /// <param name="MPID"></param>
+        /// <param name="Manager"></param>
+        /// <param name="DM"></param>
+        /// <param name="Mall"></param>
+        /// <param name="Name"></param>
+        /// <param name="Type"></param>
+        /// <param name="Address"></param>
+        /// <param name="City"></param>
+        /// <param name="State"></param>
+        /// <param name="Zip"></param>
+        /// <param name="Email"></param>
+        /// <param name="Phone"></param>
+        /// <param name="First"></param>
+        /// <param name="Second"></param>
+        /// <param name="Third"></param>
+        /// <param name="lan1"></param>
+        /// <param name="lan2"></param>
+        /// <param name="lan3"></param>
+        /// <param name="lan4"></param>
+        /// <param name="gate1"></param>
+        /// <param name="gate2"></param>
+        /// <param name="gate3"></param>
+        /// <param name="gate4"></param>
+        /// <param name="svs"></param>
+        /// <param name="bams"></param>
+        /// <param name="tid1"></param>
+        /// <param name="tid2"></param>
+        /// <param name="tid3"></param>
+        /// <param name="tid4"></param>
+        /// <returns></returns>
 		public static bool b_InsertNewStore(
 			string Store,
 			string TZ,
@@ -201,6 +222,12 @@ namespace Shared
             if (bstore && bphone) { return true; } else { return false; }
 		}
 
+        /// <summary>
+        /// Add tab to the info form
+        /// </summary>
+        /// <param name="Tab"></param>
+        /// <param name="Order"></param>
+        /// <returns></returns>
 		static public bool b_UsefulInfo_AddTab(string Tab, int Order)
 		{
 			List<SqlParameter> paramList = new List<SqlParameter>();
@@ -211,13 +238,6 @@ namespace Shared
 		}
 
 
-		static public bool VersionEntry_InsertChangeLog(string version, string changelog)
-		{
-			List<SqlParameter> lsp = new List<SqlParameter>();
-			lsp.Add(new SqlParameter("@version", version));
-			lsp.Add(new SqlParameter("@changelog", changelog));
-			return Insert("insert into [ChangeSet] ([version], [change]) values (@version, @changelog)", lsp);
-		}
 
 		/// <summary>
 		/// Executes insert statement
@@ -228,6 +248,12 @@ namespace Shared
 		{
 			return Insert(insertSQL, new List<SqlParameter>());
 		}
+        /// <summary>
+        /// <seealso cref="Insert(string, SqlParameter)"/>
+        /// </summary>
+        /// <param name="insertSQL"></param>
+        /// <param name="sp"></param>
+        /// <returns></returns>
 		static public bool Insert(string insertSQL, SqlParameter sp)
 		{
 			List<SqlParameter> sps = new List<SqlParameter>();
@@ -286,6 +312,11 @@ namespace Shared
 		{
 			return dt_SelectStore(store.ToString());
 		}
+        /// <summary>
+        /// <seealso cref="dt_SelectStore(int)"/>
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
 		static public DataTable dt_SelectStore(string store)
 		{
 			List<SqlParameter> parameters = new List<SqlParameter>();
@@ -294,6 +325,11 @@ namespace Shared
             return Select(SQLSettings.Default._StoreInfo, parameters);
 		}
 
+        /// <summary>
+        /// Find store by phone number
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         static public DataTable dt_SelectStoreByPhone(string phone)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -538,19 +574,23 @@ namespace Shared
 			return Select(query);
 		}
 
-		/// <summary> Search for store with the given parameters (Optional parameters are string.empty or "")
-		/// </summary>
-		/// <param name="tz"></param>
-		/// <param name="mp"></param>
-		/// <param name="dm"></param>
-		/// <param name="name"></param>
-		/// <param name="type"></param>
-		/// <param name="address"></param>
-		/// <param name="city"></param>
-		/// <param name="state"></param>
-		/// <param name="zip"></param>
-		/// <param name="phone"></param>
-		/// <returns></returns>
+        /// <summary>
+        /// Search for store with the given parameters (Optional parameters are string.empty or "")
+        /// </summary>
+        /// <param name="tz"></param>
+        /// <param name="bams"></param>
+        /// <param name="mp"></param>
+        /// <param name="manager"></param>
+        /// <param name="dm"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="address"></param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="zip"></param>
+        /// <param name="phone"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
 		static public DataTable dt_StoreSearch(string tz,string bams, string mp,string manager, string dm, string name, string type, string address, string city, string state, string zip, string phone, string ip)
 		{
 			string setStatement = string.Empty;
@@ -577,12 +617,20 @@ namespace Shared
 			return Select(query);
 		}
 
+        /// <summary>
+        /// Get user's last used category
+        /// </summary>
+        /// <returns></returns>
 		static public DataTable dt_LastCategory()
 		{
 			SqlParameter p = new SqlParameter("@TECH", Environment.UserName.ToUpper());
             return Select(SQLSettings.Default._LastCategory, p);
 		}
 
+        /// <summary>
+        /// List all tables
+        /// </summary>
+        /// <returns></returns>
 		static public DataTable ListTables()
 		{
 			return Select("SELECT Distinct TABLE_NAME FROM information_schema.TABLES");
@@ -617,10 +665,23 @@ namespace Shared
 			}
 			finally { conn.Close(); }
 		}
+
+        /// <summary>
+        /// <seealso cref="Select(string, List{SqlParameter})"/>
+        /// </summary>
+        /// <param name="selectSQL"></param>
+        /// <returns></returns>
 		static public DataTable Select(string selectSQL)
 		{
 			return Select(selectSQL, new List<SqlParameter>());
 		}
+
+        /// <summary>
+        /// <seealso cref="Select(string, List{SqlParameter})"/>
+        /// </summary>
+        /// <param name="selectSQL"></param>
+        /// <param name="sqlParam"></param>
+        /// <returns></returns>
 		static public DataTable Select(string selectSQL, SqlParameter sqlParam)
 		{
 			List<SqlParameter> paramList = new List<SqlParameter>();
@@ -630,7 +691,11 @@ namespace Shared
 
 
 
-
+        /// <summary>
+        /// Tests string for nulls
+        /// </summary>
+        /// <param name="str">test string</param>
+        /// <returns>string or SQL safe null value</returns>
 		static public object DBNullIfEmpty(this string str)
 		{
 			return !String.IsNullOrEmpty(str) ? str : (object)DBNull.Value;
@@ -691,7 +756,17 @@ namespace Shared
 
 
 		/* UPDATE */
-
+        /// <summary>
+        /// Edit call history data
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="store"></param>
+        /// <param name="topic"></param>
+        /// <param name="details"></param>
+        /// <param name="type"></param>
+        /// <param name="trax"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
 		public static bool EditCalls_UpdateCall(
 			string id, 
 			string store, 
@@ -711,18 +786,19 @@ namespace Shared
 			paramList.Add(new SqlParameter("@url", url));
             return Update(SQLSettings.Default._UpdateWrapUp, paramList);
 		}
-		
 
-		/// <summary>
-		/// updates the call information
-		/// </summary>
-		/// <param name="ID">call id</param>
-		/// <param name="sCategory">the call's Category</param>
-		/// <param name="Problem">the call's problem</param>
-		/// <param name="Solution">the call's solution</param>
-		/// <param name="Type">teh call's type (direction)</param>
-		/// <returns>on success</returns>
-		public static bool b_updateCallID(
+
+        /// <summary>
+        /// updates the call information
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Store"></param>
+        /// <param name="Category"></param>
+        /// <param name="Problem"></param>
+        /// <param name="Solution"></param>
+        /// <param name="Type"></param>
+        /// <returns></returns>
+        public static bool b_updateCallID(
 			string ID,
 			string Store,
 			string Category,
@@ -742,6 +818,24 @@ namespace Shared
 			return Update(updateSQL, parameters);
 		}
 
+        // TODO - needs to include TID's, BAMS, SVS, etc
+        /// <summary>
+        /// updates the store's information
+        /// </summary>
+        /// <param name="Store"></param>
+        /// <param name="Manager"></param>
+        /// <param name="MPID"></param>
+        /// <param name="Address"></param>
+        /// <param name="Email"></param>
+        /// <param name="City"></param>
+        /// <param name="DM"></param>
+        /// <param name="Name"></param>
+        /// <param name="Type"></param>
+        /// <param name="State"></param>
+        /// <param name="Zip"></param>
+        /// <param name="TZ"></param>
+        /// <param name="RM"></param>
+        /// <returns></returns>
 		public static bool b_updateStoreInfo(
 			string Store,
 			string Manager,
@@ -777,6 +871,13 @@ namespace Shared
             
 
 		}
+
+        /// <summary>
+        /// Update store's phone 
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="store"></param>
+        /// <returns></returns>
         public static bool b_UpdatePhone(string phone,string store)
         {
             List<SqlParameter>parameters = new List<SqlParameter>();
@@ -787,7 +888,7 @@ namespace Shared
         }
 
 		/// <summary>
-		/// Inserts Text area of info form into sql
+		/// Update tab's text box on the useful info form
 		/// </summary>
 		/// <param name="tabName">name of the table</param>
 		/// <param name="textDisplayed">contents of the rich Text box</param>
@@ -802,6 +903,12 @@ namespace Shared
 			return Insert(sql, paramList);
 		}
 
+        /// <summary>
+        /// update a tab name on the useful info form
+        /// </summary>
+        /// <param name="oldName"></param>
+        /// <param name="newName"></param>
+        /// <returns></returns>
 		static public bool b_UsefulInfo_EditTabTitle(string oldName, string newName)
 		{
 			List<SqlParameter> paramList = new List<SqlParameter>();
@@ -842,7 +949,12 @@ namespace Shared
 
 
 
-
+        /// <summary>
+        /// for execution of a stored procedure
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="paramList"></param>
+        /// <returns></returns>
         static public bool b_ExecuteQuery(string query, List<SqlParameter> paramList)
         {
             SqlConnection sqlConn = new SqlConnection(connString);

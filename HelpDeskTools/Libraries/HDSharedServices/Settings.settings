@@ -8,27 +8,6 @@
     <Setting Name="_OldMenuPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\wwwint\roc\techtmp\bergman\Toolsmenu.bat</Value>
     </Setting>
-    <Setting Name="_SettingsUpgradeCompleted" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="_PeoplesoftUpgrade" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="_PeoplesoftPopupThreadRunning" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="_PeoplesoftUsername" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="_PeoplesoftPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="_ApplicationRetail" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="_MostRecentLogSent" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)">2015-03-01</Value>
-    </Setting>
     <Setting Name="_BatUnlock" Type="System.String" Scope="User">
       <Value Profile="(Default)">unlock.bat</Value>
     </Setting>
