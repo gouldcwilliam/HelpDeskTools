@@ -141,9 +141,9 @@
             this.ms_Top_msi_OldBatMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtRM = new System.Windows.Forms.TextBox();
+            this.bgwWrapUp = new System.ComponentModel.BackgroundWorker();
             this.ServicesUC = new Retail_HD.UCs.ServicesControl();
             this.PingUC = new Retail_HD.UCs.PingControl();
-            this.bgwWrapUp = new System.ComponentModel.BackgroundWorker();
             this.grpStore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
             this.ss_Bottom_.SuspendLayout();
@@ -1036,6 +1036,7 @@
             this.ts_Top_tsb_Register_Order.Name = "ts_Top_tsb_Register_Order";
             this.ts_Top_tsb_Register_Order.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_Register_Order.Text = "toolStripButton1";
+            this.ts_Top_tsb_Register_Order.ToolTipText = "Spencer Register Ordering Form";
             this.ts_Top_tsb_Register_Order.Click += new System.EventHandler(this.RegisterOrder_Click);
             // 
             // groupBox1

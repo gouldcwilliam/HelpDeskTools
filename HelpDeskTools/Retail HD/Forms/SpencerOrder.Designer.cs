@@ -52,6 +52,7 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
+            this.lblTZ = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -111,14 +112,14 @@
             // 
             // txtHrs1
             // 
-            this.txtHrs1.Location = new System.Drawing.Point(235, 78);
+            this.txtHrs1.Location = new System.Drawing.Point(196, 78);
             this.txtHrs1.Name = "txtHrs1";
             this.txtHrs1.Size = new System.Drawing.Size(38, 20);
             this.txtHrs1.TabIndex = 5;
             // 
             // txtHrs2
             // 
-            this.txtHrs2.Location = new System.Drawing.Point(298, 78);
+            this.txtHrs2.Location = new System.Drawing.Point(259, 78);
             this.txtHrs2.Name = "txtHrs2";
             this.txtHrs2.Size = new System.Drawing.Size(37, 20);
             this.txtHrs2.TabIndex = 7;
@@ -127,7 +128,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(280, 79);
+            this.label5.Location = new System.Drawing.Point(241, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(12, 16);
             this.label5.TabIndex = 6;
@@ -278,12 +279,23 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // lblTZ
+            // 
+            this.lblTZ.AutoSize = true;
+            this.lblTZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTZ.Location = new System.Drawing.Point(302, 79);
+            this.lblTZ.Name = "lblTZ";
+            this.lblTZ.Size = new System.Drawing.Size(25, 16);
+            this.lblTZ.TabIndex = 24;
+            this.lblTZ.Text = "TZ";
+            // 
             // SpencerOrder
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 389);
+            this.Controls.Add(this.lblTZ);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label12);
@@ -341,5 +353,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Label lblTZ;
     }
 }

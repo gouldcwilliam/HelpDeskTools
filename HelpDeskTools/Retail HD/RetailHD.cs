@@ -1118,10 +1118,11 @@ namespace Retail_HD
 
         private void RegisterOrder_Click(object sender, EventArgs e)
         {
+            if (txtStore.Text.Length < 3) { return; }
             if (spencerOrder.Visible) { spencerOrder.BringToFront(); }
             else
             {
-                spencerOrder = new Forms.SpencerOrder(Info.store.ToString(),Info.phone, Info.reg1, Info.pos,Info.pos_gate);
+                spencerOrder = new Forms.SpencerOrder(Info.store.ToString(),Info.phone,Info.TZ, Info.reg1, Info.pos,Info.pos_gate);
                 spencerOrder.Show();
                 spencerOrder.BringToFront();
             }
@@ -1386,7 +1387,6 @@ namespace Retail_HD
 			{
 				Size = Properties.Settings.Default._DrawingSize;
 			}
-
 		}
 
 		/// <summary> Methods when the form is loaded
