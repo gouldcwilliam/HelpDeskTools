@@ -32,7 +32,7 @@
     <SuiteName>HelpDeskTools</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>143</ApplicationRevision>
+    <ApplicationRevision>146</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -207,6 +207,12 @@
     <Compile Include="Forms\ScottStartup.Designer.cs">
       <DependentUpon>ScottStartup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SpencerOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SpencerOrder.Designer.cs">
+      <DependentUpon>SpencerOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StoreNotes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,11 @@
     </Compile>
     <Compile Include="Forms\ExcelCompareData.Designer.cs">
       <DependentUpon>ExcelCompareData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -359,6 +370,9 @@
     <EmbeddedResource Include="Forms\ScottStartup.resx">
       <DependentUpon>ScottStartup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SpencerOrder.resx">
+      <DependentUpon>SpencerOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\StoreNotes.resx">
       <DependentUpon>StoreNotes.cs</DependentUpon>
     </EmbeddedResource>
@@ -379,6 +393,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExcelCompareData.resx">
       <DependentUpon>ExcelCompareData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RetailHD.resx">
       <DependentUpon>RetailHD.cs</DependentUpon>

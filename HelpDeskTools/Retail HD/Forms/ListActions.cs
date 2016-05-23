@@ -26,14 +26,8 @@ namespace Retail_HD.Forms
             btnClearOut.Visible = false;
 
             Size = new System.Drawing.Size(403, 604);
-            if(Environment.UserName.ToUpper() == "GOULDCH")
-            {
-                btnShowOutput.Visible = true;
-            }
-            else
-            {
-                btnShowOutput.Visible = false;
-            }
+            btnShowOutput.Visible = true;
+            
 		}
 
         private string _service

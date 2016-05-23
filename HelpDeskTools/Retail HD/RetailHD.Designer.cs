@@ -108,6 +108,7 @@
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.ts_Top_tsb_StoreNote = new System.Windows.Forms.ToolStripButton();
+            this.ts_Top_tsb_Register_Order = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtIncome = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -838,7 +839,8 @@
             this.toolStripSeparator11,
             this.toolStripSeparator10,
             this.toolStripSeparator9,
-            this.ts_Top_tsb_StoreNote});
+            this.ts_Top_tsb_StoreNote,
+            this.ts_Top_tsb_Register_Order});
             this.ts_Top.Location = new System.Drawing.Point(0, 24);
             this.ts_Top.Name = "ts_Top";
             this.ts_Top.Size = new System.Drawing.Size(853, 22);
@@ -1025,6 +1027,16 @@
             this.ts_Top_tsb_StoreNote.Text = "toolStripButton1";
             this.ts_Top_tsb_StoreNote.ToolTipText = "Add a store note";
             this.ts_Top_tsb_StoreNote.Click += new System.EventHandler(this.StoreNote_Click);
+            // 
+            // ts_Top_tsb_Register_Order
+            // 
+            this.ts_Top_tsb_Register_Order.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ts_Top_tsb_Register_Order.Image = ((System.Drawing.Image)(resources.GetObject("ts_Top_tsb_Register_Order.Image")));
+            this.ts_Top_tsb_Register_Order.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ts_Top_tsb_Register_Order.Name = "ts_Top_tsb_Register_Order";
+            this.ts_Top_tsb_Register_Order.Size = new System.Drawing.Size(24, 19);
+            this.ts_Top_tsb_Register_Order.Text = "toolStripButton1";
+            this.ts_Top_tsb_Register_Order.Click += new System.EventHandler(this.RegisterOrder_Click);
             // 
             // groupBox1
             // 
@@ -1735,6 +1747,7 @@
 		private System.Windows.Forms.ToolStripButton ts_Top_tsb_StoreNote;
 		private System.Windows.Forms.ToolStripButton ts_Top_tsb_Refresh;
         private System.ComponentModel.BackgroundWorker bgwWrapUp;
+        private System.Windows.Forms.ToolStripButton ts_Top_tsb_Register_Order;
     }
 }
 

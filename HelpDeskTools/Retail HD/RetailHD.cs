@@ -146,6 +146,7 @@ namespace Retail_HD
         Forms.IPs ips = new Forms.IPs();
         Forms.EditCalls editCalls = new Forms.EditCalls();
         Forms.StoreNotes storeNotes = new Forms.StoreNotes();
+        Forms.SpencerOrder spencerOrder = new Forms.SpencerOrder();
         #endregion
 
 
@@ -1114,6 +1115,17 @@ namespace Retail_HD
 			}
 
 		}
+
+        private void RegisterOrder_Click(object sender, EventArgs e)
+        {
+            if (spencerOrder.Visible) { spencerOrder.BringToFront(); }
+            else
+            {
+                spencerOrder = new Forms.SpencerOrder(Info.store.ToString(),Info.phone, Info.reg1, Info.pos,Info.pos_gate);
+                spencerOrder.Show();
+                spencerOrder.BringToFront();
+            }
+        }
 
 		private void Refresh_Click(object sender, EventArgs e)
 		{
