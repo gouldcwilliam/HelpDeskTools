@@ -56,14 +56,10 @@ namespace WetSandwich
 			/* ============================================================================================================= */
 
 			string body = global::WetSandwich.Properties.Settings.Default.header;
-			string mv = "";
-			foreach(string v in Settings.Default._multiVersions) { mv = v + " " + mv; }
-			string rv = "";
-			foreach(string v in Settings.Default._vfVersions) { rv = v + " " + rv; }
 
-			body += "Multi Version: " + mv + "<br>";
+			body += "Multi Version: " + Settings.Default.multiVersion + "<br>";
 			body += "Rediron Version: " + Settings.Default.redIronVersion + "<br>";
-			body += "Verifone Version: " + rv + "<br>";
+			body += "Verifone Version: " + Settings.Default.vfVersion + "<br>";
 			body += Settings.Default.tableHead;
 
 			ProgressBar progressBar;
@@ -101,7 +97,7 @@ namespace WetSandwich
 					{
 						string multi;
 						if (!Shared.Functions.CopyTempLog(Shared.Functions.LatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
-						else { multi = Shared.Functions.MultiLog(Settings.Default._multiVersions).ToString(); }
+						else { multi = Shared.Functions.MultiLog(Settings.Default.multiVersion).ToString(); }
 						Console.WriteLine(multi);
 
 						string ri;
@@ -110,7 +106,7 @@ namespace WetSandwich
 						Console.WriteLine(ri);
 
 						string vf;
-                        vf = Shared.Functions.VFLog(computer, Properties.Settings.Default._vfVersions);
+                        vf = Shared.Functions.VFLog(computer, Properties.Settings.Default.vfVersion);
 
 						Console.WriteLine(vf);
 

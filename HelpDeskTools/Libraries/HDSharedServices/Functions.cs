@@ -886,7 +886,20 @@ namespace Shared
                 return false;
             }
         }
-
+        public static bool MultiLog(string version, bool verbose = true)
+        {
+            try
+            {
+                string logFileAsString = File.ReadAllText(Settings.Default._TempPath + "tmp.log");
+                if (logFileAsString.Contains(version)) { return true; }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                if (verbose) Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
 
 
         /// <summary>
