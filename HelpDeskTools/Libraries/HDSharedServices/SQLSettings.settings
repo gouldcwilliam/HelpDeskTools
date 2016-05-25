@@ -8,127 +8,6 @@
     <Setting Name="_Database" Type="System.String" Scope="User">
       <Value Profile="(Default)">RetailHD</Value>
     </Setting>
-    <Setting Name="_RecentCallsByStore" Type="System.String" Scope="User">
-      <Value Profile="(Default)">select
-	[Calls].[id] as [ID],
-	[Calls].[store] as [Store],
-	[Calls].[date] [Date],
-	[Technicians].[initials] as [Tech],
-	[Categories].[category] as [Category],
-	[Topics].[topic] as [Topic],
-	[Calls].[details] as [Details],
-	[Calls].[type] as [In/Out],
-	[Calls].[trax] as [Trax],
-	[Calls].[url] as [URL]
-from
-	[Calls]
-	left join
-		[Topics] on [Calls].[topID] = [Topics].id
-	left join
-		[Categories] on [Topics].[catID] = [Categories].[id]
-	left join
-		[Technicians] on [Calls].[techID] = [Technicians].[id]
-where
-	[Calls].[store] = @store
-order by
-	[Calls].[date] desc
-
-</Value>
-    </Setting>
-    <Setting Name="_ComputersByStore" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SELECT 
-	[computer] 
-FROM 
-	[Computers] 
-WHERE 
-	[store] = @store</Value>
-    </Setting>
-    <Setting Name="_CategoriesWithTopics" Type="System.String" Scope="User">
-      <Value Profile="(Default)">select 
-	[category], 
-	[topic], 
-	[mandatory] 
-from 
-	[Topics] 
-	left join 
-		[Categories] 
-	on 
-		[Topics].[catID] = [Categories].[id]
-where
-	[active] = 'TRUE'</Value>
-    </Setting>
-    <Setting Name="_LogCall" Type="System.String" Scope="User">
-      <Value Profile="(Default)">insert into 
-	[Calls] (
-		[store], 
-		[details], 
-		[catID], 
-		[topID], 
-		[type], 
-		[techID],
-		[trax],
-		[url]) 
-values (
-	@store, 
-	@details, 
-	(Select [id] from [Categories] where [category] = @category), 
-	(select [id] from [Topics] where [topic] = @topic ), 
-	@type, 
-	(select [id] from [Technicians] where [technician] = @technician),
-	@trax,
-	@url
-	)
-</Value>
-    </Setting>
-    <Setting Name="_UserCallCount" Type="System.String" Scope="User">
-      <Value Profile="(Default)">select
-	count([techID]) [Total]
-from
-	[Calls]
-	left join 
-		[Technicians]
-	on
-		[Calls].[techID] = [Technicians].[id]
-where
-	[date] &gt; dbo.StartOfDay() and
-	lower([Technicians].[technician]) = lower(@TECH) and
-	lower([type]) = 'in'
-</Value>
-    </Setting>
-    <Setting Name="_UpdateWrapUp" Type="System.String" Scope="User">
-      <Value Profile="(Default)">update
-	[Calls] 
-set 
-	[store] = @store, 
-	[catID] = (select [catID] from [Topics] where topic = @topic), 
-	[topID] = (select [id] from [Topics] where [topic] = @topic), 
-	[details] = @details, 
-	[type] = @type, 
-	[trax] = @trax,
-	[url] = @url
-where 
-	[Calls].[id] = @id
-</Value>
-    </Setting>
-    <Setting Name="_AddCallTopic" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Insert into [Topics] ([topic], [catID], [active], [mandatory])
-values
-	(@topic,
-	(select [Categories].[id] from [Categories] where [category] = @category),
-	'true',
-	@mandatory)
-</Value>
-    </Setting>
-    <Setting Name="_StoreByPhone" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SELECT 
-	p.[store]
-FROM 
-	[Phones] p
-	INNER JOIN [Stores] s on p.store=s.store
-WHERE 
-	p.[phone] LIKE @PHONE and s.[open]=1
-</Value>
-    </Setting>
     <Setting Name="_TeamCallCount" Type="System.String" Scope="User">
       <Value Profile="(Default)">select
 	count([techID]) [Total]
@@ -353,6 +232,145 @@ BEGIN
 		(@phone, @store)
 END
 </Value>
+    </Setting>
+    <Setting Name="_RecentCallsByStore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select
+	[Calls].[id] as [ID],
+	[Calls].[store] as [Store],
+	[Calls].[date] [Date],
+	[Technicians].[initials] as [Tech],
+	[Categories].[category] as [Category],
+	[Topics].[topic] as [Topic],
+	[Calls].[details] as [Details],
+	[Calls].[type] as [In/Out],
+	[Calls].[trax] as [Trax],
+	[Calls].[url] as [URL]
+from
+	[Calls]
+	left join
+		[Topics] on [Calls].[topID] = [Topics].id
+	left join
+		[Categories] on [Topics].[catID] = [Categories].[id]
+	left join
+		[Technicians] on [Calls].[techID] = [Technicians].[id]
+where
+	[Calls].[store] = @store
+order by
+	[Calls].[date] desc
+
+</Value>
+    </Setting>
+    <Setting Name="_ComputersByStore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT 
+	[computer] 
+FROM 
+	[Computers] 
+WHERE 
+	[store] = @store</Value>
+    </Setting>
+    <Setting Name="_CategoriesWithTopics" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select 
+	[category], 
+	[topic], 
+	[mandatory] 
+from 
+	[Topics] 
+	left join 
+		[Categories] 
+	on 
+		[Topics].[catID] = [Categories].[id]
+where
+	[active] = 'TRUE'</Value>
+    </Setting>
+    <Setting Name="_LogCall" Type="System.String" Scope="User">
+      <Value Profile="(Default)">insert into 
+	[Calls] (
+		[store], 
+		[details], 
+		[catID], 
+		[topID], 
+		[type], 
+		[techID],
+		[trax],
+		[url]) 
+values (
+	@store, 
+	@details, 
+	(Select [id] from [Categories] where [category] = @category), 
+	(select [id] from [Topics] where [topic] = @topic ), 
+	@type, 
+	(select [id] from [Technicians] where [technician] = @technician),
+	@trax,
+	@url
+	)
+</Value>
+    </Setting>
+    <Setting Name="_UserCallCount" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select
+	count([techID]) [Total]
+from
+	[Calls]
+	left join 
+		[Technicians]
+	on
+		[Calls].[techID] = [Technicians].[id]
+where
+	[date] &gt; dbo.StartOfDay() and
+	lower([Technicians].[technician]) = lower(@TECH) and
+	lower([type]) = 'in'
+</Value>
+    </Setting>
+    <Setting Name="_UpdateWrapUp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">update
+	[Calls] 
+set 
+	[store] = @store, 
+	[catID] = (select [catID] from [Topics] where topic = @topic), 
+	[topID] = (select [id] from [Topics] where [topic] = @topic), 
+	[details] = @details, 
+	[type] = @type, 
+	[trax] = @trax,
+	[url] = @url
+where 
+	[Calls].[id] = @id
+</Value>
+    </Setting>
+    <Setting Name="_AddCallTopic" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Insert into [Topics] ([topic], [catID], [active], [mandatory])
+values
+	(@topic,
+	(select [Categories].[id] from [Categories] where [category] = @category),
+	'true',
+	@mandatory)
+</Value>
+    </Setting>
+    <Setting Name="_StoreByPhone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT 
+	p.[store]
+FROM 
+	[Phones] p
+	INNER JOIN [Stores] s on p.store=s.store
+WHERE 
+	p.[phone] LIKE @PHONE and s.[open]=1
+</Value>
+    </Setting>
+    <Setting Name="_AgentStatus" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SELECT 
+	Technicians.full_name AS Name, 
+	Technicians.technician AS [login], 
+	Technicians.id as ID, 
+	CurrentStatus, 
+	TimeStatusChanged, 
+	Information1, 
+	Information2 
+FROM 
+	AgentStatus 
+	INNER JOIN 
+		Technicians ON 
+			AgentStatus.TechnicianID = Technicians.id
+WHERE
+	[CurrentStatus] != 'LOGOUT' AND
+	[technician] != '{0}'</Value>
     </Setting>
   </Settings>
 </SettingsFile>

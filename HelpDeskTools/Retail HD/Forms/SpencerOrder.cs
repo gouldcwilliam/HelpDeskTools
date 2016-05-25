@@ -40,22 +40,24 @@ namespace Retail_HD.Forms
         {
             if(_name == txtName.Text) { MessageBox.Show("Must provide a valid computer name","Invalid Input",MessageBoxButtons.OK,MessageBoxIcon.Error); return; }
             if(_ip==txtIP.Text) { MessageBox.Show("Must provide a valid ip", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            string tech = "No";
+            if (ckbTech.Checked) { tech = "Yes"; }
             string body = string.Format(
                 "Store:\t\t\t {0}\r" +
                 "Phone:\t\t\t {1}\r" +
-                "Hours:\t\t\t {2} - {3}\r" +
+                "Hours:\t\t\t {2} - {3} {13}\r" +
                 "Register #\t\t {4}\r" +
                 "Tech:\t\t\t {5}\r" +
-                "Dispatch:\t\t {6} {13}\r" +
+                "Dispatch:\t\t {6}\r" +
                 "Replacemet Name:\t {7}\r" +
                 "IP:\t\t\t {8}\r" +
-                "Subnet:\t\t {9}\r" +
+                "Subnet:\t\t\t {9}\r" +
                 "Gate:\t\t\t {10}\r" +
                 "DNS:\t\t\t 10.63.33.41\r" +
                 "\t\t\t 10.63.33.42\r" +
                 "Password:\t\t {11}\r" +
                 "Details:\t\t\t {12}\r",
-                txtStore.Text, txtPhone.Text, txtHrs1.Text, txtHrs2.Text, txtReg.Text, ckbTech.Checked.ToString(),
+                txtStore.Text, txtPhone.Text, txtHrs1.Text, txtHrs2.Text, txtReg.Text, tech,
                 txtDispatch.Text, txtName.Text, txtIP.Text, _subnet, txtGate.Text, txtPassword.Text, txtDetails.Text, lblTZ.Text                
                 );
             if (txtReg.Text == "1") { MessageBox.Show("Create a trax ticket for article replacement", "Create Articles", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
