@@ -740,12 +740,13 @@ namespace Shared
         {
             foreach (string computer in Computers)
             {
-                if (DnsLookup(computer)) { Pinger(computer, computer); }
+                if (DnsLookup(computer,false)) { Pinger(computer, computer); }
                 else
                 {
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = "CMD";
-                    startInfo.Arguments = string.Format("/C ECHO No DNS entry for {0} && PAUSE", computer);
+                    int wait = 5;
+                    startInfo.Arguments = string.Format("/C ECHO No DNS entry for {0} && PING -n {1} localhost > nul", computer, wait);
                     Process.Start(startInfo);
                 }
             }
@@ -1082,8 +1083,9 @@ namespace Shared
         /// <summary> Search for DNS entry by hostname
         /// </summary>
         /// <param name="hostname"></param>
+        /// <param name="warn">shows a dialog warning message on fail</param>
         /// <returns></returns>
-        public static bool DnsLookup(string hostname)
+        public static bool DnsLookup(string hostname, bool warn=true)
         {
             System.Net.IPHostEntry host;
             try
@@ -1094,13 +1096,19 @@ namespace Shared
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Exception caught during DNS lookup\nThe computer is not online");
-                System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Exception", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                if (warn)
+                {
+                    System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Exception", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                }
                 return false;
             }
             if (host == null || host.AddressList.GetLength(0) == 0)
             {
                 Console.WriteLine("No addresses availible for the hostname");
-                System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Failed", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                if (warn)
+                {
+                    System.Windows.Forms.MessageBox.Show("DNS lookup failed on: " + hostname + "\nTry flushing your DNS cache: IPCONFIG /FLUSHDNS", "DNS Lookup Failed", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                }
                 return false;
             }
             return true;

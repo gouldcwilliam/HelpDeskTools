@@ -73,6 +73,8 @@
             this.gbOutput = new System.Windows.Forms.GroupBox();
             this.btnShowOutput = new System.Windows.Forms.Button();
             this.btnClearOut = new System.Windows.Forms.Button();
+            this.ckb5 = new System.Windows.Forms.CheckBox();
+            this.ckb6 = new System.Windows.Forms.CheckBox();
             this.gbRegister.SuspendLayout();
             this.gbProgram.SuspendLayout();
             this.gbAction.SuspendLayout();
@@ -141,13 +143,15 @@
             // 
             // gbRegister
             // 
+            this.gbRegister.Controls.Add(this.ckb5);
+            this.gbRegister.Controls.Add(this.ckb6);
             this.gbRegister.Controls.Add(this.ckb3);
             this.gbRegister.Controls.Add(this.ckb4);
             this.gbRegister.Controls.Add(this.ckb2);
             this.gbRegister.Controls.Add(this.ckb1);
-            this.gbRegister.Location = new System.Drawing.Point(261, 100);
+            this.gbRegister.Location = new System.Drawing.Point(258, 100);
             this.gbRegister.Name = "gbRegister";
-            this.gbRegister.Size = new System.Drawing.Size(114, 71);
+            this.gbRegister.Size = new System.Drawing.Size(117, 71);
             this.gbRegister.TabIndex = 2;
             this.gbRegister.TabStop = false;
             this.gbRegister.Text = "Register #";
@@ -156,7 +160,7 @@
             // ckb3
             // 
             this.ckb3.AutoSize = true;
-            this.ckb3.Location = new System.Drawing.Point(76, 19);
+            this.ckb3.Location = new System.Drawing.Point(44, 19);
             this.ckb3.Name = "ckb3";
             this.ckb3.Size = new System.Drawing.Size(32, 17);
             this.ckb3.TabIndex = 2;
@@ -166,7 +170,7 @@
             // ckb4
             // 
             this.ckb4.AutoSize = true;
-            this.ckb4.Location = new System.Drawing.Point(76, 42);
+            this.ckb4.Location = new System.Drawing.Point(44, 42);
             this.ckb4.Name = "ckb4";
             this.ckb4.Size = new System.Drawing.Size(32, 17);
             this.ckb4.TabIndex = 3;
@@ -538,6 +542,26 @@
             this.btnClearOut.UseVisualStyleBackColor = true;
             this.btnClearOut.Click += new System.EventHandler(this.btnClearOut_Click);
             // 
+            // ckb5
+            // 
+            this.ckb5.AutoSize = true;
+            this.ckb5.Location = new System.Drawing.Point(82, 19);
+            this.ckb5.Name = "ckb5";
+            this.ckb5.Size = new System.Drawing.Size(32, 17);
+            this.ckb5.TabIndex = 4;
+            this.ckb5.Text = "5";
+            this.ckb5.UseVisualStyleBackColor = true;
+            // 
+            // ckb6
+            // 
+            this.ckb6.AutoSize = true;
+            this.ckb6.Location = new System.Drawing.Point(82, 42);
+            this.ckb6.Name = "ckb6";
+            this.ckb6.Size = new System.Drawing.Size(32, 17);
+            this.ckb6.TabIndex = 5;
+            this.ckb6.Text = "6";
+            this.ckb6.UseVisualStyleBackColor = true;
+            // 
             // ListActions
             // 
             this.AcceptButton = this.btnOK;
@@ -663,5 +687,7 @@
         private System.Windows.Forms.GroupBox gbOutput;
         public System.Windows.Forms.Button btnShowOutput;
         public System.Windows.Forms.Button btnClearOut;
+        private System.Windows.Forms.CheckBox ckb5;
+        private System.Windows.Forms.CheckBox ckb6;
     }
 }

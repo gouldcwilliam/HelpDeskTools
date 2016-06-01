@@ -231,19 +231,6 @@ namespace Retail_HD.Forms
 
                     logCheck.WorkDone += LogCheck_WorkDone;
                     logCheck.Start();
-                    //string multi;
-                    //if (!Functions.CopyTempLog(Shared.Functions.LatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
-                    //else { multi = Functions.FindInLog(Properties.Settings.Default.multiVersion).ToString(); }
-
-                    //string ri;
-                    //if (!Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log"; }
-                    //else { ri = Functions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
-
-                    //string vf;
-                    //vf = Functions.VFLog(computer, Properties.Settings.Default.vfVersion);
-
-                    //MessageBox.Show(string.Format(computer + "\nMulti up to date: {0} \nRedIron up to date: {1} \nVerifone up to date: {2}", multi, ri, vf),
-                    //    "RedIron/Multi Version Check: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 if (ckbTrickle.Checked)
@@ -324,8 +311,9 @@ namespace Retail_HD.Forms
 			if (!ckb2.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP2")); }
 			if (!ckb3.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP3")); }
 			if (!ckb4.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP4")); }
-
-			return Computers;
+			if (!ckb5.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP5")); }
+			if (!ckb6.Checked) { Computers.RemoveAll(x => x.ToUpper().Contains("SAP6")); }
+            return Computers;
 		}
 
 
