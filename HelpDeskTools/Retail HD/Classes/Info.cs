@@ -118,6 +118,13 @@ namespace Retail_HD
 
 			}
 		}
+        /// <summary>
+        /// ip string
+        /// </summary>
+        public static string lan3
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan3); }
+        }
 
         /// <summary>
         /// store number

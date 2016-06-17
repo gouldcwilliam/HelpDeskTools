@@ -62,6 +62,10 @@ namespace Retail_HD.UCs
             {
 				Functions.Pinger(Info.cctv, Info.store + "CCTV");
             }
+            if(this.ckbLan3.Checked)
+            {
+                Functions.Pinger(Info.lan3, Info.store+" LAN 3");
+            }
 		}
         /// <summary>
         /// clears the check boxes

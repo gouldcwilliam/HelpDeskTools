@@ -36,9 +36,10 @@
             this.ckbMim = new System.Windows.Forms.CheckBox();
             this.ckbSensor = new System.Windows.Forms.CheckBox();
             this.gbPing = new System.Windows.Forms.GroupBox();
+            this.ckbCCTV = new System.Windows.Forms.CheckBox();
             this.ckbSensorGate = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
-            this.ckbCCTV = new System.Windows.Forms.CheckBox();
+            this.ckbLan3 = new System.Windows.Forms.CheckBox();
             this.gbPing.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,15 +58,15 @@
             this.ckbFortinet.AutoSize = true;
             this.ckbFortinet.Location = new System.Drawing.Point(6, 42);
             this.ckbFortinet.Name = "ckbFortinet";
-            this.ckbFortinet.Size = new System.Drawing.Size(61, 17);
+            this.ckbFortinet.Size = new System.Drawing.Size(74, 17);
             this.ckbFortinet.TabIndex = 1;
-            this.ckbFortinet.Text = "Fortinet";
+            this.ckbFortinet.Text = "POS Gate";
             this.ckbFortinet.UseVisualStyleBackColor = true;
             // 
             // ckbMimGate
             // 
             this.ckbMimGate.AutoSize = true;
-            this.ckbMimGate.Location = new System.Drawing.Point(73, 42);
+            this.ckbMimGate.Location = new System.Drawing.Point(86, 42);
             this.ckbMimGate.Name = "ckbMimGate";
             this.ckbMimGate.Size = new System.Drawing.Size(73, 17);
             this.ckbMimGate.TabIndex = 3;
@@ -75,7 +76,7 @@
             // ckbMim
             // 
             this.ckbMim.AutoSize = true;
-            this.ckbMim.Location = new System.Drawing.Point(73, 19);
+            this.ckbMim.Location = new System.Drawing.Point(86, 19);
             this.ckbMim.Name = "ckbMim";
             this.ckbMim.Size = new System.Drawing.Size(47, 17);
             this.ckbMim.TabIndex = 2;
@@ -85,7 +86,7 @@
             // ckbSensor
             // 
             this.ckbSensor.AutoSize = true;
-            this.ckbSensor.Location = new System.Drawing.Point(152, 19);
+            this.ckbSensor.Location = new System.Drawing.Point(165, 19);
             this.ckbSensor.Name = "ckbSensor";
             this.ckbSensor.Size = new System.Drawing.Size(59, 17);
             this.ckbSensor.TabIndex = 4;
@@ -94,6 +95,7 @@
             // 
             // gbPing
             // 
+            this.gbPing.Controls.Add(this.ckbLan3);
             this.gbPing.Controls.Add(this.ckbCCTV);
             this.gbPing.Controls.Add(this.ckbSensorGate);
             this.gbPing.Controls.Add(this.ckbRegister);
@@ -108,10 +110,20 @@
             this.gbPing.TabStop = false;
             this.gbPing.Text = "Ping";
             // 
+            // ckbCCTV
+            // 
+            this.ckbCCTV.AutoSize = true;
+            this.ckbCCTV.Location = new System.Drawing.Point(256, 19);
+            this.ckbCCTV.Name = "ckbCCTV";
+            this.ckbCCTV.Size = new System.Drawing.Size(54, 17);
+            this.ckbCCTV.TabIndex = 6;
+            this.ckbCCTV.Text = "CCTV";
+            this.ckbCCTV.UseVisualStyleBackColor = true;
+            // 
             // ckbSensorGate
             // 
             this.ckbSensorGate.AutoSize = true;
-            this.ckbSensorGate.Location = new System.Drawing.Point(152, 42);
+            this.ckbSensorGate.Location = new System.Drawing.Point(165, 42);
             this.ckbSensorGate.Name = "ckbSensorGate";
             this.ckbSensorGate.Size = new System.Drawing.Size(85, 17);
             this.ckbSensorGate.TabIndex = 5;
@@ -128,15 +140,15 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // ckbCCTV
+            // ckbLan3
             // 
-            this.ckbCCTV.AutoSize = true;
-            this.ckbCCTV.Location = new System.Drawing.Point(243, 19);
-            this.ckbCCTV.Name = "ckbCCTV";
-            this.ckbCCTV.Size = new System.Drawing.Size(54, 17);
-            this.ckbCCTV.TabIndex = 6;
-            this.ckbCCTV.Text = "CCTV";
-            this.ckbCCTV.UseVisualStyleBackColor = true;
+            this.ckbLan3.AutoSize = true;
+            this.ckbLan3.Location = new System.Drawing.Point(255, 42);
+            this.ckbLan3.Name = "ckbLan3";
+            this.ckbLan3.Size = new System.Drawing.Size(56, 17);
+            this.ckbLan3.TabIndex = 7;
+            this.ckbLan3.Text = "LAN 3";
+            this.ckbLan3.UseVisualStyleBackColor = true;
             // 
             // PingControl
             // 
@@ -179,7 +191,8 @@
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public System.Windows.Forms.CheckBox ckbCCTV;
+        public System.Windows.Forms.CheckBox ckbLan3;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
-	}
+    }
 }
