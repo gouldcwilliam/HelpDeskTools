@@ -123,7 +123,7 @@ namespace Retail_HD
         /// </summary>
         public static string lan3
         {
-            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan3); }
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate3); }
         }
 
         /// <summary>
