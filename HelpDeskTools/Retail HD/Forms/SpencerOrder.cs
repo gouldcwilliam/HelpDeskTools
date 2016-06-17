@@ -49,9 +49,9 @@ namespace Retail_HD.Forms
                 "Register #\t\t {4}\r" +
                 "Tech:\t\t\t {5}\r" +
                 "Dispatch:\t\t {6}\r" +
-                "Replacemet Name:\t {7}\r" +
+                "Replacement Name:\t {7}\r" +
                 "IP:\t\t\t {8}\r" +
-                "Subnet:\t\t\t {9}\r" +
+                "Subnet:\t\t {9}\r" +
                 "Gate:\t\t\t {10}\r" +
                 "DNS:\t\t\t 10.63.33.41\r" +
                 "\t\t\t 10.63.33.42\r" +

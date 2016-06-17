@@ -37,7 +37,7 @@ namespace Shared {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("RetailHD")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Specialists")]
         public string _Database {
             get {
                 return ((string)(this["_Database"]));

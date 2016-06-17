@@ -6,7 +6,7 @@
       <Value Profile="(Default)">rochdclogp01</Value>
     </Setting>
     <Setting Name="_Database" Type="System.String" Scope="User">
-      <Value Profile="(Default)">RetailHD</Value>
+      <Value Profile="(Default)">Specialists</Value>
     </Setting>
     <Setting Name="_TeamCallCount" Type="System.String" Scope="User">
       <Value Profile="(Default)">select

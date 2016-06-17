@@ -130,6 +130,22 @@ namespace Retail_HD
             _t.Tick += _t_Tick;
 
 
+            switch(Environment.UserName.ToUpper())
+            {
+                case "PERSINER":
+                case "GENAUTER":
+                case "WITTCHR":
+                case "SHUTICAN":
+                case "BERGMAJA":
+                case "NEDDMI":
+                case "GOULDCH":
+                    Shared.SQLSettings.Default._Database = "RetailHD";
+                    break;
+                default:
+                    break;
+            }
+
+
             // Prompts for Finesse login
 
             string msg = "Would you like to log into the Cisco Finesse Server?";
