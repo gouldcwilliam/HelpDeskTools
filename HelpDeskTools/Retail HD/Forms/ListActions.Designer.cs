@@ -38,6 +38,8 @@
             this.txtSuffix = new System.Windows.Forms.TextBox();
             this.lblSuffix = new System.Windows.Forms.Label();
             this.gbRegister = new System.Windows.Forms.GroupBox();
+            this.ckb5 = new System.Windows.Forms.CheckBox();
+            this.ckb6 = new System.Windows.Forms.CheckBox();
             this.ckb3 = new System.Windows.Forms.CheckBox();
             this.ckb4 = new System.Windows.Forms.CheckBox();
             this.ckb2 = new System.Windows.Forms.CheckBox();
@@ -73,8 +75,6 @@
             this.gbOutput = new System.Windows.Forms.GroupBox();
             this.btnShowOutput = new System.Windows.Forms.Button();
             this.btnClearOut = new System.Windows.Forms.Button();
-            this.ckb5 = new System.Windows.Forms.CheckBox();
-            this.ckb6 = new System.Windows.Forms.CheckBox();
             this.gbRegister.SuspendLayout();
             this.gbProgram.SuspendLayout();
             this.gbAction.SuspendLayout();
@@ -156,6 +156,26 @@
             this.gbRegister.TabStop = false;
             this.gbRegister.Text = "Register #";
             this.gbRegister.Visible = false;
+            // 
+            // ckb5
+            // 
+            this.ckb5.AutoSize = true;
+            this.ckb5.Location = new System.Drawing.Point(82, 19);
+            this.ckb5.Name = "ckb5";
+            this.ckb5.Size = new System.Drawing.Size(32, 17);
+            this.ckb5.TabIndex = 4;
+            this.ckb5.Text = "5";
+            this.ckb5.UseVisualStyleBackColor = true;
+            // 
+            // ckb6
+            // 
+            this.ckb6.AutoSize = true;
+            this.ckb6.Location = new System.Drawing.Point(82, 42);
+            this.ckb6.Name = "ckb6";
+            this.ckb6.Size = new System.Drawing.Size(32, 17);
+            this.ckb6.TabIndex = 5;
+            this.ckb6.Text = "6";
+            this.ckb6.UseVisualStyleBackColor = true;
             // 
             // ckb3
             // 
@@ -523,11 +543,11 @@
             // btnShowOutput
             // 
             this.btnShowOutput.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnShowOutput.Location = new System.Drawing.Point(346, 501);
+            this.btnShowOutput.Location = new System.Drawing.Point(300, 501);
             this.btnShowOutput.Name = "btnShowOutput";
-            this.btnShowOutput.Size = new System.Drawing.Size(29, 23);
+            this.btnShowOutput.Size = new System.Drawing.Size(75, 23);
             this.btnShowOutput.TabIndex = 27;
-            this.btnShowOutput.Text = ">";
+            this.btnShowOutput.Text = "Output >";
             this.btnShowOutput.UseVisualStyleBackColor = true;
             this.btnShowOutput.Click += new System.EventHandler(this.btnShowOutput_Click);
             // 
@@ -541,26 +561,6 @@
             this.btnClearOut.Text = "Clear Output";
             this.btnClearOut.UseVisualStyleBackColor = true;
             this.btnClearOut.Click += new System.EventHandler(this.btnClearOut_Click);
-            // 
-            // ckb5
-            // 
-            this.ckb5.AutoSize = true;
-            this.ckb5.Location = new System.Drawing.Point(82, 19);
-            this.ckb5.Name = "ckb5";
-            this.ckb5.Size = new System.Drawing.Size(32, 17);
-            this.ckb5.TabIndex = 4;
-            this.ckb5.Text = "5";
-            this.ckb5.UseVisualStyleBackColor = true;
-            // 
-            // ckb6
-            // 
-            this.ckb6.AutoSize = true;
-            this.ckb6.Location = new System.Drawing.Point(82, 42);
-            this.ckb6.Name = "ckb6";
-            this.ckb6.Size = new System.Drawing.Size(32, 17);
-            this.ckb6.TabIndex = 5;
-            this.ckb6.Text = "6";
-            this.ckb6.UseVisualStyleBackColor = true;
             // 
             // ListActions
             // 

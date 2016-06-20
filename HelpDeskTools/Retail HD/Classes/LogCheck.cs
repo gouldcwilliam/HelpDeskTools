@@ -15,6 +15,7 @@ namespace Retail_HD
         public string Output { get; private set; }
 
         public event EventHandler WorkDone;
+        private System.ComponentModel.BackgroundWorker bgw = new System.ComponentModel.BackgroundWorker();
 
 
         /// <summary>
@@ -79,7 +80,6 @@ namespace Retail_HD
         }
 
 
-        private System.ComponentModel.BackgroundWorker bgw = new System.ComponentModel.BackgroundWorker();
 
         /*
          * this.bw.WorkerReportsProgress = true;

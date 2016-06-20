@@ -168,24 +168,33 @@ namespace Retail_HD.Forms
                 // perform service actions
                 if (bservices)
                 {
-                    string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, _action + " " + _service);
-
-                    if (!Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
+                    if (gbOutput.Visible)
                     {
-                        // failed to copy services.bat
+                        ServiceWorker serviceWorker = new ServiceWorker(computer, _service, _action);
+                        serviceWorker.WorkDone += ServiceWorker_WorkDone;
+                        serviceWorker.Start();
                     }
                     else
                     {
-                        if (_service == "verifone" && !Shared.Functions.CopyArgsXML(computer))
+                        string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, _action + " " + _service);
+
+                        if (!Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
                         {
-                            // failed to copy args.xml
+                            // failed to copy services.bat
                         }
                         else
                         {
-                            string output = string.Format("WINRS {0}", args);
-                            Console.WriteLine(output);
-                            Shared.Functions.ExecuteCommand("WINRS", args, true, false);
-                            Output(output);
+                            if (_service == "verifone" && !Shared.Functions.CopyArgsXML(computer))
+                            {
+                                // failed to copy args.xml
+                            }
+                            else
+                            {
+                                string output = string.Format("WINRS {0}", args);
+                                Console.WriteLine(output);
+                                Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+                                Output(output);
+                            }
                         }
                     }
                 }
@@ -274,15 +283,19 @@ namespace Retail_HD.Forms
 
                 }
 
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(250);
             }
             ClearChecks();
 
         }
 
+        private void ServiceWorker_WorkDone(object sender, EventArgs e)
+        {
+            Output(((ServiceWorker)sender).Output);
+        }
+
         private void LogCheck_WorkDone(object sender, EventArgs e)
         {
-
             Output(((LogCheck)sender).Output);
         }
 
