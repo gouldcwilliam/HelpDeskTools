@@ -142,6 +142,7 @@ namespace Retail_HD
                     Shared.SQLSettings.Default._Database = "RetailHD";
                     break;
                 default:
+                    Shared.SQLSettings.Default._Database = "Specialists";
                     break;
             }
 

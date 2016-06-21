@@ -60,6 +60,7 @@ namespace WetSandwich
 			body += "Multi Version: " + Settings.Default.multiVersion + "<br>";
 			body += "Rediron Version: " + Settings.Default.redIronVersion + "<br>";
 			body += "Verifone Version: " + Settings.Default.vfVersion + "<br>";
+            body += "POS Build Version: " + Settings.Default.buildVersion + "<br>";
 			body += Settings.Default.tableHead;
 
 			ProgressBar progressBar;
@@ -97,20 +98,31 @@ namespace WetSandwich
 					{
 						string multi;
 						if (!Shared.Functions.CopyTempLog(Shared.Functions.LatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
-						else { multi = Shared.Functions.MultiLog(Settings.Default.multiVersion).ToString(); }
-						Console.WriteLine(multi);
+						else { multi = Shared.Functions.MultiLog(Settings.Default.multiVersion,false).ToString(); }
+						//Console.WriteLine(multi);
 
 						string ri;
 						if(!Shared.Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log";  }
-						else { ri = Shared.Functions.FindInLog(Properties.Settings.Default.redIronVersion).ToString(); }
-						Console.WriteLine(ri);
+						else { ri = Shared.Functions.FindInLog(Properties.Settings.Default.redIronVersion,false).ToString(); }
+						//Console.WriteLine(ri);
 
 						string vf;
                         vf = Shared.Functions.VFLog(computer, Properties.Settings.Default.vfVersion);
+                        //Console.WriteLine(vf);
 
-						Console.WriteLine(vf);
+                        string pos;
+                        try
+                        {
+                            pos = System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\SAP\Retail Systems\Point of Sale\version.txt", computer)).Contains(Settings.Default.buildVersion).ToString();
+                        }
+                        catch(Exception)
+                        {
+                            pos = "Unable to read version.txt";
+                        }
+                        //Console.WriteLine(pos);
 
-						if ( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || vf.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, ""); }
+
+						if ( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || vf.ToUpper() == "FALSE" || pos.ToUpper()=="FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, pos,""); }
 					}
 				}
 

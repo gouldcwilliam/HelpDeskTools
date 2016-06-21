@@ -78,7 +78,8 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td></tr>\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>" +
+            "\r\n")]
         public string body {
             get {
                 return ((string)(this["body"]));
@@ -91,7 +92,7 @@ namespace WetSandwich.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Computer Name</th><th>Multi</th><" +
-            "th>RedIron</th><th>Verifone</th><th>Notes</th></tr>\r\n")]
+            "th>RedIron</th><th>Verifone</th><th>POSBuild</th><th>Notes</th></tr>\r\n")]
         public string tableHead {
             get {
                 return ((string)(this["tableHead"]));
@@ -103,7 +104,7 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.2.12.139")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.2.12.161")]
         public string multiVersion {
             get {
                 return ((string)(this["multiVersion"]));
@@ -127,7 +128,7 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.3.7-20150824")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.4.5-20151127")]
         public string vfVersion {
             get {
                 return ((string)(this["vfVersion"]));
@@ -146,6 +147,18 @@ namespace WetSandwich.Properties {
             }
             set {
                 this["ignore"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Build1149")]
+        public string buildVersion {
+            get {
+                return ((string)(this["buildVersion"]));
+            }
+            set {
+                this["buildVersion"] = value;
             }
         }
     }
