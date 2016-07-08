@@ -762,8 +762,8 @@ namespace Retail_HD
         {
             ServicesUC.Visible = false;
 
-            if (Info.store > 999) { PingUC.ckbSensor.Enabled = false; PingUC.ckbSensorGate.Enabled = false; }
-            else { PingUC.ckbSensor.Enabled = true; PingUC.ckbSensorGate.Enabled = true; }
+            //if (Info.store > 999) { PingUC.ckbSensor.Enabled = false; PingUC.ckbSensorGate.Enabled = false; }
+            //else { PingUC.ckbSensor.Enabled = true; PingUC.ckbSensorGate.Enabled = true; }
 
 
             if (PingUC.Visible)

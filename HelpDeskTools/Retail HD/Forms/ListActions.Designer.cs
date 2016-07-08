@@ -524,7 +524,7 @@
             this.txtOutput.Location = new System.Drawing.Point(3, 16);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(370, 493);
+            this.txtOutput.Size = new System.Drawing.Size(437, 493);
             this.txtOutput.TabIndex = 25;
             this.txtOutput.WordWrap = false;
             // 
@@ -535,7 +535,7 @@
             this.gbOutput.Controls.Add(this.txtOutput);
             this.gbOutput.Location = new System.Drawing.Point(396, 12);
             this.gbOutput.Name = "gbOutput";
-            this.gbOutput.Size = new System.Drawing.Size(379, 512);
+            this.gbOutput.Size = new System.Drawing.Size(446, 512);
             this.gbOutput.TabIndex = 26;
             this.gbOutput.TabStop = false;
             this.gbOutput.Text = "Output";
@@ -568,7 +568,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(787, 565);
+            this.ClientSize = new System.Drawing.Size(854, 565);
             this.Controls.Add(this.btnClearOut);
             this.Controls.Add(this.btnShowOutput);
             this.Controls.Add(this.gbOutput);
@@ -595,7 +595,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtList);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1003, 604);
             this.MinimumSize = new System.Drawing.Size(403, 604);

@@ -11,125 +11,13 @@ namespace Retail_HD
     /// </summary>
 	public static class Info
 	{
-        /// <summary>
-        /// first octet
-        /// </summary>
-		public static string _first { get; set; }
-        /// <summary>
-        /// second octet
-        /// </summary>
-        public static string _second { get; set; }
-        /// <summary>
-        /// third octet
-        /// </summary>
-        public static string _third { get; set; }
-        /// <summary>
-        /// POS' lan 4th octet
-        /// </summary>
-        private static string _lan1 { get; set; }
-        /// <summary>
-        /// POS' gateway 4th octet
-        /// </summary>
-        private static string _gate1 { get; set; }
-        /// <summary>
-        /// Traffic counter lan 4th octet
-        /// </summary>
-        private static string _lan2 { get; set; }
-        /// <summary>
-        /// Traffic counter gateway 4th octet
-        /// </summary>
-        private static string _gate2 { get; set; }
-        /// <summary>
-        /// Unused lan 4th octet
-        /// </summary>
-        private static string _lan3 { get; set; }
-        /// <summary>
-        /// Unused gateway 4th octet
-        /// </summary>
-        private static string _gate3 { get; set; }
-        /// <summary>
-        /// Handheld lan 4th octet
-        /// </summary>
-        private static string _lan4 { get; set; }
-        /// <summary>
-        /// Handheld gateway 4th octet
-        /// </summary>
-        private static string _gate4 { get; set; }
-        /// <summary>
-        /// CCTV's 4th octet - should be on the same lan as the traffic counter
-        /// </summary>
-        private static string _cctv { get; set; }
 
-        /// <summary>
-        /// ip string
-        /// </summary>
-		public static string mim 
-        {
-            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan4); }
-        }
-        /// <summary>
-        /// ip string
-        /// </summary>
-        public static string mim_gate
-        {
-            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate4); }
-        }
-        /// <summary>
-        /// ip string
-        /// </summary>
-        public static string pos
-        {
-            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan1); }
-        }
-        /// <summary>
-        /// ip string
-        /// </summary>
-        public static string pos_gate
-        {
-            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate1); }
-        }
-        /// <summary>
-        /// ip string
-        /// </summary>
-        public static string sensor
-        {
-            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan2); }
-        }
-        /// <summary>
-        /// ip string
-        /// </summary>
-        public static string sensor_gate
-        {
-            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate2); }
-        }
-        /// <summary>
-        /// ip string
-        /// </summary>
-		public static string cctv
-		{
-			get
-			{
-				return _cctv;
-
-				// Use this if I migrate to using only the CCTV's 4th octet
-				//if (_cctv == null) { return string.Empty; }
-				//if (_cctv == string.Empty) { return string.Empty; }
-				//return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _cctv);
-
-			}
-		}
-        /// <summary>
-        /// ip string
-        /// </summary>
-        public static string lan3
-        {
-            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate3); }
-        }
+        #region Basic Info
 
         /// <summary>
         /// store number
         /// </summary>
-		public static int store { get; set; }
+        public static int store { get; set; }
         /// <summary>
         /// cashier number
         /// </summary>
@@ -225,15 +113,124 @@ namespace Retail_HD
         /// 
         /// </summary>
         public static string TID4 { get; set; }
-        /// <summary>
-        /// set to false when call ends
-        /// </summary>
-        public static bool isCallWrappedUp { get; set; }
 
-		/// <summary>
-		/// Store's computers
-		/// </summary>
-		public static List<Computer> computers = new List<Computer>();
+        #endregion
+
+        #region Raw SQL IP Info
+
+        /// <summary>
+        /// first octet
+        /// </summary>
+        public static string _first { get; set; }
+        /// <summary>
+        /// second octet
+        /// </summary>
+        public static string _second { get; set; }
+        /// <summary>
+        /// third octet
+        /// </summary>
+        public static string _third { get; set; }
+        /// <summary>
+        /// POS' lan 4th octet
+        /// </summary>
+        public static string _lan1 { get; set; }
+        /// <summary>
+        /// POS' gateway 4th octet
+        /// </summary>
+        public static string _gate1 { get; set; }
+        /// <summary>
+        /// Traffic counter lan 4th octet
+        /// </summary>
+        public static string _lan2 { get; set; }
+        /// <summary>
+        /// Traffic counter gateway 4th octet
+        /// </summary>
+        public static string _gate2 { get; set; }
+        /// <summary>
+        /// Unused lan 4th octet
+        /// </summary>
+        public static string _lan3 { get; set; }
+        /// <summary>
+        /// Unused gateway 4th octet
+        /// </summary>
+        public static string _gate3 { get; set; }
+        /// <summary>
+        /// Handheld lan 4th octet
+        /// </summary>
+        public static string _lan4 { get; set; }
+        /// <summary>
+        /// Handheld gateway 4th octet
+        /// </summary>
+        public static string _gate4 { get; set; }
+
+        #endregion
+
+
+        #region Constructed IP Info
+
+        /// <summary>
+        /// ip string
+        /// </summary>
+        public static string mim
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan4); }
+        }
+        /// <summary>
+        /// ip string
+        /// </summary>
+        public static string mim_gate
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate4); }
+        }
+        /// <summary>
+        /// ip string
+        /// </summary>
+        public static string pos
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan1); }
+        }
+        /// <summary>
+        /// ip string
+        /// </summary>
+        public static string pos_gate
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate1); }
+        }
+        /// <summary>
+        /// ip string
+        /// </summary>
+        public static string sensor
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _lan2); }
+        }
+        /// <summary>
+        /// ip string
+        /// </summary>
+        public static string sensor_gate
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate2); }
+        }
+        /// <summary>
+        /// ip string
+        /// </summary>
+		public static string cctv { get; private set; }
+        /// <summary>
+        /// ip string
+        /// </summary>
+        public static string lan3
+        {
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate3); }
+        }
+
+        #endregion
+
+
+        #region Store Information Lists
+
+        /// <summary>
+        /// Store's computers
+        /// </summary>
+        public static List<Computer> computers = new List<Computer>();
         /// <summary>
         /// Selected computers
         /// </summary>
@@ -285,15 +282,16 @@ namespace Retail_HD
         /// </summary>
 		public static System.Data.DataTable notes = new System.Data.DataTable();
 
+        #endregion
 
-		/************************************************************************************/
+        /************************************************************************************/
 
 
 
-		/// <summary>
-		/// Clears all Info
-		/// </summary>
-		public static void Clear()	
+        /// <summary>
+        /// Clears all Info
+        /// </summary>
+        public static void Clear()	
 		{
             _first = string.Empty;
             _second = string.Empty;
@@ -332,8 +330,6 @@ namespace Retail_HD
 			TID2 = string.Empty;
 			TID3 = string.Empty;
 			TID4 = string.Empty;
-
-            isCallWrappedUp = false;
 
 			categories = new List<Classes.Category>();
 		}
@@ -456,7 +452,7 @@ namespace Retail_HD
 					Info._gate3 = dr["gate3"].ToString();
 					Info._gate4 = dr["gate4"].ToString();
 
-					Info._cctv = dr["cctv"].ToString();
+					Info.cctv = dr["cctv"].ToString();
 
 					Info.income = dr["income"].ToString();
 					Info.rank = dr["rank"].ToString();

@@ -35,15 +35,15 @@ namespace Retail_HD.Forms
 		private void HistorySearch_Load(object sender, EventArgs e)
 		{
 			Info.GetCategories();
-
+            cmbCategory.Items.Clear();
 			foreach(Category c in Info.categories) { cmbCategory.Items.Add(c._category); }
 
 			Info.FillTopics();
-
+            cmbTopic.Items.Clear();
 			foreach(Topic t in Info.topics) { cmbTopic.Items.Add(t._topic); }
 
 			Info.FillTechnicians();
-
+            cmbTech.Items.Clear();
 			foreach (Technician t in Info.technicians) { cmbTech.Items.Add(t._initials); }
 
 			dgvResults.DataSource = Shared.SQL.dt_HistorySearch();

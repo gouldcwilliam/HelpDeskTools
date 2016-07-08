@@ -112,7 +112,7 @@ namespace Retail_HD.Forms
             gbOutput.Visible = (!gbOutput.Visible);
             btnClearOut.Visible = (!btnClearOut.Visible);
 
-            if (gbOutput.Visible) { Size = new System.Drawing.Size(803, 604); }
+            if (gbOutput.Visible) { Size = new System.Drawing.Size(870, 604); }
             else { Size = new System.Drawing.Size(404, 604); }
         }
 
