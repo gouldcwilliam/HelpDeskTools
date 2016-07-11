@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddNewStore));
             this.gbStore = new System.Windows.Forms.GroupBox();
             this.txtStore = new System.Windows.Forms.MaskedTextBox();
             this.gbName = new System.Windows.Forms.GroupBox();
@@ -814,7 +815,7 @@
             this.Controls.Add(this.gbName);
             this.Controls.Add(this.gbStore);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = global::Shared.GlobalResources.icoMain;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddNewStore";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add A New Store Entry";

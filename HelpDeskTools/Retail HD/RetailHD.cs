@@ -1846,10 +1846,12 @@ namespace Retail_HD
         // Test methods
         private void Test()
         {
-            foreach (TextBox tb in Retail_HD.RetailHD.ActiveForm.Controls.OfType<TextBox>())
-            {
-                Console.WriteLine(tb.Name);
-            }
+            //foreach (TextBox tb in Retail_HD.RetailHD.ActiveForm.Controls.OfType<TextBox>())
+            //{
+            //    Console.WriteLine(tb.Name);
+            //}
+            Forms.StoreInfoAddEdit storeInfoAddEdit = new Forms.StoreInfoAddEdit();
+            storeInfoAddEdit.Show();
         }
     }
 

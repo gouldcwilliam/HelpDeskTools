@@ -215,6 +215,12 @@
     <Compile Include="Forms\SpencerOrder.Designer.cs">
       <DependentUpon>SpencerOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\StoreInfoAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StoreInfoAddEdit.Designer.cs">
+      <DependentUpon>StoreInfoAddEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StoreNotes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -374,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpencerOrder.resx">
       <DependentUpon>SpencerOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StoreInfoAddEdit.resx">
+      <DependentUpon>StoreInfoAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StoreNotes.resx">
       <DependentUpon>StoreNotes.cs</DependentUpon>
