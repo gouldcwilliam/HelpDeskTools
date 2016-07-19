@@ -63,7 +63,11 @@ namespace Retail_HD.Forms
 
             if (txtReg.Text == "1")
             {
-                Shared.Functions.SendEmail("retail.helpdesk@wwwinc.com", "Create a ticket for the Retail queue for the creation of replacement articles. Make sure to note if the current reg 1 is up in the ticket", "Article Ticket Creation for " + txtStore.Text);
+                string annetteSpeal =
+                    "1. Create a Trax ticket for the creation of replacement articles. Make sure to note if the current register 1 is up in the ticket.<br>" +
+                    "2.Assign the Trax ticket to the Retail queue.<br>" +
+                    "3.Copy the ticket number and add it to the Register replacement ticket in the Retail Helpdesk queue.";
+                Shared.Functions.SendEmail("retail.helpdesk@wwwinc.com", annetteSpeal , "Article Ticket Creation for " + txtStore.Text);
             }
             Shared.Functions.SendMail(Environment.UserName + "@wwwinc.com", Environment.UserName + "@wwwinc.com", "Spencer order" + txtStore.Text, body);
             this.Close();
