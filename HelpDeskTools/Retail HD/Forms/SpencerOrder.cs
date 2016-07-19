@@ -60,10 +60,13 @@ namespace Retail_HD.Forms
                 txtStore.Text, txtPhone.Text, txtHrs1.Text, txtHrs2.Text, txtReg.Text, tech,
                 txtDispatch.Text, txtName.Text, txtIP.Text, _subnet, txtGate.Text, txtPassword.Text, txtDetails.Text, lblTZ.Text                
                 );
-            if (txtReg.Text == "1") { MessageBox.Show("Create a trax ticket for article replacement", "Create Articles", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-            //Console.WriteLine(body);
+
+            if (txtReg.Text == "1")
+            {
+                Shared.Functions.SendEmail("retail.helpdesk@wwwinc.com", "Create a ticket for the Retail queue for the creation of replacement articles. Make sure to note if the current reg 1 is up in the ticket", "Article Ticket Creation for " + txtStore.Text);
+            }
             Shared.Functions.SendMail(Environment.UserName + "@wwwinc.com", Environment.UserName + "@wwwinc.com", "Spencer order" + txtStore.Text, body);
-            this.Close();            
+            this.Close();
         }
     }
 }

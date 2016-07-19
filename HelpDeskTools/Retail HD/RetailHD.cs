@@ -132,8 +132,11 @@ namespace Retail_HD
 
             switch(Environment.UserName.ToUpper())
             {
-                case "PERSINER":
                 case "GENAUTER":
+                    //MessageBox.Show("Disallowed for user: GENAUTER", "MIC DROP! - BOOM B", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    //Environment.Exit(0);
+                    //break;
+                case "PERSINER":
                 case "WITTCHR":
                 case "SHUTICAN":
                 case "BERGMAJA":
@@ -146,9 +149,8 @@ namespace Retail_HD
                     break;
             }
 
-
+            
             // Prompts for Finesse login
-
             string msg = "Would you like to log into the Cisco Finesse Server?";
             Forms.Confirm ConfirmAgentLogin = new Forms.Confirm(msg);
             ConfirmAgentLogin.TopMost = true;
@@ -784,7 +786,7 @@ namespace Retail_HD
             // makes you ready if this is called once wrap up is done
             if (e is WrapUpInvokeEventArgs && hasCallWrappedUp)
             {
-                if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK && Environment.UserName.ToUpper() != "WITTCHR")
+                if ((Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK) || Environment.UserName.ToUpper() != "WITTCHR")
                 //if (userPrefs.AutoReady && curState == UserState.WORK)
                 {
                     hasCallWrappedUp = false;
@@ -809,7 +811,7 @@ namespace Retail_HD
                 {
                     // only change to ready, if the user was in work (meaning normal call flow). 
                     // A dialed number will make you not ready, and then auto ready on the server-side if you were ready before
-                    if (Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK && Environment.UserName.ToUpper() != "WITTCHR")
+                    if ((Properties.Settings.Default._EnableAutoReady && curState == UserState.WORK) || Environment.UserName.ToUpper() != "WITTCHR")
                     //if (userPrefs.AutoReady && curState == UserState.WORK)
                     {
                         hasCallWrappedUp = false;
