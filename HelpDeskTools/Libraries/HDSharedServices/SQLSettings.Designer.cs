@@ -258,25 +258,26 @@ DECLARE @IP VARCHAR(50)")]
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\nSELECT\n\t[Stores].[store],\n\t[TZ],\n\t[manager],\n\t[dm],\n\t[name],\n\t[type],\n\t[address]" +
-            ",\n\t[city],\n\t[state],\n\t[zip],\n\t[phone],\n\t[rank],\n\t[income]\nFROM\n\t[Stores]\n\tinner " +
-            "join [Phones] on [Phones].store=[Stores].store\nWHERE\n\t(@TZ IS NULL OR (LOWER([TZ" +
-            "]) = LOWER(@TZ))) AND\n\t(@BAMS IS NULL OR (LOWER([BAMS]) LIKE \'%\'+LOWER(@BAMS)+\'%" +
-            "\')) AND\n\t(@MP IS NULL OR ([MP] = @MP)) AND\n\t(@MANAGER IS NULL OR (LOWER([manager" +
-            "]) LIKE \'%\'+LOWER(@MANAGER)+\'%\')) AND\n\t(@DM IS NULL OR (LOWER([dm]) LIKE \'%\'+LOW" +
-            "ER(@DM)+\'%\')) AND\n\t(@NAME IS NULL OR (LOWER([name]) LIKE \'%\'+LOWER(@NAME)+\'%\')) " +
-            "AND\n\t(@TYPE IS NULL OR (LOWER([type]) LIKE \'%\'+LOWER(@TYPE)+\'%\')) AND\n\t(@ADDRESS" +
-            " IS NULL OR (LOWER([address]) LIKE \'%\'+LOWER(@ADDRESS)+\'%\')) AND\n\t(@CITY IS NULL" +
-            " OR (LOWER([city]) LIKE \'%\'+LOWER(@CITY)+\'%\')) AND\n\t(@STATE IS NULL OR (LOWER([s" +
-            "tate]) = LOWER(@STATE))) AND\n\t(@ZIP IS NULL OR (LOWER([zip]) = LOWER(@ZIP))) AND" +
-            "\n\t(@PHONE IS NULL OR ([phone] = dbo.RemoveNonNumericCharacters(@PHONE))) AND\n\t(\n" +
-            "\t\t@IP IS NULL OR \n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[lan1]) LIKE \'%\'+@IP+\'%" +
-            "\' OR \n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[lan2]) LIKE \'%\'+@IP+\'%\' OR\n\t\tCONCA" +
-            "T([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[lan3]) LIKE \'%\'+@IP+\'%\' OR\n\t\tCONCAT([1st],\'.\',[" +
-            "2nd],\'.\',[3rd],\'.\',[lan4]) LIKE \'%\'+@IP+\'%\' OR\n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd" +
-            "],\'.\',[gate1]) LIKE \'%\'+@IP+\'%\' OR\n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[gate2" +
-            "]) LIKE \'%\'+@IP+\'%\' OR\n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[gate3]) LIKE \'%\'+" +
-            "@IP+\'%\' OR\n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[gate4]) LIKE \'%\'+@IP+\'%\'\n\t)\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\nSELECT\r\n\t[Stores].[store],\r\n\t[TZ],\r\n\t[manager],\r\n\t[dm],\r\n\t[name],\r\n\t[type],\r\n\t[" +
+            "address],\r\n\t[city],\r\n\t[state],\r\n\t[zip],\r\n\t[phone],\r\n\t[rank],\r\n\t[income]\r\nFROM\r\n\t" +
+            "[Stores]\r\n\tinner join [Phones] on [Phones].store=[Stores].store\r\nWHERE\r\n\t(@TZ IS" +
+            " NULL OR (LOWER([TZ]) = LOWER(@TZ))) AND\r\n\t(@BAMS IS NULL OR (LOWER([BAMS]) LIKE" +
+            " \'%\'+LOWER(@BAMS)+\'%\')) AND\r\n\t(@MP IS NULL OR ([MP] = @MP)) AND\r\n\t(@MANAGER IS N" +
+            "ULL OR (LOWER([manager]) LIKE \'%\'+LOWER(@MANAGER)+\'%\')) AND\r\n\t(@DM IS NULL OR (L" +
+            "OWER([dm]) LIKE \'%\'+LOWER(@DM)+\'%\')) AND\r\n\t(@NAME IS NULL OR (LOWER([name]) LIKE" +
+            " \'%\'+LOWER(@NAME)+\'%\')) AND\r\n\t(@TYPE IS NULL OR (LOWER([type]) LIKE \'%\'+LOWER(@T" +
+            "YPE)+\'%\')) AND\r\n\t(@ADDRESS IS NULL OR (LOWER([address]) LIKE \'%\'+LOWER(@ADDRESS)" +
+            "+\'%\')) AND\r\n\t(@CITY IS NULL OR (LOWER([city]) LIKE \'%\'+LOWER(@CITY)+\'%\')) AND\r\n\t" +
+            "(@STATE IS NULL OR (LOWER([state]) = LOWER(@STATE))) AND\r\n\t(@ZIP IS NULL OR (LOW" +
+            "ER([zip]) = LOWER(@ZIP))) AND\r\n\t(@PHONE IS NULL OR ([phone] = dbo.RemoveNonNumer" +
+            "icCharacters(@PHONE))) AND\r\n\t(\r\n\t\t@IP IS NULL OR \r\n\t\tCONCAT([1st],\'.\',[2nd],\'.\'," +
+            "[3rd],\'.\',[lan1]) LIKE \'%\'+@IP+\'%\' OR \r\n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[" +
+            "lan2]) LIKE \'%\'+@IP+\'%\' OR\r\n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[lan3]) LIKE " +
+            "\'%\'+@IP+\'%\' OR\r\n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[lan4]) LIKE \'%\'+@IP+\'%\' " +
+            "OR\r\n\t\tCONCAT([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[gate1]) LIKE \'%\'+@IP+\'%\' OR\r\n\t\tCONCA" +
+            "T([1st],\'.\',[2nd],\'.\',[3rd],\'.\',[gate2]) LIKE \'%\'+@IP+\'%\' OR\r\n\t\tCONCAT([1st],\'.\'" +
+            ",[2nd],\'.\',[3rd],\'.\',[gate3]) LIKE \'%\'+@IP+\'%\' OR\r\n\t\tCONCAT([1st],\'.\',[2nd],\'.\'," +
+            "[3rd],\'.\',[gate4]) LIKE \'%\'+@IP+\'%\'\r\n\t)\r\n")]
         public string _StoreSearch {
             get {
                 return ((string)(this["_StoreSearch"]));

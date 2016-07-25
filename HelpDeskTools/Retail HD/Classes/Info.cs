@@ -194,7 +194,7 @@ namespace Retail_HD
         /// </summary>
         public static string pos_gate
         {
-            get { return string.Format("{0}.{1}.{2}.{3}.", _first, _second, _third, _gate1); }
+            get { return string.Format("{0}.{1}.{2}.{3}", _first, _second, _third, _gate1); }
         }
         /// <summary>
         /// ip string
