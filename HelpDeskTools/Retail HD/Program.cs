@@ -11,10 +11,8 @@ namespace Retail_HD
         [STAThread]
         static void Main(string[] args)
 		{
-            #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.ThreadException += Application_ThreadException;
-			#endif
 
 			Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

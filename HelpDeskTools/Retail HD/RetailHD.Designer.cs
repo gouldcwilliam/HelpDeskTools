@@ -806,7 +806,7 @@
             this.btnDelayed.Name = "btnDelayed";
             this.btnDelayed.Size = new System.Drawing.Size(78, 24);
             this.btnDelayed.TabIndex = 65;
-            this.btnDelayed.Text = "Delayed Start";
+            this.btnDelayed.Text = "Delayed";
             this.btnDelayed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDelayed.UseVisualStyleBackColor = true;
             this.btnDelayed.Click += new System.EventHandler(this.Buttons_Delayed_Click);
@@ -938,6 +938,7 @@
             this.ts_Top_tsb_Refresh.Name = "ts_Top_tsb_Refresh";
             this.ts_Top_tsb_Refresh.Size = new System.Drawing.Size(24, 19);
             this.ts_Top_tsb_Refresh.Text = "toolStripButton1";
+            this.ts_Top_tsb_Refresh.ToolTipText = "Refresh the Form";
             this.ts_Top_tsb_Refresh.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // ts_Top_tsl_CurrentCall
@@ -1455,7 +1456,7 @@
             this.MainMenuStrip = this.ms_Top;
             this.MinimumSize = new System.Drawing.Size(869, 509);
             this.Name = "RetailHD";
-            this.Text = "Retail HD";
+            this.Text = "Retail HD ToolBox";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.Shown += new System.EventHandler(this.Main_FormShown);

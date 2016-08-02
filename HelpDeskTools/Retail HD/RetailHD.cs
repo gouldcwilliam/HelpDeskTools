@@ -133,14 +133,15 @@ namespace Retail_HD
             switch(Environment.UserName.ToUpper())
             {
                 case "GENAUTER":
-                    //MessageBox.Show("Disallowed for user: GENAUTER", "MIC DROP! - BOOM B", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    //Environment.Exit(0);
-                    //break;
+                    MessageBox.Show("Disallowed for user: GENAUTER", "MIC DROP! - BOOM B", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    Environment.Exit(0);
+                    break;
                 case "PERSINER":
                 case "WITTCHR":
                 case "SHUTICAN":
                 case "BERGMAJA":
                 case "NEDDMI":
+                case "BERLINJE":
                 case "GOULDCH":
                     Shared.SQLSettings.Default._Database = "RetailHD";
                     break;
