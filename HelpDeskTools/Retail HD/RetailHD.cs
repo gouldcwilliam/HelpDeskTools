@@ -132,10 +132,6 @@ namespace Retail_HD
 
             switch(Environment.UserName.ToUpper())
             {
-                case "GENAUTER":
-                    MessageBox.Show("Disallowed for user: GENAUTER", "MIC DROP! - BOOM B", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    Environment.Exit(0);
-                    break;
                 case "PERSINER":
                 case "WITTCHR":
                 case "SHUTICAN":

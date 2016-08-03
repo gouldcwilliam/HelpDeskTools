@@ -38,5 +38,8 @@ SET
 
 </Value>
     </Setting>
+    <Setting Name="_tableNamePOS" Type="System.String" Scope="User">
+      <Value Profile="(Default)">[Specialists].[dbo].[Computers]</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -13,14 +13,25 @@ namespace UpdateComputerList
 
 		static void Main(string[] args)
 		{
-			if (!ClearTable())
-			{
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.Write("Unable to clear SQL table!");
-				Console.ReadKey();
-				return;
-			}
-			Console.WriteLine("Cleared SQL Computer table");
+            if (!ClearTable(Properties.Settings.Default._tableName))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Unable to clear SQL table {0}", Properties.Settings.Default._tableName);
+                System.Threading.Thread.Sleep(5000);
+                Console.WriteLine("Exiting");
+                return;
+            }
+
+            if (!ClearTable(Properties.Settings.Default._tableNamePOS))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Unable to clear SQL table {0}", Properties.Settings.Default._tableNamePOS);
+                System.Threading.Thread.Sleep(5000);
+                Console.WriteLine("Exiting");
+                return;
+            }
+
+            Console.WriteLine("Cleared SQL Computer table");
 
 			string ADFilter =
 				string.Format("(&(objectCategory={0})(&({1}=*SAP*)(!({1}=*SAPQ*))))",
@@ -47,6 +58,7 @@ namespace UpdateComputerList
                         foreach (LDAP.Result item in searchResults.FindAll(x => x.Value.Contains(sStore)))
                         {
                             InsertIntoTable(Properties.Settings.Default._tableName, item.Value, i.ToString());
+                            InsertIntoTable(Properties.Settings.Default._tableNamePOS, item.Value, i.ToString());
                         }
                         retBar.Update(i - ou.Lower);
                     }
@@ -74,9 +86,9 @@ namespace UpdateComputerList
 			Console.WriteLine("Exiting");
 		}
 
-		static public bool ClearTable()
+		static public bool ClearTable(string table)
 		{
-			string sql = string.Format(@"DELETE FROM {0}", Properties.Settings.Default._tableName);
+			string sql = string.Format(@"DELETE FROM {0}", table);
 			return ExecuteNonQuery(sql);
 		}
 
