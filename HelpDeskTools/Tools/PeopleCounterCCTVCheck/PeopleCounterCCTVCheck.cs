@@ -61,9 +61,40 @@ namespace PeopleCounterCCTVCheck
             foreach(string store in exclusions) { listIPInfo.RemoveAll(x => x.Store == store); }
             foreach(IPInfo ipInfo in listIPInfo)
             {
-                if (!Functions.CheckNetwork(ipInfo.IP)) { body += string.Format(Properties.Settings.Default.body, ipInfo.Store, "CCTV", ipInfo.IP, ""); }
+                if (!Functions.CheckNetwork(ipInfo.IP))
+                {
+                    if (!Functions.CheckNetwork(ipInfo.IP))
+                    {
+                        if (!Functions.CheckNetwork(ipInfo.IP))
+                        {
+                            if (!Functions.CheckNetwork(ipInfo.IP))
+                            {
+                                if (!Functions.CheckNetwork(ipInfo.IP))
+                                {
+                                    body += string.Format(Properties.Settings.Default.body, ipInfo.Store, "CCTV", ipInfo.IP, "");
+                                }
+                            }
+                        }
+                    }
+                }
                 //else { body += string.Format(Properties.Settings.Default.body, ipInfo.Store, "CCTV", ipInfo.IP, "Currently Up"); }
-                if (!Functions.CheckNetwork(ipInfo.Gate)) { body += string.Format(Properties.Settings.Default.body, ipInfo.Store, "CCTV Gate", ipInfo.Gate, ""); }
+                if (!Functions.CheckNetwork(ipInfo.Gate))
+                {
+                    if (!Functions.CheckNetwork(ipInfo.Gate))
+                    {
+                        if (!Functions.CheckNetwork(ipInfo.Gate))
+                        {
+                            if (!Functions.CheckNetwork(ipInfo.Gate))
+                            {
+                                if (!Functions.CheckNetwork(ipInfo.Gate))
+                                {
+                                    body += string.Format(Properties.Settings.Default.body, ipInfo.Store, "CCTV Gate", ipInfo.Gate, "");
+                                }
+                            }
+                        }
+                    }
+                }
+                
                 //else { body += string.Format(Properties.Settings.Default.body, ipInfo.Store, "CCTV Gate", ipInfo.Gate, "Currently Up"); }
             }
 
