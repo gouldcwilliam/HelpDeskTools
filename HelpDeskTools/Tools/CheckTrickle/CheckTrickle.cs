@@ -168,11 +168,8 @@ namespace CheckTrickle
 							// trx count exceeds threshold
 							if (TRX > Settings.Default.limit)
 							{
-                                if(computer.Contains("2040"))
-                                {
-                                    body += string.Format(Settings.Default.body, computer, "Transactions on register: " + TRX.ToString(), "DO NOT USE \"FIX TRICKLE\" ON ME <br> MOVE \".TRX\" FILES TO ANOTHER COMPUTER");
-                                }
-								body += string.Format(Settings.Default.body, computer, "Transactions on register: " + TRX.ToString(), " ");
+                                if (computer.Contains("2040")) { body += string.Format(Settings.Default.body, computer, "Transactions on register: " + TRX.ToString(), "DO NOT USE \"FIX TRICKLE\" ON ME <br> MOVE \".TRX\" FILES TO ANOTHER COMPUTER"); }
+                                else { body += string.Format(Settings.Default.body, computer, "Transactions on register: " + TRX.ToString(), " "); }
 							}
 						}
 						// fails to check files
