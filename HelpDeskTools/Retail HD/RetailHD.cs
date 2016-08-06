@@ -926,24 +926,32 @@ namespace Retail_HD
 
         private void RecentCalls_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (RecentCalls_dgv.Rows.Count > 0)
+            if (ModifierKeys == Keys.Control)
             {
-                string id = RecentCalls_dgv.SelectedRows[0].Cells["ID"].Value.ToString();
-                string store = RecentCalls_dgv.SelectedRows[0].Cells["Store"].Value.ToString();
-                string date = RecentCalls_dgv.SelectedRows[0].Cells["Date"].Value.ToString();
-                string tech = RecentCalls_dgv.SelectedRows[0].Cells["Tech"].Value.ToString();
-                string category = RecentCalls_dgv.SelectedRows[0].Cells["Category"].Value.ToString();
-                string topic = RecentCalls_dgv.SelectedRows[0].Cells["Topic"].Value.ToString();
-                string details = RecentCalls_dgv.SelectedRows[0].Cells["Details"].Value.ToString();
-                string type = RecentCalls_dgv.SelectedRows[0].Cells["In/Out"].Value.ToString();
-                bool trax = (RecentCalls_dgv.SelectedRows[0].Cells["Trax"].Value.ToString().Contains("True"));
-                string url = RecentCalls_dgv.SelectedRows[0].Cells["URL"].Value.ToString();
+                System.Diagnostics.Process.Start(RecentCalls_dgv.SelectedRows[0].Cells["URL"].Value.ToString());
+            }
+            else
+            {
 
-                if (editCalls.Visible) { editCalls.BringToFront(); }
-                editCalls = new Forms.EditCalls(id, store, date, tech, category, topic, details, type, trax, url);
-                editCalls = new Forms.EditCalls(id);
-                editCalls.ButtonClicked += new EventHandler(editCalls_ButtonClicked);
-                editCalls.Show();
+                if (RecentCalls_dgv.Rows.Count > 0)
+                {
+                    string id = RecentCalls_dgv.SelectedRows[0].Cells["ID"].Value.ToString();
+                    string store = RecentCalls_dgv.SelectedRows[0].Cells["Store"].Value.ToString();
+                    string date = RecentCalls_dgv.SelectedRows[0].Cells["Date"].Value.ToString();
+                    string tech = RecentCalls_dgv.SelectedRows[0].Cells["Tech"].Value.ToString();
+                    string category = RecentCalls_dgv.SelectedRows[0].Cells["Category"].Value.ToString();
+                    string topic = RecentCalls_dgv.SelectedRows[0].Cells["Topic"].Value.ToString();
+                    string details = RecentCalls_dgv.SelectedRows[0].Cells["Details"].Value.ToString();
+                    string type = RecentCalls_dgv.SelectedRows[0].Cells["In/Out"].Value.ToString();
+                    bool trax = (RecentCalls_dgv.SelectedRows[0].Cells["Trax"].Value.ToString().Contains("True"));
+                    string url = RecentCalls_dgv.SelectedRows[0].Cells["URL"].Value.ToString();
+
+                    if (editCalls.Visible) { editCalls.BringToFront(); }
+                    editCalls = new Forms.EditCalls(id, store, date, tech, category, topic, details, type, trax, url);
+                    editCalls = new Forms.EditCalls(id);
+                    editCalls.ButtonClicked += new EventHandler(editCalls_ButtonClicked);
+                    editCalls.Show();
+                }
             }
         }
 
