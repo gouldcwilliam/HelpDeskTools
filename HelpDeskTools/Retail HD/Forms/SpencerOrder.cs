@@ -43,20 +43,20 @@ namespace Retail_HD.Forms
             string tech = "No";
             if (ckbTech.Checked) { tech = "Yes"; }
             string body = string.Format(
-                "Store:\t\t\t {0}\r" +
-                "Phone:\t\t\t {1}\r" +
-                "Hours:\t\t\t {2} - {3} {13}\r" +
-                "Register #\t\t {4}\r" +
-                "Tech:\t\t\t {5}\r" +
-                "Dispatch:\t\t {6}\r" +
-                "Replacement Name:\t {7}\r" +
-                "IP:\t\t\t {8}\r" +
-                "Subnet:\t\t {9}\r" +
-                "Gate:\t\t\t {10}\r" +
-                "DNS:\t\t\t 10.63.33.41\r" +
-                "\t\t\t 10.63.33.42\r" +
-                "Password:\t\t {11}\r" +
-                "Details:\t\t\t {12}\r",
+                "Store: {0} -|- "+
+                "Phone: {1} -|- " +
+                "Hours: {2} - {3} {13} -|- " +
+                "Register # {4} -|- " +
+                "Tech: {5} -|- " +
+                "Dispatch: {6} -|- " +
+                "Replacement Name: {7} -|- " +
+                "IP: {8} -|- " +
+                "Subnet: {9} -|- " +
+                "Gate: {10} -|- " +
+                "DNS: 10.63.33.41 -|- " +
+                " 10.63.33.42 -|- " +
+                "Password: {11} -|- " +
+                "Details: {12}",
                 txtStore.Text, txtPhone.Text, txtHrs1.Text, txtHrs2.Text, txtReg.Text, tech,
                 txtDispatch.Text, txtName.Text, txtIP.Text, _subnet, txtGate.Text, txtPassword.Text, txtDetails.Text, lblTZ.Text                
                 );

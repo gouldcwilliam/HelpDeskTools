@@ -188,6 +188,7 @@ namespace Retail_HD
             tt_Main.SetToolTip(WrapUp, "Form to be used after each call for capturing Store Number, Issue, Time, etc.\nPress F10");
             tt_Main.SetToolTip(Restart, "Forces the computer to restart\nPress F11");
             tt_Main.SetToolTip(btnDelayed, "Tagets register 1 and attempts to start SQL and Express a defined number of times with a delay in between attemps\nUsed when a register is improperly shutdown and the rebuilding RAID is preventing service autostart\nPress F12");
+            tt_Main.SetToolTip(RecentCalls_dgv, "Recent call wrap-ups with the most recent at the top\nRed rows indicate there was a Trax ticket recorded\nCtrl + DoubleClick to open Trax URL");
         }
 
         /// <summary>

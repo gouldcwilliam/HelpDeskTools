@@ -205,6 +205,8 @@
             this.clbComputers.Sorted = true;
             this.clbComputers.TabIndex = 1;
             this.clbComputers.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbComputers_ItemCheck);
+            this.clbComputers.Click += new System.EventHandler(this.Main_Click);
+            this.clbComputers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             // 
             // RecentCalls_dgv
             // 

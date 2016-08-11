@@ -43,21 +43,30 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.textBoxPhones = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.textBoxFirst = new System.Windows.Forms.TextBox();
-            this.textBoxSecond = new System.Windows.Forms.TextBox();
-            this.textBoxThird = new System.Windows.Forms.TextBox();
-            this.textBoxPOS = new System.Windows.Forms.TextBox();
-            this.textBoxSensor = new System.Windows.Forms.TextBox();
-            this.textBoxLAN3 = new System.Windows.Forms.TextBox();
-            this.textBoxMIM = new System.Windows.Forms.TextBox();
-            this.textBoxPOSGate = new System.Windows.Forms.TextBox();
-            this.textBoxSensorGate = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxMIMGate = new System.Windows.Forms.TextBox();
             this.textBoxLan3Gate = new System.Windows.Forms.TextBox();
+            this.textBoxSensorGate = new System.Windows.Forms.TextBox();
+            this.textBoxPOSGate = new System.Windows.Forms.TextBox();
+            this.textBoxMIM = new System.Windows.Forms.TextBox();
+            this.textBoxLAN3 = new System.Windows.Forms.TextBox();
+            this.textBoxSensor = new System.Windows.Forms.TextBox();
+            this.textBoxPOS = new System.Windows.Forms.TextBox();
+            this.textBoxThird = new System.Windows.Forms.TextBox();
+            this.textBoxSecond = new System.Windows.Forms.TextBox();
+            this.textBoxFirst = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.textBoxTID1 = new System.Windows.Forms.TextBox();
-            this.textBoxTID2 = new System.Windows.Forms.TextBox();
-            this.textBoxTID3 = new System.Windows.Forms.TextBox();
             this.textBoxTID4 = new System.Windows.Forms.TextBox();
+            this.textBoxTID3 = new System.Windows.Forms.TextBox();
+            this.textBoxTID2 = new System.Windows.Forms.TextBox();
+            this.textBoxTID1 = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.textBoxGTT = new System.Windows.Forms.TextBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -66,15 +75,6 @@
             this.textBoxBAMS = new System.Windows.Forms.TextBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.textBoxCCTV1 = new System.Windows.Forms.TextBox();
-            this.textBoxMIMGate = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
@@ -139,6 +139,7 @@
             this.textBoxStore.Name = "textBoxStore";
             this.textBoxStore.Size = new System.Drawing.Size(81, 20);
             this.textBoxStore.TabIndex = 0;
+            this.textBoxStore.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox3
             // 
@@ -157,6 +158,7 @@
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(244, 20);
             this.textBoxAddress.TabIndex = 0;
+            this.textBoxAddress.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox4
             // 
@@ -175,6 +177,7 @@
             this.textBoxCity.Name = "textBoxCity";
             this.textBoxCity.Size = new System.Drawing.Size(155, 20);
             this.textBoxCity.TabIndex = 0;
+            this.textBoxCity.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox5
             // 
@@ -193,6 +196,7 @@
             this.textBoxState.Name = "textBoxState";
             this.textBoxState.Size = new System.Drawing.Size(81, 20);
             this.textBoxState.TabIndex = 0;
+            this.textBoxState.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox6
             // 
@@ -217,6 +221,7 @@
             this.comboBoxTimeZone.Name = "comboBoxTimeZone";
             this.comboBoxTimeZone.Size = new System.Drawing.Size(81, 21);
             this.comboBoxTimeZone.TabIndex = 0;
+            this.comboBoxTimeZone.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox7
             // 
@@ -237,6 +242,7 @@
             this.textBoxPhones.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.textBoxPhones.Size = new System.Drawing.Size(141, 57);
             this.textBoxPhones.TabIndex = 0;
+            this.textBoxPhones.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox8
             // 
@@ -266,68 +272,93 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "IP";
             // 
-            // textBoxFirst
+            // label8
             // 
-            this.textBoxFirst.Location = new System.Drawing.Point(6, 19);
-            this.textBoxFirst.Name = "textBoxFirst";
-            this.textBoxFirst.Size = new System.Drawing.Size(39, 20);
-            this.textBoxFirst.TabIndex = 0;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(81, 230);
+            this.label8.Name = "label8";
+            this.label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "MIM Gate";
             // 
-            // textBoxSecond
+            // label7
             // 
-            this.textBoxSecond.Location = new System.Drawing.Point(51, 19);
-            this.textBoxSecond.Name = "textBoxSecond";
-            this.textBoxSecond.Size = new System.Drawing.Size(39, 20);
-            this.textBoxSecond.TabIndex = 1;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(75, 204);
+            this.label7.Name = "label7";
+            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label7.Size = new System.Drawing.Size(60, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "LAN3 Gate";
             // 
-            // textBoxThird
+            // label6
             // 
-            this.textBoxThird.Location = new System.Drawing.Point(96, 19);
-            this.textBoxThird.Name = "textBoxThird";
-            this.textBoxThird.Size = new System.Drawing.Size(39, 20);
-            this.textBoxThird.TabIndex = 2;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(69, 178);
+            this.label6.Name = "label6";
+            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Sensor Gate";
             // 
-            // textBoxPOS
+            // label5
             // 
-            this.textBoxPOS.Location = new System.Drawing.Point(141, 45);
-            this.textBoxPOS.Name = "textBoxPOS";
-            this.textBoxPOS.Size = new System.Drawing.Size(39, 20);
-            this.textBoxPOS.TabIndex = 4;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(80, 152);
+            this.label5.Name = "label5";
+            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "POS Gate";
             // 
-            // textBoxSensor
+            // label4
             // 
-            this.textBoxSensor.Location = new System.Drawing.Point(141, 71);
-            this.textBoxSensor.Name = "textBoxSensor";
-            this.textBoxSensor.Size = new System.Drawing.Size(39, 20);
-            this.textBoxSensor.TabIndex = 5;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(107, 126);
+            this.label4.Name = "label4";
+            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label4.Size = new System.Drawing.Size(28, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "MIM";
             // 
-            // textBoxLAN3
+            // label3
             // 
-            this.textBoxLAN3.Location = new System.Drawing.Point(141, 97);
-            this.textBoxLAN3.Name = "textBoxLAN3";
-            this.textBoxLAN3.Size = new System.Drawing.Size(39, 20);
-            this.textBoxLAN3.TabIndex = 6;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(101, 100);
+            this.label3.Name = "label3";
+            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "LAN3";
             // 
-            // textBoxMIM
+            // label2
             // 
-            this.textBoxMIM.Location = new System.Drawing.Point(141, 123);
-            this.textBoxMIM.Name = "textBoxMIM";
-            this.textBoxMIM.Size = new System.Drawing.Size(39, 20);
-            this.textBoxMIM.TabIndex = 7;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(95, 74);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Sensor";
             // 
-            // textBoxPOSGate
+            // label1
             // 
-            this.textBoxPOSGate.Location = new System.Drawing.Point(141, 149);
-            this.textBoxPOSGate.Name = "textBoxPOSGate";
-            this.textBoxPOSGate.Size = new System.Drawing.Size(39, 20);
-            this.textBoxPOSGate.TabIndex = 8;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(106, 48);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(29, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "POS";
             // 
-            // textBoxSensorGate
+            // textBoxMIMGate
             // 
-            this.textBoxSensorGate.Location = new System.Drawing.Point(141, 175);
-            this.textBoxSensorGate.Name = "textBoxSensorGate";
-            this.textBoxSensorGate.Size = new System.Drawing.Size(39, 20);
-            this.textBoxSensorGate.TabIndex = 9;
+            this.textBoxMIMGate.Location = new System.Drawing.Point(141, 227);
+            this.textBoxMIMGate.Name = "textBoxMIMGate";
+            this.textBoxMIMGate.Size = new System.Drawing.Size(39, 20);
+            this.textBoxMIMGate.TabIndex = 11;
+            this.textBoxMIMGate.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // textBoxLan3Gate
             // 
@@ -335,6 +366,79 @@
             this.textBoxLan3Gate.Name = "textBoxLan3Gate";
             this.textBoxLan3Gate.Size = new System.Drawing.Size(39, 20);
             this.textBoxLan3Gate.TabIndex = 10;
+            this.textBoxLan3Gate.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxSensorGate
+            // 
+            this.textBoxSensorGate.Location = new System.Drawing.Point(141, 175);
+            this.textBoxSensorGate.Name = "textBoxSensorGate";
+            this.textBoxSensorGate.Size = new System.Drawing.Size(39, 20);
+            this.textBoxSensorGate.TabIndex = 9;
+            this.textBoxSensorGate.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxPOSGate
+            // 
+            this.textBoxPOSGate.Location = new System.Drawing.Point(141, 149);
+            this.textBoxPOSGate.Name = "textBoxPOSGate";
+            this.textBoxPOSGate.Size = new System.Drawing.Size(39, 20);
+            this.textBoxPOSGate.TabIndex = 8;
+            this.textBoxPOSGate.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxMIM
+            // 
+            this.textBoxMIM.Location = new System.Drawing.Point(141, 123);
+            this.textBoxMIM.Name = "textBoxMIM";
+            this.textBoxMIM.Size = new System.Drawing.Size(39, 20);
+            this.textBoxMIM.TabIndex = 7;
+            this.textBoxMIM.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxLAN3
+            // 
+            this.textBoxLAN3.Location = new System.Drawing.Point(141, 97);
+            this.textBoxLAN3.Name = "textBoxLAN3";
+            this.textBoxLAN3.Size = new System.Drawing.Size(39, 20);
+            this.textBoxLAN3.TabIndex = 6;
+            this.textBoxLAN3.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxSensor
+            // 
+            this.textBoxSensor.Location = new System.Drawing.Point(141, 71);
+            this.textBoxSensor.Name = "textBoxSensor";
+            this.textBoxSensor.Size = new System.Drawing.Size(39, 20);
+            this.textBoxSensor.TabIndex = 5;
+            this.textBoxSensor.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxPOS
+            // 
+            this.textBoxPOS.Location = new System.Drawing.Point(141, 45);
+            this.textBoxPOS.Name = "textBoxPOS";
+            this.textBoxPOS.Size = new System.Drawing.Size(39, 20);
+            this.textBoxPOS.TabIndex = 4;
+            this.textBoxPOS.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxThird
+            // 
+            this.textBoxThird.Location = new System.Drawing.Point(96, 19);
+            this.textBoxThird.Name = "textBoxThird";
+            this.textBoxThird.Size = new System.Drawing.Size(39, 20);
+            this.textBoxThird.TabIndex = 2;
+            this.textBoxThird.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxSecond
+            // 
+            this.textBoxSecond.Location = new System.Drawing.Point(51, 19);
+            this.textBoxSecond.Name = "textBoxSecond";
+            this.textBoxSecond.Size = new System.Drawing.Size(39, 20);
+            this.textBoxSecond.TabIndex = 1;
+            this.textBoxSecond.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxFirst
+            // 
+            this.textBoxFirst.Location = new System.Drawing.Point(6, 19);
+            this.textBoxFirst.Name = "textBoxFirst";
+            this.textBoxFirst.Size = new System.Drawing.Size(39, 20);
+            this.textBoxFirst.TabIndex = 0;
+            this.textBoxFirst.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox9
             // 
@@ -350,20 +454,13 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "TIDs";
             // 
-            // textBoxTID1
+            // textBoxTID4
             // 
-            this.textBoxTID1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxTID1.Location = new System.Drawing.Point(3, 16);
-            this.textBoxTID1.Name = "textBoxTID1";
-            this.textBoxTID1.Size = new System.Drawing.Size(113, 20);
-            this.textBoxTID1.TabIndex = 0;
-            // 
-            // textBoxTID2
-            // 
-            this.textBoxTID2.Location = new System.Drawing.Point(3, 42);
-            this.textBoxTID2.Name = "textBoxTID2";
-            this.textBoxTID2.Size = new System.Drawing.Size(113, 20);
-            this.textBoxTID2.TabIndex = 1;
+            this.textBoxTID4.Location = new System.Drawing.Point(3, 94);
+            this.textBoxTID4.Name = "textBoxTID4";
+            this.textBoxTID4.Size = new System.Drawing.Size(113, 20);
+            this.textBoxTID4.TabIndex = 3;
+            this.textBoxTID4.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // textBoxTID3
             // 
@@ -371,13 +468,24 @@
             this.textBoxTID3.Name = "textBoxTID3";
             this.textBoxTID3.Size = new System.Drawing.Size(113, 20);
             this.textBoxTID3.TabIndex = 2;
+            this.textBoxTID3.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
-            // textBoxTID4
+            // textBoxTID2
             // 
-            this.textBoxTID4.Location = new System.Drawing.Point(3, 94);
-            this.textBoxTID4.Name = "textBoxTID4";
-            this.textBoxTID4.Size = new System.Drawing.Size(113, 20);
-            this.textBoxTID4.TabIndex = 3;
+            this.textBoxTID2.Location = new System.Drawing.Point(3, 42);
+            this.textBoxTID2.Name = "textBoxTID2";
+            this.textBoxTID2.Size = new System.Drawing.Size(113, 20);
+            this.textBoxTID2.TabIndex = 1;
+            this.textBoxTID2.TextChanged += new System.EventHandler(this.textBox_Changed);
+            // 
+            // textBoxTID1
+            // 
+            this.textBoxTID1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxTID1.Location = new System.Drawing.Point(3, 16);
+            this.textBoxTID1.Name = "textBoxTID1";
+            this.textBoxTID1.Size = new System.Drawing.Size(113, 20);
+            this.textBoxTID1.TabIndex = 0;
+            this.textBoxTID1.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox10
             // 
@@ -416,6 +524,7 @@
             this.textBoxSVS.Name = "textBoxSVS";
             this.textBoxSVS.Size = new System.Drawing.Size(145, 20);
             this.textBoxSVS.TabIndex = 0;
+            this.textBoxSVS.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox12
             // 
@@ -435,6 +544,7 @@
             this.textBoxBAMS.Name = "textBoxBAMS";
             this.textBoxBAMS.Size = new System.Drawing.Size(163, 20);
             this.textBoxBAMS.TabIndex = 0;
+            this.textBoxBAMS.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox13
             // 
@@ -453,93 +563,7 @@
             this.textBoxCCTV1.Name = "textBoxCCTV1";
             this.textBoxCCTV1.Size = new System.Drawing.Size(181, 20);
             this.textBoxCCTV1.TabIndex = 0;
-            // 
-            // textBoxMIMGate
-            // 
-            this.textBoxMIMGate.Location = new System.Drawing.Point(141, 227);
-            this.textBoxMIMGate.Name = "textBoxMIMGate";
-            this.textBoxMIMGate.Size = new System.Drawing.Size(39, 20);
-            this.textBoxMIMGate.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(106, 48);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "POS";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(95, 74);
-            this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Sensor";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(101, 100);
-            this.label3.Name = "label3";
-            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "LAN3";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(107, 126);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(28, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "MIM";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(80, 152);
-            this.label5.Name = "label5";
-            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label5.Size = new System.Drawing.Size(55, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "POS Gate";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(69, 178);
-            this.label6.Name = "label6";
-            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label6.Size = new System.Drawing.Size(66, 13);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Sensor Gate";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(75, 204);
-            this.label7.Name = "label7";
-            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(60, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "LAN3 Gate";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(81, 230);
-            this.label8.Name = "label8";
-            this.label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label8.Size = new System.Drawing.Size(54, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "MIM Gate";
+            this.textBoxCCTV1.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // buttonCancel
             // 
@@ -558,6 +582,7 @@
             this.buttonSave.TabIndex = 13;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // groupBox14
             // 
@@ -576,6 +601,7 @@
             this.textBoxManager.Name = "textBoxManager";
             this.textBoxManager.Size = new System.Drawing.Size(163, 20);
             this.textBoxManager.TabIndex = 0;
+            this.textBoxManager.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox15
             // 
@@ -594,6 +620,7 @@
             this.textBoxDM.Name = "textBoxDM";
             this.textBoxDM.Size = new System.Drawing.Size(163, 20);
             this.textBoxDM.TabIndex = 0;
+            this.textBoxDM.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox16
             // 
@@ -612,6 +639,7 @@
             this.textBoxRM.Name = "textBoxRM";
             this.textBoxRM.Size = new System.Drawing.Size(163, 20);
             this.textBoxRM.TabIndex = 0;
+            this.textBoxRM.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // groupBox17
             // 
@@ -630,6 +658,7 @@
             this.textBoxType.Name = "textBoxType";
             this.textBoxType.Size = new System.Drawing.Size(181, 20);
             this.textBoxType.TabIndex = 0;
+            this.textBoxType.TextChanged += new System.EventHandler(this.textBox_Changed);
             // 
             // StoreInfoAddEdit
             // 
@@ -658,7 +687,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "StoreInfoAddEdit";
             this.Text = "Store Info";
-            this.Load += new System.EventHandler(this.StoreInfoAddEdit_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
