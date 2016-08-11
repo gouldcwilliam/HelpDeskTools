@@ -526,6 +526,8 @@ namespace Shared
             {
                 string path = Settings.Default._TempPath.Replace("C:", "");
                 path = string.Format(@"\\{0}\c${1}\{2}", Computer, path, de.Key);
+                if (!WriteFile((string)de.Value, path)) { return false; }
+                /*
                 if (File.Exists(path))
                 {
                     StreamReader sr = new StreamReader(path);
@@ -544,7 +546,7 @@ namespace Shared
                 {
                     if (!WriteFile((string)de.Value, path)) { return false; }
                 }
-
+                */
             }
             return true;
         }

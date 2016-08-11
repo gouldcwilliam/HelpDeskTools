@@ -14,8 +14,8 @@ namespace LocalBatFiles
             Console.WriteLine(" * Job started at: {0}", start);
 
             // Create local temp dir
-            Shared.Functions.CreateTempFolder();
-            Shared.Functions.UpdateLocalBatFiles();
+            //Shared.Functions.CreateTempFolder();
+            //Shared.Functions.UpdateLocalBatFiles();
 
             Console.WriteLine(" * Loading computers from AD...");
 
@@ -77,15 +77,16 @@ namespace LocalBatFiles
                     progressBar.Update(i);
                     if (Shared.Functions.CheckNetwork(computers[i]))
                     {
-                        Console.WriteLine(computers[i]);
+                        //Console.Write(computers[i]);
                         if (!Shared.Functions.UpdateLocalBatFiles(computers[i]))
                         {
                             body += string.Format(Properties.Settings.Default._EmailTableRow, computers[i], "Failed to update files", "");
                         }
+                        else { body += string.Format(Properties.Settings.Default._EmailTableRow, computers[i], "Files Updated", ""); }
 
                     }
                     else { body += string.Format(Properties.Settings.Default._EmailTableRow, computers[i], "Unable to ping", ""); }
-                    //if (i > 20) { break; }
+                    if (System.Diagnostics.Debugger.IsAttached) { if (i > 40) { break; } }
                 }
 
             }
@@ -105,7 +106,8 @@ namespace LocalBatFiles
                 Console.Write("Failed!");
             }
             Console.ResetColor();
-            Console.ReadKey();
+
+            if (System.Diagnostics.Debugger.IsAttached) { Console.ReadKey(); }
             //progressBar.Completed();
         }
     }
