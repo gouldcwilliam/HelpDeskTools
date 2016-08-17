@@ -53,9 +53,11 @@ namespace DisableStartupRepair
 					string computer = searchResults[i].Value;
 
 					ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.CreateNoWindow = true;
 					startInfo.FileName = "WINRS";
 					startInfo.Arguments = "-r:" + computer + " bcdedit /set {default} bootstatuspolicy ignoreallfailures && bcdedit /set {default} recoveryenabled No";
 					Process process = Process.Start(startInfo);
+                    process.WaitForExit();
 				}
 			}
 		}

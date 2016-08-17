@@ -90,6 +90,15 @@ GOTO:EOF
 		ECHO Have the user monitor the verifone screen
 		CALL:WAIT
 	)
+	IF %A%==refresh (
+		CALL:KILL
+		CALL:creditSTOP
+		CD "C:\Program Files\Verifone\MX915\vfQueryUpdate"
+		ECHO Running vfQueryUpdate
+		START /wait vfQueryUpdate.exe
+		PING 127.0.0.1 -n 60 > NUL
+		CALL:creditSTART
+	)
 GOTO:EOF
 
 :TRANSNET
