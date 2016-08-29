@@ -58,11 +58,13 @@ namespace Retail_HD.Forms
         private void btnOK_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
         }
     }
 }

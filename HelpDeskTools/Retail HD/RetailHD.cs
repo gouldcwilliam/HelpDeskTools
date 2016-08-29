@@ -1107,7 +1107,7 @@ namespace Retail_HD
                 eSchemaInfo.Show();
             }
         }
-
+        
         private void AdditionalPhone_Click(object sender, EventArgs e)
         {
             if (AdditionalPhone.Visible) { AdditionalPhone.BringToFront(); return; }

@@ -15,7 +15,9 @@ namespace Retail_HD
         public string Service { get; private set; }
         public string Action { get; private set; }
         public string Output { get; private set; }
-
+        
+        public string Exec { get; private set; }
+        public string Args { get; private set; }
         public event EventHandler WorkDone;
         private System.ComponentModel.BackgroundWorker bgw = new System.ComponentModel.BackgroundWorker();
 
@@ -27,6 +29,17 @@ namespace Retail_HD
             bgw.WorkerSupportsCancellation = true;
             bgw.WorkerReportsProgress = true;
             bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_DoWork);
+            bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_RunWorkerCompleted);
+            bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgw_ProgressChanged);
+        }
+
+        public ServiceWorker(string exec, string args)
+        {
+            Exec = exec;
+            Args = args;
+            bgw.WorkerSupportsCancellation = true;
+            bgw.WorkerReportsProgress = true;
+            bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_DoWorkExec);
             bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_RunWorkerCompleted);
             bgw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgw_ProgressChanged);
         }
@@ -56,6 +69,12 @@ namespace Retail_HD
                 }
             }
 
+        }
+
+        void bgw_DoWorkExec(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Output = string.Format("Running {0} {1}", Exec, Args);
+            Shared.Functions.ExecuteCommand(Exec, Args, true, true);
         }
 
         void bgw_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)

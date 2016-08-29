@@ -423,7 +423,7 @@ namespace Shared
             startInfo.CreateNoWindow = (!Interactive);
             startInfo.UseShellExecute = Interactive;
             Process process = Process.Start(startInfo);
-            if (Wait) { process.WaitForExit(); return process.ExitCode; }
+            if (Wait) {; process.WaitForExit(); return process.ExitCode; }
             return 0;
         }
         /// <summary>

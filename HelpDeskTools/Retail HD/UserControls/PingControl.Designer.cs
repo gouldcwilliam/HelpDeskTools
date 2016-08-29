@@ -36,10 +36,10 @@
             this.ckbMim = new System.Windows.Forms.CheckBox();
             this.ckbSensor = new System.Windows.Forms.CheckBox();
             this.gbPing = new System.Windows.Forms.GroupBox();
+            this.ckbLan3 = new System.Windows.Forms.CheckBox();
             this.ckbCCTV = new System.Windows.Forms.CheckBox();
             this.ckbSensorGate = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
-            this.ckbLan3 = new System.Windows.Forms.CheckBox();
             this.gbPing.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,6 +110,16 @@
             this.gbPing.TabStop = false;
             this.gbPing.Text = "Ping";
             // 
+            // ckbLan3
+            // 
+            this.ckbLan3.AutoSize = true;
+            this.ckbLan3.Location = new System.Drawing.Point(255, 42);
+            this.ckbLan3.Name = "ckbLan3";
+            this.ckbLan3.Size = new System.Drawing.Size(80, 17);
+            this.ckbLan3.TabIndex = 7;
+            this.ckbLan3.Text = "Port 6 Gate";
+            this.ckbLan3.UseVisualStyleBackColor = true;
+            // 
             // ckbCCTV
             // 
             this.ckbCCTV.AutoSize = true;
@@ -125,9 +135,9 @@
             this.ckbSensorGate.AutoSize = true;
             this.ckbSensorGate.Location = new System.Drawing.Point(165, 42);
             this.ckbSensorGate.Name = "ckbSensorGate";
-            this.ckbSensorGate.Size = new System.Drawing.Size(85, 17);
+            this.ckbSensorGate.Size = new System.Drawing.Size(80, 17);
             this.ckbSensorGate.TabIndex = 5;
-            this.ckbSensorGate.Text = "Sensor Gate";
+            this.ckbSensorGate.Text = "Port 5 Gate";
             this.ckbSensorGate.UseVisualStyleBackColor = true;
             // 
             // btnOK
@@ -139,16 +149,6 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // ckbLan3
-            // 
-            this.ckbLan3.AutoSize = true;
-            this.ckbLan3.Location = new System.Drawing.Point(255, 42);
-            this.ckbLan3.Name = "ckbLan3";
-            this.ckbLan3.Size = new System.Drawing.Size(56, 17);
-            this.ckbLan3.TabIndex = 7;
-            this.ckbLan3.Text = "LAN 3";
-            this.ckbLan3.UseVisualStyleBackColor = true;
             // 
             // PingControl
             // 

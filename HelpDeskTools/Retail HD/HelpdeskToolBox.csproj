@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>187</ApplicationRevision>
+    <ApplicationRevision>193</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -209,6 +209,12 @@
     <Compile Include="Forms\ScottStartup.Designer.cs">
       <DependentUpon>ScottStartup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SEPstuff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SEPstuff.Designer.cs">
+      <DependentUpon>SEPstuff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SpencerOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -377,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScottStartup.resx">
       <DependentUpon>ScottStartup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SEPstuff.resx">
+      <DependentUpon>SEPstuff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpencerOrder.resx">
       <DependentUpon>SpencerOrder.cs</DependentUpon>

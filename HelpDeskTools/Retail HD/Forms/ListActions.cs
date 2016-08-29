@@ -138,13 +138,21 @@ namespace Retail_HD.Forms
 
             // load computers per store number entered
             List<string> computers = new List<string>();
-            foreach (string stringStore in txtList.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (string stringStore in txtList.Text.Split(new string[] { " ","\n","\r" }, StringSplitOptions.RemoveEmptyEntries))
             {
-                int store;
-                if (!int.TryParse(stringStore, out store)) { continue; }
-                // add each computer to list
-                foreach (DataRow dr in Shared.SQL.dt_SelectComputers(store).Rows) { computers.Add(dr[0].ToString()); }
+                if (stringStore.Length > 4)
+                {
+                    computers.Add(stringStore);
+                }
+                else
+                {
+                    int store;
+                    if (!int.TryParse(stringStore, out store)) { continue; }
+                    // add each computer to list
+                    foreach (DataRow dr in Shared.SQL.dt_SelectComputers(store).Rows) { computers.Add(dr[0].ToString()); }
+                }
             }
+            
 
             // only include specific computers list
             if (ckbRegister.Checked) { computers = SpecificRegister(computers); }
@@ -160,7 +168,12 @@ namespace Retail_HD.Forms
             {
                 bservices = true;
             }
-
+            if (ckbSEP.Checked)
+            {
+                Forms.SEPstuff sepStuff = new SEPstuff();
+                sepStuff.Show();
+                sepStuff.BringToFront();
+            }
             // perform specified actions on each computer
             foreach (string computer in computers)
             {
@@ -210,6 +223,7 @@ namespace Retail_HD.Forms
                     if (ckbMulti.Checked) { Functions.Multi(computer); }
                     if (ckbDameware.Checked) { Functions.ConnectWithDW(computer); }
                     if (ckbCMD.Checked) { Functions.LocalCMD(computer); }
+                    if (ckbPing.Checked) { Functions.Pinger(computer); }
                 }
 
                 if (ckbActivate.Checked)
@@ -220,6 +234,13 @@ namespace Retail_HD.Forms
                 if (ckbDisableStartupRepair.Checked)
                 {
                     int retCode = Shared.Functions.ExecuteCommand("WINRS", String.Format("-r:{0} ", computer) + "bcdedit /set {default} recoveryenabled no && bcdedit /set {default} bootstatuspolicy ignoreallfailures", true, true);
+                }
+
+                if (ckbSEP.Checked)
+                {
+                    string args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -stop", computer);
+                    Shared.Functions.ExecuteCommand("WINRS", args, false, false);
+                    Functions.LocalCMD(computer);
                 }
 
                 if (ckbFastPrinter.Checked)
@@ -285,6 +306,7 @@ namespace Retail_HD.Forms
 
                 System.Threading.Thread.Sleep(250);
             }
+
             ClearChecks();
 
         }
