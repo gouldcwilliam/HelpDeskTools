@@ -13,15 +13,11 @@ namespace Shared {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static Settings Default {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return defaultInstance;
             }
@@ -30,9 +26,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("\\\\wwwint\\roc\\IS-Share\\Helpdesk\\Retail Helpdesk")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _NetworkShare {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_NetworkShare"]));
             }
@@ -44,9 +38,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("\\\\wwwint\\roc\\techtmp\\bergman\\Toolsmenu.bat")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _OldMenuPath {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_OldMenuPath"]));
             }
@@ -58,9 +50,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("unlock.bat")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _BatUnlock {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_BatUnlock"]));
             }
@@ -72,9 +62,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("services.bat")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _BatServices {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_BatServices"]));
             }
@@ -86,9 +74,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\VeriFone\\MX915\\vfQueryUpdate\\args.xml")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _ArgsXMLpath {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_ArgsXMLpath"]));
             }
@@ -100,9 +86,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _TempPath {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_TempPath"]));
             }
@@ -114,9 +98,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("InstallEndpoint12.bat")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _BatEndpoint {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_BatEndpoint"]));
             }
@@ -128,9 +110,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ziplogs.bat")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _BatZip {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_BatZip"]));
             }
@@ -142,9 +122,7 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("zipper.ps1")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _PSZip {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_PSZip"]));
             }
@@ -156,14 +134,68 @@ namespace Shared {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("wsadmin.bat")]
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public string _WSAdmin {
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             get {
                 return ((string)(this["_WSAdmin"]));
             }
             set {
                 this["_WSAdmin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>4.2.12.178</string>\r\n  <string>4.2.12.161</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection _multiVersions {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["_multiVersions"]));
+            }
+            set {
+                this["_multiVersions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>2.0.0.926</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection _redIronVersions {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["_redIronVersions"]));
+            }
+            set {
+                this["_redIronVersions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>4.4.5-20151127</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection _vfVersions {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["_vfVersions"]));
+            }
+            set {
+                this["_vfVersions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>Build1149</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection _POSBuildVersion {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["_POSBuildVersion"]));
+            }
+            set {
+                this["_POSBuildVersion"] = value;
             }
         }
     }

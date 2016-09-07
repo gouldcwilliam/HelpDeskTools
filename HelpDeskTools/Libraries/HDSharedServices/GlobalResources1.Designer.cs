@@ -252,16 +252,6 @@ namespace Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Contra_33 {
-            get {
-                object obj = ResourceManager.GetObject("Contra_33", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Cry_Baby_Cry {

@@ -57,9 +57,10 @@ namespace WetSandwich
 
 			string body = global::WetSandwich.Properties.Settings.Default.header;
 
-			body += "Multi Version: " + Settings.Default.multiVersion + "<br>";
-			body += "Rediron Version: " + Settings.Default.redIronVersion + "<br>";
-			body += "Verifone Version: " + Settings.Default.vfVersion + "<br>";
+            body += "Multi Version: ";
+            foreach (string multiVersion in Settings.Default.multiVersions) { body += multiVersion + " "; } body += "<br>";
+            foreach (string redIronVersion in Settings.Default.redIronVersions) { body += redIronVersion + " "; } body += "<br>";
+            foreach (string vfVersion in Settings.Default.vfVersions) { body += vfVersion; } body += "<br>";
             body += "POS Build Version: " + Settings.Default.buildVersion + "<br>";
 			body += Settings.Default.tableHead;
 
@@ -98,16 +99,16 @@ namespace WetSandwich
 					{
 						string multi;
 						if (!Shared.Functions.CopyTempLog(Shared.Functions.LatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
-						else { multi = Shared.Functions.MultiLog(Settings.Default.multiVersion,false).ToString(); }
+						else { multi = Shared.Functions.MultiLog(Shared.Settings.Default._multiVersions, false).ToString(); }
 						//Console.WriteLine(multi);
 
 						string ri;
 						if(!Shared.Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log";  }
-						else { ri = Shared.Functions.FindInLog(Properties.Settings.Default.redIronVersion,false).ToString(); }
+						else { ri = Shared.Functions.FindInLog(Shared.Settings.Default._redIronVersions, false).ToString(); }
 						//Console.WriteLine(ri);
 
 						string vf;
-                        vf = Shared.Functions.VFLog(computer, Properties.Settings.Default.vfVersion);
+                        vf = Shared.Functions.VFLog(computer, Shared.Settings.Default._vfVersions);
                         //Console.WriteLine(vf);
 
                         string pos;

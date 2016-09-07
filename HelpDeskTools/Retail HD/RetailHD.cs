@@ -154,7 +154,7 @@ namespace Retail_HD
             ConfirmAgentLogin.btnOK.Text = "Yes";
             ConfirmAgentLogin.btnCancel.Text = "No";
             //if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
-            if (DialogResult.OK != ConfirmAgentLogin.ShowDialog())
+            if (DialogResult.OK != ConfirmAgentLogin.ShowDialog() || System.Diagnostics.Debugger.IsAttached)
             {
                 _AgentLoginEnabled = false;
                 ts_Top_tsb_Logout.Enabled = false;
@@ -1073,7 +1073,7 @@ namespace Retail_HD
                 {
                     adjustedPath += pathParts[i] + "\\";
                 }
-                var absolute_path = Path.Combine(adjustedPath, @"Resources\Music\Contra_33.mp3");
+                var absolute_path = Path.Combine(adjustedPath, @"Resources\Contra_33.mp3");
                 System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo("wmplayer", "\"" + absolute_path + "\"");
                 info.CreateNoWindow = true;
                 info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;

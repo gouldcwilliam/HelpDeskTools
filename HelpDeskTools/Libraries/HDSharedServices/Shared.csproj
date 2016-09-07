@@ -80,9 +80,6 @@
     <None Include="Resources\Funny\Barber.jpg" />
     <None Include="Resources\Funny\Barber2.png" />
     <None Include="Resources\Funny\taylor-swift2.jpg" />
-    <Content Include="Resources\Music\Contra_33.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\Icons\windows.png" />
     <None Include="Resources\Icons\watch.png" />
     <None Include="Resources\Icons\watch-2.png" />
@@ -245,6 +242,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\args.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Music\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

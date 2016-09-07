@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Contra_33" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Music\Contra_33.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="batServices" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Batch\Services.bat;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
@@ -6288,9 +6285,6 @@
   <data name="sundial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Icons\sundial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="argsXML" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\args.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="Zip_Logs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Batch\Zip_Logs.bat;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
@@ -6314,5 +6308,8 @@
   </data>
   <data name="taylor_swift2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Funny\taylor-swift2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="argsXML" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\args.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

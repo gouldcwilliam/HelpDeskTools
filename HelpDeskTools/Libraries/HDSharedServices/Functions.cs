@@ -809,6 +809,23 @@ namespace Shared
                 return false;
             }
         }
+        public static bool FindInLog(System.Collections.Specialized.StringCollection versions, bool verbose=true)
+        {
+            try
+            {
+                foreach(string version in versions)
+                {
+                    if(File.ReadAllText(Settings.Default._TempPath + "tmp.log").Contains(version)) { return true; }
+
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                if (verbose) Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
         /// <summary>
         /// Search log for a given string
         /// </summary>
@@ -852,13 +869,13 @@ namespace Shared
         /// </summary>
         /// <param name="path">where to look</param>
         /// <returns></returns>
-        public static string LatestMulti(string path)
+        public static string LatestMulti(string path, bool verbose = false)
         {
             try
             {
                 System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
                 System.IO.FileInfo[] files = dir.GetFiles("multi_*.log").OrderByDescending(p => p.CreationTime).ToArray();
-                Console.WriteLine(files[0].FullName);
+                if (verbose) { Console.WriteLine(files[0].FullName); }
                 return files[0].FullName;
             }
             catch (Exception) { return ""; }

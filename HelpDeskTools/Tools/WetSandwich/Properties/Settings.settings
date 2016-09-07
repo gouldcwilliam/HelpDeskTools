@@ -39,20 +39,30 @@ padding: 5px;
 &lt;tr&gt;&lt;th&gt;Computer Name&lt;/th&gt;&lt;th&gt;Multi&lt;/th&gt;&lt;th&gt;RedIron&lt;/th&gt;&lt;th&gt;Verifone&lt;/th&gt;&lt;th&gt;POSBuild&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/tr&gt;
 </Value>
     </Setting>
-    <Setting Name="multiVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4.2.12.161</Value>
-    </Setting>
-    <Setting Name="redIronVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2.0.0.926</Value>
-    </Setting>
-    <Setting Name="vfVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4.4.5-20151127</Value>
-    </Setting>
-    <Setting Name="ignore" Type="System.String" Scope="User">
-      <Value Profile="(Default)">402,403,404,545,546</Value>
-    </Setting>
     <Setting Name="buildVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)">Build1149</Value>
+    </Setting>
+    <Setting Name="multiVersions" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;4.2.12.178&lt;/string&gt;
+  &lt;string&gt;4.2.12.161&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="redIronVersions" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;2.0.0.926&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="vfVersions" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;4.4.5-20151127&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ignore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">402,403,404,545,546,544</Value>
     </Setting>
   </Settings>
 </SettingsFile>

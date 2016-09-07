@@ -29,16 +29,15 @@
         private void InitializeComponent()
         {
             this.btnOK = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.rbAll = new System.Windows.Forms.RadioButton();
             this.gbStores = new System.Windows.Forms.GroupBox();
             this.txtComputers = new System.Windows.Forms.TextBox();
             this.rbList = new System.Windows.Forms.RadioButton();
             this.gbFiles = new System.Windows.Forms.GroupBox();
-            this.rbDirectory = new System.Windows.Forms.RadioButton();
-            this.rbFiles = new System.Windows.Forms.RadioButton();
-            this.btnChooseFile = new System.Windows.Forms.Button();
             this.ckbFileList = new System.Windows.Forms.CheckedListBox();
+            this.btnChooseFile = new System.Windows.Forms.Button();
+            this.rbFiles = new System.Windows.Forms.RadioButton();
+            this.rbDirectory = new System.Windows.Forms.RadioButton();
             this.gbStores.SuspendLayout();
             this.gbFiles.SuspendLayout();
             this.SuspendLayout();
@@ -46,23 +45,13 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(358, 422);
+            this.btnOK.Location = new System.Drawing.Point(439, 422);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = "Copy";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(439, 422);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // rbAll
             // 
@@ -125,27 +114,14 @@
             this.gbFiles.TabStop = false;
             this.gbFiles.Text = "Files To Transfer";
             // 
-            // rbDirectory
+            // ckbFileList
             // 
-            this.rbDirectory.AutoSize = true;
-            this.rbDirectory.Location = new System.Drawing.Point(6, 19);
-            this.rbDirectory.Name = "rbDirectory";
-            this.rbDirectory.Size = new System.Drawing.Size(112, 17);
-            this.rbDirectory.TabIndex = 7;
-            this.rbDirectory.TabStop = true;
-            this.rbDirectory.Text = "Directory Contents";
-            this.rbDirectory.UseVisualStyleBackColor = true;
-            // 
-            // rbFiles
-            // 
-            this.rbFiles.AutoSize = true;
-            this.rbFiles.Location = new System.Drawing.Point(6, 42);
-            this.rbFiles.Name = "rbFiles";
-            this.rbFiles.Size = new System.Drawing.Size(91, 17);
-            this.rbFiles.TabIndex = 8;
-            this.rbFiles.TabStop = true;
-            this.rbFiles.Text = "Selected Files";
-            this.rbFiles.UseVisualStyleBackColor = true;
+            this.ckbFileList.CheckOnClick = true;
+            this.ckbFileList.FormattingEnabled = true;
+            this.ckbFileList.Location = new System.Drawing.Point(124, 19);
+            this.ckbFileList.Name = "ckbFileList";
+            this.ckbFileList.Size = new System.Drawing.Size(371, 214);
+            this.ckbFileList.TabIndex = 9;
             // 
             // btnChooseFile
             // 
@@ -160,14 +136,27 @@
             this.btnChooseFile.UseVisualStyleBackColor = true;
             this.btnChooseFile.Click += new System.EventHandler(this.btnChooseFile_Click);
             // 
-            // ckbFileList
+            // rbFiles
             // 
-            this.ckbFileList.CheckOnClick = true;
-            this.ckbFileList.FormattingEnabled = true;
-            this.ckbFileList.Location = new System.Drawing.Point(124, 19);
-            this.ckbFileList.Name = "ckbFileList";
-            this.ckbFileList.Size = new System.Drawing.Size(371, 214);
-            this.ckbFileList.TabIndex = 9;
+            this.rbFiles.AutoSize = true;
+            this.rbFiles.Location = new System.Drawing.Point(6, 42);
+            this.rbFiles.Name = "rbFiles";
+            this.rbFiles.Size = new System.Drawing.Size(91, 17);
+            this.rbFiles.TabIndex = 8;
+            this.rbFiles.TabStop = true;
+            this.rbFiles.Text = "Selected Files";
+            this.rbFiles.UseVisualStyleBackColor = true;
+            // 
+            // rbDirectory
+            // 
+            this.rbDirectory.AutoSize = true;
+            this.rbDirectory.Location = new System.Drawing.Point(6, 19);
+            this.rbDirectory.Name = "rbDirectory";
+            this.rbDirectory.Size = new System.Drawing.Size(112, 17);
+            this.rbDirectory.TabIndex = 7;
+            this.rbDirectory.TabStop = true;
+            this.rbDirectory.Text = "Directory Contents";
+            this.rbDirectory.UseVisualStyleBackColor = true;
             // 
             // FileCopier
             // 
@@ -176,7 +165,6 @@
             this.ClientSize = new System.Drawing.Size(526, 457);
             this.Controls.Add(this.gbFiles);
             this.Controls.Add(this.gbStores);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnOK);
             this.Name = "FileCopier";
             this.Text = "File Copier";
@@ -191,7 +179,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RadioButton rbAll;
         private System.Windows.Forms.GroupBox gbStores;
         private System.Windows.Forms.TextBox txtComputers;
