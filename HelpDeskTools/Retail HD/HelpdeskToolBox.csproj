@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>194</ApplicationRevision>
+    <ApplicationRevision>196</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -503,13 +503,41 @@
       <Project>{0361df41-99d6-4336-a6e7-ce0bd1c057ba}</Project>
       <Name>DelayedStartServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\DisableStartupRepair\DisableStartupRepair.csproj">
+      <Project>{428cc281-c7a1-40f7-ae36-4adf6efe6ce7}</Project>
+      <Name>DisableStartupRepair</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\EmailReport\EmailReport.csproj">
       <Project>{9ee5907f-6e60-4f31-a700-590225bd456a}</Project>
       <Name>EmailReport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\ExtractEmployeeTables\ExtractEmployeeTables.csproj">
+      <Project>{eab4d927-7cb1-48f1-b9ff-19e5dc2286b6}</Project>
+      <Name>ExtractEmployeeTables</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\FileCopier\FileCopier.csproj">
+      <Project>{4202c035-b248-4f52-90e3-7441a2b9bb6a}</Project>
+      <Name>FileCopier</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\HotChocolate\HotChocolate.csproj">
+      <Project>{36246984-787e-488d-a591-485191265ba8}</Project>
+      <Name>HotChocolate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\LocalBatFiles\LocalBatFiles.csproj">
+      <Project>{e9062606-3792-47f0-b569-e0ccf9acf020}</Project>
+      <Name>LocalBatFiles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\PeopleCounterCCTVCheck\PeopleCounterCCTVCheck.csproj">
+      <Project>{2f988367-561f-4505-b524-467507b36a9f}</Project>
+      <Name>PeopleCounterCCTVCheck</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\UpdateComputerList\UpdateComputerList.csproj">
       <Project>{5f8edf63-6596-44af-a947-2d85878cb12f}</Project>
       <Name>UpdateComputerList</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\WetSandwich\WetSandwich.csproj">
+      <Project>{092df052-bb79-40d3-8a24-dbfc9af4cda3}</Project>
+      <Name>WetSandwich</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

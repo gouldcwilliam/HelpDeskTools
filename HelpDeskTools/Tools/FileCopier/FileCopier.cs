@@ -60,10 +60,23 @@ namespace FileCopier
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (ckbFileList.CheckedItems.Count>0)
+            DateTime startTime = DateTime.Now;
+
+            if (checkBoxSchedule.Checked)
+            {
+
+                int d = 0; Functions.isNumeric(maskedTextBoxDays.Text, out d);
+                int h = 0; Functions.isNumeric(maskedTextBoxHours.Text, out h);
+                int m = 0; Functions.isNumeric(maskedTextBoxMins.Text, out m);
+                startTime = startTime.AddDays(d);
+                startTime = startTime.AddHours(h);
+                startTime = startTime.AddMinutes(m);
+            }
+
+            if (ckbFileList.CheckedItems.Count > 0)
             {
                 _files.Clear();
-                foreach(string file in ckbFileList.CheckedItems)
+                foreach (string file in ckbFileList.CheckedItems)
                 {
                     _files.Add(file);
                 }
@@ -71,7 +84,7 @@ namespace FileCopier
             else
             {
                 _files.Clear();
-                foreach(string file in ckbFileList.Items)
+                foreach (string file in ckbFileList.Items)
                 {
                     _files.Add(file);
                 }
@@ -79,64 +92,21 @@ namespace FileCopier
 
             if (rbAll.Checked)
             {
-                GetComputersFromAD();
+                _computers = GetComputersFromAD();
             }
             else if (rbList.Checked)
             {
-                GetComputersByList();
+                _computers = GetComputersByList();
             }
 
-            string start = DateTime.Now.ToString();
-            body += start + "<br>";
+            WaitingTask waitingTask = new WaitingTask(_computers,_files, startTime);
+            waitingTask.ShowDialog();
 
-            body += Properties.Settings.Default._EmailTableHead;
-
-            if (_computers.Count() > 0)
-            {
-                FileCopyStatus fileCopyStatus = new FileCopyStatus();
-                fileCopyStatus.progressBarComputer.Maximum = _computers.Count;
-                fileCopyStatus.Show();
-                fileCopyStatus.TopMost = true;
-                for (int i = 0; i < _computers.Count(); i++)
-                {
-                    fileCopyStatus.progressBarComputer.Value = i+1;
-                    if (Shared.Functions.CheckNetwork(_computers[i]))
-                    {
-                        if (_files.Count > 0)
-                        {
-                            fileCopyStatus.progressBarFile.Maximum = _files.Count;
-                            for (int j = 0; j < _files.Count; j++)
-                            {
-                                string file = System.IO.Path.GetFileName(_files[j]);
-                                fileCopyStatus.progressBarFile.Value = j;
-                                try
-                                {
-                                    string dest = string.Format(@"\\{0}\c$\temp\{1}", _computers[i], file);
-                                    System.IO.File.Copy(_files[j], dest, true);
-                                    body += string.Format(Properties.Settings.Default._EmailTableRow, _computers[i], "Files Transfered", file);
-                                }
-                                catch (Exception)
-                                {
-                                    body += string.Format(Properties.Settings.Default._EmailTableRow, _computers[i], "Failed to transfer file", file);
-                                }
-                            }
-                            fileCopyStatus.progressBarFile.Value = _files.Count;
-                        }
-                    }
-                    else { body += string.Format(Properties.Settings.Default._EmailTableRow, _computers[i], "Unable to ping", ""); }
-                }
-                fileCopyStatus.progressBarComputer.Value = _computers.Count;
-                fileCopyStatus.Close();
-            }
-
-            body += Properties.Settings.Default._EmailFooter;
-            body += DateTime.Now.ToString();
-
-            Shared.Functions.SendEmail(Properties.Settings.Default._To, body, Properties.Settings.Default._Subject);
         }
 
-        void GetComputersFromAD()
+        List<string> GetComputersFromAD()
         {
+            List<string> value = new List<string>();
             // Filter results by Object category of Computer and Name and exclude
             string ADSearchFilter =
                 string.Format("(&(objectCategory={0})(&({1}=*SAP1*)(!({1}=*SAPQ*))))",
@@ -153,52 +123,44 @@ namespace FileCopier
                 {
                     foreach (LDAP.Result item in tempResults)
                     {
-                        _computers.Add(item.Value);
+                        value.Add(item.Value);
                     }
 
                 }
             }
+            return value;
         }
-        void GetComputersByList()
-        {
-            if (txtComputers.Text.Trim() == string.Empty) { MessageBox.Show("No Computers Entered", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
+
+
+        List<string> GetComputersByList()
+        {
+            List<string> value = new List<string>();
+            if (txtComputers.Text.Trim() == string.Empty) { MessageBox.Show("No Computers Entered", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return value; }
             foreach (string stringStore in txtComputers.Text.Split(new string[] { " ", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries))
             {
-                if (stringStore.Length > 4)
-                {
-                    _computers.Add(stringStore);
-                }
+                if (stringStore.Length > 4) {  value.Add(stringStore); }
                 else
                 {
                     int store;
                     if (!int.TryParse(stringStore, out store)) { continue; }
-                    // add each computer to list
-                    foreach (DataRow dr in Shared.SQL.dt_SelectComputers(store).Rows) { _computers.Add(dr[0].ToString()); }
+                    foreach (DataRow dr in Shared.SQL.dt_SelectComputers(store).Rows)
+                    {
+                        value.Add(dr[0].ToString());
+                    }
                 }
             }
+            return value;
         }
 
-        bool CopyFiles(string computer)
+
+
+
+
+        private void btnSettings_Click(object sender, EventArgs e)
         {
-            if (_files.Count > 0)
-            {
-                foreach (string file in _files)
-                {
-                    try
-                    {
-                        string dest = string.Format(@"\\{0}\c$\temp\{1}", computer, System.IO.Path.GetFileName(file));
-                        System.IO.File.Copy(file, dest, true);
-                        body += string.Format(Properties.Settings.Default._EmailTableRow, computer, "Files Transfered", file);
-                    }
-                    catch (Exception)
-                    {
-                        body += string.Format(Properties.Settings.Default._EmailTableRow, computer, "Failed to transfer files", file);
-                        return false;
-                    }
-                }
-            }
-            return true;
+            UserSettings userSettings = new UserSettings();
+            userSettings.ShowDialog();
         }
     }
 }

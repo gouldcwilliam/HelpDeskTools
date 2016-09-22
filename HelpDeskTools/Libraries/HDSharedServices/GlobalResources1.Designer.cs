@@ -244,6 +244,16 @@ namespace Shared {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap blueberry_chapstick {
+            get {
+                object obj = ResourceManager.GetObject("blueberry_chapstick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap BOS {
             get {
                 object obj = ResourceManager.GetObject("BOS", resourceCulture);

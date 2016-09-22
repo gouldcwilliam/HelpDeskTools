@@ -91,7 +91,7 @@ namespace Retail_HD
         Forms.EditSettings EditSettings = new Forms.EditSettings();
         Forms.AddNewStore AddNewStore = new Forms.AddNewStore();
         Forms.AdditionalPhone AdditionalPhone = new Forms.AdditionalPhone();
-        Forms.Splash startup = new Forms.Splash();
+        Forms.Splash startup = new Forms.Splash(GlobalResources.wat_help);
         Forms.IPs ips = new Forms.IPs();
         Forms.EditCalls editCalls = new Forms.EditCalls();
         Forms.StoreNotes storeNotes = new Forms.StoreNotes();
@@ -132,12 +132,18 @@ namespace Retail_HD
 
             switch(Environment.UserName.ToUpper())
             {
+                case "BERLINJE":
+                    startup = new Forms.Splash(GlobalResources.blueberry_chapstick);
+                    Shared.SQLSettings.Default._Database = "RetailHD";
+                    break;
                 case "PERSINER":
+                    startup = new Forms.Splash(GlobalResources.Finger);
+                    Shared.SQLSettings.Default._Database = "RetailHD";
+                    break;
                 case "WITTCHR":
                 case "SHUTICAN":
                 case "BERGMAJA":
                 case "NEDDMI":
-                case "BERLINJE":
                 case "GOULDCH":
                     Shared.SQLSettings.Default._Database = "RetailHD";
                     break;
@@ -145,6 +151,8 @@ namespace Retail_HD
                     Shared.SQLSettings.Default._Database = "Specialists";
                     break;
             }
+
+            if (!System.Diagnostics.Debugger.IsAttached) { startup.ShowDialog(); }
 
             
             // Prompts for Finesse login
@@ -154,7 +162,7 @@ namespace Retail_HD
             ConfirmAgentLogin.btnOK.Text = "Yes";
             ConfirmAgentLogin.btnCancel.Text = "No";
             //if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
-            if (DialogResult.OK != ConfirmAgentLogin.ShowDialog() || System.Diagnostics.Debugger.IsAttached)
+            if(System.Diagnostics.Debugger.IsAttached || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
             {
                 _AgentLoginEnabled = false;
                 ts_Top_tsb_Logout.Enabled = false;
@@ -915,6 +923,31 @@ namespace Retail_HD
             ServicesUC.Visible = false;
         }
 
+
+        private void Journal_Click(object sender, EventArgs e)
+        {
+            //Functions.BrowseComputer(Info.reg1, @"Program Files\SAP\Retail Systems\Xpress Server\sdata");
+            Cursor oldCursor = Cursor;
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                List<string> tempFiles = new List<string>();
+                List<string> files = new List<string>();
+
+                tempFiles.AddRange(System.IO.Directory.GetFiles(string.Format(@"\\{0}\C$\Program Files\SAP\Retail Systems\Xpress Server\sdata", Info.reg1), "*.jrn", SearchOption.AllDirectories));
+
+                foreach (string file in tempFiles) { Console.WriteLine(file); }
+
+                foreach (string computer in _computers)
+                {
+                    files.Add(tempFiles.Find(x => x.Contains(Info.store.ToString() + "0" + computer.Substring(11, 1))));
+                }
+                foreach (string file in files) { System.Diagnostics.Process.Start("NOTEPAD", file); }
+            }
+            catch (Exception) {; }
+            Cursor = oldCursor;
+        }
 
 
 
@@ -1861,6 +1894,8 @@ namespace Retail_HD
             Forms.StoreInfoAddEdit storeInfoAddEdit = new Forms.StoreInfoAddEdit();
             storeInfoAddEdit.Show();
         }
+
+
     }
 
     public class WrapUpInvokeEventArgs : EventArgs

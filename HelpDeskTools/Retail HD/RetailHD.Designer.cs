@@ -144,6 +144,7 @@
             this.bgwWrapUp = new System.ComponentModel.BackgroundWorker();
             this.ServicesUC = new Retail_HD.UCs.ServicesControl();
             this.PingUC = new Retail_HD.UCs.PingControl();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpStore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RecentCalls_dgv)).BeginInit();
             this.ss_Bottom_.SuspendLayout();
@@ -1406,11 +1407,26 @@
             this.PingUC.Visible = false;
             this.PingUC.VisibleChanged += new System.EventHandler(this.Ping_UC_VisibleChanged);
             // 
+            // button1
+            // 
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button1.Location = new System.Drawing.Point(12, 443);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 24);
+            this.button1.TabIndex = 73;
+            this.button1.Text = "Journal";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Journal_Click);
+            // 
             // RetailHD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 471);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ServicesUC);
             this.Controls.Add(this.PingUC);
             this.Controls.Add(this.groupBox3);
@@ -1752,6 +1768,7 @@
 		private System.Windows.Forms.ToolStripButton ts_Top_tsb_Refresh;
         private System.ComponentModel.BackgroundWorker bgwWrapUp;
         private System.Windows.Forms.ToolStripButton ts_Top_tsb_Register_Order;
+        public System.Windows.Forms.Button button1;
     }
 }
 
