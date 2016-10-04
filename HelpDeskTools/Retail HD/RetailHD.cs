@@ -1652,17 +1652,19 @@ namespace Retail_HD
         /// <param name="e"></param>
         private void MainText_DoubleClick(object sender, EventArgs e)
         {
-            DataTable dt = Shared.SQL.dt_SelectStore(Info.store);
-            if (dt.Rows.Count == 1)
-            {
-                Forms.EditStoreInfo editStoreInfo = new Forms.EditStoreInfo();
-                editStoreInfo.ShowDialog();
-            }
-            else
-            {
-                Forms.AddNewStore addStore = new Forms.AddNewStore(Info.store.ToString());
-                addStore.ShowDialog();
-            }
+            Forms.StoreInfoAddEdit storeInfo = new Forms.StoreInfoAddEdit();
+            storeInfo.ShowDialog();
+            //DataTable dt = Shared.SQL.dt_SelectStore(Info.store);
+            //if (dt.Rows.Count == 1)
+            //{
+            //    Forms.EditStoreInfo editStoreInfo = new Forms.EditStoreInfo();
+            //    editStoreInfo.ShowDialog();
+            //}
+            //else
+            //{
+            //    Forms.AddNewStore addStore = new Forms.AddNewStore(Info.store.ToString());
+            //    addStore.ShowDialog();
+            //}
             UpdateInfo();
         }
 

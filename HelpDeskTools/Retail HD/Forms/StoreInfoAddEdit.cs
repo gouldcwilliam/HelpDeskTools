@@ -25,7 +25,6 @@ namespace Retail_HD.Forms
             textBoxCity.Text = Info.city;
             textBoxState.Text = Info.state;
             comboBoxTimeZone.Text = Info.TZ;
-            textBoxPhones.Text = Info.phone;
             textBoxFirst.Text = Info._first;
             textBoxSecond.Text = Info._second;
             textBoxThird.Text = Info._third;
@@ -50,7 +49,7 @@ namespace Retail_HD.Forms
             textBoxDM.Text = Info.dm;
             textBoxRM.Text = Info.rm;
 
-            /*
+
             System.Data.DataTable dt = Shared.SQL.Select("select * from stores where store=" + Info.store.ToString());
             if (dt.Rows.Count > 0)
             {
@@ -64,7 +63,15 @@ namespace Retail_HD.Forms
                 newStore = true;
                 if (Info.store != 0) { textBoxStore.Text = Info.store.ToString(); }
             }
-            */
+            //textBoxPhones.Text = Info.phone;
+            dt = Shared.SQL.Select("select * from phones where store=" + Info.store.ToString() + " order by [line]");
+            if(dt.Rows.Count>0)
+            {
+                foreach(DataRow dr in dt.Rows)
+                {
+                    textBoxPhones.Text += dr[0].ToString()+Environment.NewLine;
+                }
+            }
 
             // Debug info
             if (System.Diagnostics.Debugger.IsAttached)
@@ -80,17 +87,45 @@ namespace Retail_HD.Forms
 
             if (changesMade)
             {
-                
+                string sql = "";
+                if(newStore)
+                {
+                    sql = string.Format("insert into [Stores] ([name],[store],[address],[city],[state],[TZ],[1st],[2nd],[3rd],[lan1],[lan2],[lan3],[lan4],[gate1],[gate2],[gate3],[gate4],[MP],[SVS],[BAMS],[TID1],[TID2],[TID3],[TID4],[cctv],[type],[manager],[dm],[rm]) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}')",
+                        textBoxName.Text, textBoxStore.Text, textBoxAddress.Text, textBoxCity.Text, textBoxState.Text, comboBoxTimeZone.Text, textBoxFirst.Text, textBoxSecond.Text,textBoxThird.Text,textBoxPOS.Text,textBoxSensor.Text,textBoxLAN3.Text,
+                        textBoxMIM.Text,textBoxPOSGate.Text,textBoxSensorGate.Text,textBoxLan3Gate.Text,textBoxMIMGate.Text,textBoxGTT.Text, textBoxSVS.Text, textBoxBAMS.Text,textBoxTID1.Text,textBoxTID2.Text,textBoxTID3.Text,textBoxTID4.Text,
+                        textBoxCCTV1.Text, textBoxType.Text, textBoxManager.Text,textBoxDM.Text,textBoxRM.Text
+                        );
+                    //Console.WriteLine(sql);
+                    Console.WriteLine(Shared.SQL.Insert(sql));
+                    //foreach (string phone in textBoxPhones.Text.Split(new string[] { " ", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries))
+                    //{
+                    //    Shared.SQL.Insert(string.Format("insert into [Phones]([phone],[store]) values ('{0}','{1}')", textBoxStore.Text, phone));
+                    //    Console.WriteLine(phone);
+                    //}
+                }
+                else
+                {
+                    sql = string.Format("update [Stores] set [name]='{0}',[address]='{2}',[city]='{3}',[state]='{4}',[TZ]='{5}',[1st]='{6}',[2nd]='{7}',[3rd]='{8}',[lan1]='{9}',[lan2]='{10}',[lan3]='{11}',[lan4]='{12}',[gate1]='{13}',[gate2]='{14}',[gate3]='{15}',[gate4]='{16}',[MP]='{17}',[SVS]='{18}',[BAMS]='{19}',[TID1]='{20}',[TID2]='{21}',[TID3]='{22}',[TID4]='{23}',[cctv]='{24}',[type]='{25}',[manager]='{26}',[dm]='{27}',[rm]='{28}' where store='{1}'",
+                        textBoxName.Text, textBoxStore.Text, textBoxAddress.Text, textBoxCity.Text, textBoxState.Text, comboBoxTimeZone.Text, textBoxFirst.Text, textBoxSecond.Text, textBoxThird.Text, textBoxPOS.Text, textBoxSensor.Text, textBoxLAN3.Text,
+                        textBoxMIM.Text, textBoxPOSGate.Text, textBoxSensorGate.Text, textBoxLan3Gate.Text, textBoxMIMGate.Text, textBoxGTT.Text, textBoxSVS.Text, textBoxBAMS.Text, textBoxTID1.Text, textBoxTID2.Text, textBoxTID3.Text, textBoxTID4.Text,
+                        textBoxCCTV1.Text, textBoxType.Text, textBoxManager.Text, textBoxDM.Text, textBoxRM.Text
+                        );
+                    //Console.WriteLine(sql);
+                    Console.WriteLine(Shared.SQL.Insert(sql));
+                    //Shared.SQL.Delete(string.Format("delete from [phones] where [store]='{0}'", textBoxStore.Text));
+                    //foreach (string phone in textBoxPhones.Text.Split(new string[] { " ", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries))
+                    //{
+                    //    Shared.SQL.Insert(string.Format("insert into [Phones]([phone],[store]) values ('{0}','{1}')", textBoxStore.Text, phone));
+                    //    Console.WriteLine(phone);
+                    //}
+                }
             }
-            /*
-                UPDATE MyTable SET FieldA=@FieldA WHERE Key=@Key
-                IF @@ROWCOUNT = 0
-                INSERT INTO MyTable(FieldA) VALUES(@FieldA)
-            */
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 Console.WriteLine("Changes Made: {0}", changesMade);
             }
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void textBox_Changed(object sender, EventArgs e)
@@ -98,5 +133,10 @@ namespace Retail_HD.Forms
             changesMade = true;
         }
 
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

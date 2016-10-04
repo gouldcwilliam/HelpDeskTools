@@ -232,6 +232,7 @@
             this.groupBox7.TabIndex = 5;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Phone(s)";
+            this.groupBox7.Visible = false;
             // 
             // textBoxPhones
             // 
@@ -239,7 +240,7 @@
             this.textBoxPhones.Location = new System.Drawing.Point(3, 16);
             this.textBoxPhones.Multiline = true;
             this.textBoxPhones.Name = "textBoxPhones";
-            this.textBoxPhones.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBoxPhones.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBoxPhones.Size = new System.Drawing.Size(141, 57);
             this.textBoxPhones.TabIndex = 0;
             this.textBoxPhones.TextChanged += new System.EventHandler(this.textBox_Changed);
@@ -573,6 +574,7 @@
             this.buttonCancel.TabIndex = 12;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonSave
             // 

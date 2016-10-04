@@ -241,6 +241,7 @@ namespace Retail_HD.Forms
                     string args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -stop", computer);
                     Shared.Functions.ExecuteCommand("WINRS", args, false, false);
                     Functions.LocalCMD(computer);
+                    Functions.ConnectWithDW(computer);
                 }
 
                 if (ckbFastPrinter.Checked)

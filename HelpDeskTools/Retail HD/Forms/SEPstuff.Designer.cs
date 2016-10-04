@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SEPstuff));
             this.btnOK = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
@@ -51,7 +50,8 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(529, 112);
             this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.richTextBox1.Text = "\"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -stop\n\n5Ym4nT3c5Ym4n" +
+    "T3c\n\n\\temp\\Symantec_Endpoint_Protection_12.1.6_MP5_Win32-bit_Client_EN\n";
             // 
             // SEPstuff
             // 
