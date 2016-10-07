@@ -610,6 +610,10 @@ namespace Shared
             {
                 Process altiris = Process.Start(@"C:\Program Files\SolarWinds\DameWare Remote Support\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
             }
+            else if (File.Exists(@"C:\Program Files\SolarWinds\DameWare Mini Remote Control x64\dwrcc.exe"))
+            {
+                Process altiris = Process.Start(@"C:\Program Files\SolarWinds\DameWare Mini Remote Control x64\dwrcc.exe", @"-c: -h: -a:1 -x: -m:" + computer);
+            }
             else
             {
                 System.Windows.Forms.MessageBox.Show("Unable to launch DameWare Remote Control Center\nVerify that it is installed and using the default instalation path", "DameWare Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
