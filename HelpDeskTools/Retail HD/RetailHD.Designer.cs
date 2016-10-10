@@ -1469,7 +1469,6 @@
             this.Controls.Add(this.grpStore);
             this.Controls.Add(this.clbComputers);
             this.Controls.Add(this.RecentCalls_dgv);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.ms_Top;
             this.MinimumSize = new System.Drawing.Size(869, 509);
