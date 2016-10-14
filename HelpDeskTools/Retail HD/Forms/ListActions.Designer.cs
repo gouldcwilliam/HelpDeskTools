@@ -51,6 +51,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.ckbOpenProgram = new System.Windows.Forms.CheckBox();
             this.gbProgram = new System.Windows.Forms.GroupBox();
+            this.ckbPing = new System.Windows.Forms.CheckBox();
             this.ckbCMD = new System.Windows.Forms.CheckBox();
             this.ckbDameware = new System.Windows.Forms.CheckBox();
             this.ckbMulti = new System.Windows.Forms.CheckBox();
@@ -76,7 +77,7 @@
             this.btnShowOutput = new System.Windows.Forms.Button();
             this.btnClearOut = new System.Windows.Forms.Button();
             this.ckbSEP = new System.Windows.Forms.CheckBox();
-            this.ckbPing = new System.Windows.Forms.CheckBox();
+            this.ckbSepOnline = new System.Windows.Forms.CheckBox();
             this.gbRegister.SuspendLayout();
             this.gbProgram.SuspendLayout();
             this.gbAction.SuspendLayout();
@@ -296,6 +297,16 @@
             this.gbProgram.TabStop = false;
             this.gbProgram.Text = "Program";
             this.gbProgram.Visible = false;
+            // 
+            // ckbPing
+            // 
+            this.ckbPing.AutoSize = true;
+            this.ckbPing.Location = new System.Drawing.Point(195, 19);
+            this.ckbPing.Name = "ckbPing";
+            this.ckbPing.Size = new System.Drawing.Size(47, 17);
+            this.ckbPing.TabIndex = 3;
+            this.ckbPing.Text = "Ping";
+            this.ckbPing.UseVisualStyleBackColor = true;
             // 
             // ckbCMD
             // 
@@ -575,15 +586,15 @@
             this.ckbSEP.Text = "Update SEP";
             this.ckbSEP.UseVisualStyleBackColor = true;
             // 
-            // ckbPing
+            // ckbSepOnline
             // 
-            this.ckbPing.AutoSize = true;
-            this.ckbPing.Location = new System.Drawing.Point(195, 19);
-            this.ckbPing.Name = "ckbPing";
-            this.ckbPing.Size = new System.Drawing.Size(47, 17);
-            this.ckbPing.TabIndex = 3;
-            this.ckbPing.Text = "Ping";
-            this.ckbPing.UseVisualStyleBackColor = true;
+            this.ckbSepOnline.AutoSize = true;
+            this.ckbSepOnline.Location = new System.Drawing.Point(12, 495);
+            this.ckbSepOnline.Name = "ckbSepOnline";
+            this.ckbSepOnline.Size = new System.Drawing.Size(115, 17);
+            this.ckbSepOnline.TabIndex = 30;
+            this.ckbSepOnline.Text = "SEP -updateconfig";
+            this.ckbSepOnline.UseVisualStyleBackColor = true;
             // 
             // ListActions
             // 
@@ -592,6 +603,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(854, 565);
+            this.Controls.Add(this.ckbSepOnline);
             this.Controls.Add(this.ckbSEP);
             this.Controls.Add(this.btnClearOut);
             this.Controls.Add(this.btnShowOutput);
@@ -715,5 +727,6 @@
         private System.Windows.Forms.CheckBox ckb6;
         private System.Windows.Forms.CheckBox ckbSEP;
         private System.Windows.Forms.CheckBox ckbPing;
+        private System.Windows.Forms.CheckBox ckbSepOnline;
     }
 }

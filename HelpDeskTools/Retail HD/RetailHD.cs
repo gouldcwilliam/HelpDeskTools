@@ -132,10 +132,6 @@ namespace Retail_HD
 
             switch(Environment.UserName.ToUpper())
             {
-                case "BERLINJE":
-                    startup = new Forms.Splash(GlobalResources.blueberry_chapstick);
-                    Shared.SQLSettings.Default._Database = "RetailHD";
-                    break;
                 case "PERSINER":
                     startup = new Forms.Splash(GlobalResources.Finger);
                     Shared.SQLSettings.Default._Database = "RetailHD";
@@ -144,6 +140,7 @@ namespace Retail_HD
                 case "SHUTICAN":
                 case "BERGMAJA":
                 case "NEDDMI":
+                case "WHITEBR":
                 case "GOULDCH":
                     Shared.SQLSettings.Default._Database = "RetailHD";
                     break;

@@ -290,6 +290,12 @@ namespace Retail_HD.Forms
                     }
                 }
 
+                if(ckbSepOnline.Checked)
+                {
+                    string args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -updateconfig", computer);
+                    Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+                }
+
                 if (ckbWSAdmin.Checked)
                 {
                     if (Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin))

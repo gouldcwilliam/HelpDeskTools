@@ -59,7 +59,9 @@ namespace WetSandwich
 
             body += "Multi Version: ";
             foreach (string multiVersion in Settings.Default.multiVersions) { body += multiVersion + " "; } body += "<br>";
+            body += "RedIron Version: ";
             foreach (string redIronVersion in Settings.Default.redIronVersions) { body += redIronVersion + " "; } body += "<br>";
+            body += "Verifone Version: ";
             foreach (string vfVersion in Settings.Default.vfVersions) { body += vfVersion; } body += "<br>";
             body += "POS Build Version: " + Settings.Default.buildVersion + "<br>";
 			body += Settings.Default.tableHead;
