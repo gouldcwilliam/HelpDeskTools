@@ -52,7 +52,7 @@ namespace PeopleCounterCCTVCheck
             //exclusions.AddRange(Functions.GetIgnoreList(excludes));
 
             listIPInfo = new List<IPInfo>();
-            dt = Shared.SQL.Select("SELECT [store], [1st], [2nd], [3rd], [gate2], [cctv] FROM [Stores] WHERE [open] = 1 AND NOT [cctv] IS NULL");
+            dt = Shared.SQL.Select("SELECT [store], [1st], [2nd], [3rd], [gate2], [cctv] FROM [Stores] WHERE [open] = 1 AND NOT [cctv] IS NULL AND NOT [cctv] =''");
             foreach (System.Data.DataRow dr in dt.Rows)
             {
                 string Gate = dr["1st"].ToString() + "." + dr["2nd"].ToString() + "." + dr["3rd"].ToString() + "." + dr["gate2"].ToString();
@@ -61,6 +61,7 @@ namespace PeopleCounterCCTVCheck
             foreach(string store in exclusions) { listIPInfo.RemoveAll(x => x.Store == store); }
             foreach(IPInfo ipInfo in listIPInfo)
             {
+                if (ipInfo.IP == "") { continue; }
                 if (!Functions.CheckNetwork(ipInfo.IP))
                 {
                     if (!Functions.CheckNetwork(ipInfo.IP))
