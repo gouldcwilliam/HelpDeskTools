@@ -676,7 +676,7 @@ namespace Retail_HD
         private void Buttons_Dameware_Click(object sender, EventArgs e)
         {
             PingUC.Visible = false; ServicesUC.Visible = false;
-            if (Info.reg1 == string.Empty) { return; }
+            //if (Info.reg1 == string.Empty) { return; }
             Functions.ConnectWithDW(_computers);
         }
 
