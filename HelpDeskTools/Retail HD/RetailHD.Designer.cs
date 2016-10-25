@@ -202,7 +202,7 @@
             this.clbComputers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clbComputers.Location = new System.Drawing.Point(96, 50);
             this.clbComputers.Name = "clbComputers";
-            this.clbComputers.Size = new System.Drawing.Size(119, 79);
+            this.clbComputers.Size = new System.Drawing.Size(144, 94);
             this.clbComputers.Sorted = true;
             this.clbComputers.TabIndex = 1;
             this.clbComputers.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbComputers_ItemCheck);
@@ -225,7 +225,7 @@
             this.RecentCalls_dgv.ReadOnly = true;
             this.RecentCalls_dgv.RowHeadersVisible = false;
             this.RecentCalls_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RecentCalls_dgv.Size = new System.Drawing.Size(742, 266);
+            this.RecentCalls_dgv.Size = new System.Drawing.Size(767, 266);
             this.RecentCalls_dgv.TabIndex = 5;
             this.RecentCalls_dgv.TabStop = false;
             this.RecentCalls_dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.RecentCalls_dgv_DataBindingComplete);
@@ -248,7 +248,7 @@
             this.ss_Bottom_ssl_UserCalls,
             this.toolStripStatusLabel6,
             this.ss_Bottom_ssl_TeamCalls});
-            this.ss_Bottom_.Location = new System.Drawing.Point(338, 448);
+            this.ss_Bottom_.Location = new System.Drawing.Point(363, 448);
             this.ss_Bottom_.Name = "ss_Bottom_";
             this.ss_Bottom_.Size = new System.Drawing.Size(500, 22);
             this.ss_Bottom_.SizingGrip = false;
@@ -511,7 +511,7 @@
             // 
             this.gbName.Controls.Add(this.txtName);
             this.gbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbName.Location = new System.Drawing.Point(378, 116);
+            this.gbName.Location = new System.Drawing.Point(403, 115);
             this.gbName.Name = "gbName";
             this.gbName.Size = new System.Drawing.Size(170, 30);
             this.gbName.TabIndex = 60;
@@ -536,7 +536,7 @@
             // 
             this.gbIP.Controls.Add(this.txtIP);
             this.gbIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIP.Location = new System.Drawing.Point(395, 83);
+            this.gbIP.Location = new System.Drawing.Point(420, 82);
             this.gbIP.Name = "gbIP";
             this.gbIP.Size = new System.Drawing.Size(145, 30);
             this.gbIP.TabIndex = 56;
@@ -560,7 +560,7 @@
             // 
             this.gbManager.Controls.Add(this.txtManager);
             this.gbManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbManager.Location = new System.Drawing.Point(310, 50);
+            this.gbManager.Location = new System.Drawing.Point(335, 49);
             this.gbManager.Name = "gbManager";
             this.gbManager.Size = new System.Drawing.Size(122, 30);
             this.gbManager.TabIndex = 52;
@@ -585,7 +585,7 @@
             // 
             this.gbZip.Controls.Add(this.txtZip);
             this.gbZip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbZip.Location = new System.Drawing.Point(773, 83);
+            this.gbZip.Location = new System.Drawing.Point(798, 82);
             this.gbZip.Name = "gbZip";
             this.gbZip.Size = new System.Drawing.Size(68, 30);
             this.gbZip.TabIndex = 62;
@@ -610,7 +610,7 @@
             // 
             this.gbState.Controls.Add(this.txtState);
             this.gbState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbState.Location = new System.Drawing.Point(717, 83);
+            this.gbState.Location = new System.Drawing.Point(742, 82);
             this.gbState.Name = "gbState";
             this.gbState.Size = new System.Drawing.Size(56, 30);
             this.gbState.TabIndex = 61;
@@ -634,7 +634,7 @@
             // 
             this.gbDM.Controls.Add(this.txtDM);
             this.gbDM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDM.Location = new System.Drawing.Point(221, 116);
+            this.gbDM.Location = new System.Drawing.Point(246, 115);
             this.gbDM.Name = "gbDM";
             this.gbDM.Size = new System.Drawing.Size(157, 30);
             this.gbDM.TabIndex = 53;
@@ -645,7 +645,7 @@
             // 
             this.gbCity.Controls.Add(this.txtCity);
             this.gbCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbCity.Location = new System.Drawing.Point(540, 83);
+            this.gbCity.Location = new System.Drawing.Point(565, 82);
             this.gbCity.Name = "gbCity";
             this.gbCity.Size = new System.Drawing.Size(177, 30);
             this.gbCity.TabIndex = 57;
@@ -656,7 +656,7 @@
             // 
             this.gbAddress.Controls.Add(this.txtAddress);
             this.gbAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAddress.Location = new System.Drawing.Point(633, 50);
+            this.gbAddress.Location = new System.Drawing.Point(658, 49);
             this.gbAddress.Name = "gbAddress";
             this.gbAddress.Size = new System.Drawing.Size(208, 30);
             this.gbAddress.TabIndex = 54;
@@ -693,7 +693,7 @@
             // 
             this.gbType.Controls.Add(this.txtType);
             this.gbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbType.Location = new System.Drawing.Point(548, 116);
+            this.gbType.Location = new System.Drawing.Point(573, 115);
             this.gbType.Name = "gbType";
             this.gbType.Size = new System.Drawing.Size(132, 30);
             this.gbType.TabIndex = 59;
@@ -718,7 +718,7 @@
             // 
             this.gbMpId.Controls.Add(this.txtMpId);
             this.gbMpId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbMpId.Location = new System.Drawing.Point(432, 50);
+            this.gbMpId.Location = new System.Drawing.Point(457, 49);
             this.gbMpId.Name = "gbMpId";
             this.gbMpId.Size = new System.Drawing.Size(58, 30);
             this.gbMpId.TabIndex = 58;
@@ -743,7 +743,7 @@
             // 
             this.gbTZ.Controls.Add(this.txtTZ);
             this.gbTZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTZ.Location = new System.Drawing.Point(799, 116);
+            this.gbTZ.Location = new System.Drawing.Point(824, 115);
             this.gbTZ.Name = "gbTZ";
             this.gbTZ.Size = new System.Drawing.Size(42, 30);
             this.gbTZ.TabIndex = 63;
@@ -754,7 +754,7 @@
             // 
             this.gbEmail.Controls.Add(this.txtEmail);
             this.gbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbEmail.Location = new System.Drawing.Point(221, 83);
+            this.gbEmail.Location = new System.Drawing.Point(246, 82);
             this.gbEmail.Name = "gbEmail";
             this.gbEmail.Size = new System.Drawing.Size(174, 30);
             this.gbEmail.TabIndex = 55;
@@ -793,7 +793,7 @@
             // 
             this.grpPhone.Controls.Add(this.txtPhone);
             this.grpPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpPhone.Location = new System.Drawing.Point(221, 50);
+            this.grpPhone.Location = new System.Drawing.Point(246, 49);
             this.grpPhone.Name = "grpPhone";
             this.grpPhone.Size = new System.Drawing.Size(89, 30);
             this.grpPhone.TabIndex = 51;
@@ -846,7 +846,7 @@
             this.ts_Top_tsb_Register_Order});
             this.ts_Top.Location = new System.Drawing.Point(0, 24);
             this.ts_Top.Name = "ts_Top";
-            this.ts_Top.Size = new System.Drawing.Size(853, 22);
+            this.ts_Top.Size = new System.Drawing.Size(878, 22);
             this.ts_Top.TabIndex = 69;
             this.ts_Top.Text = "toolStrip1";
             this.ts_Top.Click += new System.EventHandler(this.Main_Click);
@@ -1047,7 +1047,7 @@
             // 
             this.groupBox1.Controls.Add(this.txtIncome);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(490, 50);
+            this.groupBox1.Location = new System.Drawing.Point(515, 49);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(93, 30);
             this.groupBox1.TabIndex = 70;
@@ -1071,7 +1071,7 @@
             // 
             this.groupBox2.Controls.Add(this.txtRank);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(583, 50);
+            this.groupBox2.Location = new System.Drawing.Point(608, 49);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(50, 30);
             this.groupBox2.TabIndex = 71;
@@ -1095,7 +1095,7 @@
             // 
             this.gbSVS.Controls.Add(this.txtSVS);
             this.gbSVS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbSVS.Location = new System.Drawing.Point(224, 149);
+            this.gbSVS.Location = new System.Drawing.Point(249, 148);
             this.gbSVS.Name = "gbSVS";
             this.gbSVS.Size = new System.Drawing.Size(122, 30);
             this.gbSVS.TabIndex = 61;
@@ -1119,7 +1119,7 @@
             // 
             this.gbBAMS.Controls.Add(this.txtBAMS);
             this.gbBAMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbBAMS.Location = new System.Drawing.Point(96, 149);
+            this.gbBAMS.Location = new System.Drawing.Point(121, 148);
             this.gbBAMS.Name = "gbBAMS";
             this.gbBAMS.Size = new System.Drawing.Size(128, 30);
             this.gbBAMS.TabIndex = 62;
@@ -1143,7 +1143,7 @@
             // 
             this.gbTID1.Controls.Add(this.txtTID1);
             this.gbTID1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTID1.Location = new System.Drawing.Point(346, 149);
+            this.gbTID1.Location = new System.Drawing.Point(371, 148);
             this.gbTID1.Name = "gbTID1";
             this.gbTID1.Size = new System.Drawing.Size(128, 30);
             this.gbTID1.TabIndex = 62;
@@ -1167,7 +1167,7 @@
             // 
             this.gbTID2.Controls.Add(this.txtTID2);
             this.gbTID2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTID2.Location = new System.Drawing.Point(474, 149);
+            this.gbTID2.Location = new System.Drawing.Point(499, 148);
             this.gbTID2.Name = "gbTID2";
             this.gbTID2.Size = new System.Drawing.Size(128, 30);
             this.gbTID2.TabIndex = 62;
@@ -1191,7 +1191,7 @@
             // 
             this.gbTID3.Controls.Add(this.txtTID3);
             this.gbTID3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTID3.Location = new System.Drawing.Point(602, 149);
+            this.gbTID3.Location = new System.Drawing.Point(627, 148);
             this.gbTID3.Name = "gbTID3";
             this.gbTID3.Size = new System.Drawing.Size(126, 30);
             this.gbTID3.TabIndex = 62;
@@ -1215,7 +1215,7 @@
             // 
             this.gbTID4.Controls.Add(this.txtTID4);
             this.gbTID4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTID4.Location = new System.Drawing.Point(729, 149);
+            this.gbTID4.Location = new System.Drawing.Point(754, 148);
             this.gbTID4.Name = "gbTID4";
             this.gbTID4.Size = new System.Drawing.Size(112, 30);
             this.gbTID4.TabIndex = 62;
@@ -1334,7 +1334,7 @@
             this.ms_Top.Location = new System.Drawing.Point(0, 0);
             this.ms_Top.Name = "ms_Top";
             this.ms_Top.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.ms_Top.Size = new System.Drawing.Size(853, 24);
+            this.ms_Top.Size = new System.Drawing.Size(878, 24);
             this.ms_Top.TabIndex = 7;
             this.ms_Top.Text = "mnuTop";
             this.ms_Top.Click += new System.EventHandler(this.Main_Click);
@@ -1363,7 +1363,7 @@
             // 
             this.groupBox3.Controls.Add(this.txtRM);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(680, 116);
+            this.groupBox3.Location = new System.Drawing.Point(705, 115);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(119, 30);
             this.groupBox3.TabIndex = 72;
@@ -1425,7 +1425,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(853, 471);
+            this.ClientSize = new System.Drawing.Size(878, 471);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ServicesUC);
             this.Controls.Add(this.PingUC);

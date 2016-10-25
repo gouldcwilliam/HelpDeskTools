@@ -78,7 +78,19 @@ namespace UpdateComputerList
 				InsertIntoTable(Properties.Settings.Default._tableName, result.Value, "9999");
 			}
 
-			InsertIntoTable(Properties.Settings.Default._tableName, "SAPTESTLAB", "9999");
+            searchResults.Clear();
+            ADFilter =
+                string.Format("(objectCategory={0})",
+                LDAP.ObjectClasses.Computer,
+                LDAP.ObjectAttribute.ComputerName);
+            searchResults = AD.SearchAD("LDAP://OU=Retail,OU=Workstations,OU=WW,DC=wwwint,DC=corp", ADFilter, LDAP.ObjectAttribute.ComputerName);
+
+            foreach (LDAP.Result result in searchResults)
+            {
+                InsertIntoTable(Properties.Settings.Default._tableName, result.Value, "9999");
+            }
+
+            //InsertIntoTable(Properties.Settings.Default._tableName, "SAPTESTLAB", "9999");
             Console.WriteLine("Defaulting Open Status: {0}", ExecuteNonQuery(Properties.Settings.Default._setAllOpen));
             Console.WriteLine("Setting Status to closed for stores without computers: {0}", ExecuteNonQuery(Properties.Settings.Default._setClosedStores));
 			Console.Write("\nCompleted....");
