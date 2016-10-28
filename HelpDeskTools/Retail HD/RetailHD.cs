@@ -70,7 +70,7 @@ namespace Retail_HD
         bool _AgentLoginEnabled = false;
         bool _NetworkEnabled { get; set; }
         bool hasRun = false;
-
+        Timer _loadWait = new Timer();
 
         List<Computer> _computers
         {
@@ -111,15 +111,6 @@ namespace Retail_HD
             PingUC.btnOK.Click += PingUC_OK_Click;
             ServicesUC.btnOK.Click += ServicesUC_OK_Click;
 
-            Shared.Functions.CreateTempFolder(true);
-            Shared.Functions.InstallPSTools();
-            Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batServices, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices) ? "Updated local version of " + Shared.Settings.Default._BatServices : "Unable to update local version of " + Shared.Settings.Default._BatServices);
-            Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock) ? "Updated local version of " + Shared.Settings.Default._BatUnlock : "Unable to update local version of " + Shared.Settings.Default._BatUnlock);
-            Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batInstallEndpoint12, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint) ? "Updated local version of " + Shared.Settings.Default._BatEndpoint : "Unable to update local version of " + Shared.Settings.Default._BatEndpoint);
-            Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.argsXML, Shared.Settings.Default._TempPath + "args.xml") ? "Updated local version of args.xml" : "Unable to update local version of args.xml");
-            Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.Zip_Logs, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip) ? "Updated local version of " + Shared.Settings.Default._BatZip : "Unable to update local version of " + Shared.Settings.Default._BatZip);
-            Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.Zipper, Shared.Settings.Default._TempPath + Shared.Settings.Default._PSZip) ? "Updated local version of " + Shared.Settings.Default._PSZip : "Unable to update local version of " + Shared.Settings.Default._PSZip);
-            Console.WriteLine(Shared.Functions.WriteFile(Shared.GlobalResources.batWSAdmin, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin) ? "Updated local version of " + Shared.Settings.Default._WSAdmin : "Unable to update local version of " + Shared.Settings.Default._WSAdmin);
 
             _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
 
@@ -1582,20 +1573,23 @@ namespace Retail_HD
         /// <param name="e"></param>
         private void Main_FormShown(object sender, EventArgs e)
         {
-            if (_NetworkEnabled) { UpdateWrapUpTotal(); }
-            if (Properties.Settings.Default._DrawingSize != null)
-            {
-                Size = Properties.Settings.Default._DrawingSize;
-            }
-
+            _loadWait.Interval = 200;
+            _loadWait.Tick += _loadWait_Tick;
+            _loadWait.Start();
         }
 
-        /// <summary> Methods when the form is loaded
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Main_Load(object sender, EventArgs e)
+        private void _loadWait_Tick(object sender, EventArgs e)
         {
+            Shared.Functions.CreateTempFolder(true);
+            Shared.Functions.InstallPSTools();
+            Shared.Functions.CheckForFiles(Shared.GlobalResources.batServices, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices);
+            Shared.Functions.CheckForFiles(Shared.GlobalResources.batUnlock, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatUnlock);
+            Shared.Functions.CheckForFiles(Shared.GlobalResources.batInstallEndpoint12, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatEndpoint);
+            Shared.Functions.CheckForFiles(Shared.GlobalResources.argsXML, Shared.Settings.Default._TempPath + "args.xml");
+            Shared.Functions.CheckForFiles(Shared.GlobalResources.Zip_Logs, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip);
+            Shared.Functions.CheckForFiles(Shared.GlobalResources.Zipper, Shared.Settings.Default._TempPath + Shared.Settings.Default._PSZip);
+            Shared.Functions.CheckForFiles(Shared.GlobalResources.batWSAdmin, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin);
+
             //restore the position of the form
             if (!hasRun)
             {
@@ -1608,17 +1602,22 @@ namespace Retail_HD
 
                 hasRun = true;
             }
-            if (Environment.UserName.ToString().ToUpper() == "CHIVINSC")
+
+            if (_NetworkEnabled) { UpdateWrapUpTotal(); }
+            if (Properties.Settings.Default._DrawingSize != null)
             {
-                startup = new Forms.Splash(Shared.GlobalResources.Finger);
-                startup.Show();
+                Size = Properties.Settings.Default._DrawingSize;
             }
-            Console.WriteLine(DateTime.Now);
-            //else
-            //{
-            //    startup = new Forms.Splash(GlobalResources.glen_tassi);
-            //    startup.Show();
-            //}
+            _loadWait.Stop();
+        }
+
+        /// <summary> Methods when the form is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Main_Load(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>

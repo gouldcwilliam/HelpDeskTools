@@ -1005,11 +1005,27 @@ namespace Shared
 		/// <returns></returns>
 		public static bool WriteFile(string Contents, string FileLocation)
 		{
-			try { File.WriteAllText(FileLocation, Contents); }
+			try { File.WriteAllText(FileLocation, Contents); Console.WriteLine("Wrote {0}", FileLocation); }
 			catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
 			return true;
 		}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Contents"></param>
+        /// <param name="FileLocation"></param>
+        /// <returns></returns>
+        public static bool CheckForFiles(string Contents, string FileLocation)
+        {
+            try
+            {
+                if (!File.Exists(FileLocation)) { return WriteFile(Contents, FileLocation); }
+            }
+            catch(Exception) { return WriteFile(Contents, FileLocation); }
+
+            return true;
+        }
 
 
 
