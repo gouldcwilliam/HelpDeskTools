@@ -203,11 +203,11 @@
     <Compile Include="Forms\IPs.Designer.cs">
       <DependentUpon>IPs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ScottStartup.cs">
+    <Compile Include="Forms\Splash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ScottStartup.Designer.cs">
-      <DependentUpon>ScottStartup.cs</DependentUpon>
+    <Compile Include="Forms\Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SEPstuff.cs">
       <SubType>Form</SubType>
@@ -386,8 +386,8 @@
     <EmbeddedResource Include="Forms\IPs.resx">
       <DependentUpon>IPs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ScottStartup.resx">
-      <DependentUpon>ScottStartup.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SEPstuff.resx">
       <DependentUpon>SEPstuff.cs</DependentUpon>

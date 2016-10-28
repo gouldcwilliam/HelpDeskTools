@@ -150,8 +150,8 @@ namespace Retail_HD
             }
 
             if (!System.Diagnostics.Debugger.IsAttached) { startup.ShowDialog(); }
+            startup.ShowDialog();
 
-            
             // Prompts for Finesse login
             string msg = "Would you like to log into the Cisco Finesse Server?";
             Forms.Confirm ConfirmAgentLogin = new Forms.Confirm(msg);

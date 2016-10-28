@@ -22,6 +22,7 @@ namespace Retail_HD.Forms
         {
             InitializeComponent();
         }
+
         /// <summary>
         /// <see cref="Splash"/>
         /// </summary>
@@ -31,8 +32,27 @@ namespace Retail_HD.Forms
             InitializeComponent();
             pictureBox1.Image = bitmap;
         }
+        
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void timer()
+        {
+            Cursor oCursor = Cursor;
+            Cursor = Cursors.AppStarting;
+            System.Threading.Thread.Sleep(15000);
+            this.Close();
+        }
+
+
+
+        private void Splash_Shown(object sender, EventArgs e)
+        {
+            Timer t = new Timer();
+            t.Interval = 2500;
+            t.Tick += T_Tick;
+            t.Start();
+        }
+
+        private void T_Tick(object sender, EventArgs e)
         {
             this.Close();
         }
