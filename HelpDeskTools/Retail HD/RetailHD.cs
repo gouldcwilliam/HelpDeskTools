@@ -123,6 +123,7 @@ namespace Retail_HD
             switch (Environment.UserName.ToUpper())
             {
                 case "WHITEBR":
+                case "OVERWAPA":
                 case "PERSINER":
                 case "WITTCHR":
                 case "SHUTICAN":
@@ -140,6 +141,9 @@ namespace Retail_HD
                 case "WHITEBR":
                     startup = new Forms.Splash(GlobalResources.hd_fire);
                     break;
+                case "OVERWAPA":
+                    startup = new Forms.Splash(GlobalResources.JKJ);
+                    break;
                 case "PERSINER":
                 case "WITTCHR":
                 case "SHUTICAN":
@@ -152,7 +156,7 @@ namespace Retail_HD
                     break;
             }
 
-            if (!System.Diagnostics.Debugger.IsAttached) { startup.ShowDialog(); }
+            startup.ShowDialog();
 
 
             // Prompts for Finesse login
