@@ -57,12 +57,9 @@ namespace WetSandwich
 
 			string body = global::WetSandwich.Properties.Settings.Default.header;
 
-            body += "Multi Version: ";
-            foreach (string multiVersion in Settings.Default.multiVersions) { body += multiVersion + " "; } body += "<br>";
-            body += "RedIron Version: ";
-            foreach (string redIronVersion in Settings.Default.redIronVersions) { body += redIronVersion + " "; } body += "<br>";
-            body += "Verifone Version: ";
-            foreach (string vfVersion in Settings.Default.vfVersions) { body += vfVersion; } body += "<br>";
+            body += "Multi Version: " + Settings.Default.multiVersion + " <br>";
+            body += "RedIron Version: "+Settings.Default.riVersion + " <br>";
+            body += "Verifone Version: "+ Settings.Default.vfVersion+ " <br>";
             body += "POS Build Version: " + Settings.Default.buildVersion + "<br>";
 			body += Settings.Default.tableHead;
 
@@ -85,32 +82,35 @@ namespace WetSandwich
 				   "Checking Logs",
 				   " ");
 
-				// List all items
-				for (int i = 0; i < searchResults.Count(); i++)
-				{
-					// Update the progress bar
-					progressBar.Update(i);
+                // List all items
+                for (int i = 0; i < searchResults.Count(); i++)
+                {
+                    // Update the progress bar
+                    progressBar.Update(i);
 
-					string computer = searchResults[i].Value;
-					if (!Shared.Functions.CheckNetwork(computer))
-					{
-						//body += string.Format(Settings.Default.body, computer, "N/A", "N/A", "Connection Unavailable");
-						continue;
-					}
-					else
-					{
-						string multi;
-						if (!Shared.Functions.CopyTempLog(Shared.Functions.LatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
-						else { multi = Shared.Functions.MultiLog(Shared.Settings.Default._multiVersions, false).ToString(); }
-						//Console.WriteLine(multi);
+                    string computer = searchResults[i].Value;
 
-						string ri;
-						if(!Shared.Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log";  }
-						else { ri = Shared.Functions.FindInLog(Shared.Settings.Default._redIronVersions, false).ToString(); }
-						//Console.WriteLine(ri);
+                    if (!Shared.Functions.CheckNetwork(computer))
+                    {
+                        //body += string.Format(Settings.Default.body, computer, "N/A", "N/A", "N/A", "N/A", "Connection Unavailable");
+                        continue;
 
-						string vf;
-                        vf = Shared.Functions.VFLog(computer, Shared.Settings.Default._vfVersions);
+                    }
+                    else
+                    {
+
+                        string multi;
+                        if (!Shared.Functions.CopyTempLog(Shared.Functions.LatestMulti(string.Format(@"\\{0}\c$\MerchantConnectMulti\log\", computer)))) { multi = "Unable to read multi log"; }
+                        else { multi = Shared.Functions.MultiLog(Settings.Default.multiVersion, false).ToString(); }
+                        //Console.WriteLine(multi);
+
+                        string ri;
+                        if (!Shared.Functions.CopyTempLog(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\2Authorize.log", computer))) { ri = "Unable to read ri log"; }
+                        else { ri = Shared.Functions.FindInLog(Settings.Default.riVersion, false).ToString(); }
+                        //Console.WriteLine(ri);
+
+                        string vf;
+                        vf = Shared.Functions.VFLog(computer, Settings.Default.vfVersion);
                         //Console.WriteLine(vf);
 
                         string pos;
@@ -118,16 +118,16 @@ namespace WetSandwich
                         {
                             pos = System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\SAP\Retail Systems\Point of Sale\version.txt", computer)).Contains(Settings.Default.buildVersion).ToString();
                         }
-                        catch(Exception)
+                        catch (Exception)
                         {
                             pos = "Unable to read version.txt";
                         }
                         //Console.WriteLine(pos);
 
 
-						if ( ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || vf.ToUpper() == "FALSE" || pos.ToUpper()=="FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, pos,""); }
-					}
-				}
+                        if (ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || vf.ToUpper() == "FALSE" || pos.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, pos, ""); }
+                    }
+                }
 
 				
 

@@ -43,11 +43,11 @@ namespace HotChocolate
                     }
                 }
             }
-            if (Debugger.IsAttached)
-            {
-                searchResults.Clear();
-                searchResults.Add(new Result("", "para4975sap1"));
-            }
+            //if (Debugger.IsAttached)
+            //{
+            //    searchResults.Clear();
+            //    searchResults.Add(new Result("", "para4975sap1"));
+            //}
             if (searchResults.Count() > 0)
             {
                 for (int i = 0; i < searchResults.Count(); i++)
@@ -59,10 +59,28 @@ namespace HotChocolate
                         if (Shared.Functions.CopyArgsXML(computer))
                         {
                             Shared.Functions.ExecuteCommand("WINRS", arg1, true, false);
+                            MvVFQuueryLog(computer);
                         }
                     }
                 }
             }
+        }
+        static bool MvVFQuueryLog(string ComputerName)
+        {
+            try
+            {
+                string Source = string.Format(@"\\{0}\C$\{1}", ComputerName, @"Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml");
+                string Destination = string.Format(@"\\ROCHLD01\pinp\Serial_{0}_0{1}_vfquerylog.xml",ComputerName.Substring(4,4),ComputerName.Substring(11,1));
+                Console.WriteLine("source:{0}",Source);
+                Console.WriteLine("destination:{0}",Destination);
+                System.IO.File.Copy(Source, Destination, true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -116,48 +116,6 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>4.2.12.178</string>\r\n  <string>4.2.12.161</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection multiVersions {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["multiVersions"]));
-            }
-            set {
-                this["multiVersions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>2.0.0.926</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection redIronVersions {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["redIronVersions"]));
-            }
-            set {
-                this["redIronVersions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>4.4.5-20151127</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection vfVersions {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["vfVersions"]));
-            }
-            set {
-                this["vfVersions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("402,403,404,545,546,544")]
         public string ignore {
             get {
@@ -165,6 +123,42 @@ namespace WetSandwich.Properties {
             }
             set {
                 this["ignore"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.2.12.178")]
+        public string multiVersion {
+            get {
+                return ((string)(this["multiVersion"]));
+            }
+            set {
+                this["multiVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2.0.0.926")]
+        public string riVersion {
+            get {
+                return ((string)(this["riVersion"]));
+            }
+            set {
+                this["riVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.4.5-20151127")]
+        public string vfVersion {
+            get {
+                return ((string)(this["vfVersion"]));
+            }
+            set {
+                this["vfVersion"] = value;
             }
         }
     }

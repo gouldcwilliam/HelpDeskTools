@@ -591,9 +591,9 @@
             this.ckbSepOnline.AutoSize = true;
             this.ckbSepOnline.Location = new System.Drawing.Point(12, 495);
             this.ckbSepOnline.Name = "ckbSepOnline";
-            this.ckbSepOnline.Size = new System.Drawing.Size(115, 17);
+            this.ckbSepOnline.Size = new System.Drawing.Size(126, 17);
             this.ckbSepOnline.TabIndex = 30;
-            this.ckbSepOnline.Text = "SEP -updateconfig";
+            this.ckbSepOnline.Text = "SEP Update Settings";
             this.ckbSepOnline.UseVisualStyleBackColor = true;
             // 
             // ListActions

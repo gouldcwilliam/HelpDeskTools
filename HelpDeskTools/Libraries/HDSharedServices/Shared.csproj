@@ -75,6 +75,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Funny\fire.png" />
+    <Content Include="Resources\Funny\hd-fire.jpg" />
     <None Include="Resources\Funny\blueberry-chapstick.jpg" />
     <None Include="Resources\Funny\wat-help.jpg" />
     <None Include="Resources\Funny\Cry-Baby-Cry.jpg" />

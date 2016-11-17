@@ -292,8 +292,17 @@ namespace Retail_HD.Forms
 
                 if(ckbSepOnline.Checked)
                 {
-                    string args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -updateconfig", computer);
-                    Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+                    string comms = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\SEP\SEPComms.xml";
+                    if (System.IO.File.Exists(comms)) { System.IO.File.Copy(comms, string.Format(@"\\{0}\c$\temp\SEPComms.xml", computer), true); }
+                    string args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -importsylink C:\\temp\\SEPComms.xml", computer);
+                    Shared.Functions.ExecuteCommand("WINRS", args, true, true);
+
+                    System.Threading.Thread.Sleep(7000);
+
+                    string config = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\SEP\SEPConfig.xml";
+                    if (System.IO.File.Exists(config)) { System.IO.File.Copy(config, string.Format(@"\\{0}\c$\temp\SEPConfig.xml", computer), true); }
+                    args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -importconfig C:\\temp\\SEPConfig.xml", computer);
+                    Shared.Functions.ExecuteCommand("WINRS", args, true, true);
                 }
 
                 if (ckbWSAdmin.Checked)

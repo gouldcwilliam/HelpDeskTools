@@ -120,18 +120,14 @@ namespace Retail_HD
             _t.Interval = 1000; //1 second between manual refreshes, this is in case the XMPP isn't returned as expected
             _t.Tick += _t_Tick;
 
-
-            switch(Environment.UserName.ToUpper())
+            switch (Environment.UserName.ToUpper())
             {
+                case "WHITEBR":
                 case "PERSINER":
-                    startup = new Forms.Splash(GlobalResources.Finger);
-                    Shared.SQLSettings.Default._Database = "RetailHD";
-                    break;
                 case "WITTCHR":
                 case "SHUTICAN":
                 case "BERGMAJA":
                 case "NEDDMI":
-                case "WHITEBR":
                 case "GOULDCH":
                     Shared.SQLSettings.Default._Database = "RetailHD";
                     break;
@@ -139,9 +135,25 @@ namespace Retail_HD
                     Shared.SQLSettings.Default._Database = "Specialists";
                     break;
             }
+            switch (Environment.UserName.ToUpper())
+            {
+                case "WHITEBR":
+                    startup = new Forms.Splash(GlobalResources.hd_fire);
+                    break;
+                case "PERSINER":
+                case "WITTCHR":
+                case "SHUTICAN":
+                case "BERGMAJA":
+                case "NEDDMI":
+                case "GOULDCH":
+                    startup = new Forms.Splash(GlobalResources.Cry_Baby_Cry);
+                    break;
+                default:
+                    break;
+            }
 
             if (!System.Diagnostics.Debugger.IsAttached) { startup.ShowDialog(); }
-            startup.ShowDialog();
+
 
             // Prompts for Finesse login
             string msg = "Would you like to log into the Cisco Finesse Server?";
