@@ -154,5 +154,17 @@ namespace Retail_HD.Properties {
                 this["_DisableCiscoDebug"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool _debugDisableLoginPrompt {
+            get {
+                return ((bool)(this["_debugDisableLoginPrompt"]));
+            }
+            set {
+                this["_debugDisableLoginPrompt"] = value;
+            }
+        }
     }
 }

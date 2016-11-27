@@ -165,9 +165,9 @@ namespace Retail_HD
             ConfirmAgentLogin.TopMost = true;
             ConfirmAgentLogin.btnOK.Text = "Yes";
             ConfirmAgentLogin.btnCancel.Text = "No";
-            //if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
-            if(DialogResult.OK != ConfirmAgentLogin.ShowDialog())
-            //if (System.Diagnostics.Debugger.IsAttached || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
+
+            if ((System.Diagnostics.Debugger.IsAttached && Properties.Settings.Default._debugDisableLoginPrompt )
+                || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
             {
                 _AgentLoginEnabled = false;
                 ts_Top_tsb_Logout.Enabled = false;

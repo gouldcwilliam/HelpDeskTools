@@ -18,7 +18,7 @@ namespace HotChocolate
                 ObjectAttribute.ComputerName);
 
             // container for return values
-            List<Result> searchResults = new List<Result>();
+            List<Computer> computers = new List<Computer>();
 
 
             LDAP.OU ou = LDAP.RetailOUs.All;
@@ -38,25 +38,26 @@ namespace HotChocolate
 
                         foreach (LDAP.Result item in tempResults.FindAll(x => x.Value.Contains(sStore)))
                         {
-                            searchResults.Add(item);
+                            computers.Add(new Computer(item.Value, sStore));
                         }
                     }
                 }
             }
-            //if (Debugger.IsAttached)
-            //{
-            //    searchResults.Clear();
-            //    searchResults.Add(new Result("", "para4975sap1"));
-            //}
-            if (searchResults.Count() > 0)
+            if (Debugger.IsAttached && Properties.Settings.Default._debugUseTestComputers)
             {
-                for (int i = 0; i < searchResults.Count(); i++)
+                computers.Clear();
+                computers.Add(new Computer("retailtest1a","9999"));
+                computers.Add(new Computer("retailtest2","9999"));
+            }
+            if (computers.Count() > 0)
+            {
+                foreach (Computer computer in computers)
                 {
-                    string computer = searchResults[i].Value;
-                    string arg1 = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "refresh verifone");
-                    if (Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
+                    
+                    string arg1 = string.Format("-r:{0} {1} {2}", computer.Name, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "refresh verifone");
+                    if (Shared.Functions.CopyFileRemote(computer.Name, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
                     {
-                        if (Shared.Functions.CopyArgsXML(computer))
+                        if (Shared.Functions.CopyArgsXML(computer.Name))
                         {
                             Shared.Functions.ExecuteCommand("WINRS", arg1, true, false);
                             MvVFQuueryLog(computer);
@@ -65,14 +66,17 @@ namespace HotChocolate
                 }
             }
         }
-        static bool MvVFQuueryLog(string ComputerName)
+        static bool MvVFQuueryLog(Computer c)
         {
             try
             {
-                string Source = string.Format(@"\\{0}\C$\{1}", ComputerName, @"Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml");
-                string Destination = string.Format(@"\\ROCHLD01\pinp\Serial_{0}_0{1}_vfquerylog.xml",ComputerName.Substring(4,4),ComputerName.Substring(11,1));
-                Console.WriteLine("source:{0}",Source);
-                Console.WriteLine("destination:{0}",Destination);
+                string Source = string.Format(@"\\{0}\C$\{1}", c.Name, @"Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml");
+
+                if(c.Name== "retailtest1a") { c.Name = "ROCK9999sap1z"; }
+                else if(c.Name== "retailtest2") { c.Name = "DETR8888sap2f"; }
+
+                string Destination = string.Format(@"\\ROCHLD01\pinp\Serial_{0}_0{1}_vfquerylog.xml",c.Store,c.Name.Substring(11,1));
+
                 System.IO.File.Copy(Source, Destination, true);
             }
             catch (Exception ex)
@@ -82,5 +86,15 @@ namespace HotChocolate
             }
             return true;
         }
+        private class Computer
+        {
+            public string Name { get; set; }
+            public string Store { get; set; }
+
+            public Computer() { new Computer(string.Empty, string.Empty); }
+            public Computer(string name) { new Computer(name, string.Empty); }
+            public Computer(string name, string store) { Name = name; Store = store; }
+        } 
     }
+    
 }
