@@ -166,7 +166,8 @@ namespace Retail_HD
             ConfirmAgentLogin.btnOK.Text = "Yes";
             ConfirmAgentLogin.btnCancel.Text = "No";
             //if (!userPrefs.AutoLogin || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
-            if(System.Diagnostics.Debugger.IsAttached || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
+            if(DialogResult.OK != ConfirmAgentLogin.ShowDialog())
+            //if (System.Diagnostics.Debugger.IsAttached || DialogResult.OK != ConfirmAgentLogin.ShowDialog())
             {
                 _AgentLoginEnabled = false;
                 ts_Top_tsb_Logout.Enabled = false;
@@ -850,7 +851,7 @@ namespace Retail_HD
                     isWrapUpOpen = false;
                     hasCallWrappedUp = false;
                     ClearInfo();
-                    UpdateInfo();
+                    UpdateInfo(true);
                     return;
                 }
                 else
@@ -869,7 +870,7 @@ namespace Retail_HD
                 if (curState == UserState.RESERVED || curState == UserState.TALKING || curState == UserState.WORK) hasCallWrappedUp = true;
 
                 ClearInfo();
-                UpdateInfo();
+                UpdateInfo(true);
             }
 
         }
@@ -995,7 +996,7 @@ namespace Retail_HD
 
         void editCalls_ButtonClicked(object sender, EventArgs e)
         {
-            UpdateInfo();
+            UpdateInfo(true);
         }
 
         private void RecentCalls_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -1255,7 +1256,7 @@ namespace Retail_HD
         {
             if (!_AgentLoginEnabled) { return; }
             PingUC.Visible = false; ServicesUC.Visible = false;
-
+            Console.WriteLine("Calling store # {0}", txtStore.Text);
             if (txtPhone.Text != "(555) 555-5555" && txtPhone.Text != string.Empty && txtPhone.Text.Length > 6 && (curState == UserState.READY || curState == UserState.WORK || curState == UserState.HOLD || curState == UserState.NOT_READY))
             {
                 //we can make da call
@@ -1334,7 +1335,7 @@ namespace Retail_HD
 
         private void Refresh_Click(object sender, EventArgs e)
         {
-            UpdateInfo();
+            UpdateInfo(true);
         }
 
         #endregion
@@ -1344,8 +1345,6 @@ namespace Retail_HD
         // 
         #region MAIN FORM EVENTS - methods/handlers for whole form
 
-        /// <summary> key press event handlers for all objects in frmMain
-        /// </summary>
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
             bool breakIf = false;
@@ -1444,13 +1443,13 @@ namespace Retail_HD
                     txtStore.Text = string.Empty;
                     txtStore.Focus();
                     Info.Clear();
-                    ServicesUC.Visible = false;
-                    PingUC.Visible = false;
+                    //ServicesUC.Visible = false;
+                    //PingUC.Visible = false;
                     break;
                 case Keys.Home:
                     txtStore.Focus();
-                    ServicesUC.Visible = false;
-                    PingUC.Visible = false;
+                    //ServicesUC.Visible = false;
+                    //PingUC.Visible = false;
                     break;
                 case Keys.F1:
                     Buttons_Dameware_Click(sender, null);
@@ -1538,10 +1537,6 @@ namespace Retail_HD
             }
         }
 
-        /// <summary> Method when the form is closed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Stop state timer
@@ -1583,10 +1578,6 @@ namespace Retail_HD
             Properties.Settings.Default.Save();
         }
 
-        /// <summary> Methods when the main form is shown
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Main_FormShown(object sender, EventArgs e)
         {
             _loadWait.Interval = 200;
@@ -1627,57 +1618,27 @@ namespace Retail_HD
             _loadWait.Stop();
         }
 
-        /// <summary> Methods when the form is loaded
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Main_Load(object sender, EventArgs e)
         {
 
         }
 
-        /// <summary>
-        /// Handler for Main Form clicks
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Main_Click(object sender, EventArgs e)
         {
             PingUC.Visible = false; ServicesUC.Visible = false;
         }
 
-        /// <summary>
-        ///  Handler for text box click
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void MainText_Click(object sender, EventArgs e)
         {
             TextBox tb = sender as TextBox;
             tb.SelectAll();
         }
 
-        /// <summary>
-        /// Handler for text box doubleclick
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void MainText_DoubleClick(object sender, EventArgs e)
         {
             Forms.StoreInfoAddEdit storeInfo = new Forms.StoreInfoAddEdit();
             storeInfo.ShowDialog();
-            //DataTable dt = Shared.SQL.dt_SelectStore(Info.store);
-            //if (dt.Rows.Count == 1)
-            //{
-            //    Forms.EditStoreInfo editStoreInfo = new Forms.EditStoreInfo();
-            //    editStoreInfo.ShowDialog();
-            //}
-            //else
-            //{
-            //    Forms.AddNewStore addStore = new Forms.AddNewStore(Info.store.ToString());
-            //    addStore.ShowDialog();
-            //}
-            UpdateInfo();
+            UpdateInfo(true);
         }
 
         #endregion
@@ -1720,7 +1681,7 @@ namespace Retail_HD
         }
 
         // Update all the form information from the store information gathered from SQL
-        private void UpdateInfo()
+        private void UpdateInfo(bool notChanged=false)
         {
             if (!_NetworkEnabled) { return; }
             ClearInfo();
@@ -1794,12 +1755,9 @@ namespace Retail_HD
 
             if (Info.FillNotes())
             {
-                //if (StoreSearch.Visible) { StoreSearch.BringToFront(); return; }
-                //StoreSearch = new Forms.StoreSearch();
-                //StoreSearch.Show();
                 if (storeNotes.Visible) { storeNotes.Close(); }
                 DataRow[] foundRows = Info.notes.Select("resolved='False'");
-                if (foundRows.Length > 0)
+                if (foundRows.Length > 0 && !notChanged)
                 {
                     storeNotes = new Forms.StoreNotes();
                     storeNotes.Show();
