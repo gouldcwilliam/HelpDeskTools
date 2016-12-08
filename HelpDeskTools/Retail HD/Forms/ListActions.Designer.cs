@@ -78,6 +78,9 @@
             this.btnClearOut = new System.Windows.Forms.Button();
             this.ckbSEP = new System.Windows.Forms.CheckBox();
             this.ckbSepOnline = new System.Windows.Forms.CheckBox();
+            this.rbBit9 = new System.Windows.Forms.RadioButton();
+            this.rbTripwire = new System.Windows.Forms.RadioButton();
+            this.rbSep = new System.Windows.Forms.RadioButton();
             this.gbRegister.SuspendLayout();
             this.gbProgram.SuspendLayout();
             this.gbAction.SuspendLayout();
@@ -225,9 +228,9 @@
             this.ckbService.AutoSize = true;
             this.ckbService.Location = new System.Drawing.Point(12, 219);
             this.ckbService.Name = "ckbService";
-            this.ckbService.Size = new System.Drawing.Size(104, 17);
+            this.ckbService.Size = new System.Drawing.Size(62, 17);
             this.ckbService.TabIndex = 3;
-            this.ckbService.Text = "Manage Service";
+            this.ckbService.Text = "Service";
             this.ckbService.UseVisualStyleBackColor = true;
             this.ckbService.CheckedChanged += new System.EventHandler(this.ckbService_CheckedChanged);
             // 
@@ -419,14 +422,17 @@
             // 
             // gbServices
             // 
+            this.gbServices.Controls.Add(this.rbSep);
+            this.gbServices.Controls.Add(this.rbTripwire);
+            this.gbServices.Controls.Add(this.rbBit9);
             this.gbServices.Controls.Add(this.rbVerifone);
             this.gbServices.Controls.Add(this.rbCitrix);
             this.gbServices.Controls.Add(this.rbTransnet);
             this.gbServices.Controls.Add(this.rbCredit);
             this.gbServices.Controls.Add(this.rbSQL);
-            this.gbServices.Location = new System.Drawing.Point(112, 177);
+            this.gbServices.Location = new System.Drawing.Point(72, 177);
             this.gbServices.Name = "gbServices";
-            this.gbServices.Size = new System.Drawing.Size(183, 94);
+            this.gbServices.Size = new System.Drawing.Size(223, 94);
             this.gbServices.TabIndex = 19;
             this.gbServices.TabStop = false;
             this.gbServices.Text = "Service";
@@ -435,7 +441,7 @@
             // rbVerifone
             // 
             this.rbVerifone.AutoSize = true;
-            this.rbVerifone.Location = new System.Drawing.Point(107, 65);
+            this.rbVerifone.Location = new System.Drawing.Point(100, 42);
             this.rbVerifone.Name = "rbVerifone";
             this.rbVerifone.Size = new System.Drawing.Size(64, 17);
             this.rbVerifone.TabIndex = 8;
@@ -447,7 +453,7 @@
             // rbCitrix
             // 
             this.rbCitrix.AutoSize = true;
-            this.rbCitrix.Location = new System.Drawing.Point(107, 41);
+            this.rbCitrix.Location = new System.Drawing.Point(100, 19);
             this.rbCitrix.Name = "rbCitrix";
             this.rbCitrix.Size = new System.Drawing.Size(47, 17);
             this.rbCitrix.TabIndex = 7;
@@ -596,6 +602,42 @@
             this.ckbSepOnline.Text = "SEP Update Settings";
             this.ckbSepOnline.UseVisualStyleBackColor = true;
             // 
+            // rbBit9
+            // 
+            this.rbBit9.AutoSize = true;
+            this.rbBit9.Location = new System.Drawing.Point(170, 42);
+            this.rbBit9.Name = "rbBit9";
+            this.rbBit9.Size = new System.Drawing.Size(43, 17);
+            this.rbBit9.TabIndex = 9;
+            this.rbBit9.TabStop = true;
+            this.rbBit9.Tag = "bit9";
+            this.rbBit9.Text = "Bit9";
+            this.rbBit9.UseVisualStyleBackColor = true;
+            // 
+            // rbTripwire
+            // 
+            this.rbTripwire.AutoSize = true;
+            this.rbTripwire.Location = new System.Drawing.Point(100, 65);
+            this.rbTripwire.Name = "rbTripwire";
+            this.rbTripwire.Size = new System.Drawing.Size(62, 17);
+            this.rbTripwire.TabIndex = 10;
+            this.rbTripwire.TabStop = true;
+            this.rbTripwire.Tag = "tripwire";
+            this.rbTripwire.Text = "Tripwire";
+            this.rbTripwire.UseVisualStyleBackColor = true;
+            // 
+            // rbSep
+            // 
+            this.rbSep.AutoSize = true;
+            this.rbSep.Location = new System.Drawing.Point(170, 19);
+            this.rbSep.Name = "rbSep";
+            this.rbSep.Size = new System.Drawing.Size(46, 17);
+            this.rbSep.TabIndex = 11;
+            this.rbSep.TabStop = true;
+            this.rbSep.Tag = "sep";
+            this.rbSep.Text = "SEP";
+            this.rbSep.UseVisualStyleBackColor = true;
+            // 
             // ListActions
             // 
             this.AcceptButton = this.btnOK;
@@ -728,5 +770,8 @@
         private System.Windows.Forms.CheckBox ckbSEP;
         private System.Windows.Forms.CheckBox ckbPing;
         private System.Windows.Forms.CheckBox ckbSepOnline;
+        public System.Windows.Forms.RadioButton rbSep;
+        public System.Windows.Forms.RadioButton rbTripwire;
+        public System.Windows.Forms.RadioButton rbBit9;
     }
 }

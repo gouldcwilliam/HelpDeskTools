@@ -12,6 +12,9 @@
 	IF %S%==verifone CALL:VERIFONE
 	IF %S%==transnet CALL:TRANSNET
 	IF %S%==dameware CALL:DAMEWARE
+	IF %S%==bit9 CALL:BIT9
+	IF %S%==tripwire CALL:TRIPWIRE
+	IF %S%==sep CALL:SEP
 	CALL:WAIT
 GOTO:DONE
 
@@ -137,6 +140,59 @@ GOTO:EOF
 
 :damewareSTOP
 	NET STOP DWMRCS
+GOTO:EOF
+
+:BIT9
+	IF %A%==start CALL:bit9START
+	IF %A%==stop CALL:bit9STOP
+	IF %A%==restart (
+		CALL:bit9STOP
+		CALL:bit9START
+	)
+GOTO:EOF
+
+:bit9START
+	NET START PARITY
+GOTO:EOF
+
+:bit9STOP
+	NET STOP PARITY
+GOTO:EOF
+
+:TRIPWIRE
+	IF %A%==start CALL:tripwireSTART
+	IF %A%==stop CALL:tripwireSTOP
+	IF %A%==restart (
+		CALL:tripwireSTOP
+		CALL:tripwireSTART
+	)
+GOTO:EOF
+
+:tripwireSTART
+	NET START TEAGENT
+GOTO:EOF
+
+:tripwireSTOP
+	NET STOP TEAGENT
+GOTO:EOF
+
+:SEP
+	IF %A%==start CALL:sepSTART
+	IF %A%==stop CALL:sepSTOP
+	IF %A%==restart (
+		CALL:sepSTOP
+		CALL:sepSTART
+	)
+GOTO:EOF
+
+:sepSTART
+	ECHO "Starting SEP"
+	"c:\Program Files\Symantec\Symantec Endpoint Protection\smc" -start
+GOTO:EOF
+
+:sepSTOP
+	ECHO "Stopping SEP"
+	"c:\Program Files\Symantec\Symantec Endpoint Protection\smc" -p 5Ym4nT3c5Ym4nT3c -stop
 GOTO:EOF
 
 :KILL
