@@ -50,8 +50,10 @@ namespace Retail_HD.Forms
 			if (dgvResults.Rows.Count > 0)
 			{
 				dgvResults.Columns["ID"].Visible = false;
-				dgvResults.Columns["Date"].FillWeight = 2;
-				dgvResults.Columns["Store"].FillWeight = 2;
+                dgvResults.Columns["Date"].Visible = false;
+				dgvResults.Columns["DateOnly"].FillWeight = 2;
+                dgvResults.Columns["Time"].FillWeight = 2;
+                dgvResults.Columns["Store"].FillWeight = 2;
 				dgvResults.Columns["Tech"].FillWeight = 2;
 				dgvResults.Columns["Category"].FillWeight = 4;
 				dgvResults.Columns["Topic"].FillWeight = 4;
@@ -130,8 +132,10 @@ namespace Retail_HD.Forms
 			if (dgvResults.Rows.Count > 0)
 			{
 				dgvResults.Columns["ID"].Visible = false;
-				dgvResults.Columns["Date"].FillWeight = 2;
-				dgvResults.Columns["Store"].FillWeight = 2;
+                dgvResults.Columns["Date"].Visible = false;
+                dgvResults.Columns["DateOnly"].FillWeight = 2;
+                dgvResults.Columns["Time"].FillWeight = 2;
+                dgvResults.Columns["Store"].FillWeight = 2;
 				dgvResults.Columns["Tech"].FillWeight = 2;
 				dgvResults.Columns["Category"].FillWeight = 4;
 				dgvResults.Columns["Topic"].FillWeight = 4;

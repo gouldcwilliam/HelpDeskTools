@@ -75,9 +75,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Funny\crazy-cat-lady.jpg" />
     <Content Include="Resources\Funny\fire.png" />
     <Content Include="Resources\Funny\hd-fire.jpg" />
     <Content Include="Resources\Funny\JKJ.jpg" />
+    <Content Include="Resources\Funny\llama-derp.jpg" />
+    <Content Include="Resources\Funny\trump-queen-1.png" />
     <None Include="Resources\Funny\blueberry-chapstick.jpg" />
     <None Include="Resources\Funny\wat-help.jpg" />
     <None Include="Resources\Funny\Cry-Baby-Cry.jpg" />

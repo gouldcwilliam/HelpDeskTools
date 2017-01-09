@@ -173,6 +173,9 @@ namespace Shared {
         ///	IF %S%==verifone CALL:VERIFONE
         ///	IF %S%==transnet CALL:TRANSNET
         ///	IF %S%==dameware CALL:DAMEWARE
+        ///	IF %S%==bit9 CALL:BIT9
+        ///	IF %S%==tripwire CALL:TRIPWIRE
+        ///	IF %S%==sep CALL:SEP
         ///	CALL:WAIT
         ///GOTO:DONE
         ///
@@ -182,13 +185,7 @@ namespace Shared {
         ///	IF %a%==restart (
         ///		CALL:creditSTOP
         ///		CALL:WAIT
-        ///		CALL:creditSTART
-        ///	)
-        ///GOTO:EOF
-        ///	
-        ///:creditSTART
-        ///	NET START &quot;RIBROKER&quot;
-        ///	NET START &quot;CDCA MULTI  [rest of string was truncated]&quot;;.
+        ///		CALL:creditSTA [rest of string was truncated]&quot;;.
         /// </summary>
         public static string batServices {
             get {
@@ -257,6 +254,16 @@ namespace Shared {
         public static System.Drawing.Bitmap BOS {
             get {
                 object obj = ResourceManager.GetObject("BOS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap crazy_cat_lady {
+            get {
+                object obj = ResourceManager.GetObject("crazy_cat_lady", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1094,6 +1101,16 @@ namespace Shared {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap llama_derp {
+            get {
+                object obj = ResourceManager.GetObject("llama_derp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap login {
             get {
                 object obj = ResourceManager.GetObject("login", resourceCulture);
@@ -1167,6 +1184,16 @@ namespace Shared {
         public static System.Drawing.Bitmap taylor_swift2 {
             get {
                 object obj = ResourceManager.GetObject("taylor_swift2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap trump_queen_1 {
+            get {
+                object obj = ResourceManager.GetObject("trump_queen_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

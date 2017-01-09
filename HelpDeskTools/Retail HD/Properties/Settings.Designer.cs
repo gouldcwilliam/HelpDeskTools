@@ -109,7 +109,7 @@ namespace Retail_HD.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.2.12.161")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.2.12.178")]
         public string multiVersion {
             get {
                 return ((string)(this["multiVersion"]));

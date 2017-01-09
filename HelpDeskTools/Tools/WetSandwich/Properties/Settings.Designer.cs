@@ -78,8 +78,8 @@ namespace WetSandwich.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>" +
-            "\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{" +
+            "6}</td></tr>\r\n")]
         public string body {
             get {
                 return ((string)(this["body"]));
@@ -92,7 +92,8 @@ namespace WetSandwich.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("</p>\r\n<body><table style=\"width:100%\">\r\n<tr><th>Computer Name</th><th>Multi</th><" +
-            "th>RedIron</th><th>Verifone</th><th>POSBuild</th><th>Notes</th></tr>\r\n")]
+            "th>RedIron</th><th>Verifone</th><th>POSBuild</th><th>RI XML</th><th>Notes</th></" +
+            "tr>\r\n")]
         public string tableHead {
             get {
                 return ((string)(this["tableHead"]));

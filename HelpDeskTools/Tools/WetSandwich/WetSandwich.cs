@@ -123,9 +123,17 @@ namespace WetSandwich
                             pos = "Unable to read version.txt";
                         }
                         //Console.WriteLine(pos);
+                        string xml;
+                        try
+                        {
+                            xml = System.IO.File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\RedIron Technologies\RedIron Broker\ribroker.balanceinquiry.xml", computer)).Contains("CardInfoPlugin>RIBroker.CardInfo</CardInfoPlugin").ToString();
+                        }
+                        catch(Exception)
+                        {
+                            xml = "Unalbe to read balanceinquiry.xml";
+                        }
 
-
-                        if (ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || vf.ToUpper() == "FALSE" || pos.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, pos, ""); }
+                        if (ri.ToUpper() == "FALSE" || multi.ToUpper() == "FALSE" || vf.ToUpper() == "FALSE" || pos.ToUpper() == "FALSE" || xml.ToUpper() == "FALSE") { body += string.Format(Settings.Default.body, computer, multi, ri, vf, pos,xml, ""); }
                     }
                 }
 

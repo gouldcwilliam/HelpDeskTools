@@ -937,15 +937,16 @@ namespace Shared
             try
             {
                 string logFileAsString = File.ReadAllText(string.Format(@"\\{0}\c$\Program Files\VeriFone\MX915\UpdateFiles\logfiles\vfquerylog.xml", computer));
-                if (!logFileAsString.Contains(version))
+                if(logFileAsString.Contains("MX915"))
                 {
-                    if (logFileAsString.Contains("Error"))
+                    if (logFileAsString.Contains(version))
                     {
-                        return "Error";
+                        return "True";
                     }
-                    else { return "False"; }
+                    else return "False";
                 }
-                else return "True";
+                
+                else return "Error";
             }
             catch (Exception) { return "Error"; }
         }

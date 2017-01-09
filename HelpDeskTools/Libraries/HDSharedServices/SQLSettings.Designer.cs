@@ -82,6 +82,8 @@ namespace Shared {
 	TOP {0}
 	[Calls].[id] as [ID],
 	[Calls].[date] as [Date],
+	CONVERT(DATE, [Calls].[date]) as [DateOnly],
+	CONVERT(TIME, [Calls].[date]) as [Time],
 	[Calls].[store] as [Store],
 	[Technicians].[initials] as [Tech],
 	[Categories].[category] as [Category],
@@ -132,6 +134,8 @@ DESC
         [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT
 	[Calls].[id] as [ID],
 	[Calls].[date] as [Date],
+	CONVERT(DATE, [Calls].[date]) as [DateOnly],
+	CONVERT(TIME, [Calls].[date]) as [Time],
 	[Calls].[store] as [Store],
 	[Technicians].[initials] as [Tech],
 	[Categories].[category] as [Category],

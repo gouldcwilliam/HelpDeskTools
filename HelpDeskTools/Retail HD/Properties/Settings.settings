@@ -24,7 +24,7 @@
       <Value Profile="(Default)">\\wwwint\roc\techtmp\bergman\Toolsmenu.bat</Value>
     </Setting>
     <Setting Name="multiVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">4.2.12.161</Value>
+      <Value Profile="(Default)">4.2.12.178</Value>
     </Setting>
     <Setting Name="redIronVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)">2.0.0.926</Value>

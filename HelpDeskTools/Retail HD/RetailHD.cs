@@ -138,19 +138,19 @@ namespace Retail_HD
             }
             switch (Environment.UserName.ToUpper())
             {
-                case "WHITEBR":
-                    startup = new Forms.Splash(GlobalResources.hd_fire);
-                    break;
                 case "OVERWAPA":
                     startup = new Forms.Splash(GlobalResources.JKJ);
                     break;
+                case "WHITEBR":
                 case "PERSINER":
                 case "WITTCHR":
-                case "SHUTICAN":
                 case "BERGMAJA":
                 case "NEDDMI":
                 case "GOULDCH":
-                    startup = new Forms.Splash(GlobalResources.Cry_Baby_Cry);
+                    startup = new Forms.Splash(GlobalResources.trump_queen_1);
+                    break;
+                case "SHUTICAN":
+                    startup = new Forms.Splash(GlobalResources.crazy_cat_lady);
                     break;
                 default:
                     break;
