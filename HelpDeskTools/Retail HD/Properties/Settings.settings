@@ -18,7 +18,7 @@
       <Value Profile="(Default)">20, 20</Value>
     </Setting>
     <Setting Name="_DrawingSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">764, 477</Value>
+      <Value Profile="(Default)">869, 509</Value>
     </Setting>
     <Setting Name="_OldMenuPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\wwwint\roc\techtmp\bergman\Toolsmenu.bat</Value>
@@ -37,6 +37,9 @@
     </Setting>
     <Setting Name="_debugDisableLoginPrompt" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="_DrawingState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
     </Setting>
   </Settings>
 </SettingsFile>

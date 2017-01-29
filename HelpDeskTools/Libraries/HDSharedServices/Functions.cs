@@ -1378,12 +1378,12 @@ namespace Shared
 				if (!File.Exists(Shared.Settings.Default._TempPath + "PsExec.exe"))
 				{
                     if (verbose) { Console.WriteLine(@"PsExec not found, copying to: {0}", Shared.Settings.Default._TempPath + "PsExec.exe"); }
-					File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\psexec\PsExec.exe",
+					File.Copy(Shared.Settings.Default._NetworkShare + @"\Software\PsExec.exe",
 						Shared.Settings.Default._TempPath + "PsExec.exe",
 						true);
 				}
 			}
-			catch (Exception ex) { if (verbose) { Console.WriteLine(ex.Message); } }
+			catch (Exception ex) { if (verbose) { Console.WriteLine("{0}\n\t{1}", ex.Source, ex.Message); } }
 		}
 
 

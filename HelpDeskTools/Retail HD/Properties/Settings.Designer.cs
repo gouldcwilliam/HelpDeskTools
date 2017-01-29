@@ -85,7 +85,7 @@ namespace Retail_HD.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("764, 477")]
+        [global::System.Configuration.DefaultSettingValueAttribute("869, 509")]
         public global::System.Drawing.Size _DrawingSize {
             get {
                 return ((global::System.Drawing.Size)(this["_DrawingSize"]));
@@ -164,6 +164,18 @@ namespace Retail_HD.Properties {
             }
             set {
                 this["_debugDisableLoginPrompt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState _DrawingState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["_DrawingState"]));
+            }
+            set {
+                this["_DrawingState"] = value;
             }
         }
     }

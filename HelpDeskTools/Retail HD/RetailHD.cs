@@ -147,10 +147,8 @@ namespace Retail_HD
                 case "BERGMAJA":
                 case "NEDDMI":
                 case "GOULDCH":
-                    startup = new Forms.Splash(GlobalResources.trump_queen_1);
-                    break;
                 case "SHUTICAN":
-                    startup = new Forms.Splash(GlobalResources.crazy_cat_lady);
+                    startup = new Forms.Splash(GlobalResources.trump_queen_1);
                     break;
                 default:
                     break;
@@ -1537,6 +1535,27 @@ namespace Retail_HD
             }
         }
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default._DrawingSize.Width == 0) Properties.Settings.Default.Upgrade();
+
+            if (Properties.Settings.Default._DrawingSize.Width < this.MinimumSize.Width || Properties.Settings.Default._DrawingSize.Height < this.MinimumSize.Height)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.Size = this.MinimumSize;
+                this.Location = new Point(20, 20);
+            }
+            else
+            {
+                this.WindowState = Properties.Settings.Default._DrawingState;
+
+                if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
+                this.Location = Properties.Settings.Default._DrawingLocation;
+
+                this.Size = Properties.Settings.Default._DrawingSize;
+            }
+        }
+
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Stop state timer
@@ -1561,19 +1580,32 @@ namespace Retail_HD
             //if log file is larger than 500kb, email it in
             //call up the log sender app and close this
 
-            // Save Settings
-            //userPrefs.FormStart = Location;
-            Properties.Settings.Default._DrawingLocation = Location;
+            //// Save Settings
+            ////userPrefs.FormStart = Location;
+            //Properties.Settings.Default._DrawingLocation = Location;
 
-            if (WindowState == FormWindowState.Normal)
+            //if (WindowState == FormWindowState.Normal)
+            //{
+            //    Properties.Settings.Default._DrawingSize = Size;
+            //    //userPrefs.FormSize = Size;
+            //}
+            //else
+            //{
+            //    Properties.Settings.Default._DrawingSize = RestoreBounds.Size;
+            //    //userPrefs.FormSize = RestoreBounds.Size;
+            //}
+            //Properties.Settings.Default.Save();
+
+            Properties.Settings.Default._DrawingState = this.WindowState;
+            if(this.WindowState==FormWindowState.Normal)
             {
-                Properties.Settings.Default._DrawingSize = Size;
-                //userPrefs.FormSize = Size;
+                Properties.Settings.Default._DrawingLocation = this.Location;
+                Properties.Settings.Default._DrawingSize = this.Size;
             }
             else
             {
-                Properties.Settings.Default._DrawingSize = RestoreBounds.Size;
-                //userPrefs.FormSize = RestoreBounds.Size;
+                Properties.Settings.Default._DrawingLocation = this.RestoreBounds.Location;
+                Properties.Settings.Default._DrawingSize = this.RestoreBounds.Size;
             }
             Properties.Settings.Default.Save();
         }
@@ -1598,30 +1630,26 @@ namespace Retail_HD
             Shared.Functions.CheckForFiles(Shared.GlobalResources.batWSAdmin, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin);
 
             //restore the position of the form
-            if (!hasRun)
-            {
-                Location = Properties.Settings.Default._DrawingLocation;
-                if (!isOnScreen(this))
-                {
-                    //set the location to a default
-                    Location = new Point(200, 200);
-                }
+            //if (!hasRun)
+            //{
+            //    Location = Properties.Settings.Default._DrawingLocation;
+            //    if (!isOnScreen(this))
+            //    {
+            //        //set the location to a default
+            //        Location = new Point(200, 200);
+            //    }
 
-                hasRun = true;
-            }
+            //    hasRun = true;
+            //}
 
-            if (_NetworkEnabled) { UpdateWrapUpTotal(); }
-            if (Properties.Settings.Default._DrawingSize != null)
-            {
-                Size = Properties.Settings.Default._DrawingSize;
-            }
+            //if (_NetworkEnabled) { UpdateWrapUpTotal(); }
+            //if (Properties.Settings.Default._DrawingSize != null)
+            //{
+            //    Size = Properties.Settings.Default._DrawingSize;
+            //}
             _loadWait.Stop();
         }
 
-        private void Main_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void Main_Click(object sender, EventArgs e)
         {

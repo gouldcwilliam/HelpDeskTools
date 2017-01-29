@@ -201,6 +201,15 @@ namespace Retail_HD.Forms
                             {
                                 // failed to copy args.xml
                             }
+                            if(_service=="verifone")
+                            {
+                                Forms.VerifoneConfirm sfv = new Forms.VerifoneConfirm(computer);
+                                string output = string.Format("WINRS {0}", args);
+                                Console.WriteLine(output);
+                                Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+                                Output(output);
+                                sfv.Show();
+                            }
                             else
                             {
                                 string output = string.Format("WINRS {0}", args);
