@@ -81,11 +81,6 @@ namespace Retail_HD.Forms
         }
 
 
-        private void ckbOpenProgram_CheckedChanged(object sender, EventArgs e)
-        {
-            gbProgram.Visible = ckbOpenProgram.Checked;
-        }
-
 
         #endregion
 
@@ -112,8 +107,8 @@ namespace Retail_HD.Forms
             gbOutput.Visible = (!gbOutput.Visible);
             btnClearOut.Visible = (!btnClearOut.Visible);
 
-            if (gbOutput.Visible) { Size = new System.Drawing.Size(870, 604); }
-            else { Size = new System.Drawing.Size(404, 604); }
+            if (gbOutput.Visible) { Size = MaximumSize; }
+            else { Size = MinimumSize; }
         }
 
 
@@ -168,12 +163,7 @@ namespace Retail_HD.Forms
             {
                 bservices = true;
             }
-            if (ckbSEP.Checked)
-            {
-                Forms.SEPstuff sepStuff = new SEPstuff();
-                sepStuff.Show();
-                sepStuff.BringToFront();
-            }
+
             // perform specified actions on each computer
             foreach (string computer in computers)
             {
@@ -191,13 +181,13 @@ namespace Retail_HD.Forms
                     {
                         string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, _action + " " + _service);
 
-                        if (!Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
+                        if (!Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
                         {
                             // failed to copy services.bat
                         }
                         else
                         {
-                            if (_service == "verifone" && !Shared.Functions.CopyArgsXML(computer))
+                            if (_service == "verifone" && !Functions.CopyArgsXML(computer))
                             {
                                 // failed to copy args.xml
                             }
@@ -206,7 +196,7 @@ namespace Retail_HD.Forms
                                 Forms.VerifoneConfirm sfv = new Forms.VerifoneConfirm(computer);
                                 string output = string.Format("WINRS {0}", args);
                                 Console.WriteLine(output);
-                                Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+                                Functions.ExecuteCommand("WINRS", args, true, false);
                                 Output(output);
                                 sfv.Show();
                             }
@@ -214,63 +204,33 @@ namespace Retail_HD.Forms
                             {
                                 string output = string.Format("WINRS {0}", args);
                                 Console.WriteLine(output);
-                                Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+                                Functions.ExecuteCommand("WINRS", args, true, false);
                                 Output(output);
                             }
                         }
                     }
                 }
 
-
                 if (ckbBrowser.Checked)
                 {
                     Functions.BrowseComputer(computer, txtSuffix.Text);
                 }
 
-                if (ckbOpenProgram.Checked)
-                {
-                    if (ckbMulti.Checked) { Functions.Multi(computer); }
-                    if (ckbDameware.Checked) { Functions.ConnectWithDW(computer); }
-                    if (ckbCMD.Checked) { Functions.LocalCMD(computer); }
-                    if (ckbPing.Checked) { Functions.Pinger(computer); }
-                }
+                
+                if (ckbMulti.Checked) { Functions.Multi(computer); }
+                if (ckbDameware.Checked) { Functions.ConnectWithDW(computer); }
+                if (ckbCMD.Checked) { Functions.LocalCMD(computer); }
+                if (ckbPing.Checked) { Functions.Pinger(computer); }
 
-                if (ckbActivate.Checked)
+                if (ckbSEPUpdateComms.Checked) { Functions.SEPUpdateComms(computer); }
+                if (ckbSEPUpdateConfig.Checked) { Functions.SEPUpdateConfig(computer); }
+                if (ckbSEPOpenGUI.Checked) { Functions.SEPOpenGUI(computer); }
+                if (ckbSEPRunInstall.Checked)
                 {
-                    Shared.Functions.ExecuteCommand("WINRS", String.Format("-r:{0} SLMGR.VBS /IPK FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4 && SLMGR /ATO", computer), true, false);
-                }
-
-                if (ckbDisableStartupRepair.Checked)
-                {
-                    int retCode = Shared.Functions.ExecuteCommand("WINRS", String.Format("-r:{0} ", computer) + "bcdedit /set {default} recoveryenabled no && bcdedit /set {default} bootstatuspolicy ignoreallfailures", true, true);
-                }
-
-                if (ckbSEP.Checked)
-                {
-                    string args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -stop", computer);
-                    Shared.Functions.ExecuteCommand("WINRS", args, false, false);
-                    Functions.LocalCMD(computer);
-                    Functions.ConnectWithDW(computer);
-                }
-
-                if (ckbFastPrinter.Checked)
-                {
-                    string args = string.Format("-r:{0} TASKKILL /F /IM POSW.EXE", computer);
-                    Shared.Functions.ExecuteCommand("WINRS", args, false, false);
-                    args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\EPSON\\BA-T500II Software\\BA500IIUTL\\BA500IIUTL.EXE\"", computer);
-                    Functions.LocalCMD(computer);
-                    Shared.Functions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
-                    args = string.Format("\\\\{0} -s -d -i \"\\Program Files\\OPOS\\Epson2\\SetupPOS.exe\"", computer);
-                    Shared.Functions.ExecuteCommand(Shared.Settings.Default._TempPath + "PSEXEC", args, true, false);
-                }
-
-                // TODO - make each multi/ri check run async
-                if (ckbRIMulti.Checked)
-                {
-                    LogCheck logCheck = new LogCheck(computer);
-
-                    logCheck.WorkDone += LogCheck_WorkDone;
-                    logCheck.Start();
+                    ServiceWorker serviceWorker = new ServiceWorker(computer, "sep", "stop");
+                    serviceWorker.WorkDone += ServiceWorker_WorkDone;
+                    serviceWorker.Start();
+                    Functions.SEPRunInstall(computer);
                 }
 
                 if (ckbTrickle.Checked)
@@ -279,53 +239,58 @@ namespace Retail_HD.Forms
                     {
                         if (Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
                         {
-                            string args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "restart transnet");
-                            Console.WriteLine("WINRS {0}", args);
-                            Functions.ExecuteCommand("WINRS", args, true, false);
-                            args = string.Format("-r:{0} {1} {2}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, "restart sql");
-                            Console.WriteLine("WINRS {0}", args);
-                            Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+                            ServiceWorker swTransnetRestart = new ServiceWorker(computer, "transnet", "restart");
+                            swTransnetRestart.WorkDone += ServiceWorker_WorkDone;
+                            swTransnetRestart.Start();
+
+                            ServiceWorker swSQLRestart = new ServiceWorker(computer, "sql", "restart", false);
+                            swSQLRestart.WorkDone += ServiceWorker_WorkDone;
+                            swSQLRestart.Start();
                             Functions.BrowseComputer(computer, "trickle");
                         }
                     }
                 }
 
+                if (ckbActivate.Checked) { Functions.ActivateWindows(computer); }
+
+                if (ckbRIMulti.Checked)
+                {
+                    LogCheck logCheck = new LogCheck(computer);
+                    logCheck.WorkDone += LogCheck_WorkDone;
+                    logCheck.Start();
+                }
+
                 if (ckbZip.Checked)
                 {
-                    if (Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip) && (Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._PSZip)))
+                    if (Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip) && (Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._PSZip)))
                     {
-                        Shared.Functions.ExecuteCommand("WINRS", string.Format("-r:{0} {1}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip), true, false);
+                        Functions.ExecuteCommand("WINRS", string.Format("-r:{0} {1}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatZip), true, false);
                         Functions.BrowseComputer(computer, @"\temp");
                     }
                 }
 
-                if(ckbSepOnline.Checked)
+                if (ckbDisableStartupRepair.Checked) { int retCode = Functions.DisableStartupRepair(computer); }
+
+                if (ckbFastPrinter.Checked)
                 {
-                    string comms = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\SEP\SEPComms.xml";
-                    if (System.IO.File.Exists(comms)) { System.IO.File.Copy(comms, string.Format(@"\\{0}\c$\temp\SEPComms.xml", computer), true); }
-                    string args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -importsylink C:\\temp\\SEPComms.xml", computer);
-                    Shared.Functions.ExecuteCommand("WINRS", args, true, true);
-
-                    System.Threading.Thread.Sleep(7000);
-
-                    string config = @"\\wwwint\roc\IS-Share\Helpdesk\Retail Helpdesk\Software\SEP\SEPConfig.xml";
-                    if (System.IO.File.Exists(config)) { System.IO.File.Copy(config, string.Format(@"\\{0}\c$\temp\SEPConfig.xml", computer), true); }
-                    args = string.Format("-r:{0} \"c:\\Program Files\\Symantec\\Symantec Endpoint Protection\\smc\" -importconfig C:\\temp\\SEPConfig.xml", computer);
-                    Shared.Functions.ExecuteCommand("WINRS", args, true, true);
+                    Functions.KillPOS(computer);
+                    Functions.LocalCMD(computer);
+                    Functions.OpenBA500IIUTL(computer);
+                    Functions.OpenOPOS(computer);
                 }
 
                 if (ckbWSAdmin.Checked)
                 {
-                    if (Shared.Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin))
+                    if (Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin))
                     {
-                        Shared.Functions.ExecuteCommand("WINRS", string.Format("-r:{0} {1}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin), true, false);
+                        Functions.ExecuteCommand("WINRS", string.Format("-r:{0} {1}", computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._WSAdmin), true, false);
                     }
                 }
 
                 if (reboot)
                 {
                     string args = string.Format("-r:{0} SHUTDOWN /f /r /t 0", computer);
-                    Shared.Functions.ExecuteCommand("WINRS", args, true, false);
+                    Functions.ExecuteCommand("WINRS", args, true, false);
 
                 }
 
@@ -411,6 +376,5 @@ namespace Retail_HD.Forms
         //if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_Time.Text = _timeSinceStateChange.ToString(@"hh\:mm\:ss"); }));
         //else ss_Bottom_ssl_Time.Text = _timeSinceStateChange.ToString(@"hh\:mm\:ss");
         #endregion
-
     }
 }

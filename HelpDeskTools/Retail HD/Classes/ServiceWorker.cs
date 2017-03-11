@@ -14,6 +14,7 @@ namespace Retail_HD
         public string Computer { get; private set; }
         public string Service { get; private set; }
         public string Action { get; private set; }
+        public bool Overwrite { get; private set; }
         public string Output { get; private set; }
         
         public string Exec { get; private set; }
@@ -21,11 +22,12 @@ namespace Retail_HD
         public event EventHandler WorkDone;
         private System.ComponentModel.BackgroundWorker bgw = new System.ComponentModel.BackgroundWorker();
 
-        public ServiceWorker(string computer, string service, string action)
+        public ServiceWorker(string computer, string service, string action, bool overwrite=true)
         {
             Computer = computer;
             Service = service;
             Action = action;
+            Overwrite = overwrite;
             bgw.WorkerSupportsCancellation = true;
             bgw.WorkerReportsProgress = true;
             bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_DoWork);
@@ -52,23 +54,24 @@ namespace Retail_HD
         {
             string args = string.Format("-r:{0} {1} {2}", Computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, Action + " " + Service);
 
-            if (!Shared.Functions.CopyFileRemote(Computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
+            if (Overwrite)
             {
-                Output = string.Format("Failed to copy services.bat to {0}", Computer);
-            }
-            else
-            {
-                if (Service == "verifone" && !Shared.Functions.CopyArgsXML(Computer))
+                if (!Shared.Functions.CopyFileRemote(Computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
                 {
-                    Output = string.Format("Failed to copy args.xml to {0}", Computer);
+                    Output = string.Format("Failed to copy services.bat to {0}", Computer);
+                    return;
                 }
                 else
                 {
-                    Shared.Functions.ExecuteCommand("WINRS", args, false, true);
-                    Output = string.Format("Completed - services.bat {0} {1} on {2}", Action, Service, Computer);
+                    if (Service == "verifone" && !Shared.Functions.CopyArgsXML(Computer))
+                    {
+                        Output = string.Format("Failed to copy args.xml to {0}", Computer);
+                        return;
+                    }
                 }
             }
-
+            Shared.Functions.ExecuteCommand("WINRS", args, false, true);
+            Output = string.Format("Completed - services.bat {0} {1} on {2}", Action, Service, Computer);
         }
 
         void bgw_DoWorkExec(object sender, System.ComponentModel.DoWorkEventArgs e)

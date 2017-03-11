@@ -29,6 +29,7 @@ namespace Retail_HD.Forms
 		List<Topic> _topics = new List<Topic>();
 		List<Technician> _technicians = new List<Technician>();
 		BGWorkers.Exporting exp = new BGWorkers.Exporting();
+        System.Data.DataTable _dt = new DataTable();
 
 
 		// On form load
@@ -46,8 +47,10 @@ namespace Retail_HD.Forms
             cmbTech.Items.Clear();
 			foreach (Technician t in Info.technicians) { cmbTech.Items.Add(t._initials); }
 
-			dgvResults.DataSource = Shared.SQL.dt_HistorySearch();
-			if (dgvResults.Rows.Count > 0)
+			_dt = Shared.SQL.dt_HistorySearch();
+            dgvResults.DataSource = _dt;
+
+            if (dgvResults.Rows.Count > 0)
 			{
 				dgvResults.Columns["ID"].Visible = false;
                 dgvResults.Columns["Date"].Visible = false;
@@ -178,7 +181,7 @@ namespace Retail_HD.Forms
 			if (sfd.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
 			if (sfd.FileName == string.Empty) { MessageBox.Show("No output file selected"); return; }
 
-			exp = new BGWorkers.Exporting((DataTable)dgvResults.DataSource, sfd.FileName);
+			exp = new BGWorkers.Exporting(_dt, sfd.FileName);
 			exp.Show();
 		}
 

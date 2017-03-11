@@ -111,6 +111,7 @@ namespace Retail_HD
             PingUC.btnOK.Click += PingUC_OK_Click;
             ServicesUC.btnOK.Click += ServicesUC_OK_Click;
 
+            Shared.Functions.UpdateLocalBatFiles();
 
             _NetworkEnabled = Shared.Functions.DnsLookup(Shared.SQLSettings.Default._ServerName);
 
@@ -148,7 +149,7 @@ namespace Retail_HD
                 case "NEDDMI":
                 case "GOULDCH":
                 case "SHUTICAN":
-                    startup = new Forms.Splash(GlobalResources.trump_queen_1);
+                    startup = new Forms.Splash(GlobalResources.trumps);
                     break;
                 default:
                     break;

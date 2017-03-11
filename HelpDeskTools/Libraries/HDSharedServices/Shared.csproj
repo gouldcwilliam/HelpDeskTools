@@ -81,6 +81,7 @@
     <Content Include="Resources\Funny\JKJ.jpg" />
     <Content Include="Resources\Funny\llama-derp.jpg" />
     <Content Include="Resources\Funny\trump-queen-1.png" />
+    <None Include="Resources\Funny\trumps.jpg" />
     <None Include="Resources\Funny\blueberry-chapstick.jpg" />
     <None Include="Resources\Funny\wat-help.jpg" />
     <None Include="Resources\Funny\Cry-Baby-Cry.jpg" />
