@@ -318,10 +318,12 @@ namespace Retail_HD.Forms
         private void ClearChecks()
         {
             foreach (CheckBox cb in this.Controls.OfType<CheckBox>()) { cb.Checked = false; }
-            foreach (CheckBox cb in gbRegister.Controls.OfType<CheckBox>()) { cb.Checked = false; }
-            foreach (RadioButton rb in gbServices.Controls.OfType<RadioButton>()) { rb.Checked = false; }
-            foreach (RadioButton rb in gbAction.Controls.OfType<RadioButton>()) { rb.Checked = false; }
-            foreach (CheckBox cb in gbProgram.Controls.OfType<CheckBox>()) { cb.Checked = false; }
+            foreach (RadioButton rb in this.Controls.OfType<RadioButton>()) { rb.Checked = false; }
+            foreach (GroupBox gb in this.Controls.OfType<GroupBox>())
+            {
+                foreach (CheckBox cb in gb.Controls.OfType<CheckBox>()) { cb.Checked = false; }
+                foreach (RadioButton rb in gb.Controls.OfType<RadioButton>()) { rb.Checked = false; }
+            }
         }
 
 
