@@ -19,7 +19,7 @@ namespace Retail_HD
         
         public string Exec { get; private set; }
         public string Args { get; private set; }
-        public event EventHandler WorkDone;
+        public event EventHandler OutputUpdate;
         private System.ComponentModel.BackgroundWorker bgw = new System.ComponentModel.BackgroundWorker();
 
         public ServiceWorker(string computer, string service, string action, bool overwrite=true)
@@ -56,6 +56,8 @@ namespace Retail_HD
 
             if (Overwrite)
             {
+                Output = string.Format("Copying services.bat to {0}", Computer);
+                if (OutputUpdate != null) { OutputUpdate(this, e); }
                 if (!Shared.Functions.CopyFileRemote(Computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
                 {
                     Output = string.Format("Failed to copy services.bat to {0}", Computer);
@@ -70,13 +72,16 @@ namespace Retail_HD
                     }
                 }
             }
+            Output = string.Format("Running services.bat {0} {1} on {2}", Action, Service, Computer);
+            if (OutputUpdate != null) { OutputUpdate(this, e); }
             Shared.Functions.ExecuteCommand("WINRS", args, false, true);
-            Output = string.Format("Completed - services.bat {0} {1} on {2}", Action, Service, Computer);
+            Output = string.Format("Completed services.bat {0} {1} on {2}", Action, Service, Computer);
         }
 
         void bgw_DoWorkExec(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             Output = string.Format("Running {0} {1}", Exec, Args);
+            if (OutputUpdate != null) { OutputUpdate(this, e); }
             Shared.Functions.ExecuteCommand(Exec, Args, true, true);
         }
 
@@ -87,7 +92,7 @@ namespace Retail_HD
 
         public void bgw_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            if (WorkDone != null) { WorkDone(this, e); }
+            if (OutputUpdate != null) { OutputUpdate(this, e); }
         }
     }
 }

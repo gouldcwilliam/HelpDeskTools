@@ -48,7 +48,6 @@
             this.ckbRegister = new System.Windows.Forms.CheckBox();
             this.ckbRestart = new System.Windows.Forms.CheckBox();
             this.ckbActivate = new System.Windows.Forms.CheckBox();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.gbProgram = new System.Windows.Forms.GroupBox();
             this.ckbPing = new System.Windows.Forms.CheckBox();
             this.ckbCMD = new System.Windows.Forms.CheckBox();
@@ -76,13 +75,12 @@
             this.ckbWSAdmin = new System.Windows.Forms.CheckBox();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.gbOutput = new System.Windows.Forms.GroupBox();
-            this.btnShowOutput = new System.Windows.Forms.Button();
             this.btnClearOut = new System.Windows.Forms.Button();
             this.ckbSEPOpenGUI = new System.Windows.Forms.CheckBox();
             this.gbSEP = new System.Windows.Forms.GroupBox();
-            this.ckbSEPRunInstall = new System.Windows.Forms.CheckBox();
-            this.ckbSEPUpdateComms = new System.Windows.Forms.CheckBox();
             this.ckbSEPUpdateConfig = new System.Windows.Forms.CheckBox();
+            this.ckbSEPUpdateComms = new System.Windows.Forms.CheckBox();
+            this.ckbSEPRunInstall = new System.Windows.Forms.CheckBox();
             this.gbRegister.SuspendLayout();
             this.gbProgram.SuspendLayout();
             this.gbAction.SuspendLayout();
@@ -96,7 +94,7 @@
             this.txtList.Location = new System.Drawing.Point(12, 29);
             this.txtList.Multiline = true;
             this.txtList.Name = "txtList";
-            this.txtList.Size = new System.Drawing.Size(276, 65);
+            this.txtList.Size = new System.Drawing.Size(319, 188);
             this.txtList.TabIndex = 0;
             // 
             // label1
@@ -112,7 +110,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(227, 626);
+            this.btnOK.Location = new System.Drawing.Point(297, 628);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 12;
@@ -123,7 +121,7 @@
             // ckbBrowser
             // 
             this.ckbBrowser.AutoSize = true;
-            this.ckbBrowser.Location = new System.Drawing.Point(12, 292);
+            this.ckbBrowser.Location = new System.Drawing.Point(12, 376);
             this.ckbBrowser.Name = "ckbBrowser";
             this.ckbBrowser.Size = new System.Drawing.Size(93, 17);
             this.ckbBrowser.TabIndex = 6;
@@ -133,7 +131,7 @@
             // 
             // txtSuffix
             // 
-            this.txtSuffix.Location = new System.Drawing.Point(112, 290);
+            this.txtSuffix.Location = new System.Drawing.Point(112, 374);
             this.txtSuffix.Name = "txtSuffix";
             this.txtSuffix.Size = new System.Drawing.Size(263, 20);
             this.txtSuffix.TabIndex = 7;
@@ -143,7 +141,7 @@
             // 
             this.lblSuffix.AutoSize = true;
             this.lblSuffix.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuffix.Location = new System.Drawing.Point(180, 313);
+            this.lblSuffix.Location = new System.Drawing.Point(180, 397);
             this.lblSuffix.Name = "lblSuffix";
             this.lblSuffix.Size = new System.Drawing.Size(195, 13);
             this.lblSuffix.TabIndex = 15;
@@ -158,9 +156,9 @@
             this.gbRegister.Controls.Add(this.ckb4);
             this.gbRegister.Controls.Add(this.ckb2);
             this.gbRegister.Controls.Add(this.ckb1);
-            this.gbRegister.Location = new System.Drawing.Point(258, 100);
+            this.gbRegister.Location = new System.Drawing.Point(132, 223);
             this.gbRegister.Name = "gbRegister";
-            this.gbRegister.Size = new System.Drawing.Size(117, 71);
+            this.gbRegister.Size = new System.Drawing.Size(243, 45);
             this.gbRegister.TabIndex = 2;
             this.gbRegister.TabStop = false;
             this.gbRegister.Text = "Register #";
@@ -168,8 +166,9 @@
             // 
             // ckb5
             // 
+            this.ckb5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ckb5.AutoSize = true;
-            this.ckb5.Location = new System.Drawing.Point(82, 19);
+            this.ckb5.Location = new System.Drawing.Point(167, 19);
             this.ckb5.Name = "ckb5";
             this.ckb5.Size = new System.Drawing.Size(32, 17);
             this.ckb5.TabIndex = 4;
@@ -178,8 +177,9 @@
             // 
             // ckb6
             // 
+            this.ckb6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ckb6.AutoSize = true;
-            this.ckb6.Location = new System.Drawing.Point(82, 42);
+            this.ckb6.Location = new System.Drawing.Point(205, 19);
             this.ckb6.Name = "ckb6";
             this.ckb6.Size = new System.Drawing.Size(32, 17);
             this.ckb6.TabIndex = 5;
@@ -188,8 +188,9 @@
             // 
             // ckb3
             // 
+            this.ckb3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ckb3.AutoSize = true;
-            this.ckb3.Location = new System.Drawing.Point(44, 19);
+            this.ckb3.Location = new System.Drawing.Point(91, 19);
             this.ckb3.Name = "ckb3";
             this.ckb3.Size = new System.Drawing.Size(32, 17);
             this.ckb3.TabIndex = 2;
@@ -198,8 +199,9 @@
             // 
             // ckb4
             // 
+            this.ckb4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ckb4.AutoSize = true;
-            this.ckb4.Location = new System.Drawing.Point(44, 42);
+            this.ckb4.Location = new System.Drawing.Point(129, 19);
             this.ckb4.Name = "ckb4";
             this.ckb4.Size = new System.Drawing.Size(32, 17);
             this.ckb4.TabIndex = 3;
@@ -208,8 +210,9 @@
             // 
             // ckb2
             // 
+            this.ckb2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ckb2.AutoSize = true;
-            this.ckb2.Location = new System.Drawing.Point(6, 42);
+            this.ckb2.Location = new System.Drawing.Point(53, 19);
             this.ckb2.Name = "ckb2";
             this.ckb2.Size = new System.Drawing.Size(32, 17);
             this.ckb2.TabIndex = 1;
@@ -218,8 +221,9 @@
             // 
             // ckb1
             // 
+            this.ckb1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ckb1.AutoSize = true;
-            this.ckb1.Location = new System.Drawing.Point(6, 19);
+            this.ckb1.Location = new System.Drawing.Point(15, 19);
             this.ckb1.Name = "ckb1";
             this.ckb1.Size = new System.Drawing.Size(32, 17);
             this.ckb1.TabIndex = 0;
@@ -229,7 +233,7 @@
             // ckbService
             // 
             this.ckbService.AutoSize = true;
-            this.ckbService.Location = new System.Drawing.Point(12, 219);
+            this.ckbService.Location = new System.Drawing.Point(12, 303);
             this.ckbService.Name = "ckbService";
             this.ckbService.Size = new System.Drawing.Size(62, 17);
             this.ckbService.TabIndex = 3;
@@ -240,7 +244,7 @@
             // ckbRegister
             // 
             this.ckbRegister.AutoSize = true;
-            this.ckbRegister.Location = new System.Drawing.Point(12, 128);
+            this.ckbRegister.Location = new System.Drawing.Point(12, 242);
             this.ckbRegister.Name = "ckbRegister";
             this.ckbRegister.Size = new System.Drawing.Size(103, 17);
             this.ckbRegister.TabIndex = 1;
@@ -261,23 +265,12 @@
             // ckbActivate
             // 
             this.ckbActivate.AutoSize = true;
-            this.ckbActivate.Location = new System.Drawing.Point(12, 523);
+            this.ckbActivate.Location = new System.Drawing.Point(12, 561);
             this.ckbActivate.Name = "ckbActivate";
             this.ckbActivate.Size = new System.Drawing.Size(112, 17);
             this.ckbActivate.TabIndex = 10;
             this.ckbActivate.Text = "Activate Windows";
             this.ckbActivate.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(308, 626);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 13;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // gbProgram
             // 
@@ -285,7 +278,7 @@
             this.gbProgram.Controls.Add(this.ckbCMD);
             this.gbProgram.Controls.Add(this.ckbDameware);
             this.gbProgram.Controls.Add(this.ckbMulti);
-            this.gbProgram.Location = new System.Drawing.Point(12, 337);
+            this.gbProgram.Location = new System.Drawing.Point(122, 413);
             this.gbProgram.Name = "gbProgram";
             this.gbProgram.Size = new System.Drawing.Size(253, 50);
             this.gbProgram.TabIndex = 9;
@@ -338,9 +331,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(300, 42);
+            this.btnClear.Location = new System.Drawing.Point(337, 43);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.Size = new System.Drawing.Size(54, 23);
             this.btnClear.TabIndex = 14;
             this.btnClear.Text = "< Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -349,7 +342,7 @@
             // ckbDisableStartupRepair
             // 
             this.ckbDisableStartupRepair.AutoSize = true;
-            this.ckbDisableStartupRepair.Location = new System.Drawing.Point(175, 500);
+            this.ckbDisableStartupRepair.Location = new System.Drawing.Point(175, 538);
             this.ckbDisableStartupRepair.Name = "ckbDisableStartupRepair";
             this.ckbDisableStartupRepair.Size = new System.Drawing.Size(132, 17);
             this.ckbDisableStartupRepair.TabIndex = 17;
@@ -359,7 +352,7 @@
             // ckbFastPrinter
             // 
             this.ckbFastPrinter.AutoSize = true;
-            this.ckbFastPrinter.Location = new System.Drawing.Point(175, 523);
+            this.ckbFastPrinter.Location = new System.Drawing.Point(175, 561);
             this.ckbFastPrinter.Name = "ckbFastPrinter";
             this.ckbFastPrinter.Size = new System.Drawing.Size(151, 17);
             this.ckbFastPrinter.TabIndex = 18;
@@ -371,7 +364,7 @@
             this.gbAction.Controls.Add(this.rbStart);
             this.gbAction.Controls.Add(this.rbRestart);
             this.gbAction.Controls.Add(this.rbStop);
-            this.gbAction.Location = new System.Drawing.Point(301, 177);
+            this.gbAction.Location = new System.Drawing.Point(301, 274);
             this.gbAction.Name = "gbAction";
             this.gbAction.Size = new System.Drawing.Size(74, 94);
             this.gbAction.TabIndex = 20;
@@ -425,7 +418,7 @@
             this.gbServices.Controls.Add(this.rbTransnet);
             this.gbServices.Controls.Add(this.rbCredit);
             this.gbServices.Controls.Add(this.rbSQL);
-            this.gbServices.Location = new System.Drawing.Point(72, 177);
+            this.gbServices.Location = new System.Drawing.Point(72, 274);
             this.gbServices.Name = "gbServices";
             this.gbServices.Size = new System.Drawing.Size(223, 94);
             this.gbServices.TabIndex = 19;
@@ -532,7 +525,7 @@
             // ckbRIMulti
             // 
             this.ckbRIMulti.AutoSize = true;
-            this.ckbRIMulti.Location = new System.Drawing.Point(12, 546);
+            this.ckbRIMulti.Location = new System.Drawing.Point(12, 584);
             this.ckbRIMulti.Name = "ckbRIMulti";
             this.ckbRIMulti.Size = new System.Drawing.Size(120, 17);
             this.ckbRIMulti.TabIndex = 21;
@@ -542,7 +535,7 @@
             // ckbTrickle
             // 
             this.ckbTrickle.AutoSize = true;
-            this.ckbTrickle.Location = new System.Drawing.Point(12, 500);
+            this.ckbTrickle.Location = new System.Drawing.Point(12, 538);
             this.ckbTrickle.Name = "ckbTrickle";
             this.ckbTrickle.Size = new System.Drawing.Size(74, 17);
             this.ckbTrickle.TabIndex = 22;
@@ -552,7 +545,7 @@
             // ckbZip
             // 
             this.ckbZip.AutoSize = true;
-            this.ckbZip.Location = new System.Drawing.Point(12, 567);
+            this.ckbZip.Location = new System.Drawing.Point(12, 605);
             this.ckbZip.Name = "ckbZip";
             this.ckbZip.Size = new System.Drawing.Size(106, 17);
             this.ckbZip.TabIndex = 23;
@@ -562,7 +555,7 @@
             // ckbWSAdmin
             // 
             this.ckbWSAdmin.AutoSize = true;
-            this.ckbWSAdmin.Location = new System.Drawing.Point(175, 546);
+            this.ckbWSAdmin.Location = new System.Drawing.Point(175, 584);
             this.ckbWSAdmin.Name = "ckbWSAdmin";
             this.ckbWSAdmin.Size = new System.Drawing.Size(105, 17);
             this.ckbWSAdmin.TabIndex = 24;
@@ -571,11 +564,11 @@
             // 
             // txtOutput
             // 
-            this.txtOutput.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtOutput.Location = new System.Drawing.Point(3, 16);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(442, 589);
+            this.txtOutput.Size = new System.Drawing.Size(447, 623);
             this.txtOutput.TabIndex = 25;
             this.txtOutput.WordWrap = false;
             // 
@@ -584,32 +577,21 @@
             this.gbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbOutput.Controls.Add(this.txtOutput);
-            this.gbOutput.Location = new System.Drawing.Point(396, 12);
+            this.gbOutput.Location = new System.Drawing.Point(394, 9);
             this.gbOutput.Name = "gbOutput";
-            this.gbOutput.Size = new System.Drawing.Size(451, 608);
+            this.gbOutput.Size = new System.Drawing.Size(453, 642);
             this.gbOutput.TabIndex = 26;
             this.gbOutput.TabStop = false;
             this.gbOutput.Text = "Output";
             // 
-            // btnShowOutput
-            // 
-            this.btnShowOutput.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnShowOutput.Location = new System.Drawing.Point(308, 597);
-            this.btnShowOutput.Name = "btnShowOutput";
-            this.btnShowOutput.Size = new System.Drawing.Size(75, 23);
-            this.btnShowOutput.TabIndex = 27;
-            this.btnShowOutput.Text = "Output >";
-            this.btnShowOutput.UseVisualStyleBackColor = true;
-            this.btnShowOutput.Click += new System.EventHandler(this.btnShowOutput_Click);
-            // 
             // btnClearOut
             // 
             this.btnClearOut.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClearOut.Location = new System.Drawing.Point(761, 626);
+            this.btnClearOut.Location = new System.Drawing.Point(337, 72);
             this.btnClearOut.Name = "btnClearOut";
-            this.btnClearOut.Size = new System.Drawing.Size(75, 23);
+            this.btnClearOut.Size = new System.Drawing.Size(54, 23);
             this.btnClearOut.TabIndex = 28;
-            this.btnClearOut.Text = "Clear Output";
+            this.btnClearOut.Text = "Clear >";
             this.btnClearOut.UseVisualStyleBackColor = true;
             this.btnClearOut.Click += new System.EventHandler(this.btnClearOut_Click);
             // 
@@ -630,34 +612,12 @@
             this.gbSEP.Controls.Add(this.ckbSEPUpdateComms);
             this.gbSEP.Controls.Add(this.ckbSEPRunInstall);
             this.gbSEP.Controls.Add(this.ckbSEPOpenGUI);
-            this.gbSEP.Location = new System.Drawing.Point(12, 393);
+            this.gbSEP.Location = new System.Drawing.Point(172, 469);
             this.gbSEP.Name = "gbSEP";
             this.gbSEP.Size = new System.Drawing.Size(200, 63);
             this.gbSEP.TabIndex = 10;
             this.gbSEP.TabStop = false;
             this.gbSEP.Text = "SEP";
-            // 
-            // ckbSEPRunInstall
-            // 
-            this.ckbSEPRunInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ckbSEPRunInstall.AutoSize = true;
-            this.ckbSEPRunInstall.Location = new System.Drawing.Point(120, 40);
-            this.ckbSEPRunInstall.Name = "ckbSEPRunInstall";
-            this.ckbSEPRunInstall.Size = new System.Drawing.Size(76, 17);
-            this.ckbSEPRunInstall.TabIndex = 5;
-            this.ckbSEPRunInstall.Text = "Run Install";
-            this.ckbSEPRunInstall.UseVisualStyleBackColor = true;
-            // 
-            // ckbSEPUpdateComms
-            // 
-            this.ckbSEPUpdateComms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ckbSEPUpdateComms.AutoSize = true;
-            this.ckbSEPUpdateComms.Location = new System.Drawing.Point(16, 19);
-            this.ckbSEPUpdateComms.Name = "ckbSEPUpdateComms";
-            this.ckbSEPUpdateComms.Size = new System.Drawing.Size(98, 17);
-            this.ckbSEPUpdateComms.TabIndex = 6;
-            this.ckbSEPUpdateComms.Text = "Update Comms";
-            this.ckbSEPUpdateComms.UseVisualStyleBackColor = true;
             // 
             // ckbSEPUpdateConfig
             // 
@@ -670,16 +630,36 @@
             this.ckbSEPUpdateConfig.Text = "Update Config";
             this.ckbSEPUpdateConfig.UseVisualStyleBackColor = true;
             // 
+            // ckbSEPUpdateComms
+            // 
+            this.ckbSEPUpdateComms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ckbSEPUpdateComms.AutoSize = true;
+            this.ckbSEPUpdateComms.Location = new System.Drawing.Point(16, 19);
+            this.ckbSEPUpdateComms.Name = "ckbSEPUpdateComms";
+            this.ckbSEPUpdateComms.Size = new System.Drawing.Size(98, 17);
+            this.ckbSEPUpdateComms.TabIndex = 6;
+            this.ckbSEPUpdateComms.Text = "Update Comms";
+            this.ckbSEPUpdateComms.UseVisualStyleBackColor = true;
+            // 
+            // ckbSEPRunInstall
+            // 
+            this.ckbSEPRunInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ckbSEPRunInstall.AutoSize = true;
+            this.ckbSEPRunInstall.Location = new System.Drawing.Point(120, 40);
+            this.ckbSEPRunInstall.Name = "ckbSEPRunInstall";
+            this.ckbSEPRunInstall.Size = new System.Drawing.Size(76, 17);
+            this.ckbSEPRunInstall.TabIndex = 5;
+            this.ckbSEPRunInstall.Text = "Run Install";
+            this.ckbSEPRunInstall.UseVisualStyleBackColor = true;
+            // 
             // ListActions
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(859, 661);
             this.Controls.Add(this.gbSEP);
             this.Controls.Add(this.btnClearOut);
-            this.Controls.Add(this.btnShowOutput);
             this.Controls.Add(this.gbOutput);
             this.Controls.Add(this.ckbWSAdmin);
             this.Controls.Add(this.ckbZip);
@@ -691,7 +671,6 @@
             this.Controls.Add(this.ckbDisableStartupRepair);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.gbProgram);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.ckbActivate);
             this.Controls.Add(this.ckbRestart);
             this.Controls.Add(this.ckbRegister);
@@ -706,7 +685,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(875, 700);
-            this.MinimumSize = new System.Drawing.Size(403, 700);
+            this.MinimumSize = new System.Drawing.Size(875, 700);
             this.Name = "ListActions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "List Actions";
@@ -747,7 +726,6 @@
 		private System.Windows.Forms.CheckBox ckbRestart;
 		private System.Windows.Forms.CheckBox ckbActivate;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-		public System.Windows.Forms.Button btnCancel;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 		private System.Windows.Forms.GroupBox gbProgram;
 		private System.Windows.Forms.CheckBox ckbMulti;
@@ -794,7 +772,6 @@
 		private System.Windows.Forms.CheckBox ckbWSAdmin;
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.GroupBox gbOutput;
-        public System.Windows.Forms.Button btnShowOutput;
         public System.Windows.Forms.Button btnClearOut;
         private System.Windows.Forms.CheckBox ckb5;
         private System.Windows.Forms.CheckBox ckb6;

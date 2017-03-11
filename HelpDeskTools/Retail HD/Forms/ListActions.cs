@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
+
 using Shared;
 
 namespace Retail_HD.Forms
@@ -21,13 +22,6 @@ namespace Retail_HD.Forms
 		public ListActions()
 		{
 			InitializeComponent();
-
-            gbOutput.Visible = false;
-            btnClearOut.Visible = false;
-
-            Size = new System.Drawing.Size(403, 604);
-            btnShowOutput.Visible = true;
-            
 		}
 
         private string _service
@@ -155,7 +149,7 @@ namespace Retail_HD.Forms
 
             // double check that a reboot is wanted
             bool reboot = false;
-            if (ckbRestart.Checked) { reboot = (MessageBox.Show("Are you sure you want to reboot?", "System Reboot", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK); }
+            if (ckbRestart.Checked) { reboot = (MessageBox.Show("Are you sure you want to reboot?\nOther actions will not run", "System Reboot", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK); }
 
             // verify service actions selection
             bool bservices = false;
@@ -168,13 +162,15 @@ namespace Retail_HD.Forms
             foreach (string computer in computers)
             {
                 Console.WriteLine(computer);
-                // perform service actions
+
+                if (reboot) { Functions.RestartComputer(computer); continue; }
+
                 if (bservices)
                 {
                     if (gbOutput.Visible)
                     {
                         ServiceWorker serviceWorker = new ServiceWorker(computer, _service, _action);
-                        serviceWorker.WorkDone += ServiceWorker_WorkDone;
+                        serviceWorker.OutputUpdate += ServiceWorker_OutputUpdate;
                         serviceWorker.Start();
                     }
                     else
@@ -228,7 +224,7 @@ namespace Retail_HD.Forms
                 if (ckbSEPRunInstall.Checked)
                 {
                     ServiceWorker serviceWorker = new ServiceWorker(computer, "sep", "stop");
-                    serviceWorker.WorkDone += ServiceWorker_WorkDone;
+                    serviceWorker.OutputUpdate += ServiceWorker_OutputUpdate;
                     serviceWorker.Start();
                     Functions.SEPRunInstall(computer);
                 }
@@ -237,17 +233,20 @@ namespace Retail_HD.Forms
                 {
                     if (computer.ToUpper().Contains("SAP1"))
                     {
-                        if (Functions.CopyFileRemote(computer, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices))
+                        if (Functions.CopyServicesBatFile(computer))
                         {
-                            ServiceWorker swTransnetRestart = new ServiceWorker(computer, "transnet", "restart");
-                            swTransnetRestart.WorkDone += ServiceWorker_WorkDone;
+                            ServiceWorker swTransnetRestart = new ServiceWorker(computer, "transnet", "restart", false);
+                            swTransnetRestart.OutputUpdate += ServiceWorker_OutputUpdate;
                             swTransnetRestart.Start();
 
                             ServiceWorker swSQLRestart = new ServiceWorker(computer, "sql", "restart", false);
-                            swSQLRestart.WorkDone += ServiceWorker_WorkDone;
+                            swSQLRestart.OutputUpdate += ServiceWorker_OutputUpdate;
                             swSQLRestart.Start();
+
                             Functions.BrowseComputer(computer, "trickle");
                         }
+                        else { Output("Failed to copy services.bat to " + computer); }
+                        
                     }
                 }
 
@@ -287,12 +286,7 @@ namespace Retail_HD.Forms
                     }
                 }
 
-                if (reboot)
-                {
-                    string args = string.Format("-r:{0} SHUTDOWN /f /r /t 0", computer);
-                    Functions.ExecuteCommand("WINRS", args, true, false);
-
-                }
+                
 
                 System.Threading.Thread.Sleep(250);
             }
@@ -301,10 +295,11 @@ namespace Retail_HD.Forms
 
         }
 
-        private void ServiceWorker_WorkDone(object sender, EventArgs e)
+        private void ServiceWorker_OutputUpdate(object sender, EventArgs e)
         {
             Output(((ServiceWorker)sender).Output);
         }
+
 
         private void LogCheck_WorkDone(object sender, EventArgs e)
         {
@@ -357,24 +352,12 @@ namespace Retail_HD.Forms
 
         private void Output(string output)
         {
-            if(txtOutput.Text=="")
-            {
-                if (txtOutput.InvokeRequired) { txtOutput.Invoke(new MethodInvoker(delegate { txtOutput.Text += output; })); }
-                else { txtOutput.Text += output; }
-            }
-            else
-            {
-                if (txtOutput.InvokeRequired) { txtOutput.Invoke(new MethodInvoker(delegate { txtOutput.Text += Environment.NewLine + output; })); }
-                else { txtOutput.Text += Environment.NewLine + output; }
-            }
+            if (txtOutput.InvokeRequired) { txtOutput.Invoke(new MethodInvoker(delegate { txtOutput.Text += output + Environment.NewLine; })); }
+            else { txtOutput.Text += output + Environment.NewLine; }
         }
 
 
-
-
-
-        //if (ss_Bottom_.InvokeRequired) ss_Bottom_.Invoke(new MethodInvoker(delegate { ss_Bottom_ssl_Time.Text = _timeSinceStateChange.ToString(@"hh\:mm\:ss"); }));
-        //else ss_Bottom_ssl_Time.Text = _timeSinceStateChange.ToString(@"hh\:mm\:ss");
         #endregion
+
     }
 }

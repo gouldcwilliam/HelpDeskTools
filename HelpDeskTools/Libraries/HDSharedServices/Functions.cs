@@ -605,6 +605,15 @@ namespace Shared
             string args = string.Format("-r:{0} TASKKILL /F /IM POSW.EXE", computer);
             Shared.Functions.ExecuteCommand("WINRS", args, false, false);
         }
+        /// <summary>
+        /// Restarts computer
+        /// </summary>
+        /// <param name="computer"></param>
+        public static void RestartComputer(string computer)
+        {
+            string args = string.Format("-r:{0} SHUTDOWN /f /r /t 0", computer);
+            ExecuteCommand("WINRS", args, true, false);
+        }
         #endregion
 
 
@@ -670,6 +679,16 @@ namespace Shared
         }
 
 
+        /// <summary>
+        /// Copies services.bat to computer's \temp folder
+        /// </summary>
+        /// <param name="ComputerName"></param>
+        /// <param name="verbose"></param>
+        /// <returns></returns>
+        public static bool CopyServicesBatFile(string ComputerName, bool verbose=true)
+        {
+            return CopyFileRemote(ComputerName, Shared.Settings.Default._TempPath + Shared.Settings.Default._BatServices, verbose);
+        }
         /// <summary>
         /// 
         /// </summary>
